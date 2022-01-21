@@ -20,3 +20,7 @@ body {
 .page {
   margin-top: 10vh;
 }
+.page svg {
+  font-size: 2rem;
+  color: var(--brand--red);
+}
