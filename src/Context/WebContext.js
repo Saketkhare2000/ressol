@@ -1,7 +1,17 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 
-const WebProvider = () => {
-  return <div></div>;
+export const WebContext = createContext();
+
+const WebProvider = (props) => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const value = {
+    loggedIn,
+    setLoggedIn,
+  };
+
+  return (
+    <WebContext.Provider value={value}>{props.children}</WebContext.Provider>
+  );
 };
 
 export default WebProvider;
