@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { WebContext } from "../Context/WebContext";
 import "../Styles/nav.css";
 const Nav = () => {
-  const [loggedIn, setLoggedIn] = useContext(WebContext);
+  const { loggedIn, setLoggedIn } = useContext(WebContext);
   return (
     <nav>
       <ul>
