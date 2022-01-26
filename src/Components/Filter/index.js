@@ -15,7 +15,7 @@ const Filter = () => {
         variants={pageSlide}
         initial="show"
         animate="animate"
-        exit="hidden"
+        exit="exit"
         className="filter-page"
       >
         <div className="filter-header">
