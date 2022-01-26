@@ -1,0 +1,73 @@
+[
+  {
+    "title": "Type",
+    "filterItem": ["Sell", "Rent", "Buy", "Lease", "Other"]
+  },
+  {
+    "title": "Location",
+    "filterItem": [
+      "New Delhi",
+      "Mumbai",
+      "Bangalore",
+      "Chennai",
+      "Kolkata",
+      "Hyderabad",
+      "Pune",
+      "Ahmedabad",
+      "Other"
+    ]
+  },
+  {
+    "title": "Property Type",
+    "filterItem": [
+      "Apartment",
+      "Independent House",
+      "Villa",
+      "Builder Floor",
+      "Penthouse",
+      "Studio Apartment",
+      "Other"
+    ]
+  },
+  {
+    "title": "Bedrooms",
+    "filterItem": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+  },
+  {
+    "title": "Bathrooms",
+    "filterItem": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+  },
+  {
+    "title": "Furnishing",
+    "filterItem": ["Furnished", "Unfurnished", "Semi Furnished"]
+  },
+  {
+    "title": "Available from",
+    "filterItem": ["Today", "Tomorrow", "Next Week", "Next Month", "Next Year"]
+  },
+  {
+    "title": "Amenities",
+    "filterItem": [
+      "Air Conditioning",
+      "Balcony",
+      "Bathtub",
+      "Cable TV",
+      "Coffee Maker",
+      "Dishwasher"
+    ]
+  },
+  {
+    "title": "Property Features",
+    "filterItem": [
+      "Gym",
+      "Swimming Pool",
+      "Lift",
+      "Power Backup",
+      "Parking",
+      "Security",
+      "Water Tank",
+      "Water Supply",
+      "Wifi"
+    ]
+  }
+]
