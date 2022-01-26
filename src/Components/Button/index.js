@@ -5,6 +5,7 @@ const Button = ({ title, variant }) => {
   return (
     <>
       <motion.button
+        whileTap={{ scale: 0.9 }}
         whileHover={{ scale: 1.03 }}
         className={`btn btn-${variant}`}
       >
