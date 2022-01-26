@@ -1,8 +1,9 @@
 //import global css
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "../src/Styles/global.css";
+import Button from "./Components/Button";
 import Footer from "./Components/Footer";
-import Nav from "./Components/Nav";
+import Nav from "./Components/Navbar";
 import WebProvider from "./Context/WebContext";
 import About from "./Pages/About";
 import Home from "./Pages/Home";
