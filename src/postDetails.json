@@ -1,0 +1,31 @@
+[
+  {
+    "title": "Personal Details",
+    "category": {
+      "name": "I am",
+      "options": ["Owner", "Seller", "Buyer"]
+    }
+  },
+  {
+    "title": "Property Details",
+    "category": {
+      "name": "Property Type",
+      "options": [
+        "Apartment",
+        "House",
+        "Flat",
+        "Land",
+        "Shop",
+        "Office",
+        "Other"
+      ]
+    }
+  },
+  {
+    "title": "For",
+    "category": {
+      "name": "For",
+      "options": ["Sale", "Rent"]
+    }
+  }
+]
