@@ -5,7 +5,7 @@ import { WebContext } from "../Context/WebContext";
 
 const Signup = () => {
   const { loggedIn, isLoggedIn } = useContext(WebContext);
-  return !loggedIn ? <SignUp /> : <LogIn />;
+  return <div className="page">{!loggedIn ? <SignUp /> : <LogIn />}</div>;
 };
 
 export default Signup;

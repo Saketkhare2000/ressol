@@ -5,11 +5,10 @@ import { WebContext } from "../../Context/WebContext";
 import Button from "../Button";
 import Filter from "../Filter";
 import "./style.css";
-import { pageSlide, pageSlideLeft } from "../../Animation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { pageSlideLeft } from "../../Animation";
 import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
 const Navbar = () => {
-  const { filter, setFilter, loggedIn } = useContext(WebContext);
+  const { filter, setFilter } = useContext(WebContext);
 
   return (
     <motion.header>
@@ -50,7 +49,7 @@ const Navbar = () => {
                   Home
                 </motion.li>
               </Link>
-              <Link to="/">
+              <Link to="/post">
                 <Button title="Post Property" variant="primary" />
               </Link>
               <Link to={`signup`}>
