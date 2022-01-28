@@ -12,7 +12,6 @@ const Row = ({ type }) => {
           return (
             <div key={index}>
               <h2 className="mobile-title">{item.title}</h2>
-              <div className="divider"></div>
               <div className="propertycard-row">
                 <DisplayCard title={item.title} data={item.cardDetails} />
               </div>
@@ -23,7 +22,6 @@ const Row = ({ type }) => {
           return (
             <>
               <h2 className="mobile-title">{item.title}</h2>
-              <div className="divider"></div>
               <div className="propertycard-row">
                 <PropertyCard title={item.title} data={item.cardDetails} />
               </div>

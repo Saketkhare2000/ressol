@@ -20,3 +20,6 @@
   font-size: var(--header-moile);
   color: var(--text-dark);
 }
+::-webkit-scrollbar {
+  display: none;
+}
