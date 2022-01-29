@@ -15,11 +15,16 @@ const PropertyCard = ({ title, data }) => {
     >
       <div key={index}>
         <div key={index} className="card-details">
-          <p>{item.location}</p>
           <div className="img-container">
             <img src={item.img} alt="" />
           </div>
-          <p>{item.price}</p>
+          <p className="property-bed">
+            {item.bed} BHK {item.propertyType}
+          </p>
+          <p className="property-price">
+            {item.price} | {item.area}
+          </p>
+          <p className="property-location">{item.location}</p>
         </div>
       </div>
     </Link>

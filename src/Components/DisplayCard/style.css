@@ -4,15 +4,15 @@
   background-color: white;
   /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
   margin-bottom: 20px;
-  min-width: 240px;
-  min-height: 180px;
+  min-width: 250px;
+  max-height: 130px;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-right: 12px;
 }
 .displaycard .displaycard-details {
-  height: 180px;
+  height: 130px;
   width: 100%;
   position: relative;
   display: flex;
@@ -32,8 +32,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 180px;
-  width: 240px;
+  height: 100%;
+  width: 100%;
   border-radius: 4px;
   background: linear-gradient(
     0.2deg,
@@ -47,9 +47,9 @@
   bottom: 10px;
   left: 10px;
   color: white;
-  font-family: Open Sans;
+  font-family: var(--font-family);
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 17.8017px;
   line-height: 24px;
   /* identical to box height */

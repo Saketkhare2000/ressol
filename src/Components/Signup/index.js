@@ -30,7 +30,7 @@ const SignUp = () => {
     }
   };
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={true} exitBeforeEnter>
       <div className="signup-page">
         <motion.div
           variants={slideUp}

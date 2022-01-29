@@ -5,8 +5,8 @@
   /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
   padding: 15px;
   margin-bottom: 20px;
-  min-width: 300px;
-  min-height: 300px;
+  min-width: 250px;
+  min-height: 250px;
   max-height: 500px;
   display: flex;
   flex-direction: row;
@@ -29,11 +29,21 @@
   object-fit: cover;
 }
 .card .card-details p {
-  color: var(--text-dark);
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 24px;
+  font-family: var(--font-family);
+}
+.card .card-details .property-bed {
+  font-size: 16px;
+  margin-top: 18px;
+  color: #6b6b6b;
+}
+.card .card-details .property-price {
+  font-size: 20px;
   margin: 8px 0px;
+  color: var(--text-dark);
+  font-weight: bold;
+}
+.card .card-details .property-location {
+  font-size: 14px;
+  font-weight: bold;
+  color: #6b6b6b;
 }
