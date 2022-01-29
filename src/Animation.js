@@ -1,18 +1,18 @@
 export const pageSlide = {
   show: {
-    x: "100vw",
+    x: "50vw",
     opacity: 0,
   },
   animate: {
     x: 0,
     opacity: 1,
     transition: {
-      duration: 0.4,
+      duration: 0.2,
       ease: "easeInOut",
     },
   },
   exit: {
-    x: "100vw",
+    x: "50vw",
     opacity: 0,
   },
 };

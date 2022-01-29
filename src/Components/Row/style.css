@@ -17,7 +17,7 @@
   background-color: var(--brand--green);
 }
 .mobile-title {
-  font-size: var(--header-moile);
+  font-size: var(--mobile-title);
   color: var(--text-dark);
 }
 ::-webkit-scrollbar {

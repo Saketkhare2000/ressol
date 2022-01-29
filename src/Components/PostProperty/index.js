@@ -4,12 +4,12 @@ import data from "../../postDetails.json";
 const PostProperty = () => {
   return (
     <div>
-      <h1>Sell or Rent your Property</h1>
+      <h3 className="mobile-title">Sell or Rent your Property</h3>
       <form action="" className="post-property">
         {data.map((item, index) => {
           return (
             <div key={index} className="form-group">
-              <h2>{item.title}</h2>
+              <h2 className="header-mobile">{item.title}</h2>
               <div className="form-category">
                 <label htmlFor="select"> {item.category.name}</label>
                 <select name="" id="">

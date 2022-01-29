@@ -19,7 +19,7 @@ nav {
   font-size: 22px;
   line-height: 30px;
   /* identical to box height */
-  font-weight: bold;
+  font-weight: 500;
   color: #ffffff;
 }
 .navbar .search-bar {
@@ -37,7 +37,7 @@ nav {
   color: var(--text-dark);
   cursor: pointer;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   line-height: 19px;
   /* identical to box height */
@@ -75,7 +75,7 @@ nav {
   padding: 0 10px;
   color: var(--text-dark);
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   line-height: 19px;
   /* identical to box height */
