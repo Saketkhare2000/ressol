@@ -22,6 +22,21 @@
     }
   },
   {
+    "title": "Property Details",
+    "category": {
+      "name": "Property Type",
+      "options": [
+        "Apartment",
+        "House",
+        "Flat",
+        "Land",
+        "Shop",
+        "Office",
+        "Other"
+      ]
+    }
+  },
+  {
     "title": "For",
     "category": {
       "name": "For",
