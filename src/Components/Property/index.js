@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { slideUp } from "../../Animation";
+import { Example } from "../Carousel/Example";
 import "./style.css";
 const Property = () => {
   const data = {
@@ -29,7 +30,8 @@ const Property = () => {
         <h1 className="mobile-title">
           {data.bed} BHK Bungalow | {data.location}
         </h1>
-        <img className="" src={data.img} alt="" />
+        <Example />
+        {/* <img className="property-img" src={data.img} alt="" /> */}
         <h1 className="mobile-title">More Details:</h1>
         <div className="parent">
           <div className="grid-child div1">
