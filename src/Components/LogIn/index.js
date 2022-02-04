@@ -28,13 +28,17 @@ const LogIn = () => {
   const userDetails = {
     email: email,
   };
-  console.log(email);
+  console.log(userDetails);
   //handle login
   const handleLogin = (e) => {
     e.preventDefault();
     //send data to server
-    axios
-      .get("http://127.0.0.1:8000/api/user/", userDetails)
+
+      axios({
+        method: 'post',
+        url: 'http://localhost:8000/api/login/',
+        data: userDetails
+      })
       .then((res) => {
         console.log(res);
       })
