@@ -3,8 +3,8 @@ import React, { createContext, useState } from "react";
 export const WebContext = createContext();
 
 const WebProvider = (props) => {
-  const [loggedIn, setLoggedIn] = useState(false);
   const [filter, setFilter] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [prime, setIsPrime] = useState(true);
   const value = {
     loggedIn,

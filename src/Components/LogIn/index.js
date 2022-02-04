@@ -1,3 +1,4 @@
+import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -14,10 +15,6 @@ const LogIn = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   //error state
   const [error, setError] = useState("");
-  //mobile number code
-  const [mobileCode, setMobileCode] = useState("");
-  //mobile number
-  const [mobileNumber, setMobileNumber] = useState("");
   //submit function
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +25,24 @@ const LogIn = () => {
       //send data to server
     }
   };
+  const userDetails = {
+    email: email,
+  };
+  console.log(email);
+  //handle login
+  const handleLogin = (e) => {
+    e.preventDefault();
+    //send data to server
+    axios
+      .get("http://127.0.0.1:8000/api/user/", userDetails)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <AnimatePresence>
       <div className="login-page">
@@ -59,7 +74,7 @@ const LogIn = () => {
             <motion.button
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.03 }}
-              onClick={handleSubmit}
+              onClick={handleLogin}
             >
               Log In
             </motion.button>

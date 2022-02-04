@@ -4,6 +4,7 @@ import mobile from "../../mobile.json";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { slideUp } from "../../Animation";
+import axios from "axios";
 const SignUp = () => {
   //name state
   const [name, setName] = useState("");
@@ -15,19 +16,35 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   //error state
   const [error, setError] = useState("");
-  //mobile number code
-  const [mobileCode, setMobileCode] = useState("");
   //mobile number
-  const [mobileNumber, setMobileNumber] = useState("");
-  //submit function
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [mobileNumber, setMobileNumber] = useState(0);
+
+  const userDetails = {
+    name: name,
+    email: email,
+    password: password,
+    username: name,
+    mobile_number: mobileNumber,
+    area: "area 51",
+    city: "city 51",
+    address: "address 51",
+    pincode: "51",
+  };
+  const passwordCheck = () => {
     if (password !== confirmPassword) {
       setError("Passwords do not match");
     } else {
       setError("");
-      //send data to server
     }
+  };
+
+  //submit function
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    passwordCheck();
+    axios.post("http://127.0.0.1:8000/api/user/", userDetails).then((res) => {
+      console.log(res);
+    });
   };
   return (
     <AnimatePresence initial={true} exitBeforeEnter>
@@ -105,13 +122,6 @@ const SignUp = () => {
               />
             </div>
             <div className="form-category">
-              <select name="mobile number">
-                {mobile.map((item, index) => (
-                  <option key={index} value="item">
-                    {item.dial_code} - {item.code}
-                  </option>
-                ))}
-              </select>
               <input
                 onChange={(e) => setMobileNumber(e.target.value)}
                 type="text"
@@ -121,7 +131,7 @@ const SignUp = () => {
             <motion.button
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.03 }}
-              onClick={handleSubmit}
+              onClick={handleSignUp}
             >
               Sign Up
             </motion.button>
