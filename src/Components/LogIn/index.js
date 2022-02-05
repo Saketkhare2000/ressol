@@ -7,6 +7,7 @@ import { WebContext } from "../../Context/WebContext";
 import Alert from "../Alert";
 import "./style.css";
 const LogIn = () => {
+  const [data, setData] = useState()
   //name state
   const [name, setName] = useState("");
   //email state
@@ -30,8 +31,7 @@ const LogIn = () => {
   const userDetails = {
     email: email,
   };
-  const { loggedIn, setLoggedIn, setAlert } = useContext(WebContext);
-  console.log(userDetails);
+  const { loggedIn, setLoggedIn, setAlert, userData, setUserData } = useContext(WebContext);
   //handle login
   const handleLogin = (e) => {
     e.preventDefault();
@@ -43,30 +43,23 @@ const LogIn = () => {
       data: userDetails,
     })
       .then((res) => {
+        setUserData(res.data[0]);
         setLoggedIn(true);
         setAlert({
           show: true,
           message: "logged in",
           type: "success",
         });
-        setTimeout(() => {
-          setAlert({
-            show: false,
-            message: "",
-            type: "",
-          });
-        }, 2000);
-      })
-
-      .catch((err) => {
+      }).catch((err) => {
         console.log(err);
       });
   };
 
-  return loggedIn ? (
-    <Alert />
-  ) : (
+  return (
     <div className="login-page">
+      {
+        loggedIn ? <Link to="/dashboard" >Go to Dashboard of {userData.email}</Link> : null
+      }
       <motion.div
         variants={slideUp}
         initial="show"
