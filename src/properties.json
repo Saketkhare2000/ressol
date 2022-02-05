@@ -1,0 +1,71 @@
+[
+  {
+    "title": "Explore Real Estate in your City",
+    "type": "imgCard",
+    "cardDetails": [
+      {
+        "img": "https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZGVsaGl8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
+        "imgTitle": "Delhi"
+      },
+      {
+        "img": "https://media.istockphoto.com/photos/mumbai-skyline-wadala-sewri-lalbaug-picture-id1325342016?b=1&k=20&m=1325342016&s=170667a&w=0&h=eVzl8oUCTtR4lK-dPtd8q1SvelPGCjkkdpRx7gJoICo=",
+        "imgTitle": "Mumbai"
+      },
+      {
+        "img": "https://media.istockphoto.com/photos/bangalore-picture-id92317684?b=1&k=20&m=92317684&s=170667a&w=0&h=nsjLwVRV7NEB4wtUbQS2Di3TjKJ5qmm4Q9R3VicMM9k=",
+        "imgTitle": "Bangalore"
+      }
+    ]
+  },
+  {
+    "title": "Type of service",
+    "type": "imgCard",
+    "cardDetails": [
+      {
+        "img": "https://images.unsplash.com/photo-1614926781997-9ca2e6d2785a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+        "imgTitle": "Ready to move"
+      },
+      {
+        "img": "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
+        "imgTitle": "Best Deals"
+      }
+    ]
+  },
+  {
+    "title": "Trending Properties",
+    "type": "propertyCard",
+    "cardDetails": [
+      {
+        "img": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+        "location": "Mumbai",
+        "price": "Rs. 1.5Cr",
+        "bed": "3",
+        "bath": "2",
+        "area": "2.5 Acres",
+        "propertyType": "Apartment",
+        "propertyId": "1",
+        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur, ab?"
+      },
+      {
+        "img": "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+        "location": "Delhi",
+        "price": "Rs. 25lac",
+        "bed": "3",
+        "bath": "2",
+        "area": "2.5 Acres",
+        "propertyType": "Apartment",
+        "propertyId": "1"
+      },
+      {
+        "img": "https://images.unsplash.com/photo-1576941089067-2de3c901e126?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=978&q=80",
+        "location": "Mumbai",
+        "price": "Rs. 1.5 Cr",
+        "bed": "3",
+        "bath": "2",
+        "area": "2.5 Acres",
+        "propertyType": "Apartment",
+        "propertyId": "1"
+      }
+    ]
+  }
+]

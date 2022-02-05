@@ -30,7 +30,7 @@ const SignUp = () => {
     }
   };
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={true} exitBeforeEnter>
       <div className="signup-page">
         <motion.div
           variants={slideUp}
@@ -42,24 +42,35 @@ const SignUp = () => {
           <h1>Sign Up</h1>
           <form className="signup-form" action="">
             <div className="form-category">
-              <input id="Buyer" type="radio" placeholder="Buyer/Owner" />
-              <label htmlFor="Buyer">Buyer/Owner</label>
-
-              <input
-                id="Builder"
-                type="radio"
-                placeholder="Seller"
-                value="Builder"
-              />
-              <label htmlFor="Builder">Builder</label>
-
-              <input
-                type="radio"
-                id="Agent"
-                placeholder="Agent"
-                value="Agent"
-              />
-              <label htmlFor="Agent">Agent</label>
+              <div className="form-group">
+                <input
+                  id="Buyer"
+                  type="radio"
+                  name="type"
+                  placeholder="Buyer/Owner"
+                />
+                <label htmlFor="Buyer">Buyer/Owner</label>
+              </div>
+              <div className="form-group">
+                <input
+                  id="Builder"
+                  type="radio"
+                  name="type"
+                  placeholder="Seller"
+                  value="Builder"
+                />
+                <label htmlFor="Builder">Builder</label>
+              </div>
+              <div className="form-group">
+                <input
+                  type="radio"
+                  id="Agent"
+                  name="type"
+                  placeholder="Agent"
+                  value="Agent"
+                />
+                <label htmlFor="Agent">Agent</label>
+              </div>
             </div>
             <div className="form-category">
               <input

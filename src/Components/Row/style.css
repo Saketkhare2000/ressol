@@ -1,0 +1,25 @@
+.row {
+  display: flex;
+  flex-direction: column;
+}
+.row .propertycard-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: scroll;
+  margin: 20px 0px;
+}
+.divider {
+  margin-top: 10px;
+  width: 50px;
+  border-radius: 999px;
+  height: 5px;
+  background-color: var(--brand--green);
+}
+.mobile-title {
+  font-size: var(--mobile-title);
+  color: var(--text-dark);
+}
+::-webkit-scrollbar {
+  display: none;
+}
