@@ -15,6 +15,7 @@ import Spacer from "./Components/Spacer";
 import PropertyList from "./Pages/PropertyList";
 import ScrollToTop from "./ScrollToTop";
 import { Example } from "./Components/Carousel/Example";
+import PrimeRoute from "./Routes/PrimeRoute";
 function App() {
   return (
     <WebProvider>
@@ -29,7 +30,8 @@ function App() {
           <Route path="/post" element={<Post />} />
           <Route path="/property" element={<Property />} />
           <Route path="/propertylist" element={<PropertyList />} />
-          {/* <PrivateRoute path="/admin" element={<Example />} /> */}
+          <Route path="/dashboard" element={<Example />} />
+          {/* <PrimeRoute path="/admin" element={<Example />} /> */}
         </Routes>
         <Footer />
         <Spacer />

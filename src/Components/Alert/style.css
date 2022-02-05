@@ -1,0 +1,19 @@
+.alert {
+  position: fixed;
+  bottom: 12vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999999999;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: var(--ffamily-workSans);
+}
+.alert.alert-success {
+  background-color: var(--brand-green);
+  color: #fff;
+}
+.alert.alert-danger {
+  background-color: #f44336;
+  color: #fff;
+}
