@@ -61,7 +61,7 @@ const LogIn = () => {
           <form className="login-form" action="">
             <div className="form-category">
               <input
-                onChange={(e) => setEmail(e.target.value)}
+                onSubmit={(e) => setEmail(e.target.value)}
                 id="Email"
                 type="text"
                 placeholder="Email"
@@ -69,7 +69,7 @@ const LogIn = () => {
             </div>
             <div className="form-category">
               <input
-                onChange={(e) => setPassword(e.target.value)}
+                onSubmit={(e) => setPassword(e.target.value)}
                 id="Password"
                 type="password"
                 placeholder="Password"

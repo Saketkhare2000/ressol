@@ -4,6 +4,7 @@ import { Switch } from "react-router";
 import "../src/Styles/global.css";
 import Footer from "./Components/Footer";
 import LogIn from "./Components/LogIn";
+import Dashboard from "./Components/Dashboard";
 import Nav from "./Components/Navbar";
 import WebProvider from "./Context/WebContext";
 import About from "./Pages/About";
@@ -30,7 +31,7 @@ function App() {
           <Route path="/post" element={<Post />} />
           <Route path="/property" element={<Property />} />
           <Route path="/propertylist" element={<PropertyList />} />
-          <Route path="/dashboard" element={<Example />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           {/* <PrimeRoute path="/admin" element={<Example />} /> */}
         </Routes>
         <Footer />
