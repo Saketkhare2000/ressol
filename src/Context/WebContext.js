@@ -12,6 +12,7 @@ const WebProvider = (props) => {
   const [filter, setFilter] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [prime, setIsPrime] = useState(true);
+  const [userData, setUserData] = useState();
   const value = {
     loggedIn,
     setLoggedIn,
@@ -21,6 +22,8 @@ const WebProvider = (props) => {
     setIsPrime,
     alert,
     setAlert,
+    userData,
+    setUserData,
   };
 
   return (
