@@ -2,18 +2,23 @@ import React, { useContext } from 'react';
 import Button from '../Button';
 import "./style.css";
 import { WebContext } from "../../Context/WebContext";
+import SampleUserImg from "../../assets/images/sample-user-img.png";
 
 // import { AnimatePresence, motion } from "framer-motion";
 // import { slideUp } from "../../Animation";
 
 const Dashoard = () => {
-    const { userData } = useContext(WebContext);
+    const { userData, loggedIn } = useContext(WebContext);
     return (
         <div className='dashboard-page'>
             <div className="dashboard-header">
-                <h3 className='mobile-title'>Dashboard of {userData.email}</h3>
-
-                <Button title="Edit" variant="secondary" />
+               <div className="user-image">
+                   <img src={SampleUserImg} alt="User" />
+               </div>
+               <div className="user-details">
+                   <h3 className='mobile-title'>{userData.name}</h3>
+                   <p className='user-prime-status'>Prime Member</p>
+               </div>
             </div>
             <form action="">
                 <div className="form-group">
