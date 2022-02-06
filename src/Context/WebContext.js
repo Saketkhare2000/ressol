@@ -9,6 +9,11 @@ const WebProvider = (props) => {
     message: "",
     type: "",
   });
+  const [userName, setUserName] = useState("");
+  //access token state
+  const [accessToken, setAccessToken] = useState("");
+  //refresh token state
+  const [refreshToken, setRefreshToken] = useState("");
   const [filter, setFilter] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [prime, setIsPrime] = useState(true);
@@ -24,6 +29,12 @@ const WebProvider = (props) => {
     setAlert,
     userData,
     setUserData,
+    accessToken,
+    setAccessToken,
+    refreshToken,
+    setRefreshToken,
+    userName,
+    setUserName,
   };
 
   return (

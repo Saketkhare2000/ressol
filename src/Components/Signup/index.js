@@ -23,6 +23,8 @@ const SignUp = () => {
   const { setAlert } = useContext(WebContext);
 
   const userDetails = {
+    first_name: name,
+    last_name: "",
     name: name,
     email: email,
     password: password,
@@ -140,7 +142,7 @@ const SignUp = () => {
     validateForm();
     if (error === "") {
       axios
-        .post("http://127.0.0.1:8000/api/user/", userDetails)
+        .post("http://127.0.0.1:8000/auth/register/", userDetails)
         .then((res) => {
           setTimeout(() => {
             setAlert({

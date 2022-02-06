@@ -13,9 +13,9 @@ const PostProperty = () => {
               <div className="form-category">
                 <label htmlFor="select"> {item.category.name}</label>
                 <select name="" id="">
-                  {item.category.options.map((option, index) => {
+                  {item.category.options.map((option, key) => {
                     return (
-                      <option key={index} value={option}>
+                      <option key={key} value={option}>
                         {option}
                       </option>
                     );
