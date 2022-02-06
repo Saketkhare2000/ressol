@@ -32,8 +32,8 @@ const Filter = () => {
                   <p>{item.title}</p>
                 </div>
                 <div className="filter-items">
-                  {item.filterItem.map((item, index) => (
-                    <Button key={index} title={item} variant={"primary"} />
+                  {item.filterItem.map((item, key) => (
+                    <Button key={key} title={item} variant={"primary"} />
                   ))}
                 </div>
               </div>

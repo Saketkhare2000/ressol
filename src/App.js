@@ -1,10 +1,9 @@
 //import global css
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import { Switch } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "../src/Styles/global.css";
 import Footer from "./Components/Footer";
 import LogIn from "./Components/LogIn";
-import Dashboard from "./Components/Dashboard";
+import Dashboard from "./Pages/Dashboard";
 import Nav from "./Components/Navbar";
 import WebProvider from "./Context/WebContext";
 import About from "./Pages/About";
@@ -15,9 +14,9 @@ import Property from "./Components/Property";
 import Spacer from "./Components/Spacer";
 import PropertyList from "./Pages/PropertyList";
 import ScrollToTop from "./ScrollToTop";
-import { Example } from "./Components/Carousel/Example";
-import PrimeRoute from "./Routes/PrimeRoute";
+import { useSelector } from "react-redux";
 function App() {
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
   return (
     <WebProvider>
       <BrowserRouter>

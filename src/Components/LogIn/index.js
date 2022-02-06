@@ -1,65 +1,35 @@
-import axios from "axios";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { slideUp } from "../../Animation";
 import { WebContext } from "../../Context/WebContext";
-import Alert from "../Alert";
+import { useDispatch, useSelector } from "react-redux";
+import { userAuth } from "../../actions/userActions";
 import "./style.css";
+
 const LogIn = () => {
-  const [data, setData] = useState()
-  //name state
-  const [name, setName] = useState("");
-  //email state
-  const [email, setEmail] = useState("");
-  //password state
+  const dispatch = useDispatch();
+
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
   const [password, setPassword] = useState("");
-  //confirm password state
-  const [confirmPassword, setConfirmPassword] = useState("");
-  //error state
+
   const [error, setError] = useState("");
-  //submit function
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-    } else {
-      setError("");
-      //send data to server
-    }
-  };
+
+  const { setAlert, userName, setUserName } = useContext(WebContext);
+
   const userDetails = {
-    email: email,
+    username: userName,
+    password: password,
   };
-  const { loggedIn, setLoggedIn, setAlert, userData, setUserData } = useContext(WebContext);
-  //handle login
-  const handleLogin = (e) => {
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    //send data to server
-
-    axios({
-      method: "post",
-      url: "http://localhost:8000/api/login/",
-      data: userDetails,
-    })
-      .then((res) => {
-        setUserData(res.data[0]);
-        setLoggedIn(true);
-        setAlert({
-          show: true,
-          message: "logged in",
-          type: "success",
-        });
-      }).catch((err) => {
-        console.log(err);
-      });
+    await dispatch(userAuth(userDetails));
   };
 
-  return (
+  return !loggedIn ? (
     <div className="login-page">
-      {
-        loggedIn ? <Link to="/dashboard" >Go to Dashboard of {userData.email}</Link> : null
-      }
+      {loggedIn ? <h1>Go to dashboard</h1> : ""}
       <motion.div
         variants={slideUp}
         initial="show"
@@ -71,10 +41,10 @@ const LogIn = () => {
         <form className="login-form" action="">
           <div className="form-category">
             <input
-              onChange={(e) => setEmail(e.target.value)}
-              id="Email"
+              onChange={(e) => setUserName(e.target.value)}
+              id="Username"
               type="text"
-              placeholder="Email"
+              placeholder="Username"
             />
           </div>
           <div className="form-category">
@@ -99,6 +69,10 @@ const LogIn = () => {
         <p className="reset">Reset password</p>
       </motion.div>
     </div>
+  ) : (
+    <h1>
+      <Link to="/dashboard">Go to dashboard</Link>
+    </h1>
   );
 };
 

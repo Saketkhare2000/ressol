@@ -7,9 +7,10 @@ import Filter from "../Filter";
 import "./style.css";
 import { pageSlideLeft } from "../../Animation";
 import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
+import { useSelector } from "react-redux";
 const Navbar = () => {
   const { filter, setFilter } = useContext(WebContext);
-
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
   return (
     <motion.header>
       {filter ? (
@@ -52,7 +53,7 @@ const Navbar = () => {
               <Link to="/post">
                 <Button title="Post Property" variant="primary" />
               </Link>
-              <Link to={`signup`}>
+              <Link to={loggedIn ? `dashboard` : `signup`}>
                 <motion.li
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ scale: 1.05 }}
