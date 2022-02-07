@@ -1,9 +1,5 @@
 import axios from "axios";
-import { useContext } from "react";
-
 //action creators
-import { useSelector } from "react-redux";
-import { WebContext } from "../Context/WebContext";
 
 export const userAuth = (userDetails) => async (dispatch) => {
   //Fetch axios request
@@ -23,6 +19,12 @@ export const userAuth = (userDetails) => async (dispatch) => {
   });
 };
 
+export const userLogout = () => (dispatch) => {
+  dispatch({
+    type: "LOGGED_OUT",
+  });
+};
+
 export const getUserData = (userName, accessToken) => async (dispatch) => {
   //Fetch axios request
   const userData = await axios({
@@ -39,3 +41,22 @@ export const getUserData = (userName, accessToken) => async (dispatch) => {
     payload: userData.data,
   });
 };
+
+// export const updateUserData =
+//   (userDetails, accessToken) => async (dispatch) => {
+//     //Fetch axios request
+//     const userData = await axios({
+//       method: "put",
+//       url: `http://localhost:8000/api/profile/${userDetails.first_name}`,
+//       headers: {
+//         Authorization: `Bearer ${accessToken}`,
+//       },
+//       data: userDetails,
+//     });
+//     console.log(userData.data);
+//     //set user data
+//     dispatch({
+//       type: "UPDATE_USER_DATA",
+//       payload: userData.data,
+//     });
+//   };

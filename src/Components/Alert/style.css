@@ -10,7 +10,7 @@
   font-family: var(--ffamily-workSans);
 }
 .alert.alert-success {
-  background-color: var(--brand-green);
+  background-color: green;
   color: #fff;
 }
 .alert.alert-danger {

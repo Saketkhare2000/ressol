@@ -144,11 +144,16 @@ const SignUp = () => {
       axios
         .post("http://127.0.0.1:8000/auth/register/", userDetails)
         .then((res) => {
+          setAlert({
+            show: true,
+            message: "User created successfully",
+            type: "success",
+          });
           setTimeout(() => {
             setAlert({
-              show: true,
-              message: "User created successfully",
-              type: "success",
+              show: false,
+              message: "",
+              type: "",
             });
           }, 2000);
         })

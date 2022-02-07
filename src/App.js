@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "../src/Styles/global.css";
 import Footer from "./Components/Footer";
 import LogIn from "./Components/LogIn";
-import Dashboard from "./Pages/Dashboard";
+import Dashboard from "./Components/Dashboard";
 import Nav from "./Components/Navbar";
 import WebProvider from "./Context/WebContext";
 import About from "./Pages/About";
@@ -30,10 +30,15 @@ function App() {
           <Route path="/post" element={<Post />} />
           <Route path="/property" element={<Property />} />
           <Route path="/propertylist" element={<PropertyList />} />
+          {loggedIn ? (
+            <Route path="/dashboard" element={<Dashboard />} />
+          ) : (
+            <Route path="/dashboard" element={<LogIn />} />
+          )}
           <Route path="/dashboard" element={<Dashboard />} />
           {/* <PrimeRoute path="/admin" element={<Example />} /> */}
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
         <Spacer />
         <ScrollToTop />
       </BrowserRouter>

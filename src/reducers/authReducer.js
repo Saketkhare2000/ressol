@@ -13,6 +13,13 @@ const authReducer = (state = initState, action) => {
         accessToken: action.payload.access,
         refreshToken: action.payload.refresh,
       };
+    case "LOGGED_OUT":
+      return {
+        ...state,
+        loggedIn: false,
+        accessToken: "",
+        refreshToken: "",
+      };
     default:
       return state;
   }

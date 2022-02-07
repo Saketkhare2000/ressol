@@ -29,7 +29,7 @@ const Property = () => {
       <div className="each-property">
         <h1 className="mobile-title">
           {data.bed} BHK Bungalow | {data.location}
-        </h1>z
+        </h1>
         <Example />
         {/* <img className="property-img" src={data.img} alt="" /> */}
         <h1 className="mobile-title">More Details:</h1>
