@@ -14,11 +14,12 @@ import { AiOutlineUser } from "react-icons/ai";
 const Dashoard = () => {
   const dispatch = useDispatch();
   const { userName } = useContext(WebContext);
-  const accessToken = useSelector((state) => state.auth.accessToken);
+  // const accessToken = useSelector((state) => state.auth.accessToken);
+  const key = useSelector((state) => state.auth.key);
   const userDetails = useSelector((state) => state.userData.userData);
   console.log(userDetails.userData);
   useEffect(() => {
-    dispatch(getUserData(userName, accessToken));
+    dispatch(getUserData(userName, key));
   }, []);
   //rotate state
 

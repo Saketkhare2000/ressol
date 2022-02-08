@@ -268,14 +268,14 @@ const SignUp = () => {
                 required
               />
             </div>
-            <div className="form-category">
+            {/* <div className="form-category">
               <input
                 onChange={(e) => setMobileNumber(e.target.value)}
                 type="text"
                 placeholder="Mobile No."
                 required
               />
-            </div>
+            </div> */}
             <motion.button
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.03 }}

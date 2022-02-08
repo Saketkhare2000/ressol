@@ -1,8 +1,8 @@
 //create auth reducer
 const initState = {
   loggedIn: false,
-  accessToken: "",
-  refreshToken: "",
+  key: "",
+
 };
 const authReducer = (state = initState, action) => {
   switch (action.type) {
@@ -10,15 +10,15 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         loggedIn: true,
-        accessToken: action.payload.access,
-        refreshToken: action.payload.refresh,
+        key: action.payload.key,
+
       };
     case "LOGGED_OUT":
       return {
         ...state,
         loggedIn: false,
-        accessToken: "",
-        refreshToken: "",
+
+        key: "",
       };
     default:
       return state;
@@ -26,4 +26,3 @@ const authReducer = (state = initState, action) => {
 };
 export default authReducer;
 
-// Reducer, action, dispatch

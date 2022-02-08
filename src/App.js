@@ -28,7 +28,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/post" element={<Post />} />
-          <Route path="/property" element={<Property />} />
+          <Route path="/property/:slug" element={<Property />} />
           <Route path="/propertylist" element={<PropertyList />} />
           {loggedIn ? (
             <Route path="/dashboard" element={<Dashboard />} />

@@ -5,7 +5,7 @@ export const userAuth = (userDetails) => async (dispatch) => {
   //Fetch axios request
   const auth = await axios({
     method: "post",
-    url: "http://localhost:8000/auth/login/",
+    url: "http://127.0.0.1:8000/auth/login/",
     data: userDetails,
   });
   console.log(auth);
@@ -13,8 +13,9 @@ export const userAuth = (userDetails) => async (dispatch) => {
   dispatch({
     type: "LOGGED_IN",
     payload: {
-      access: auth.data.access,
-      refresh: auth.data.refresh,
+      // access: auth.data.access,
+      // refresh: auth.data.refresh,
+      key: auth.data.key,
     },
   });
 };
@@ -41,6 +42,19 @@ export const getUserData = (userName, accessToken) => async (dispatch) => {
     payload: userData.data,
   });
 };
+export const getPropertyList = () => async (dispatch) => {
+  //Fetch axios request
+  const propertyList = await axios({
+    method: "get",
+    url: "http://localhost:8000/api/property/",
+  });
+  // console.log(propertyList.data);
+  //set user data
+  dispatch({
+    type: "SET_PROPERTY_DATA",
+    payload: propertyList.data,
+  });
+}
 
 // export const updateUserData =
 //   (userDetails, accessToken) => async (dispatch) => {
