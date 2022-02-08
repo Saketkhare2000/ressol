@@ -37,6 +37,8 @@ const PostProperty = () => {
   const [timestamp, setTimestamp] = React.useState("");
 
   const data = {
+    features: [],
+    amenities: [],
     name: name,
     description: description,
     address: address,
@@ -46,7 +48,7 @@ const PostProperty = () => {
     price: parseInt(price),
     property_size: parseInt(property_size),
     furnishing_status: true,
-    timestamp: "2022-02-08T13:48:00Z",
+    timestamp: timestamp,
     availability: availability,
     bedrooms: parseInt(bedrooms),
     bathrooms: parseInt(bathrooms),

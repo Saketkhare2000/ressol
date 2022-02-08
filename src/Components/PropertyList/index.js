@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getPropertyList } from "../../actions/userActions";
 import Button from "../Button";
 import Loader from "../Loader";
@@ -8,6 +8,7 @@ import "./style.css";
 
 const PropertyDeatiledCard = () => {
   const dispatch = useDispatch();
+  const id = useParams().slug;
 
   useEffect(() => {
     dispatch(getPropertyList())

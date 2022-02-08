@@ -29,7 +29,7 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           <Route path="/post" element={<Post />} />
           <Route path="/property/:slug" element={<Property />} />
-          <Route path="/propertylist" element={<PropertyList />} />
+          <Route path="/propertylist/:slug" element={<PropertyList />} />
           {loggedIn ? (
             <Route path="/dashboard" element={<Dashboard />} />
           ) : (

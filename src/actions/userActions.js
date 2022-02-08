@@ -46,7 +46,7 @@ export const getPropertyList = () => async (dispatch) => {
   //Fetch axios request
   const propertyList = await axios({
     method: "get",
-    url: "http://localhost:8000/api/property/",
+    url: `http://localhost:8000/api/property/`,
   });
   // console.log(propertyList.data);
   //set user data
