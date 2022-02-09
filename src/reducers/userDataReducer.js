@@ -22,6 +22,11 @@ const userDataReducer = (state = initState, action) => {
         ...state,
         userData: action.payload,
       };
+    case "CLEAR_USER_DATA":
+      return {
+        ...state,
+        userData: initState,
+      };
     default:
       return state;
   }

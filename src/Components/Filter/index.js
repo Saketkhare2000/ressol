@@ -33,7 +33,7 @@ const Filter = () => {
                 </div>
                 <div className="filter-items">
                   {item.filterItem.map((item, key) => (
-                    <Button key={key} title={item} variant={"primary"} />
+                    <Button key={key} title={item} variant={"secondary"} />
                   ))}
                 </div>
               </div>

@@ -27,7 +27,8 @@ const SignUp = () => {
     last_name: "",
     name: name,
     email: email,
-    password: password,
+    password1: password,
+    password2: password,
     username: name,
     mobile_number: mobileNumber,
     area: "area 51",
@@ -56,25 +57,25 @@ const SignUp = () => {
       }, 2000);
     }
   };
-  const validateMobile = (mobile) => {
-    if (mobile.length !== 10) {
-      setError("Invalid Mobile Number");
-      setAlert({
-        show: true,
-        message: "Enter a valid mobile number",
-        type: "danger",
-      });
-      setTimeout(() => {
-        setAlert({
-          show: false,
-          message: "",
-          type: "",
-        });
-      }, 2000);
-    } else {
-      setError("");
-    }
-  };
+  // const validateMobile = (mobile) => {
+  //   if (mobile.length !== 10) {
+  //     setError("Invalid Mobile Number");
+  //     setAlert({
+  //       show: true,
+  //       message: "Enter a valid mobile number",
+  //       type: "danger",
+  //     });
+  //     setTimeout(() => {
+  //       setAlert({
+  //         show: false,
+  //         message: "",
+  //         type: "",
+  //       });
+  //     }, 2000);
+  //   } else {
+  //     setError("");
+  //   }
+  // };
   const validateName = (name) => {
     setError("Enter a valid name");
     if (name.length < 3) {
@@ -133,7 +134,7 @@ const SignUp = () => {
     validateName(name);
     validateEmail(email);
     validatePassword(password);
-    validateMobile(mobileNumber);
+    // validateMobile(mobileNumber);
   };
 
   //submit function
@@ -144,11 +145,16 @@ const SignUp = () => {
       axios
         .post("http://127.0.0.1:8000/auth/register/", userDetails)
         .then((res) => {
+          setAlert({
+            show: true,
+            message: "User created successfully",
+            type: "success",
+          });
           setTimeout(() => {
             setAlert({
-              show: true,
-              message: "User created successfully",
-              type: "success",
+              show: false,
+              message: "",
+              type: "",
             });
           }, 2000);
         })
@@ -263,14 +269,14 @@ const SignUp = () => {
                 required
               />
             </div>
-            <div className="form-category">
+            {/* <div className="form-category">
               <input
                 onChange={(e) => setMobileNumber(e.target.value)}
                 type="text"
                 placeholder="Mobile No."
                 required
               />
-            </div>
+            </div> */}
             <motion.button
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.03 }}

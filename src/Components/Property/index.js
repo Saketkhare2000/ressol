@@ -1,23 +1,26 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { useSelector } from "react-redux";
+import { useParams } from 'react-router-dom';
 import { slideUp } from "../../Animation";
 import { Example } from "../Carousel/Example";
+import priceParser from 'price-parser'
 import "./style.css";
 const Property = () => {
-  const data = {
-    img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-    location: "Delhi",
-    price: "Rs. 25lac",
-    bed: "3",
-    bath: "2",
-    area: "2.5 Acres",
-    propertyType: "Apartment",
-    propertyId: "1",
-    furnishing: "Furnished",
-    postedOn: "1 day ago",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque unde velit temporibus consectetur ad. Itaque velit tenetur praesentium obcaecati repellat.",
-  };
+  const id = useParams().slug;
+  console.log(id)
+  const propertyDetails = useSelector((state) => state.propertyList.propertyData[0]);
+  function numDifferentiation(value) {
+    var val = Math.abs(value)
+    if (val >= 10000000) {
+      val = Math.floor((val / 10000000).toFixed(2)) + ' Cr';
+    } else if (val >= 100000) {
+      val = Math.floor((val / 100000).toFixed(2)) + ' Lac';
+    }
+    return val;
+  }
+  console.log(propertyDetails)
+
   return (
     <motion.div
       initial="show"
@@ -28,42 +31,42 @@ const Property = () => {
     >
       <div className="each-property">
         <h1 className="mobile-title">
-          {data.bed} BHK Bungalow | {data.location}
-        </h1>z
+          {propertyDetails.name} | {propertyDetails.location}
+        </h1>
         <Example />
-        {/* <img className="property-img" src={data.img} alt="" /> */}
         <h1 className="mobile-title">More Details:</h1>
         <div className="parent">
           <div className="grid-child div1">
             <span>Rent</span>
-            <p>{data.price}</p>
+            <p>₹ {numDifferentiation(propertyDetails.price)}</p>
           </div>
           <div className="grid-child div2">
             <span>Rent</span>
-            <p>{data.price}</p>
+            <p>₹ {numDifferentiation(propertyDetails.price)}</p>
           </div>
           <div className="grid-child div3">
             <span>Area</span>
-            <p>{data.area}</p>
+            <p>{propertyDetails.property_size}</p>
           </div>
           <div className="grid-child div4">
             <span>Configuration</span>
             <p>
-              {data.bed} BHK, {data.bath} Bath
+              {propertyDetails.bedrooms} BHK, {propertyDetails.bathrooms} Bath
             </p>
           </div>
           <div className="grid-child div5">
             <span>Furnishing</span>
-            <p>{data.furnishing}</p>
+            {propertyDetails.furnishing_status ? (<p>Furnished</p>) : (<p>Un Furnished</p>)}
           </div>
           <div className="grid-child div6">
             <span>Posted On</span>
-            <p>{data.postedOn}</p>
+            <p>{propertyDetails.postedOn}</p>
           </div>
         </div>
         <div className="description">
           <h1 className="mobile-title">Description:</h1>
-          <p>{data.description}</p>
+          <h4>{propertyDetails.address}, {propertyDetails.pincode}</h4>
+          <p>{propertyDetails.description}</p>
         </div>
       </div>
     </motion.div>

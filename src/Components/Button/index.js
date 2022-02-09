@@ -9,7 +9,7 @@ const Button = ({ title, variant }) => {
         whileHover={{ scale: 1.03 }}
         className={`btn btn-${variant}`}
       >
-        <p>{title}</p>
+        <span>{title}</span>
       </motion.button>
     </>
   );

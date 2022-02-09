@@ -46,7 +46,7 @@ const Navbar = () => {
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <AiOutlineHome style={{ fontSize: "32px" }} />
+                  <AiOutlineHome style={{ fontSize: "24px" }} />
                   Home
                 </motion.li>
               </Link>
@@ -58,7 +58,7 @@ const Navbar = () => {
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <AiOutlineUser style={{ fontSize: "32px" }} />
+                  <AiOutlineUser style={{ fontSize: "24px" }} />
                   Account
                 </motion.li>
               </Link>

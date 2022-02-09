@@ -41,8 +41,7 @@ export const pageSlideLeft = {
 };
 export const slideUp = {
   show: {
-    y: "20vh",
-    opacity: 0,
+    opacity: 1,
   },
   animate: {
     y: 0,
@@ -53,7 +52,6 @@ export const slideUp = {
     },
   },
   exit: {
-    y: "20vh",
     opacity: 0,
   },
 };
