@@ -60,6 +60,15 @@ export const getPropertyList = (city) => async (dispatch) => {
   });
 }
 
+
+
+
+
+
+
+
+
+
 // export const updateUserData =
 //   (userDetails, accessToken) => async (dispatch) => {
 //     //Fetch axios request

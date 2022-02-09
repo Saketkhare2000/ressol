@@ -15,9 +15,33 @@
   font-family: var(--font-family);
   transition: all 0.3s ease-in-out;
 }
-.form-group input:focus {
-  /* outline: none; */
+.form-group input[type="radio"] {
+  width: auto;
 }
+.form-group .select-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+.form-group .select-options .select-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 24px 8px 0;
+  font-size: 16px;
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.form-group .select-options .select-option label {
+  margin: 0 6px;
+}
+/* .form-group input:focus {
+  /* outline: none; */
+/* } */
 .form-category {
   display: flex;
   flex-direction: row;

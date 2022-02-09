@@ -5,12 +5,13 @@ import axios from "axios";
 import Select from 'react-select'
 import cityData from "../../cities.json";
 import stateData from "../../state.json";
+import slugify from "slugify";
 // import data from "../../postDetails.json";
 const PostProperty = () => {
 
   //name state
   const [name, setName] = React.useState("");
-  const [property_for, setProperty_For] = React.useState("");
+  const [for_status, setFor_Status] = React.useState("");
   //description state
   const [description, setDescription] = React.useState("");
   //price state
@@ -32,37 +33,36 @@ const PostProperty = () => {
   const [prime_property, setPrime_Property] = React.useState(false);
   //furnished state
   const [furnishing_status, setFurnishing_status] = React.useState(false);
+  const [possession_status, setPossession_Status] = React.useState("");
   //availability state
   const [availability, setAvailability] = React.useState("");
-  //visit state
-  const [visits, setVisits] = React.useState();
-  //type state
-  const [property_type, setProperty_Type] = React.useState("");
-  //time state
-  const [timestamp, setTimestamp] = React.useState("");
 
+  const [property_type, setProperty_Type] = React.useState("");
+
+  const date = new Date(availability);
+  const dateString = date.toDateString();
   const data = {
     features: [],
     amenities: [],
-    name: name,
+    name: slugify(name, '_'),
+    property_name: name,
     description: description,
     address: address,
-    city,
-    state,
+    city: city.toLowerCase(),
+    for_status: for_status,
+    possession: possession_status,
+    state: state.toLowerCase(),
     pincode: pincode,
     prime_property: true,
     price: parseInt(price),
     property_size: parseInt(property_size),
-    furnishing_status: true,
-    timestamp: timestamp,
+    furnishing_status: furnishing_status,
     availability: availability,
     bedrooms: parseInt(bedrooms),
     bathrooms: parseInt(bathrooms),
-    visits: parseInt(visits),
     property_type: property_type,
     posted_by: 1
   }
-
 
   const loggedIn = useSelector(state => state.auth.loggedIn);
   const key = useSelector(state => state.auth.key);
@@ -95,27 +95,15 @@ const PostProperty = () => {
     }
   });
 
-  console.log(cityOptions)
-  const options = [
-    { value: 'Surat', label: 'Surat' },
-    { value: 'Ahmedabad', label: 'Ahmedabad' },
-    { value: 'Gandhinagar', label: 'Gandhinagar' },
-    { value: 'Rajkot', label: 'Rajkot' },
-    { value: 'Bhavnagar', label: 'Bhavnagar' },
-    { value: 'Jamnagar', label: 'Jamnagar' },
-    { value: 'Junagadh', label: 'Junagadh' },
-    { value: 'Nadiad', label: 'Nadiad' },
-  ]
+  const handleChangeCity = (selectedOption) => {
 
-  console.log(options)
+    setCity(selectedOption.value);
+  }
+  const handleChangeState = (selectedOption) => {
+    setState(selectedOption.value);
+  }
 
-  const filterOption = (option, inputValue) => {
-    const { label, value } = option;
-    const otherKey = options.filter(
-      opt => opt.label === label && opt.value.includes(inputValue)
-    );
-    return value.includes(inputValue) || otherKey.length > 0;
-  };
+
 
 
   return (
@@ -130,61 +118,91 @@ const PostProperty = () => {
           <h2 className="header-mobile">For</h2>
           <div className="select-options">
             <div className="select-option">
-              <input type="radio" onChange={(e) => setProperty_For(e.target.value)} value="sale" name="for" id="sale" />
+              <input type="radio" onChange={(e) => setFor_Status(e.target.value)} value="sale" name="for" id="sale" />
               <label htmlFor="sale">Sale</label>
             </div>
             <div className="select-option">
-              <input type="radio" onChange={(e) => setProperty_For(e.target.value)} value="rent" name="for" id="rent" />
+              <input type="radio" onChange={(e) => setFor_Status(e.target.value)} value="rent" name="for" id="rent" />
               <label htmlFor="rent">Rent</label>
             </div>
           </div>
         </div>
         <div className="form-group">
           <h2 className="header-mobile">Property Name</h2>
-          <input type="text" onChange={(e) => setName(e.target.value)} name="name" id="name" />
+          <input type="text" onChange={(e) => setName(e.target.value)} placeholder="Enter Property or Project Name" name="name" id="name" />
         </div>
         <div className="form-group">
           <h2 className="header-mobile">Description</h2>
-          <input type="text" onChange={(e) => setDescription(e.target.value)} name="description" id="description" />
+          <input type="text" onChange={(e) => setDescription(e.target.value)} placeholder="Enter Property Description" name="description" id="description" />
         </div>
         <div className="form-group">
-          <h2 className="header-mobile">Address</h2>
-          <input type="text" onChange={(e) => setAddress(e.target.value)} name="address" id="address" />
+          <h2 className="header-mobile">Locality</h2>
+          <input type="text" onChange={(e) => setAddress(e.target.value)} placeholder="Enter Locality" name="address" id="address" />
         </div>
         <div className="form-group">
           <h2 className="header-mobile">City</h2>
 
-          <Select options={cityOptions} openMenuOnClick={false} required />
+          <Select onChange={handleChangeCity} options={cityOptions} openMenuOnClick={false} required />
         </div>
         <div className="form-group">
           <h2 className="header-mobile">State</h2>
-          <Select options={stateOptions} openMenuOnClick={false} />
+          <Select onChange={handleChangeState} options={stateOptions} openMenuOnClick={false} />
           {/* 
           <input type="text" onChange={(e) => setState(e.target.value)} name="state" id="state" /> */}
         </div>
         <div className="form-group">
           <h2 className="header-mobile">Pincode</h2>
-          <input type="text" onChange={(e) => setPincode(e.target.value)} name="pincode" id="pincode" />
+          <input type="text" onChange={(e) => setPincode(e.target.value)} placeholder="Enter Pincode" name="pincode" id="pincode" />
         </div>
         <div className="form-group">
-          <h2 className="header-mobile">Price</h2>
-          <input type="number" onChange={(e) => setPrice(e.target.value)} name="price" id="price" />
+          <h2 className="header-mobile">Total Price</h2>
+          <input type="number" onChange={(e) => setPrice(e.target.value)} name="price" id="price" placeholder="Enter Total Expected Price" />
         </div>
         <div className="form-group">
-          <h2 className="header-mobile">Size</h2>
-          <input type="number" onChange={(e) => setProperty_Size(e.target.value)} name="property_size" id="property_size" />
+          <h2 className="header-mobile">Total Area</h2>
+          <input type="number" onChange={(e) => setProperty_Size(e.target.value)} placeholder="Enter Total Area (in sq-ft)" name="property_size" id="property_size" />
         </div>
         <div className="form-group">
           <h2 className="header-mobile">Furnishing Status</h2>
-          <input type="checkbox" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="furnishing_status" />
+          <div className="select-options">
+            <div className="select-option">
+              <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="furnished" value='furnished' />
+              <label htmlFor="sale">Furnished</label>
+            </div>
+            <div className="select-option">
+              <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="semifurnished" value='semifurnished' />
+              <label htmlFor="sale">Semi-Furnished</label>
+            </div>
+            <div className="select-option">
+              <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="unfurnished" value='unfurnished' />
+              <label htmlFor="sale">Unfurnished</label>
+            </div>
+
+          </div>
         </div>
         <div className="form-group">
           <h2 className="header-mobile">Prime Property</h2>
           <input type="checkbox" onChange={(e) => setPrime_Property(e.target.value)} name="prime_property" id="prime_property" />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <h2 className="header-mobile">Timestamp</h2>
           <input type="date" onChange={(e) => setTimestamp(e.target.value)} name="timestamp" id="timestamp" />
+        </div> */}
+        <div className="form-group">
+          <h2 className="header-mobile">Possession Status</h2>
+          {/* <input type="number" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="bedrooms" /> */}
+          <div className="select-options">
+            <div className="select-option">
+              <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" value='Under Construction' />
+              <label htmlFor="sale">Under Construction</label>
+            </div>
+            <div className="select-option">
+              <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="ready-to-move" value='Ready To Move' />
+              <label htmlFor="sale">Ready To Move</label>
+            </div>
+
+          </div>
+
         </div>
         <div className="form-group">
           <h2 className="header-mobile">Available From</h2>
@@ -195,23 +213,23 @@ const PostProperty = () => {
           {/* <input type="number" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="bedrooms" /> */}
           <div className="select-options">
             <div className="select-option">
-              <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="1" value='1' />
-              <label htmlFor="sale">1</label>
+              <input type="radio" onChange={(e) => setBedrooms((e.target.value))} name="bedrooms" id="1" value='1' />
+              <label htmlFor="bedrooms">1</label>
             </div>
             <div className="select-option">
               <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="2" value='2' />
-              <label htmlFor="sale">2</label>
+              <label htmlFor="bedrooms">2</label>
             </div>
             <div className="select-option">
               <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="3" value='3' />
-              <label htmlFor="sale">3</label>
+              <label htmlFor="bedrooms">3</label>
             </div>
             <div className="select-option">
               <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="4" value='4' />
-              <label htmlFor="sale">4</label>
+              <label htmlFor="bedrooms">4</label>
             </div>
             <div className="select-option">
-              <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="5" value='5' />
+              <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="5" value='5+' />
               <label htmlFor="sale">5+</label>
             </div>
           </div>
@@ -233,19 +251,23 @@ const PostProperty = () => {
               <label htmlFor="sale">3</label>
             </div>
             <div className="select-option">
-              <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="4" value='4' />
-              <label htmlFor="sale">3+</label>
+              <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="4" value='4+' />
+              <label htmlFor="sale">4+</label>
             </div>
 
           </div>
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <h2 className="header-mobile">Visits</h2>
           <input type="number" onChange={(e) => setVisits(e.target.value)} name="visits" id="visits" />
-        </div>
+        </div> */}
         <div className="form-group">
           <h2 className="header-mobile">Property Type</h2>
           <input type="text" onChange={(e) => setProperty_Type(e.target.value)} name="property_type" id="property_type" />
+        </div>
+        <div className="form-group">
+          <h2 className="header-mobile">Photos</h2>
+          <input type="file" name="photos" id="photo" />
         </div>
 
         <button onClick={submitProperty} className="btn">Post Property</button>
@@ -259,24 +281,3 @@ const PostProperty = () => {
 };
 
 export default PostProperty;
-
-
-// "id": 6,
-// "features": [],
-// "amenities": [],
-// "name": "bungalow",
-// "description": "This is my palace",
-// "address": "NAIR",
-// "location": "Vadodara",
-// "pincode": "390004",
-// "prime_property": false,
-// "price": 10000000,
-// "property_size": 2500,
-// "furnishing_status": true,
-// "timestamp": "2022-02-08T13:48:00Z",
-// "availability": "now",
-// "bedrooms": 20,
-// "bathrooms": 6,
-// "visits": 0,
-// "property_type": "VI",
-// "posted_by": 6
