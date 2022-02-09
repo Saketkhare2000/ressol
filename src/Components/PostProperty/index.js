@@ -1,14 +1,19 @@
-import React, { useRef } from "react";
+import React, { useContext } from "react";
 import "./style.css";
+import { CgSpinner } from "react-icons/cg";
+import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Select from 'react-select'
 import cityData from "../../cities.json";
 import stateData from "../../state.json";
 import slugify from "slugify";
+import { WebContext } from "../../Context/WebContext";
+
 // import data from "../../postDetails.json";
 const PostProperty = () => {
-
+  const [spinner, setSpinner] = React.useState(false);
   //name state
   const [name, setName] = React.useState("");
   const [for_status, setFor_Status] = React.useState("");
@@ -38,9 +43,10 @@ const PostProperty = () => {
   const [availability, setAvailability] = React.useState("");
 
   const [property_type, setProperty_Type] = React.useState("");
-
+  const { setAlert } = useContext(WebContext);
   const date = new Date(availability);
   const dateString = date.toDateString();
+  const navigate = useNavigate();
   const data = {
     features: [],
     amenities: [],
@@ -69,7 +75,7 @@ const PostProperty = () => {
 
   const submitProperty = (e) => {
     e.preventDefault();
-
+    setSpinner(true);
     axios("http://127.0.0.1:8000/api/property/", {
       method: "post",
       data: data,
@@ -77,6 +83,36 @@ const PostProperty = () => {
         'Content-type': 'application/json',
         'Authorization': `Token ${key}`,
       }
+    }).then(res => {
+      setSpinner(false);
+      setAlert({
+        type: "success",
+        message: "Property Posted Successfully",
+        show: true
+      })
+      setTimeout(() => {
+        setAlert({
+          type: "",
+          message: "",
+          show: false
+        })
+      }, 2000)
+      navigate("/dashboard")
+    }).catch(err => {
+      console.log(err);
+      setSpinner(false);
+      setAlert({
+        type: "danger",
+        message: err.message,
+        show: true
+      })
+      setTimeout(() => {
+        setAlert({
+          type: "",
+          message: "",
+          show: false
+        })
+      }, 2000)
     })
 
   }
@@ -267,10 +303,22 @@ const PostProperty = () => {
         </div>
         <div className="form-group">
           <h2 className="header-mobile">Photos</h2>
-          <input type="file" name="photos" id="photo" />
+          <input type="file" accept="image/*" onChange={(e) => console.log(e.target)} multiple={true} name="photos" id="photo" />
         </div>
-
-        <button onClick={submitProperty} className="btn">Post Property</button>
+        {
+          spinner ?
+            <div className="spinner-container">
+              <CgSpinner className="spinner" />
+            </div>
+            :
+            <motion.button
+              className="btn"
+              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.01 }}
+              onClick={submitProperty}
+            >
+              Post Property
+            </motion.button>}
       </form>
     </>
     //         ) :

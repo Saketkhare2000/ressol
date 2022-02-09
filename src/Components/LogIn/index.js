@@ -17,7 +17,7 @@ const LogIn = () => {
   const [error, setError] = useState("");
 
   const { userName, setUserName } = useContext(WebContext);
-
+  console.log(userName)
   const userDetails = {
     username: userName,
     password: password,
@@ -35,7 +35,6 @@ const LogIn = () => {
 
   return !loggedIn ? (
     <div className="login-page">
-      {loggedIn ? <h1>Go to dashboard</h1> : ""}
       <motion.div
         variants={slideUp}
         initial="show"
@@ -75,11 +74,14 @@ const LogIn = () => {
         <p className="reset">Reset password</p>
       </motion.div>
     </div>
-  ) : (
-    <h1>
-      <Link to="/dashboard">Go to dashboard</Link>
-    </h1>
-  );
+  )
+    :
+    <>
+
+      {navigate("/dashboard")}
+    </>
+
+
 };
 
 export default LogIn;
