@@ -42,12 +42,16 @@ export const getUserData = (userName, accessToken) => async (dispatch) => {
     payload: userData.data,
   });
 };
-export const getPropertyList = () => async (dispatch) => {
+export const getPropertyList = (city) => async (dispatch) => {
   //Fetch axios request
   const propertyList = await axios({
     method: "get",
-    url: `http://localhost:8000/api/property/`,
+    url: `http://localhost:8000/api/filter`,
+    params: {
+      city: city,
+    },
   });
+  console.log(propertyList.data);
   // console.log(propertyList.data);
   //set user data
   dispatch({

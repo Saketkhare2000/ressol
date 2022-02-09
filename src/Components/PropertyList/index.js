@@ -8,10 +8,10 @@ import "./style.css";
 
 const PropertyDeatiledCard = () => {
   const dispatch = useDispatch();
-  const id = useParams().slug;
-
+  const city = (useParams().slug).toLowerCase();
+  console.log(city)
   useEffect(() => {
-    dispatch(getPropertyList())
+    dispatch(getPropertyList(city))
   }, []);
   const propertyList = useSelector(state => state.propertyList.propertyData);
   function numDifferentiation(value) {

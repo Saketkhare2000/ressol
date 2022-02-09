@@ -9,7 +9,7 @@ import "./style.css";
 const Property = () => {
   const id = useParams().slug;
   console.log(id)
-  const propertyDetails = useSelector((state) => state.propertyList.propertyData[id - 1]);
+  const propertyDetails = useSelector((state) => state.propertyList.propertyData[0]);
   function numDifferentiation(value) {
     var val = Math.abs(value)
     if (val >= 10000000) {
@@ -56,7 +56,7 @@ const Property = () => {
           </div>
           <div className="grid-child div5">
             <span>Furnishing</span>
-            {propertyDetails.furnishing_status ? (<p>Furnished</p>) : (<p>UnFurnished</p>)}
+            {propertyDetails.furnishing_status ? (<p>Furnished</p>) : (<p>Un Furnished</p>)}
           </div>
           <div className="grid-child div6">
             <span>Posted On</span>
