@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import "./style.css";
+import { Link, useNavigate } from "react-router-dom";
 import { WebContext } from "../../Context/WebContext";
 import SampleUserImg from "../../assets/images/sample-user-img.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,9 +13,12 @@ import { AiOutlineUser } from "react-icons/ai";
 // import { slideUp } from "../../Animation";
 
 const Dashoard = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { userName } = useContext(WebContext);
+  console.log(userName)
   // const accessToken = useSelector((state) => state.auth.accessToken);
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
   const key = useSelector((state) => state.auth.key);
   const userDetails = useSelector((state) => state.userData.userData);
   console.log(userDetails.userData);
@@ -32,7 +36,7 @@ const Dashoard = () => {
     dispatch({ type: "CLEAR_USER_DATA" });
   };
 
-  return (
+  return loggedIn ? (
     <div className="dashboard-page">
       <div className="dashboard-header">
         <div className="user-image">
@@ -68,35 +72,16 @@ const Dashoard = () => {
             )}
           </AnimatePresence>
         </motion.div>
-        <motion.div className="disclosure-btn" layout>
-          <motion.div
-            onClick={() => setRotate(!rotate)}
-            layout
-            className="btn-top"
-          >
-            <motion.p layout>
-              <AiOutlineUser style={{ fontSize: "20px" }} />
-              Saved Properties
-            </motion.p>
-            <IoCaretUpCircleSharp
-              className={`${rotate ? "down-icon " : "down-icon toggle"}`}
-            />
-          </motion.div>
-          <AnimatePresence>
-            {rotate && (
-              <DetailsDropdown
-                rotate={setRotate}
-                layout
-                userDetails={userDetails}
-              />
-            )}
-          </AnimatePresence>
-        </motion.div>
+        {/*  */}
       </AnimateSharedLayout>
       <button className="btn" onClick={logout}>
         Log Out
       </button>
     </div>
+  ) : (
+    <>
+      {navigate("/login")}
+    </>
   );
 };
 

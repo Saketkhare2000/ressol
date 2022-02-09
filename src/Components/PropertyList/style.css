@@ -1,3 +1,6 @@
+.city-name {
+  text-transform: capitalize;
+}
 .mobile-title {
   margin-bottom: 0.5em;
 }

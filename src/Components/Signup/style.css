@@ -7,14 +7,31 @@
   align-items: center;
   padding: 0px 10px;
 }
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #fafafa;
+}
+.spinner-container .spinner {
+  font-size: 30px;
+  animation: load3 1.4s infinite linear;
+}
 .signup-page .signup-card {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   background-color: white;
   padding: 20px;
   border: solid 1px var(--card-border);
   border-radius: 4px;
+}
+.signup-page .signup-card .signup-form {
+  width: 100%;
 }
 .signup-page .signup-card .signup-form h3 {
   font-size: 14px;
@@ -109,4 +126,14 @@ input[type="password"] {
 .signup-page .signup-card .label a {
   color: var(--brand--green);
   text-decoration: underline;
+}
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

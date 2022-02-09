@@ -2,12 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh;
+  height: 50vh;
 }
 .spin {
-  font-size: 80px;
+  font-size: 60px;
   animation: load3 1.4s infinite linear;
-  color: var(--brand-green);
+  color: var(--brand--green);
 }
 @keyframes load3 {
   0% {

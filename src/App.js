@@ -15,6 +15,7 @@ import Spacer from "./Components/Spacer";
 import PropertyList from "./Pages/PropertyList";
 import ScrollToTop from "./ScrollToTop";
 import { useSelector } from "react-redux";
+import CompleteProfile from "./Components/CompleteProfile";
 function App() {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/completeprofile" element={<CompleteProfile />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/post" element={<Post />} />
           <Route path="/property/:slug" element={<Property />} />

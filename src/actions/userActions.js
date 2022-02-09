@@ -26,13 +26,13 @@ export const userLogout = () => (dispatch) => {
   });
 };
 
-export const getUserData = (userName, accessToken) => async (dispatch) => {
+export const getUserData = (userName, key) => async (dispatch) => {
   //Fetch axios request
   const userData = await axios({
     method: "get",
     url: `http://localhost:8000/api/profile/${userName}`,
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${key}`,
     },
   });
   console.log(userData.data);
