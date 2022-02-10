@@ -17,7 +17,6 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         loggedIn: false,
-
         key: "",
       };
     default:

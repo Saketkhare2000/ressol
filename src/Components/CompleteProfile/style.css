@@ -19,6 +19,19 @@
 }
 .signup-page .signup-card .signup-form {
   width: 100%;
+  margin: 6px 0;
+}
+.signup-page .signup-card h1 {
+  text-align: center;
+}
+.signup-page .signup-card .signup-form .user-image {
+  display: flex;
+  align-items: center;
+  flex-direction: row !important;
+  justify-content: flex-start;
+}
+.signup-page .signup-card .signup-form .user-image img {
+  margin-right: 16px;
 }
 .signup-page .signup-card .signup-form h3 {
   font-size: 14px;

@@ -18,6 +18,7 @@ const WebProvider = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [prime, setIsPrime] = useState(true);
   const [userData, setUserData] = useState();
+  const [registerKey, setRegisterKey] = useState("");
   const value = {
     loggedIn,
     setLoggedIn,
@@ -35,6 +36,8 @@ const WebProvider = (props) => {
     setRefreshToken,
     userName,
     setUserName,
+    registerKey,
+    setRegisterKey,
   };
 
   return (

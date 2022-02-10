@@ -30,7 +30,7 @@ export const getUserData = (userName, key) => async (dispatch) => {
   //Fetch axios request
   const userData = await axios({
     method: "get",
-    url: `http://localhost:8000/api/profile/${userName}`,
+    url: `http://localhost:8000/api/profile/${userName}/`,
     headers: {
       Authorization: `Bearer ${key}`,
     },
@@ -59,7 +59,24 @@ export const getPropertyList = (city) => async (dispatch) => {
     payload: propertyList.data,
   });
 }
+export const uploadImage = (image) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("image", image);
+  formData.append("name", image.name);
+  formData.append("type", image.type);
+  formData.append("size", image.size);
 
+  const res = await axios.post(
+    "http://localhost:8000/api/image/",
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return console.log(res.data.image.full_size);
+};
 
 
 
