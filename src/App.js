@@ -1,6 +1,7 @@
 //import global css
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "../src/Styles/global.css";
+import Filter from "./Components/Filter";
 import Footer from "./Components/Footer";
 import LogIn from "./Components/LogIn";
 import Dashboard from "./Components/Dashboard";
@@ -16,6 +17,7 @@ import PropertyList from "./Pages/PropertyList";
 import ScrollToTop from "./ScrollToTop";
 import { useSelector } from "react-redux";
 import CompleteProfile from "./Components/CompleteProfile";
+import ProfileDetails from "./Components/ProfileDetails";
 function App() {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   return (
@@ -38,7 +40,12 @@ function App() {
             <Route path="/dashboard" element={<LogIn />} />
           )}
           <Route path="/dashboard" element={<Dashboard />} />
-          {/* <PrimeRoute path="/admin" element={<Example />} /> */}
+          {loggedIn ? (
+            <Route path="/dashboard/profile-details" element={<ProfileDetails />} />
+          ) : (
+            <Route path="/dashboard/profile-details" element={<LogIn />} />
+          )}
+          <Route path="filter" element={<Filter />} />
         </Routes>
         {/* <Footer /> */}
         <Spacer />

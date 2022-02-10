@@ -24,9 +24,9 @@ const SignUp = () => {
   //mobile number
   const [mobileNumber, setMobileNumber] = useState(0);
 
-  const { setAlert, userName, setUserName } = useContext(WebContext);
+  const { setAlert, userName, setUserName, registerKey, setRegisterKey } = useContext(WebContext);
 
-
+  console.log(registerKey)
   const userDetails = {
     first_name: name,
     last_name: "",
@@ -152,15 +152,53 @@ const SignUp = () => {
     // console.log(validateForm() === true ? "true" : "false");
     validateForm()
     if (error === "") {
-      axios
-        .post("http://127.0.0.1:8000/auth/register/", userDetails)
+      axios({
+        method: "post",
+        url: "http://127.0.0.1:8000/auth/register/",
+        data: userDetails,
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+      })
         .then((res) => {
+          console.log(res)
+          // Get cookie function
+          // const csrftoken = getCookie('csrftoken');
+          // Set the with credentials to true
+          //   axios.defaults.withCredentials = true;
+          //   // Add a header to set the csrf token in post requests
+          //   axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
+          //   // Set the user data in local storage
+          //   localStorage.setItem("user", JSON.stringify(res.data));
+          //   // Set the user data in the state
+          //   setUserName(res.data.first_name);
+          //   setRegisterKey(true);
+          //   setSpinner(false);
+          //   setRegister(true);
+          //   setTimeout(() => {
+          //     navigate("/");
+          //   }, 2000);
+          // })
+
+          // Get csrf token cookie
+          // let csrftoken = getCookie('csrftoken');
+          // console.log(csrftoken);
+          // Set csrf token in header
+          // axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
+          // axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+          // axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+          // axios.defaults.headers.common['Accept'] = 'application/json';
+
+          console.log(res);
           setUserName(name);
+          setRegisterKey(res.data.key);
           setAlert({
             show: true,
             message: "User created successfully",
             type: "success",
           });
+
           setRegister(true);
           setTimeout(() => {
             setAlert({

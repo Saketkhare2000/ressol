@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { WebContext } from "../../Context/WebContext";
 import Button from "../Button";
 import Filter from "../Filter";
@@ -10,6 +10,7 @@ import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
 import { useSelector } from "react-redux";
 const Navbar = () => {
   const { filter, setFilter } = useContext(WebContext);
+  const navigate = useNavigate()
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   return (
     <motion.header>
@@ -20,10 +21,6 @@ const Navbar = () => {
       ) : (
         <AnimatePresence initial={false} exitBeforeEnter={true}>
           <motion.nav
-            variants={pageSlideLeft}
-            initial="show"
-            animate="animate"
-            exit="exit"
             className="navbar"
           >
             <div className="top-header">
@@ -33,7 +30,7 @@ const Navbar = () => {
               <Button title="Prime" variant="outline" />
             </div>
             <div className="search-bar">
-              <motion.div onClick={() => setFilter(!filter)} className="input">
+              <motion.div onClick={() => navigate('/filter')} className="input">
                 Search for Locality, Town or City
               </motion.div>
             </div>
