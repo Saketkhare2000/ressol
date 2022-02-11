@@ -22,12 +22,12 @@ const ProfileDetails = () => {
     }, []);
     return (
 
-        <div className="profile-details-page">
+        <div className="profile-details-page page">
             <div className="profile-details-header">
 
                 <div className="back" onClick={() => navigate('/dashboard')}>
                     <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
-                    <h1>Profile</h1>
+                    <h2>Profile</h2>
                     {/* <p>Go Back</p> */}
                 </div>
                 <button className="btn btn-secondary">
@@ -43,8 +43,12 @@ const ProfileDetails = () => {
                 className="disclosure-panel"
                 action=""
             >
-                <div className="user-image form-group" >
-                    <img src={SampleUserImg} alt="User" />
+                <div className="profile-user-image form-group" >
+                    {userDetails.image == null ? (
+                        <img src={SampleUserImg} alt="user" />
+                    ) : (
+                        <img src={userDetails.image.image.full_size} alt="user" />
+                    )}
                 </div>
                 <motion.div layout className="form-group">
                     <label htmlFor="select">Name</label>

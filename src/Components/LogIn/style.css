@@ -6,6 +6,9 @@
   align-items: center;
   padding: 0px 10px;
 }
+.login-page h2 {
+  text-align: center;
+}
 .login-page .login-card {
   display: flex;
   flex-direction: column;

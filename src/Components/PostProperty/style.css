@@ -77,3 +77,6 @@
   border: solid 0.5px var(--card-border);
   opacity: 0.3;
 }
+.post-property button {
+  width: 100%;
+}

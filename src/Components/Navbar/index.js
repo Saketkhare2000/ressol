@@ -6,7 +6,7 @@ import Button from "../Button";
 import Filter from "../Filter";
 import "./style.css";
 import { pageSlideLeft } from "../../Animation";
-import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineUser, AiOutlinePlus } from "react-icons/ai";
 import { useSelector } from "react-redux";
 const Navbar = () => {
   const { filter, setFilter } = useContext(WebContext);
@@ -31,7 +31,7 @@ const Navbar = () => {
             </div>
             <div className="search-bar">
               <motion.div onClick={() => navigate('/filter')} className="input">
-                Search for Locality, Town or City
+                Search for Properties
               </motion.div>
             </div>
           </motion.nav>
@@ -48,7 +48,7 @@ const Navbar = () => {
                 </motion.li>
               </Link>
               <Link to="/post">
-                <Button title="Post Property" variant="primary" />
+                <Button title="Post Property" variant="secondary" />
               </Link>
               <Link to={loggedIn ? `dashboard` : `signup`}>
                 <motion.li
