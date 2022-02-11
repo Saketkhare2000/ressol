@@ -21,7 +21,7 @@
   width: 100%;
   margin: 6px 0;
 }
-.signup-page .signup-card h1 {
+.signup-page .signup-card h2 {
   text-align: center;
 }
 .signup-page .signup-card .signup-form .user-image {
@@ -32,6 +32,10 @@
 }
 .signup-page .signup-card .signup-form .user-image img {
   margin-right: 16px;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 .signup-page .signup-card .signup-form h3 {
   font-size: 14px;

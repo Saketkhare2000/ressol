@@ -2,11 +2,17 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getPropertyList } from "../../actions/userActions";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import Loader from "../Loader";
 import "./style.css";
 import { motion, AnimatePresence } from "framer-motion";
 const PropertyDeatiledCard = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const city = (useParams().slug).toLowerCase();
   console.log(city)
   useEffect(() => {
@@ -30,7 +36,12 @@ const PropertyDeatiledCard = () => {
       transition={{ duration: 0.5, ease: "easeInOut" }}
       exit={{ opacity: 0 }}
     >
-      <h1 className="mobile-title">Properties in <span className="city-name"> {city} </span></h1>
+
+      <div className="back" onClick={() => navigate('/')}>
+        <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
+        <h1 className="mobile-title">Properties in <span className="city-name"> {city} </span></h1>
+        {/* <p>Go Back</p> */}
+      </div>
       {
         propertyList ? Object.keys(propertyList).map((property, index) => {
           return (
@@ -41,10 +52,13 @@ const PropertyDeatiledCard = () => {
                     <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-1.2.1" alt="" />
                   </div>
                   <div className="property-detail-card-details">
-                    <p className="bed">
-                      {propertyList[property].bedrooms} BHK {propertyList[property].name} | {propertyList[property].location}
+                    <p className="property-price">₹ {numDifferentiation(propertyList[property].price)}</p>
+                    <p className="property-name">
+                      {propertyList[property].property_name}
                     </p>
-                    <p className="price">₹ {numDifferentiation(propertyList[property].price)}</p>
+                    <p className="property-city">
+                      {propertyList[property].city}
+                    </p>
                   </div>
                 </div>
               </Link>

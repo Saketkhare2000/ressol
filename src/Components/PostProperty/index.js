@@ -44,6 +44,8 @@ const PostProperty = () => {
 
   const [property_type, setProperty_Type] = React.useState("");
   const { setAlert } = useContext(WebContext);
+  const userDetails = useSelector((state) => state.userData.userData);
+
   const date = new Date(availability);
   const dateString = date.toDateString();
   const navigate = useNavigate();
@@ -67,7 +69,7 @@ const PostProperty = () => {
     bedrooms: parseInt(bedrooms),
     bathrooms: parseInt(bathrooms),
     property_type: property_type,
-    posted_by: 1
+    posted_by: userDetails.id,
   }
 
   const loggedIn = useSelector(state => state.auth.loggedIn);
@@ -178,11 +180,11 @@ const PostProperty = () => {
         <div className="form-group">
           <h2 className="header-mobile">City</h2>
 
-          <Select onChange={handleChangeCity} options={cityOptions} openMenuOnClick={false} required />
+          <Select onChange={handleChangeCity} placeholder="Select City" options={cityOptions} openMenuOnClick={false} required />
         </div>
         <div className="form-group">
           <h2 className="header-mobile">State</h2>
-          <Select onChange={handleChangeState} options={stateOptions} openMenuOnClick={false} />
+          <Select onChange={handleChangeState} placeholder="Select State" options={stateOptions} openMenuOnClick={false} />
           {/* 
           <input type="text" onChange={(e) => setState(e.target.value)} name="state" id="state" /> */}
         </div>
@@ -311,14 +313,14 @@ const PostProperty = () => {
               <CgSpinner className="spinner" />
             </div>
             :
-            <motion.button
+            <button
               className="btn"
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.01 }}
               onClick={submitProperty}
             >
               Post Property
-            </motion.button>}
+            </button>}
       </form>
     </>
     //         ) :

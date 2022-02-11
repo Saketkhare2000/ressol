@@ -18,6 +18,8 @@ import ScrollToTop from "./ScrollToTop";
 import { useSelector } from "react-redux";
 import CompleteProfile from "./Components/CompleteProfile";
 import ProfileDetails from "./Components/ProfileDetails";
+import ManageProperties from "./Components/ManageProperties";
+import Wishlist from "./Components/Wishlist";
 function App() {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   return (
@@ -27,23 +29,44 @@ function App() {
         <Spacer />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/signup" element={<Signup />} />
+          {/* <Route path="/about" element={<About />} /> */}
           <Route path="/completeprofile" element={<CompleteProfile />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/post" element={<Post />} />
           <Route path="/property/:slug" element={<Property />} />
           <Route path="/propertylist/:slug" element={<PropertyList />} />
+          {loggedIn ? (
+            <Route path="/login" element={<Dashboard />} />
+          ) : (
+            <Route path="/login" element={<LogIn />} />
+          )}
+          {loggedIn ? (
+            <Route path="/signup" element={<Dashboard />} />
+          ) : (
+            <Route path="/signup" element={<Signup />} />
+          )}
           {loggedIn ? (
             <Route path="/dashboard" element={<Dashboard />} />
           ) : (
             <Route path="/dashboard" element={<LogIn />} />
           )}
-          <Route path="/dashboard" element={<Dashboard />} />
+          {loggedIn ? (
+            <Route path="/post" element={<Post />} />
+          ) : (
+            <Route path="/post" element={<LogIn />} />
+          )}
           {loggedIn ? (
             <Route path="/dashboard/profile-details" element={<ProfileDetails />} />
           ) : (
             <Route path="/dashboard/profile-details" element={<LogIn />} />
+          )}
+          {loggedIn ? (
+            <Route path="/dashboard/manage-properties" element={<ManageProperties />} />
+          ) : (
+            <Route path="/dashboard/manage-properties" element={<LogIn />} />
+          )}
+          {loggedIn ? (
+            <Route path="/dashboard/wishlist" element={<Wishlist />} />
+          ) : (
+            <Route path="/dashboard/wishlist" element={<LogIn />} />
           )}
           <Route path="filter" element={<Filter />} />
         </Routes>

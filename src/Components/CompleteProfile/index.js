@@ -19,6 +19,8 @@ const CompleteProfile = () => {
     const [mobile, setMobile] = useState("");
     const [user_type, setUser_Type] = useState("");
     const [bio, setBio] = useState("");
+    const [image, setImage] = useState("");
+    console.log(image);
     const { userName, setAlert, registerKey } = useContext(WebContext);
     const dispatch = useDispatch();
 
@@ -32,8 +34,9 @@ const CompleteProfile = () => {
         city: city,
         state: state,
         user_type: user_type,
-        image: "",
+        image: image.pk,
     };
+    console.log(profileDetails);
     const cityOptions = cityData.map(city => {
         const { name } = city;
         return {
@@ -118,7 +121,7 @@ const CompleteProfile = () => {
     }
 
     return (
-        <div className="signup-page">
+        <div className="signup-page page">
             <motion.div
                 variants={slideUp}
                 initial="show"
@@ -129,8 +132,19 @@ const CompleteProfile = () => {
                 <h1>Complete Your Profile</h1>
                 <form className="signup-form" action="">
                     <div className="user-image">
-                        <img src={SampleUserImg} alt="User" />
-                        <input onChange={(e) => { dispatch(uploadImage(e.target.files[0])) }} type="file" name="user_image" id="user_image" accept="image/*" />
+                        {image === "" ? (
+                            <img src={SampleUserImg} alt="user" />
+                        ) : (
+                            <img src={image.image.full_size} alt="user" />
+                        )}
+
+                        <input onChange={(e) => {
+                            (dispatch(uploadImage(e.target.files[0]))
+                                .then((res) => {
+                                    // console.log(res);
+                                    setImage(res);
+                                }))
+                        }} type="file" name="user_image" accept="image/*" />
                     </div>
                     <div className="form-category">
                         <label htmlFor="usertype">You are</label>

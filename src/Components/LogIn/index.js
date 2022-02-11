@@ -27,14 +27,14 @@ const LogIn = () => {
     e.preventDefault();
     await dispatch(userAuth(userDetails));
     if (loggedIn) {
-      navigate("/dashboard");
+      navigate("/");
     } else {
       setError("Invalid username or password");
     }
   };
 
   return !loggedIn ? (
-    <div className="login-page">
+    <div className="login-page page">
       <motion.div
         variants={slideUp}
         initial="show"
@@ -42,7 +42,7 @@ const LogIn = () => {
         exit="hidden"
         className="login-card"
       >
-        <h1>Log In</h1>
+        <h2>Log In</h2>
         <form className="login-form" action="">
           <div className="form-category">
             <input
@@ -71,7 +71,7 @@ const LogIn = () => {
         <p className="label">
           New to Reessol? <Link to="/signup">Sign Up Here</Link>
         </p>
-        <p className="reset">Reset password</p>
+        {/* <p className="reset">Reset password</p> */}
       </motion.div>
     </div>
   )

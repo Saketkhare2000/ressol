@@ -31,7 +31,7 @@ const Navbar = () => {
             </div>
             <div className="search-bar">
               <motion.div onClick={() => navigate('/filter')} className="input">
-                Search for Locality, Town or City
+                Search for Properties
               </motion.div>
             </div>
           </motion.nav>

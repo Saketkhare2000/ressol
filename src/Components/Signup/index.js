@@ -246,7 +246,7 @@ const SignUp = () => {
   return (
     !register ?
       (<AnimatePresence initial={true} exitBeforeEnter>
-        <div className="signup-page">
+        <div className="signup-page page">
           <motion.div
             variants={slideUp}
             initial="show"
@@ -254,7 +254,7 @@ const SignUp = () => {
             exit="hidden"
             className="signup-card"
           >
-            <h1>Sign Up</h1>
+            <h2>Sign Up</h2>
             <form className="signup-form" action="">
               <div className="form-category">
                 <input
