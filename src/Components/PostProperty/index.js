@@ -37,7 +37,7 @@ const PostProperty = () => {
   //prime state
   const [prime_property, setPrime_Property] = React.useState(false);
   //furnished state
-  const [furnishing_status, setFurnishing_status] = React.useState(false);
+  const [furnishing_status, setFurnishing_status] = React.useState("");
   const [possession_status, setPossession_Status] = React.useState("");
   //availability state
   const [availability, setAvailability] = React.useState("");
@@ -203,15 +203,15 @@ const PostProperty = () => {
           <div className="select-options">
             <div className="select-option">
               <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="furnished" value='furnished' />
-              <label htmlFor="sale">Furnished</label>
+              <label htmlFor="furnishing_status">Furnished</label>
             </div>
             <div className="select-option">
               <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="semifurnished" value='semifurnished' />
-              <label htmlFor="sale">Semi-Furnished</label>
+              <label htmlFor="furnishing_status">Semi-Furnished</label>
             </div>
             <div className="select-option">
               <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="unfurnished" value='unfurnished' />
-              <label htmlFor="sale">Unfurnished</label>
+              <label htmlFor="furnishing_status">Unfurnished</label>
             </div>
 
           </div>
@@ -230,11 +230,11 @@ const PostProperty = () => {
           <div className="select-options">
             <div className="select-option">
               <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" value='Under Construction' />
-              <label htmlFor="sale">Under Construction</label>
+              <label htmlFor="possession_status">Under Construction</label>
             </div>
             <div className="select-option">
               <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="ready-to-move" value='Ready To Move' />
-              <label htmlFor="sale">Ready To Move</label>
+              <label htmlFor="possession_status">Ready To Move</label>
             </div>
 
           </div>
@@ -276,19 +276,19 @@ const PostProperty = () => {
           <div className="select-options">
             <div className="select-option">
               <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="1" value='1' />
-              <label htmlFor="sale">1</label>
+              <label htmlFor="bathrooms">1</label>
             </div>
             <div className="select-option">
               <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="2" value='2' />
-              <label htmlFor="sale">2</label>
+              <label htmlFor="bathrooms">2</label>
             </div>
             <div className="select-option">
               <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="3" value='3' />
-              <label htmlFor="sale">3</label>
+              <label htmlFor="bathrooms">3</label>
             </div>
             <div className="select-option">
               <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="4" value='4+' />
-              <label htmlFor="sale">4+</label>
+              <label htmlFor="bathrooms">4+</label>
             </div>
 
           </div>

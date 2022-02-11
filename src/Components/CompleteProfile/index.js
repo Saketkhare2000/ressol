@@ -84,7 +84,7 @@ const CompleteProfile = () => {
                         message: "",
                     });
                 }, 2000);
-                navigate("/");
+                navigate("/dashboard");
             })
             .catch((err) => {
                 console.log(err);

@@ -27,7 +27,7 @@ const ProfileDetails = () => {
 
                 <div className="back" onClick={() => navigate('/dashboard')}>
                     <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
-                    <h1>Profile</h1>
+                    <h2>Profile</h2>
                     {/* <p>Go Back</p> */}
                 </div>
                 <button className="btn btn-secondary">
