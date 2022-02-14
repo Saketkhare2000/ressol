@@ -11,20 +11,33 @@ import priceData from "../../prices.json";
 import Select from 'react-select'
 const Filter = () => {
   const navigate = useNavigate()
-  const { filter, setFilter } = useContext(WebContext);
-  const [propertyFor, setPropertyFor] = React.useState("");
-  const [city, setCity] = React.useState("");
-  const [minprice, setMinPrice] = React.useState("");
-  const [maxprice, setMaxPrice] = React.useState("");
-  const [property_type, setProperty_Type] = React.useState("");
+  const { filterData, setFilterData } = useContext(WebContext);
+  const [propertyFor, setPropertyFor] = React.useState(null);
+  const [city, setCity] = React.useState(null);
+  const [minprice, setMinPrice] = React.useState(null);
+  const [maxprice, setMaxPrice] = React.useState(null);
+  const [property_type, setProperty_Type] = React.useState(null);
 
   // Specifications States
-  const [bedrooms, setBedRooms] = React.useState("");
-  const [bathrooms, setBathrooms] = React.useState();
-  const [possession_status, setPossession_Status] = React.useState("");
-  const [furnishing_status, setFurnishing_status] = React.useState("");
+  const [bedrooms, setBedRooms] = React.useState(null);
+  const [bathrooms, setBathrooms] = React.useState(null);
+  const [possession_status, setPossession_Status] = React.useState(null);
+  const [furnishing_status, setFurnishing_status] = React.useState(null);
 
-  console.log(property_type)
+  // Setting the filter values
+  const data = {
+    for: propertyFor,
+    city: city,
+    min: minprice,
+    max: maxprice,
+    type: property_type,
+    bedroom: bedrooms,
+    bathroom: bathrooms,
+    possession: possession_status,
+    furnishing: furnishing_status
+  };
+
+
   const cityOptions = cityData.map(city => {
     const { name } = city;
     return {
@@ -41,7 +54,9 @@ const Filter = () => {
   });
 
   const handleChangeCity = (selectedOption) => {
+    console.log(selectedOption.value)
     setCity(selectedOption.value);
+    console.log(data)
   }
   const handleChangeMinPrice = (selectedOption) => {
     setMinPrice(selectedOption.value);
@@ -49,7 +64,13 @@ const Filter = () => {
   const handleChangeMaxPrice = (selectedOption) => {
     setMaxPrice(selectedOption.value);
   }
-
+  const handleSearch = () => {
+    // e.preventDefault();
+    console.log("Clicked")
+    setFilterData(data);
+    console.log(filterData)
+    // navigate('/propertylist')
+  }
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div
@@ -320,7 +341,7 @@ const Filter = () => {
               })()}
             </AnimatePresence>
             {/* Search Button  */}
-            <button className="btn filter-btn">Search Properties</button>
+            <button type="button" className="btn filter-btn" onClick={handleSearch}>Search Properties</button>
           </form>
           {/* {data.map((item, index) => (
             <div key={index} className="filters">

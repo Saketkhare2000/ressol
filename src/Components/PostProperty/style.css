@@ -77,6 +77,31 @@
   border: solid 0.5px var(--card-border);
   opacity: 0.3;
 }
+.upload-image-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+}
+.upload-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 8px;
+  width: 160px;
+}
+.upload-image-container img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+.upload-image-container input {
+  width: 73%;
+  padding: 10px 8px;
+}
+
 .post-property button {
   width: 100%;
 }

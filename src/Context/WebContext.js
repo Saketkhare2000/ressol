@@ -19,6 +19,7 @@ const WebProvider = (props) => {
   const [prime, setIsPrime] = useState(true);
   const [userData, setUserData] = useState();
   const [registerKey, setRegisterKey] = useState("");
+  const [filterData, setFilterData] = useState();
   const value = {
     loggedIn,
     setLoggedIn,
@@ -38,13 +39,15 @@ const WebProvider = (props) => {
     setUserName,
     registerKey,
     setRegisterKey,
+    filterData,
+    setFilterData,
   };
 
   return (
-    <WebContext.Provider value={value}>
+    <WebContext.Provider value={value} >
       <Alert />
       {props.children}
-    </WebContext.Provider>
+    </WebContext.Provider >
   );
 };
 

@@ -1,15 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import { CgSpinner } from "react-icons/cg";
 import { AnimatePresence, motion } from "framer-motion";
+
+import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
 import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Select from 'react-select'
 import cityData from "../../cities.json";
 import stateData from "../../state.json";
 import slugify from "slugify";
 import { WebContext } from "../../Context/WebContext";
+import { uploadImage } from "../../actions/userActions";
+
 
 // import data from "../../postDetails.json";
 const PostProperty = () => {
@@ -43,10 +47,16 @@ const PostProperty = () => {
   const [availability, setAvailability] = React.useState("");
 
   const [property_type, setProperty_Type] = React.useState("");
+  const [image, setImage] = useState([]);
+  const [imagePostData, setImagePostData] = useState([]);
+  console.log(image)
+  console.log(imagePostData)
+
   const { setAlert } = useContext(WebContext);
   const userDetails = useSelector((state) => state.userData.userData);
 
   const date = new Date(availability);
+  const dispatch = useDispatch();
   const dateString = date.toDateString();
   const navigate = useNavigate();
   const data = {
@@ -70,6 +80,7 @@ const PostProperty = () => {
     bathrooms: parseInt(bathrooms),
     property_type: property_type,
     posted_by: userDetails.id,
+    image: imagePostData,
   }
 
   const loggedIn = useSelector(state => state.auth.loggedIn);
@@ -295,17 +306,138 @@ const PostProperty = () => {
 
           </div>
         </div>
-        {/* <div className="form-group">
-          <h2 className="header-mobile">Visits</h2>
-          <input type="number" onChange={(e) => setVisits(e.target.value)} name="visits" id="visits" />
-        </div> */}
+
         <div className="form-group">
           <h2 className="header-mobile">Property Type</h2>
           <input type="text" onChange={(e) => setProperty_Type(e.target.value)} name="property_type" id="property_type" />
         </div>
         <div className="form-group">
           <h2 className="header-mobile">Photos</h2>
-          <input type="file" accept="image/*" onChange={(e) => console.log(e.target)} multiple={true} name="photos" id="photo" />
+          <div className="upload-image-section">
+            {/* 1st Image Upload Container  */}
+            <div className="upload-image-container">
+              {image.length === 0 ? (
+                <img src={SamplePropertyImage} alt="property" />
+              ) : (
+                <img src={image[0].image.full_size} alt="property" />
+              )}
+              <input type="file" accept="image/*" onChange={(e) => {
+                (dispatch(uploadImage(e.target.files[0]))
+                  .then((res) => {
+
+                    setImage(image => [...image, res]);
+                    setImagePostData(imagePostData => [...imagePostData, res.pk]);
+
+                  }))
+              }} name="photos" id="photo" />
+            </div>
+            {/* 2nd Image Upload Container  */}
+
+            <div className="upload-image-container">
+              {image.length <= 1 ? (
+                <img src={SamplePropertyImage} alt="property" />
+              ) : (
+                <img src={image[1].image.full_size} alt="property" />
+              )}
+              <input type="file" accept="image/*" onChange={(e) => {
+                (dispatch(uploadImage(e.target.files[0]))
+                  .then((res) => {
+                    setImage(image => [...image, res]);
+                    setImagePostData(imagePostData => [...imagePostData, res.pk]);
+
+
+                  }))
+              }} name="photos" id="photo" />
+            </div>
+            {/* 3rd Image Upload Container  */}
+
+            <div className="upload-image-container">
+              {image.length <= 2 ? (
+                <img src={SamplePropertyImage} alt="property" />
+              ) : (
+                <img src={image[2].image.full_size} alt="property" />
+              )}
+              <input type="file" accept="image/*" onChange={(e) => {
+                (dispatch(uploadImage(e.target.files[0]))
+                  .then((res) => {
+
+                    setImage(image => [...image, res]);
+                    setImagePostData(imagePostData => [...imagePostData, res.pk]);
+
+
+                  }))
+              }} name="photos" id="photo" />
+            </div>
+            {/* 4th Image Upload Container  */}
+
+            <div className="upload-image-container">
+              {image.length <= 3 ? (
+                <img src={SamplePropertyImage} alt="property" />
+              ) : (
+                <img src={image[3].image.full_size} alt="property" />
+              )}
+              <input type="file" accept="image/*" onChange={(e) => {
+                (dispatch(uploadImage(e.target.files[0]))
+                  .then((res) => {
+
+                    setImage(image => [...image, res]);
+                    setImagePostData(imagePostData => [...imagePostData, res.pk]);
+
+
+                  }))
+              }} name="photos" id="photo" />
+            </div>
+            {/* 5th Image Upload Container  */}
+
+            <div className="upload-image-container">
+              {image.length <= 4 ? (
+                <img src={SamplePropertyImage} alt="property" />
+              ) : (
+                <img src={image[4].image.full_size} alt="property" />
+              )}
+              <input type="file" accept="image/*" onChange={(e) => {
+                (dispatch(uploadImage(e.target.files[0]))
+                  .then((res) => {
+
+                    setImage(image => [...image, res]);
+                    setImagePostData(imagePostData => [...imagePostData, res.pk]);
+
+
+                  }))
+              }} name="photos" id="photo" />
+            </div>
+            {/* 6th Image Upload Container  */}
+
+            <div className="upload-image-container">
+              {image.length <= 5 ? (
+                <img src={SamplePropertyImage} alt="property" />
+              ) : (
+                <img src={image[5].image.full_size} alt="property" />
+              )}
+              <input type="file" accept="image/*" onChange={(e) => {
+                (dispatch(uploadImage(e.target.files[0]))
+                  .then((res) => {
+                    setImage(image => [...image, res]);
+                    setImagePostData(imagePostData => [...imagePostData, res.pk]);
+
+                  }))
+              }} name="photos" id="photo" />
+            </div>
+          </div>
+          {/* <div class="parent upload-image-section">
+            <div class="div1 upload-image-container"> <img src={SamplePropertyImage} alt="sample-property" />
+              <input type="file" accept="image/*" onChange={(e) => console.log(e.target)} multiple={true} name="photos" id="photo" /></div>
+            <div class="div2 upload-image-container"> <img src={SamplePropertyImage} alt="sample-property" />
+              <input type="file" accept="image/*" onChange={(e) => console.log(e.target)} multiple={true} name="photos" id="photo" /></div>
+            <div class="div3 upload-image-container"> <img src={SamplePropertyImage} alt="sample-property" />
+              <input type="file" accept="image/*" onChange={(e) => console.log(e.target)} multiple={true} name="photos" id="photo" /></div>
+            <div class="div4 upload-image-container"> <img src={SamplePropertyImage} alt="sample-property" />
+              <input type="file" accept="image/*" onChange={(e) => console.log(e.target)} multiple={true} name="photos" id="photo" /></div>
+            <div class="div5 upload-image-container"> <img src={SamplePropertyImage} alt="sample-property" />
+              <input type="file" accept="image/*" onChange={(e) => console.log(e.target)} multiple={true} name="photos" id="photo" /></div>
+            <div class="div6 upload-image-container"> <img src={SamplePropertyImage} alt="sample-property" />
+              <input type="file" accept="image/*" onChange={(e) => console.log(e.target)} multiple={true} name="photos" id="photo" /></div>
+          </div> */}
         </div>
         {
           spinner ?

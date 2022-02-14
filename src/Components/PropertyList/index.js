@@ -14,9 +14,10 @@ const PropertyDeatiledCard = () => {
   const navigate = useNavigate();
 
   const city = (useParams().slug).toLowerCase();
+  const data = { city: city }
   console.log(city)
   useEffect(() => {
-    dispatch(getPropertyList(city))
+    dispatch(getPropertyList(data))
   }, []);
   const propertyList = useSelector(state => state.propertyList.propertyData);
   function numDifferentiation(value) {
