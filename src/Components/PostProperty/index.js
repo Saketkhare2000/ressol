@@ -34,6 +34,7 @@ const PostProperty = () => {
   const [bedrooms, setBedrooms] = React.useState();
   //bathrooms state
   const [bathrooms, setBathrooms] = React.useState();
+  const [location, setLocation] = React.useState("");
   //address state
   const [address, setAddress] = React.useState("");
   //pinCode state
@@ -65,6 +66,7 @@ const PostProperty = () => {
     name: slugify(name, '_'),
     property_name: name,
     description: description,
+    location: location,
     address: address,
     city: city.toLowerCase(),
     for_status: for_status,
@@ -186,7 +188,11 @@ const PostProperty = () => {
         </div>
         <div className="form-group">
           <h2 className="header-mobile">Locality</h2>
-          <input type="text" onChange={(e) => setAddress(e.target.value)} placeholder="Enter Locality" name="address" id="address" />
+          <input type="text" onChange={(e) => setLocation(e.target.value)} placeholder="Enter Locality" name="locality" id="locality" />
+        </div>
+        <div className="form-group">
+          <h2 className="header-mobile">Address</h2>
+          <input type="text" onChange={(e) => setAddress(e.target.value)} placeholder="Enter Address" name="address" id="address" />
         </div>
         <div className="form-group">
           <h2 className="header-mobile">City</h2>

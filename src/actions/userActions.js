@@ -35,7 +35,6 @@ export const getUserData = (userName, key) => async (dispatch) => {
       Authorization: `Bearer ${key}`,
     },
   });
-  console.log(userData.data);
   //set user data
   dispatch({
     type: "SET_USER_DATA",

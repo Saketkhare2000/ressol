@@ -116,9 +116,7 @@
 .toggle {
   transform: rotateZ(180deg);
 }
-.disclosure-panel {
-  padding: 0px 20px;
-}
+
 .btn-container {
   width: 100%;
   display: flex;

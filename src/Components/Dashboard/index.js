@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { IoCaretUpCircleSharp } from "react-icons/io5";
 import { AiOutlineUser, AiOutlineBook } from "react-icons/ai";
 import { BiBuildingHouse } from "react-icons/bi";
+import { GrContact } from "react-icons/gr";
 import Select from 'react-select'
 
 const Dashoard = () => {
@@ -101,8 +102,23 @@ const Dashoard = () => {
           className="btn-top"
         >
           <motion.p layout>
+            <GrContact style={{ fontSize: "20px" }} />
+            View Responses
+          </motion.p>
+          <IoCaretUpCircleSharp
+            className={`down-icon`}
+          />
+        </motion.div>
+      </motion.div>
+      <motion.div className="disclosure-btn" layout>
+        <motion.div
+          onClick={() => NavigateTo('/dashboard/wishlist')}
+          layout
+          className="btn-top"
+        >
+          <motion.p layout>
             <AiOutlineBook style={{ fontSize: "20px" }} />
-            Your Wishlist
+            Wishlist
           </motion.p>
           <IoCaretUpCircleSharp
             className={`down-icon`}

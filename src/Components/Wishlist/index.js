@@ -35,7 +35,7 @@ const Wishlist = () => {
                         <AnimatePresence>
                             <div className="wishlist-property-card">
                                 <Link to={`/property/${wishlistDetails[property].id}`}>
-                                    <div key={index} className="property-detail-card">
+                                    <div key={index} className="wishlist-detail-card">
                                         <div className="img-container">
                                             <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-1.2.1" alt="" />
                                         </div>
@@ -50,7 +50,9 @@ const Wishlist = () => {
                                         </div>
                                     </div>
                                 </Link>
-                                <AiOutlineDelete style={{ fontSize: "22px" }} onClick={(e) => console.log("Remove from Wishlist")} />
+                                <div className="options-btn-container">
+                                    <button className=' btn-secondary'>Remove</button>
+                                </div>
                             </div>
                         </AnimatePresence>
                     );

@@ -11,22 +11,26 @@ import "./style.css";
 import Loader from "../Loader";
 const Property = () => {
   const id = useParams().slug;
-  console.log(id)
   const [propertyDetails, setPropertyDetails] = React.useState({});
+  const [propertyImagesData, setPropertyImagesData] = React.useState([]);
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const navigate = useNavigate();
 
-  console.log(propertyDetails)
   const [loader, setLoader] = React.useState(true);
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/property/${id}/`)
+    axios.get(`http://127.0.0.1:8000/api/property/${id}/?expand=posted_by.image&image`)
       .then(res => {
         setLoader(true)
         setPropertyDetails(res.data)
+
       }).then(() => {
         setLoader(false)
       })
   }, []);
+  console.log(propertyDetails)
+
+  // console.log(propertyDetails.image)
+  // console.log(propertyImagesData)
   // function numDifferentiation(value) {
   //   var val = Math.abs(value)
   //   if (val >= 10000000) {
@@ -128,11 +132,15 @@ const Property = () => {
             <h2 className="mobile-title">Posted By</h2>
             <div className="owner-details">
               <div className="owner-image">
-                <img src={SampleUserImg} alt="user" />
+                {propertyDetails.posted_by.image == null ? (
+                  <img src={SampleUserImg} alt="user" />
+                ) : (
+                  <img src={propertyDetails.posted_by.image.image.full_size} alt="user" />
+                )}
               </div>
               <div className="owner-contact">
-                <h3>Name</h3>
-                <p>Location: Delhi, Delhi</p>
+                <h3>{propertyDetails.posted_by.username}</h3>
+                <p>Location: {propertyDetails.posted_by.city}, {propertyDetails.posted_by.state}</p>
               </div>
               <button className="btn btn-primary" onClick={handleContact}>
                 Contact Owner
