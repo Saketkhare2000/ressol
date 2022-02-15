@@ -13,13 +13,17 @@ const PropertyDeatiledCard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const city = (useParams().slug).toLowerCase();
-  const data = { city: city }
-  console.log(city)
-  useEffect(() => {
-    dispatch(getPropertyList(data))
-  }, []);
+  // const city = (useParams().slug).toLowerCase();
   const propertyList = useSelector(state => state.propertyList.propertyData);
+
+  // const data = { city: city }
+  // console.log(city)
+  // useEffect(() => {
+  //   dispatch(getPropertyList(data))
+  // }, []);
+  // useEffect(() => {
+  //   console.log(propertyList)
+  // }, [])
   function numDifferentiation(value) {
     var val = Math.abs(value)
     if (val >= 10000000) {
@@ -40,7 +44,7 @@ const PropertyDeatiledCard = () => {
 
       <div className="back" onClick={() => navigate('/')}>
         <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
-        <h1 className="mobile-title">Properties in <span className="city-name"> {city} </span></h1>
+        <h1 className="mobile-title">Properties in <span className="city-name"> city </span></h1>
         {/* <p>Go Back</p> */}
       </div>
       {

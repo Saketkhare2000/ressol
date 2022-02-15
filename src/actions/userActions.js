@@ -46,9 +46,7 @@ export const getPropertyList = (data) => async (dispatch) => {
   const propertyList = await axios({
     method: "get",
     url: `http://localhost:8000/api/filter`,
-    // params: {
-    //   city: city,
-    // },
+
     params: data,
   });
   console.log(propertyList.data);

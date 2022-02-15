@@ -10,6 +10,9 @@
   align-items: center;
   justify-content: center;
 }
+.options-btn-container button {
+  cursor: pointer;
+}
 .wishlist-property-card {
   display: flex;
   flex-direction: row;

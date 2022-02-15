@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
 import "./style.css"
+import axios from "axios";
+
 import Loader from "../Loader";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -14,7 +16,7 @@ const Wishlist = () => {
     const navigate = useNavigate();
     const userDetails = useSelector((state) => state.userData.userData);
     const wishlistDetails = userDetails.wishlist
-    console.log(userDetails);
+    console.log(wishlistDetails);
     function numDifferentiation(value) {
         var val = Math.abs(value)
         if (val >= 10000000) {
@@ -23,6 +25,23 @@ const Wishlist = () => {
             val = Math.floor((val / 100000).toFixed(2)) + ' Lac';
         }
         return val;
+    }
+    const removeWishlist = (id) => {
+        console.log(userDetails.id);
+        console.log(id);
+        axios({
+            method: "post",
+            url: `http://localhost:8000/api/wish`,
+            data: {
+                profile: userDetails.id,
+                property: id,
+            },
+        })
+            .then((res) => {
+                console.log(res);
+                navigate("/dashboard/wishlist");
+            }
+            )
     }
     return (
         <div className='page'><div className="back" onClick={() => navigate('/dashboard')}>
@@ -51,7 +70,7 @@ const Wishlist = () => {
                                     </div>
                                 </Link>
                                 <div className="options-btn-container">
-                                    <button className=' btn-secondary'>Remove</button>
+                                    <button className=' btn-secondary' onClick={(e) => removeWishlist(wishlistDetails[property].id)}>Remove</button>
                                 </div>
                             </div>
                         </AnimatePresence>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import SampleUserImg from "../../assets/images/sample-user-img.png";
 
@@ -16,7 +16,24 @@ const ProfileDetails = () => {
     const loggedIn = useSelector((state) => state.auth.loggedIn);
     const key = useSelector((state) => state.auth.key);
     const userDetails = useSelector((state) => state.userData.userData);
-
+    // User Detail States
+    // const [city, setCity] = useState("");
+    // const [state, setState] = useState("");
+    // const [mobile, setMobile] = useState("");
+    // // const [user_type, setUser_Type] = useState("");
+    // const [bio, setBio] = useState("");
+    // const [image, setImage] = useState("");
+    // console.log(image);
+    // const { userName, setAlert, registerKey } = useContext(WebContext);
+    // const editProfileDetails = {
+    //     user: userDetails.id,
+    //     bio: bio,
+    //     mobile: mobile,
+    //     city: city,
+    //     state: state,
+    //     image: image.pk,
+    // };
+    //////////
     useEffect(() => {
         dispatch(getUserData(userName, key));
     }, []);
@@ -79,14 +96,14 @@ const ProfileDetails = () => {
                     <input type="text" placeholder="Edit Bio" value={userDetails.bio} />
                 </motion.div>
 
-                <motion.div layout className="form-group">
+                {/* <motion.div layout className="form-group">
                     <label htmlFor="select">Password</label>
                     <input
                         type="text"
                         placeholder="Password"
                         value={userDetails.password}
                     />
-                </motion.div>
+                </motion.div> */}
 
             </motion.form>
         </div>

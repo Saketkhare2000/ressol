@@ -176,6 +176,10 @@ const PostProperty = () => {
               <input type="radio" onChange={(e) => setFor_Status(e.target.value)} value="rent" name="for" id="rent" />
               <label htmlFor="rent">Rent</label>
             </div>
+            <div className="select-option">
+              <input type="radio" onChange={(e) => setFor_Status(e.target.value)} value="pg" name="for" id="rent" />
+              <label htmlFor="rent">PG/Hostel</label>
+            </div>
           </div>
         </div>
         <div className="form-group">

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SampleUserImg from "../../assets/images/sample-user-img.png";
@@ -13,22 +13,42 @@ const Property = () => {
   const id = useParams().slug;
   const [propertyDetails, setPropertyDetails] = React.useState({});
   const [propertyImagesData, setPropertyImagesData] = React.useState([]);
+  const userDetails = useSelector((state) => state.userData.userData);
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const navigate = useNavigate();
-
+  const [wishlistStatus, setWishlistStatus] = useState(false);
   const [loader, setLoader] = React.useState(true);
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/api/property/${id}/?expand=posted_by.image&image`)
       .then(res => {
         setLoader(true)
         setPropertyDetails(res.data)
-
-      }).then(() => {
+      })
+      .then(() => {
         setLoader(false)
       })
-  }, []);
-  console.log(propertyDetails)
+      .catch(err => {
+        console.log(err);
+      })
+  }, [])
 
+
+  // if (loggedIn) {
+  //   console.log(userDetails.wishlist);
+  //   userDetails.wishlist.map(property => {
+  //     if (property.id === propertyDetails.id) {
+  //       return setWishlistStatus(true)
+  //     }
+  //     else {
+  //       return setWishlistStatus(false)
+  //     }
+  //   })
+  // }
+  // else {
+  //   return setWishlistStatus(false)
+  // }
+  console.log("Hello");
+  // console.log(propertyDetails)
   // console.log(propertyDetails.image)
   // console.log(propertyImagesData)
   // function numDifferentiation(value) {
@@ -48,9 +68,26 @@ const Property = () => {
       navigate("/login")
     }
   }
+
   const addToWishlist = () => {
     if (loggedIn) {
-      alert("Added to wishlist")
+
+      axios({
+        method: "post",
+        url: `http://localhost:8000/api/wish`,
+        data: {
+          profile: userDetails.id,
+          property: propertyDetails.id,
+        },
+      })
+        .then((res) => {
+          console.log("Clicked")
+          setWishlistStatus(!wishlistStatus)
+
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
     else {
       navigate("/login")
@@ -99,9 +136,14 @@ const Property = () => {
             <button className="btn btn-primary" onClick={handleContact}>
               Contact Owner
             </button>
-            <button className="btn btn-secondary" onClick={addToWishlist}>
-              Wishlist
-            </button>
+            {wishlistStatus ? <button className="btn btn-secondary" onClick={addToWishlist}>
+              Remove From Wishlist
+            </button> : <button className="btn btn-secondary" onClick={addToWishlist}>
+              Add To Wishlist
+            </button>}
+
+
+
           </div>
           <div className="description">
             <h2 className="mobile-title">Description</h2>
