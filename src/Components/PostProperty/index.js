@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
 import { CgSpinner } from "react-icons/cg";
 import { AnimatePresence, motion } from "framer-motion";
-
 import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,6 +9,7 @@ import axios from "axios";
 import Select from 'react-select'
 import cityData from "../../cities.json";
 import stateData from "../../state.json";
+import floorData from "../../floor.json";
 import slugify from "slugify";
 import { WebContext } from "../../Context/WebContext";
 import { uploadImage } from "../../actions/userActions";
@@ -46,12 +46,10 @@ const PostProperty = () => {
   const [possession_status, setPossession_Status] = React.useState("");
   //availability state
   const [availability, setAvailability] = React.useState("");
-
+  const [floor, setFloor] = React.useState("");
   const [property_type, setProperty_Type] = React.useState("");
   const [image, setImage] = useState([]);
   const [imagePostData, setImagePostData] = useState([]);
-  console.log(image)
-  console.log(imagePostData)
 
   const { setAlert } = useContext(WebContext);
   const userDetails = useSelector((state) => state.userData.userData);
@@ -63,6 +61,7 @@ const PostProperty = () => {
   const data = {
     features: [],
     amenities: [],
+    floor: floor,
     name: slugify(name, '_'),
     property_name: name,
     description: description,
@@ -90,6 +89,7 @@ const PostProperty = () => {
 
   const submitProperty = (e) => {
     e.preventDefault();
+    console.log(data)
     setSpinner(true);
     axios("http://127.0.0.1:8000/api/property/", {
       method: "post",
@@ -145,6 +145,19 @@ const PostProperty = () => {
       label: name,
     }
   });
+  const typeOptions = [
+    { value: "FL", label: "Flat/Apartment" },
+    { value: "VI", label: "House/Villa" },
+    { value: "PL", label: "Plot" },
+    { value: "CM", label: "Commercial" },
+  ];
+  const floorOptions = floorData.map(floor => {
+    const { value, label } = floor;
+    return {
+      value: value,
+      label: label,
+    }
+  });
 
   const handleChangeCity = (selectedOption) => {
 
@@ -153,8 +166,12 @@ const PostProperty = () => {
   const handleChangeState = (selectedOption) => {
     setState(selectedOption.value);
   }
-
-
+  const selectPropertyType = (selectedOption) => {
+    setProperty_Type(selectedOption.value);
+  }
+  const selectFloor = (selectedOption) => {
+    setFloor(selectedOption.value);
+  }
 
 
   return (
@@ -319,8 +336,17 @@ const PostProperty = () => {
 
         <div className="form-group">
           <h2 className="header-mobile">Property Type</h2>
-          <input type="text" onChange={(e) => setProperty_Type(e.target.value)} name="property_type" id="property_type" />
+          {/* <input type="text" onChange={(e) => setProperty_Type(e.target.value)} name="property_type" id="property_type" /> */}
+          <Select onChange={selectPropertyType} placeholder="Select Property Type" options={typeOptions} required />
+
         </div>
+        <div className="form-group">
+          <h2 className="header-mobile">Floor</h2>
+          {/* <input type="text" onChange={(e) => setProperty_Type(e.target.value)} name="property_type" id="property_type" /> */}
+          <Select onChange={selectFloor} placeholder="Select Floor" options={floorOptions} required />
+
+        </div>
+
         <div className="form-group">
           <h2 className="header-mobile">Photos</h2>
           <div className="upload-image-section">

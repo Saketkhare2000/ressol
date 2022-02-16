@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPropertyList } from "../../actions/userActions";
 import { WebContext } from "../../Context/WebContext";
@@ -10,13 +10,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import Button from "../Button";
 import cityData from "../../cities.json";
 import priceData from "../../prices.json";
+import areaData from "../../area.json";
+import floorData from "../../floor.json";
 import Select from 'react-select'
 import Multiselect from "multiselect-react-dropdown";
 const Filter = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
 
-  const { filterData, setFilterData } = useContext(WebContext);
+  // Common Filter States 
   const [propertyFor, setPropertyFor] = React.useState(null);
   const [city, setCity] = React.useState(null);
   const [minprice, setMinPrice] = React.useState(null);
@@ -27,7 +29,13 @@ const Filter = () => {
   const [bedrooms, setBedRooms] = React.useState(null);
   const [bathrooms, setBathrooms] = React.useState(null);
   const [possession_status, setPossession_Status] = React.useState(null);
+  const [minarea, setMinArea] = React.useState(null);
+  const [maxarea, setMaxArea] = React.useState(null);
   const [furnishing_status, setFurnishing_status] = React.useState(null);
+  const [is_prime, setIs_Prime] = React.useState(false);
+  const [floor, setFloor] = React.useState(null);
+
+  /////////////////////////////////////////////////////////////////////////
 
   // Setting the filter values
   const data = {
@@ -35,14 +43,20 @@ const Filter = () => {
     city: city,
     min: minprice,
     max: maxprice,
+    minarea: minarea,
+    maxarea: maxarea,
     type: property_type,
     bedrooms: bedrooms,
     bathrooms: bathrooms,
     possession: possession_status,
-    furnishing: furnishing_status
+    furnishing: furnishing_status,
+    prime: "True",
+    floor: floor
   };
 
+  ///////////////////////////////////////////////////////////////////////////////
 
+  //  Select & Multi Select Dropdown Values 
   const cityOptions = cityData.map(city => {
     const { name } = city;
     return {
@@ -57,11 +71,78 @@ const Filter = () => {
       label: label,
     }
   });
+  const areaOptions = areaData.map(area => {
+    const { value, label } = area;
+    return {
+      value: value,
+      label: label,
+    }
+  });
+  const floorOptions = floorData.map(floor => {
+    const { value, label } = floor;
+    return {
+      value: value,
+      label: label,
+    }
+  });
+  const bedData = [
+    { value: "1", label: "1 BHK" },
+    { value: "2", label: "2 BHK" },
+    { value: "3", label: "3 BHK" },
+    { value: "4", label: "4 BHK" },
+    { value: "5+", label: "5+ BHK" },
+  ];
+  const [bedOptions] = React.useState(bedData);
+  const bathroomData = [
+    { value: "1", label: "1" },
+    { value: "2", label: "2" },
+    { value: "3", label: "3" },
+    { value: "4+", label: "4+" },
+  ];
+  const [bathroomOptions] = React.useState(bathroomData);
+  const furnishingData = [
+    { value: "furnished", label: "Furnished" },
+    { value: "semifurnished", label: "Semi-Furnished" },
+    { value: "unfurnished", label: "Unfurnished" },
+  ];
+  const [furnishingOptions] = React.useState(furnishingData);
 
+  /////////////////////////////////////////////////////////////////////////////
+
+  // Select & Multi Select Dropdown Handle Functions
+  const handleChangeBedrooms = (e) => {
+    const bedValue = []
+    e.map(bedroom => {
+      return bedValue.push(bedroom.value)
+    })
+    setBedRooms(bedValue)
+  }
+  const handleChangeBathrooms = (e) => {
+    const bathroomValue = []
+    console.log(e)
+    e.map(bathroom => {
+      return bathroomValue.push(bathroom.value)
+    })
+    setBathrooms(bathroomValue)
+  }
+  const handleChangeFurnishing = (e) => {
+    const furnishingValue = []
+    console.log(e)
+    e.map(furnishing => {
+      return furnishingValue.push(furnishing.value)
+    })
+    setFurnishing_status(furnishingValue)
+  }
+  const handleChangeFloor = (e) => {
+    const floorValue = []
+    console.log(e)
+    e.map(floor => {
+      return floorValue.push(floor.value)
+    })
+    setFloor(floorValue)
+  }
   const handleChangeCity = (selectedOption) => {
-    console.log(selectedOption.value)
     setCity(selectedOption.value.toLowerCase());
-    console.log(data)
   }
   const handleChangeMinPrice = (selectedOption) => {
     setMinPrice(selectedOption.value);
@@ -69,9 +150,15 @@ const Filter = () => {
   const handleChangeMaxPrice = (selectedOption) => {
     setMaxPrice(selectedOption.value);
   }
+  const handleChangeMinArea = (selectedOption) => {
+    setMinArea(selectedOption.value);
+  }
+  const handleChangeMaxArea = (selectedOption) => {
+    setMaxArea(selectedOption.value);
+  }
+
+  // Final Filter Search Handle Function
   const handleSearch = () => {
-    // e.preventDefault();
-    console.log("Clicked")
     console.log(data)
     dispatch(getPropertyList(data)).then(() => {
       console.log("dispatched")
@@ -118,7 +205,7 @@ const Filter = () => {
             <div className="filter-group">
               <h3>City</h3>
               <div className="filter-item">
-                <Select width='100px' onChange={handleChangeCity} options={cityOptions} placeholder="City" openMenuOnClick={false} required />
+                <Select width='100px' onChange={handleChangeCity} options={cityOptions} placeholder="City" openMenuOnClick={true} required />
 
               </div>
             </div>
@@ -130,18 +217,6 @@ const Filter = () => {
                 <Select onChange={handleChangeMaxPrice} placeholder="Max" options={priceOptions} required />
               </div>
             </div>
-            {/* <div className="filter-group">
-              <h3>Budget</h3>
-              <div className="filter-item">
-                <Multiselect
-                  options={this.state.options} // Options to display in the dropdown
-                  selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
-                  onSelect={this.onSelect} // Function will trigger on select event
-                  onRemove={this.onRemove} // Function will trigger on remove event
-                  displayValue="name" // Property name to display in the dropdown options
-                />
-              </div>
-            </div> */}
             <div className="filter-group">
               <h3>Property Type</h3>
               <div className="filter-item">
@@ -163,9 +238,13 @@ const Filter = () => {
                 </div>
               </div>
             </div>
+
+            {/* ------------------------------------------------------------------------------- */}
+
             {/* Changeable Specifications Section  */}
             <AnimatePresence>
               {(() => {
+                // Flat/Apartment Property Type Filters 
                 if (property_type === "FL") {
                   return (
 
@@ -181,7 +260,10 @@ const Filter = () => {
                       <div className="filter-group">
                         <h3>Bedrooms</h3>
                         <div className="filter-item">
-                          <div className="select-option">
+                          <Select onChange={(e) => handleChangeBedrooms(e)} isMulti options={bedOptions} placeholder="Bedrooms" required />
+                          {/* <Multiselect isObject={true} options={bedOptions}
+                            displayValue="Number of Bedrooms" onSelect={(e) => console.log(e)} onRemove={(e) => console.log(e)} /> */}
+                          {/* <div className="select-option">
                             <input type="radio" onChange={(e) => setBedRooms((e.target.value))} name="bedrooms" id="1" value='1' />
                             <label htmlFor="bedrooms">1 BHK</label>
                           </div>
@@ -200,14 +282,15 @@ const Filter = () => {
                           <div className="select-option">
                             <input type="radio" onChange={(e) => setBedRooms(e.target.value)} name="bedrooms" id="5" value='5+' />
                             <label htmlFor="sale">5+ BHK</label>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                       {/* Bathrooms  */}
                       <div className="filter-group">
                         <h3>Bathrooms</h3>
                         <div className="filter-item">
-                          <div className="select-option">
+                          <Select onChange={(e) => handleChangeBathrooms(e)} isMulti options={bathroomOptions} placeholder="Bathrooms" required />
+                          {/* <div className="select-option">
                             <input type="radio" onChange={(e) => setBathrooms((e.target.value))} name="bathrooms" id="1" value='1' />
                             <label htmlFor="bathrooms">1</label>
                           </div>
@@ -222,7 +305,7 @@ const Filter = () => {
                           <div className="select-option">
                             <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="4" value='4+' />
                             <label htmlFor="bathrooms">4+</label>
-                          </div>
+                          </div> */}
 
                         </div>
                       </div>
@@ -241,11 +324,22 @@ const Filter = () => {
 
                         </div>
                       </div>
+                      {/* Covered Area  */}
+                      <div className="filter-group">
+                        <h3>Covered Area (in sqft)</h3>
+                        <div className="filter-item">
+                          <Select onChange={handleChangeMinArea} placeholder="Min" options={areaOptions} required />
+                          <p>To</p>
+                          <Select onChange={handleChangeMaxArea} placeholder="Max" options={areaOptions} required />
+                        </div>
+                      </div>
                       {/* Furnishing Status  */}
                       <div className="filter-group">
                         <h3>Furnishing</h3>
                         <div className="filter-item">
-                          <div className="select-option">
+                          <Select onChange={(e) => handleChangeFurnishing(e)} isMulti options={furnishingOptions} placeholder="Furnishing Status" required />
+
+                          {/* <div className="select-option">
                             <input type="radio" onChange={(e) => setFurnishing_status((e.target.value))} name="furnishing_status" id="furnished" value='furnished' />
                             <label htmlFor="furnishing_status">Furnished</label>
                           </div>
@@ -256,13 +350,31 @@ const Filter = () => {
                           <div className="select-option">
                             <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="unfurnished" value='unfurnished' />
                             <label htmlFor="furnishing_status">Unfurnished</label>
-                          </div>
+                          </div> */}
 
+                        </div>
+                      </div>
+                      {/* Floor Number  */}
+                      <div className="filter-group">
+                        <h3>Floor</h3>
+                        <div className="filter-item">
+                          <Select onChange={(e) => handleChangeFloor(e)} isMulti options={floorOptions} placeholder="Floor" required />
+                        </div>
+                      </div>
+                      {/* Prime Property Checkbox  */}
+                      <div className="filter-group">
+                        <h3>Prime Property</h3>
+                        <div className="filter-item">
+                          <input type="checkbox" onChange={(e) => setIs_Prime(!is_prime)} name="prime_property" id="prime_property" />
+
+                          <label htmlFor="prime_property">Yes</label>
                         </div>
                       </div>
                     </motion.div>
                   )
-                } else if (property_type === "VI") {
+                }
+                // House/Villa Property Type Filters 
+                else if (property_type === "VI") {
                   return (
                     <motion.div
                       initial={{ opacity: 0, y: -30 }}
