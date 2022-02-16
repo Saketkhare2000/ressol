@@ -25,7 +25,7 @@ const Navbar = () => {
           >
             <div className="top-header">
               <div className="logo">
-                <Link to="/">Reessol</Link>
+                <Link to="/">9Roof</Link>
               </div>
               <Button title="Prime" variant="outline" />
             </div>

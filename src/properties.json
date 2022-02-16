@@ -18,16 +18,16 @@
     ]
   },
   {
-    "title": "Type of service",
+    "title": "Type of Service",
     "type": "imgCard",
     "cardDetails": [
       {
         "img": "https://images.unsplash.com/photo-1614926781997-9ca2e6d2785a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-        "imgTitle": "Ready to move"
+        "imgTitle": "Ready To move"
       },
       {
         "img": "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
-        "imgTitle": "Best Deals"
+        "imgTitle": "Under Construction"
       }
     ]
   }
