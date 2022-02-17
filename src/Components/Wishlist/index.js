@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserData } from "../../actions/userActions";
+
 import { AiOutlineDelete } from "react-icons/ai";
 import "./style.css"
 import axios from "axios";
-
+import { WebContext } from "../../Context/WebContext";
 import Loader from "../Loader";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -14,9 +16,20 @@ import { Link } from "react-router-dom";
 
 const Wishlist = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    // const userDetails = useSelector((state) => state.userData.userData);
+    // const wishlistDetails = userDetails.wishlist
+    /////////////
+    const { userName } = useContext(WebContext);
+    useEffect(() => {
+        dispatch(getUserData(userName, key));
+    }, []);
+    const loggedIn = useSelector((state) => state.auth.loggedIn);
+    const key = useSelector((state) => state.auth.key);
     const userDetails = useSelector((state) => state.userData.userData);
-    const wishlistDetails = userDetails.wishlist
-    console.log(wishlistDetails);
+    const [wishlistDetails, setWishlistDetails] = useState(userDetails.wishlist);
+
     function numDifferentiation(value) {
         var val = Math.abs(value)
         if (val >= 10000000) {
@@ -27,8 +40,7 @@ const Wishlist = () => {
         return val;
     }
     const removeWishlist = (id) => {
-        console.log(userDetails.id);
-        console.log(id);
+
         axios({
             method: "post",
             url: `http://localhost:8000/api/wish`,
@@ -38,8 +50,13 @@ const Wishlist = () => {
             },
         })
             .then((res) => {
-                console.log(res);
-                navigate("/dashboard/wishlist");
+                dispatch(getUserData(userDetails.username, key))
+                    .then((res) => {
+                        setWishlistDetails(res.wishlist)
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
             }
             )
     }

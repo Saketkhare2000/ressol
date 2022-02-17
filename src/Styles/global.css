@@ -18,6 +18,12 @@
   --mobile-title: 20px;
   --header--mobile: 18px;
 }
+@media screen and (min-width: 1024px) {
+  :root {
+    --mobile-title: 22px;
+    --header--mobile: 20px;
+  }
+}
 body {
   font-family: var(--font-family);
   background-color: var(--bg-white);
@@ -35,9 +41,9 @@ body {
 .page {
   padding: 0px 10px;
 }
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1200px) {
   .page {
-    max-width: 992px;
+    max-width: 1200px;
     margin: auto;
   }
 }

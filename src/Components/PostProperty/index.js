@@ -72,7 +72,7 @@ const PostProperty = () => {
     address: address,
     city: city.toLowerCase(),
     for_status: for_status,
-    possession: possession_status,
+    possession: possession_status.toLowerCase(),
     state: state.toLowerCase(),
     pincode: pincode,
     prime_property: true,
@@ -244,6 +244,18 @@ const PostProperty = () => {
             <h2 className="header-mobile">Locality</h2>
             <input type="text" onChange={(e) => setLocation(e.target.value)} placeholder="Locality" name="locality" id="locality" />
           </div>
+
+          {/* Address */}
+          <div className="form-group">
+            <h2 className="header-mobile">Address</h2>
+            <input type="text" onChange={(e) => setAddress(e.target.value)} placeholder="Enter Address" name="address" id="address" />
+          </div>
+
+          {/* Pincode  */}
+          <div className="form-group">
+            <h2 className="header-mobile">Pincode</h2>
+            <input type="text" onChange={(e) => setPincode(e.target.value)} placeholder="Enter Pincode" name="pincode" id="pincode" />
+          </div>
           {/* City  */}
           <div className="form-group">
             <h2 className="header-mobile">City</h2>
@@ -283,7 +295,7 @@ const PostProperty = () => {
                 {/* Area  */}
                 <div className="form-group">
                   <h2 className="header-mobile">Total Area (in sqft)</h2>
-                  <input type="number" onChange={(e) => setProperty_Size(e.target.value)} placeholder="Enter Total Area (Ex - 1500)" name="property_size" id="property_size" />
+                  <input type="text" onChange={(e) => setProperty_Size(e.target.value)} placeholder="Enter Total Area (Ex - 1500)" name="property_size" id="property_size" />
                 </div>
                 {/* Possession Status  */}
                 <div className="form-group">
@@ -509,17 +521,6 @@ const PostProperty = () => {
 
 
 
-        {/* Address 
-        <div className="form-group">
-          <h2 className="header-mobile">Address</h2>
-          <input type="text" onChange={(e) => setAddress(e.target.value)} placeholder="Enter Address" name="address" id="address" />
-        </div>
-
-        {/* Pincode  */}
-        {/* <div className="form-group">
-          <h2 className="header-mobile">Pincode</h2>
-          <input type="text" onChange={(e) => setPincode(e.target.value)} placeholder="Enter Pincode" name="pincode" id="pincode" />
-        </div>  */}
 
         {/* Photos  */}
         <div className="form-section">

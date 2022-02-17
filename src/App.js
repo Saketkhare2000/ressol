@@ -20,6 +20,7 @@ import CompleteProfile from "./Components/CompleteProfile";
 import ProfileDetails from "./Components/ProfileDetails";
 import ManageProperties from "./Components/ManageProperties";
 import Wishlist from "./Components/Wishlist";
+import Prime from "./Components/Prime";
 function App() {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   return (
@@ -69,8 +70,11 @@ function App() {
             <Route path="/dashboard/wishlist" element={<LogIn />} />
           )}
           <Route path="filter" element={<Filter />} />
+          <Route path="/prime" element={<Prime />} />
+
         </Routes>
-        {/* <Footer /> */}
+        <Spacer />
+        <Footer />
         <Spacer />
         <ScrollToTop />
       </BrowserRouter>

@@ -1,34 +1,34 @@
 [
     {
-        "value": "Parking",
+        "value": 1,
         "label": "Parking"
     },
     {
-        "value": "Lift",
+        "value": 2,
         "label": "Lift"
     },
     {
-        "value": "Park",
+        "value": 3,
         "label": "Park"
     },
     {
-        "value": "Gymnasium",
+        "value": 4,
         "label" : "Gymnasium"
     },
     {
-        "value": "Swimming Pool",
+        "value": 5,
         "label" : "Swimming Pool"
     },
     {
-        "value": "Power Backup",
+        "value": 6,
         "label" : "Power Backup"
     },
     {
-        "value": "Wi-Fi Connectivity",
+        "value": 7,
         "label" : "Wi-Fi Connectivity"
     },
     {
-        "value": "Air Conditioned",
+        "value": 8,
         "label" : "Air Conditioned"
     }
 ]

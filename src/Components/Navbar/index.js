@@ -27,7 +27,7 @@ const Navbar = () => {
               <div className="logo">
                 <Link to="/">9Roof</Link>
               </div>
-              <Button title="Prime" variant="outline" />
+              <button onClick={() => navigate('/prime')} className="btn btn-outline">Prime</button>
             </div>
             <div className="search-bar">
               <motion.div onClick={() => navigate('/filter')} className="input">

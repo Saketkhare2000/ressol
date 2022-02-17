@@ -128,6 +128,12 @@ button {
   background-color: var(--brand--green);
   color: white;
 }
-.css-b62m3t-container {
+.dashboard-page .btn {
+  width: 140px;
+}
+.dashboard-page .css-b62m3t-container {
   min-width: 160px;
+}
+.dashboard-page .css-1s2u09g-control {
+  width: 160px;
 }

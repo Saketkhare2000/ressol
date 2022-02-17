@@ -26,7 +26,7 @@ const Filter = () => {
   const [minprice, setMinPrice] = React.useState(null);
   const [maxprice, setMaxPrice] = React.useState(null);
   const [property_type, setProperty_Type] = React.useState(null);
-
+  const [propertyName, setPropertyName] = React.useState(null);
   // Specifications States
   const [bedrooms, setBedRooms] = React.useState(null);
   const [bathrooms, setBathrooms] = React.useState(null);
@@ -48,6 +48,7 @@ const Filter = () => {
     city: city,
     min: minprice,
     max: maxprice,
+    propertyName: propertyName,
     minarea: minarea,
     maxarea: maxarea,
     type: property_type,
@@ -262,6 +263,12 @@ const Filter = () => {
               </div>
             </div>
             <div className="filter-group">
+              <h3>Property Name</h3>
+              <div className="filter-item">
+                <input type="text" name="name" id="name" onChange={(e) => setPropertyName(e.target.value)} placeholder="Property/Project Name" />
+              </div>
+            </div>
+            <div className="filter-group">
               <h3>Property Type</h3>
               <div className="filter-item">
                 <div className="select-option">
@@ -304,14 +311,14 @@ const Filter = () => {
                       <div className="filter-group">
                         <h3>Bedrooms</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeBedrooms(e)} isMulti options={bedOptions} placeholder="Bedrooms" required />
+                          <Select onChange={(e) => handleChangeBedrooms(e)} closeMenuOnSelect={false} isMulti options={bedOptions} placeholder="Bedrooms" required />
                         </div>
                       </div>
                       {/* Bathrooms  */}
                       <div className="filter-group">
                         <h3>Bathrooms</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeBathrooms(e)} isMulti options={bathroomOptions} placeholder="Bathrooms" required />
+                          <Select onChange={(e) => handleChangeBathrooms(e)} closeMenuOnSelect={false} isMulti options={bathroomOptions} placeholder="Bathrooms" required />
                         </div>
                       </div>
                       {/* Possession Status  */}
@@ -342,26 +349,26 @@ const Filter = () => {
                       <div className="filter-group">
                         <h3>Furnishing</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeFurnishing(e)} isMulti options={furnishingOptions} placeholder="Furnishing Status" required />
+                          <Select onChange={(e) => handleChangeFurnishing(e)} closeMenuOnSelect={false} isMulti options={furnishingOptions} placeholder="Furnishing Status" required />
                         </div>
                       </div>
                       {/* Floor Number  */}
                       <div className="filter-group">
                         <h3>Floor</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeFloor(e)} isMulti options={floorOptions} placeholder="Floor" required />
+                          <Select onChange={(e) => handleChangeFloor(e)} closeMenuOnSelect={false} isMulti options={floorOptions} placeholder="Floor" required />
                         </div>
                       </div>
                       {/* Amenities  */}
                       <div className="filter-group">
                         <h3>Amenities</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleAmenities(e)} isMulti options={amenitiesOptions} placeholder="Amenities Available" required />
+                          <Select onChange={(e) => handleAmenities(e)} closeMenuOnSelect={false} isMulti options={amenitiesOptions} placeholder="Amenities Available" required />
                         </div>
                       </div>
                       {/* Prime Property Checkbox  */}
                       <div className="filter-group">
-                        <h3>Prime Property</h3>
+                        <h3>Show Prime Property</h3>
                         <div className="filter-item">
                           <input type="checkbox" onChange={handleIsPrime} name="prime_property" id="prime_property" />
                           <label htmlFor="prime_property">Yes</label>
@@ -406,7 +413,7 @@ const Filter = () => {
                       </div>
                       {/* Prime Property Checkbox  */}
                       <div className="filter-group">
-                        <h3>Prime Property</h3>
+                        <h3>Show Prime Property</h3>
                         <div className="filter-item">
                           <input type="checkbox" onChange={handleIsPrime} name="prime_property" id="prime_property" />
                           <label htmlFor="prime_property">Yes</label>
@@ -454,21 +461,21 @@ const Filter = () => {
                       <div className="filter-group">
                         <h3>Washrooms</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeBathrooms(e)} isMulti options={bathroomOptions} placeholder="Washrooms" required />
+                          <Select onChange={(e) => handleChangeBathrooms(e)} closeMenuOnSelect={false} isMulti options={bathroomOptions} placeholder="Washrooms" required />
                         </div>
                       </div>
                       {/* Furnishing Status  */}
                       <div className="filter-group">
                         <h3>Furnishing</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeFurnishing(e)} isMulti options={furnishingOptions} placeholder="Furnishing Status" required />
+                          <Select onChange={(e) => handleChangeFurnishing(e)} closeMenuOnSelect={false} isMulti options={furnishingOptions} placeholder="Furnishing Status" required />
                         </div>
                       </div>
                       {/* Floor Number  */}
                       <div className="filter-group">
                         <h3>Floor</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeFloor(e)} isMulti options={floorOptions} placeholder="Floor" required />
+                          <Select onChange={(e) => handleChangeFloor(e)} closeMenuOnSelect={false} isMulti options={floorOptions} placeholder="Floor" required />
                         </div>
                       </div>
                       {/* Amenities  */}
@@ -480,7 +487,7 @@ const Filter = () => {
                       </div>
                       {/* Prime Property Checkbox  */}
                       <div className="filter-group">
-                        <h3>Prime Property</h3>
+                        <h3>Show Prime Property</h3>
                         <div className="filter-item">
                           <input type="checkbox" onChange={handleIsPrime} name="prime_property" id="prime_property" />
                           <label htmlFor="prime_property">Yes</label>

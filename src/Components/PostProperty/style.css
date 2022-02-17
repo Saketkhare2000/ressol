@@ -130,4 +130,7 @@
   .post-property .form-group input[type="text"] {
     width: 45%;
   }
+  .post-property .form-group input[type="date"] {
+    width: 45%;
+  }
 }

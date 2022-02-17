@@ -41,6 +41,27 @@
   padding: 16px 0;
   /* border-bottom: 1px solid var(--card-border); */
 }
+.filter-page .filter-group input[type="text"] {
+  width: 100%;
+  padding: 10px 10px 10px 0;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--card-border);
+  font-size: 16px;
+}
+::-webkit-input-placeholder {
+  /* Edge */
+  opacity: 0.7;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  opacity: 0.7;
+}
+
+::placeholder {
+  opacity: 0.7;
+}
 .filter-page .filter-group .filter-item {
   display: flex;
   width: 100%;
@@ -80,6 +101,9 @@ button.filter-btn {
   .css-b62m3t-container {
     width: 45%;
     margin: 12px 0;
+  }
+  .filter-page .filter-group input[type="text"] {
+    width: 45%;
   }
 }
 /* 

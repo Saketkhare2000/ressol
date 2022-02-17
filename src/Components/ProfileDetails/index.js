@@ -67,35 +67,36 @@ const ProfileDetails = () => {
                         <img src={userDetails.image.image.full_size} alt="user" />
                     )}
                 </div>
-                <motion.div layout className="form-group">
-                    <label htmlFor="select">Name</label>
-                    <input type="text" placeholder="Name" value={userDetails.username} />
-                </motion.div>
-                <motion.div layout className="form-group">
-                    <label htmlFor="select">Email</label>
-                    <input type="text" placeholder="Email" value={userDetails.email} />
-                </motion.div>
-                <motion.div layout className="form-group">
-                    <label htmlFor="select">Phone</label>
-                    <input
-                        type="text"
-                        placeholder="Phone"
-                        value={userDetails.mobile}
-                    />
-                </motion.div>
-                <motion.div layout className="form-group">
-                    <label htmlFor="select">City</label>
-                    <input type="text" placeholder="City" value={userDetails.city} />
-                </motion.div>
-                <motion.div layout className="form-group">
-                    <label htmlFor="select">State</label>
-                    <input type="text" placeholder="State" value={userDetails.state} />
-                </motion.div>
-                <motion.div layout className="form-group">
-                    <label htmlFor="select">Bio</label>
-                    <input type="text" placeholder="Edit Bio" value={userDetails.bio} />
-                </motion.div>
-
+                <div className="profile-user-details">
+                    <motion.div layout className="form-group">
+                        <label htmlFor="select">Name</label>
+                        <input type="text" placeholder="Name" value={userDetails.username} />
+                    </motion.div>
+                    <motion.div layout className="form-group">
+                        <label htmlFor="select">Email</label>
+                        <input type="text" placeholder="Email" value={userDetails.email} />
+                    </motion.div>
+                    <motion.div layout className="form-group">
+                        <label htmlFor="select">Phone</label>
+                        <input
+                            type="text"
+                            placeholder="Phone"
+                            value={userDetails.mobile}
+                        />
+                    </motion.div>
+                    <motion.div layout className="form-group">
+                        <label htmlFor="select">City</label>
+                        <input type="text" placeholder="City" value={userDetails.city} />
+                    </motion.div>
+                    <motion.div layout className="form-group">
+                        <label htmlFor="select">State</label>
+                        <input type="text" placeholder="State" value={userDetails.state} />
+                    </motion.div>
+                    <motion.div layout className="form-group">
+                        <label htmlFor="select">Bio</label>
+                        <input type="text" placeholder="Edit Bio" value={userDetails.bio} />
+                    </motion.div>
+                </div>
                 {/* <motion.div layout className="form-group">
                     <label htmlFor="select">Password</label>
                     <input

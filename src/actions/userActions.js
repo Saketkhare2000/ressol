@@ -40,23 +40,26 @@ export const getUserData = (userName, key) => async (dispatch) => {
     type: "SET_USER_DATA",
     payload: userData.data,
   });
+  return userData.data;
 };
+
+
 export const getPropertyList = (data) => async (dispatch) => {
   //Fetch axios request
   const propertyList = await axios({
     method: "get",
     url: `http://localhost:8000/api/filter`,
-
     params: data,
   });
-  console.log(propertyList.data);
-  // console.log(propertyList.data);
   //set user data
   dispatch({
     type: "SET_PROPERTY_DATA",
     payload: propertyList.data,
   });
+
 }
+
+
 export const uploadImage = (image) => async (dispatch) => {
   const formData = new FormData();
   formData.append("image", image);
@@ -76,8 +79,18 @@ export const uploadImage = (image) => async (dispatch) => {
   return (res.data);
 };
 
-
-
+// export const getFeaturedProperties = (data) => async (dispatch) => {
+//   const propertyList = await axios({
+//     method: "get",
+//     url: `http://localhost:8000/api/filter`,
+//     params: data,
+//   });
+//   //set user data
+//   dispatch({
+//     type: "SET_PROPERTY_DATA",
+//     payload: propertyList.data,
+//   });
+// }
 
 
 

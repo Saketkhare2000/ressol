@@ -47,19 +47,18 @@ const Property = () => {
   // else {
   //   return setWishlistStatus(false)
   // }
-  console.log("Hello");
   // console.log(propertyDetails)
-  // console.log(propertyDetails.image)
+  console.log(propertyDetails)
   // console.log(propertyImagesData)
-  // function numDifferentiation(value) {
-  //   var val = Math.abs(value)
-  //   if (val >= 10000000) {
-  //     val = Math.floor((val / 10000000).toFixed(2)) + ' Cr';
-  //   } else if (val >= 100000) {
-  //     val = Math.floor((val / 100000).toFixed(2)) + ' Lac';
-  //   }
-  //   return val;
-  // }
+  function numDifferentiation(value) {
+    var val = Math.abs(value)
+    if (val >= 10000000) {
+      val = Math.floor((val / 10000000).toFixed(2)) + ' Cr';
+    } else if (val >= 100000) {
+      val = Math.floor((val / 100000).toFixed(2)) + ' Lac';
+    }
+    return val;
+  }
   const handleContact = () => {
     if (loggedIn) {
       console.log("contact")
@@ -116,9 +115,9 @@ const Property = () => {
               <p>{propertyDetails.property_name}</p>
             </div>
             <div className="grid-child div2">
-              <span>Locality</span>
-              {/* <p>₹ {numDifferentiation(propertyDetails.price)}</p> */}
-              <p>{(propertyDetails.address)}</p>
+              <span>Price</span>
+              <p>₹ {numDifferentiation(propertyDetails.price)}</p>
+              {/* <p>{(propertyDetails.address)}</p> */}
             </div>
             <div className="grid-child div3">
               <span>City</span>

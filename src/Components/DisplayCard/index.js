@@ -5,28 +5,24 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 
-const DisplayCard = ({ title, data }) => {
+const DisplayCard = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [city, setCity] = React.useState(null);
+  const [possessionStatus, setPossessionStatus] = React.useState(null);
   const displayProperties = (title) => {
-    const city = title.toLowerCase();
-    const data = { city: city }
+
+    console.log(city)
+    const data = { city: title.toLowerCase(), possession: possessionStatus }
     console.log(data)
     dispatch(getPropertyList(data)).then(() => {
       console.log("dispatched")
-      navigate(`/propertylist/${city}`)
+      navigate(`/propertylist/${title}`)
     }
     )
   }
 
-  // {/* <Link className="displaycard" to={`/propertylist/${item.imgTitle}`} key={index}>
-  //     <div key={index} className="displaycard-details">
-  //       <img src={item.img} alt="" />
-  //       <div className="overlay"></div>
-  //       <p>{item.imgTitle}</p>
-  //     </div>
-  //   </Link> */}
+
   return data.map((item, index) => (
     <div className="displaycard" onClick={(e) => displayProperties(item.imgTitle)}>
       <div key={index} className="displaycard-details">
