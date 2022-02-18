@@ -27,13 +27,14 @@
 }
 
 .property-detail-card .img-container {
-  max-width: 30%;
   overflow: hidden;
+  width: 120px;
 }
 .property-detail-card .img-container img {
   object-fit: cover;
   border-radius: 4px;
   width: 100%;
+  height: 120px;
 }
 .property-detail-card .property-detail-card-details {
   margin-left: 15px;

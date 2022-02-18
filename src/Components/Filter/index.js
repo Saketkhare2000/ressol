@@ -60,7 +60,8 @@ const Filter = () => {
     floor: floor,
     corner: cornerPlot,
     gated: gatedCommunity,
-    amenities: amenities
+    amenities: amenities,
+    expand: "image"
   };
 
   ///////////////////////////////////////////////////////////////////////////////

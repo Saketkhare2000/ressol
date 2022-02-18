@@ -14,7 +14,7 @@ const DisplayRow = ({ type }) => {
   const navigate = useNavigate();
   const displayCityProperties = (title) => {
 
-    const data = { city: title.toLowerCase() }
+    const data = { city: title.toLowerCase(), expand: "image" }
     console.log(data)
     dispatch(getPropertyList(data)).then(() => {
       console.log("dispatched")
@@ -24,7 +24,7 @@ const DisplayRow = ({ type }) => {
   }
   const displayServiceProperties = (title) => {
 
-    const data = { possession: title.toLowerCase() }
+    const data = { possession: title.toLowerCase(), expand: "image" }
     console.log(data)
     dispatch(getPropertyList(data)).then(() => {
       console.log("dispatched")

@@ -30,7 +30,7 @@ export const getUserData = (userName, key) => async (dispatch) => {
   //Fetch axios request
   const userData = await axios({
     method: "get",
-    url: `http://localhost:8000/api/profile/${userName}/?expand=image,properties,wishlist`,
+    url: `http://localhost:8000/api/profile/${userName}/?expand=image,properties.image,wishlist.image`,
     headers: {
       Authorization: `Bearer ${key}`,
     },

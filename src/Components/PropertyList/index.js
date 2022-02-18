@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { getPropertyList } from "../../actions/userActions";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Loader from "../Loader";
@@ -13,9 +14,10 @@ const PropertyDeatiledCard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const city = (useParams().slug).toLowerCase();
+  const result = (useParams().slug).toLowerCase();
+  console.log(result)
   const propertyList = useSelector(state => state.propertyList.propertyData);
-
+  console.log(propertyList)
   // const data = { city: city }
   // console.log(city)
   // useEffect(() => {
@@ -44,7 +46,7 @@ const PropertyDeatiledCard = () => {
 
       <div className="back" onClick={() => navigate('/')}>
         <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
-        <h1 className="mobile-title">Properties in <span className="city-name"> city </span></h1>
+        <h1 className="mobile-title">Properties in <span className="city-name"> {result} </span></h1>
         {/* <p>Go Back</p> */}
       </div>
       {
@@ -54,7 +56,13 @@ const PropertyDeatiledCard = () => {
               <Link to={`/property/${propertyList[property].id}`}>
                 <div key={index} className="property-detail-card">
                   <div className="img-container">
-                    <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-1.2.1" alt="" />
+                    {
+                      propertyList[property].image.length > 0 ?
+                        <img src={propertyList[property].image[0].image.full_size} alt="" />
+                        :
+                        <img src={SamplePropertyImage} alt="" />
+                    }
+
                   </div>
                   <div className="property-detail-card-details">
                     <p className="property-price">₹ {numDifferentiation(propertyList[property].price)}</p>

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SampleUserImg from "../../assets/images/sample-user-img.png";
 import { useParams } from 'react-router-dom';
+import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
 import { slideUp } from "../../Animation";
 import { Example } from "../Carousel/Example";
 import axios from "axios";
@@ -24,23 +25,29 @@ const Property = () => {
       .then(res => {
         setLoader(true)
         setPropertyDetails(res.data)
+        return res.data
       })
-      .then(() => {
+      .then((res) => {
         setLoader(false)
-        if (propertyDetails.image && propertyDetails.image.length > 0) {
+        console.log(res.image)
+        if (res.image && res.image.length > 0) {
           const propertyImagesData = [];
-          propertyDetails.image.map((image, index) => {
+          res.image.map((image, index) => {
             return propertyImagesData.push(image.image.full_size)
           }
           )
           console.log(propertyImagesData)
+          setImageData(propertyImagesData)
+        }
+        else {
+          setImageData([SamplePropertyImage])
         }
       })
       .catch(err => {
         console.log(err);
       })
   }, [])
-
+  console.log(imageData)
   // if (loggedIn) {
   //   console.log(userDetails.wishlist);
   //   userDetails.wishlist.map(property => {
@@ -114,7 +121,7 @@ const Property = () => {
           {/* <h2>
             {propertyDetails.property_name}
           </h2> */}
-          <Example data={propertyDetails.image} />
+          <Example data={imageData} />
           <h2 className="mobile-title">Property Details</h2>
           <div className="parent">
             <div className="grid-child div1">
@@ -128,11 +135,11 @@ const Property = () => {
             </div>
             <div className="grid-child div3">
               <span>City</span>
-              <p>{propertyDetails.city}</p>
+              <p className="property-city">{propertyDetails.city}</p>
             </div>
             <div className="grid-child div4">
               <span>State</span>
-              <p>
+              <p className="property-state">
                 {propertyDetails.state}
               </p>
             </div>
@@ -151,6 +158,7 @@ const Property = () => {
 
 
           </div>
+          {/* Description Section   */}
           <div className="description">
             <h2 className="mobile-title">Description</h2>
             <p>{propertyDetails.description}</p>
@@ -173,9 +181,29 @@ const Property = () => {
             </div>
             <div className="specification-container">
               <h4 className="specification-title">Furnishing</h4>
-              <h4 className="specification-value">{propertyDetails.furnishing_status}</h4>
+              <h4 className="specification-value"  >{propertyDetails.furnishing_status}</h4>
             </div>
           </div>
+          {/* Amenities Section  */}
+          <div className="amenities-section">
+            <h2 className="mobile-title">Amenities</h2>
+            <div className="amenities-container">
+              <div className="amenities-child">
+                <h4>Amenities</h4>
+              </div>
+            </div>
+            {/* <div className="amenities-container">
+              <div className="amenities-child">
+                <h4>Amenities</h4>
+                <ul>
+                  {propertyDetails.amenities.map((amenity, index) => {
+                    return <li key={index}>{amenity}</li>
+                  })}
+                </ul>
+              </div>
+            </div> */}
+          </div>
+          {/* About Owner Description  */}
           <div className="about-owner-container">
             <h2 className="mobile-title">Posted By</h2>
             <div className="owner-details">
@@ -196,7 +224,7 @@ const Property = () => {
             </div>
           </div>.
         </div>
-      </motion.div>)
+      </motion.div >)
   );
 };
 

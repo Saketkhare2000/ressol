@@ -136,6 +136,13 @@
   margin: 8px 0;
   width: 100%;
 }
+.property-city,
+.property-state {
+  text-transform: capitalize;
+}
+.specification-container .specification-value {
+  text-transform: capitalize;
+}
 @media screen and (max-width: 576px) {
   .property-btn-container button {
     width: 100%;

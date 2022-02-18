@@ -4,7 +4,6 @@
   display: inline-block;
 }
 .options-btn-container {
-  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -16,7 +15,7 @@
 .wishlist-property-card {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   margin: 12px 0;
   align-items: center;
   border-bottom: 1px solid var(--card-border);
@@ -33,13 +32,15 @@
   align-items: center;
 }
 .wishlist-detail-card .img-container {
-  max-width: 30%;
+  /* max-width: 30%; */
+  width: 80px;
   overflow: hidden;
 }
 .wishlist-detail-card .img-container img {
   object-fit: cover;
   border-radius: 4px;
-  width: 100%;
+  width: 80px;
+  height: 80px;
 }
 .wishlist-detail-card .property-detail-card-details {
   margin-left: 15px;

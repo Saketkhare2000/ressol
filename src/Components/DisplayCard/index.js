@@ -13,7 +13,7 @@ const DisplayCard = ({ data }) => {
   const displayProperties = (title) => {
 
     console.log(city)
-    const data = { city: title.toLowerCase(), possession: possessionStatus }
+    const data = { city: title.toLowerCase(), possession: possessionStatus, expand: "image" }
     console.log(data)
     dispatch(getPropertyList(data)).then(() => {
       console.log("dispatched")
