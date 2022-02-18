@@ -12,26 +12,34 @@ import Loader from "../Loader";
 const Property = () => {
   const id = useParams().slug;
   const [propertyDetails, setPropertyDetails] = React.useState({});
-  const [propertyImagesData, setPropertyImagesData] = React.useState([]);
+  // const [propertyImagesData, setPropertyImagesData] = React.useState([]);
+  const [imageData, setImageData] = React.useState([]);
   const userDetails = useSelector((state) => state.userData.userData);
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const navigate = useNavigate();
   const [wishlistStatus, setWishlistStatus] = useState(false);
   const [loader, setLoader] = React.useState(true);
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/property/${id}/?expand=posted_by.image&image`)
+    axios.get(`http://127.0.0.1:8000/api/property/${id}/?expand=posted_by.image,image`)
       .then(res => {
         setLoader(true)
         setPropertyDetails(res.data)
       })
       .then(() => {
         setLoader(false)
+        if (propertyDetails.image && propertyDetails.image.length > 0) {
+          const propertyImagesData = [];
+          propertyDetails.image.map((image, index) => {
+            return propertyImagesData.push(image.image.full_size)
+          }
+          )
+          console.log(propertyImagesData)
+        }
       })
       .catch(err => {
         console.log(err);
       })
   }, [])
-
 
   // if (loggedIn) {
   //   console.log(userDetails.wishlist);
@@ -48,7 +56,6 @@ const Property = () => {
   //   return setWishlistStatus(false)
   // }
   // console.log(propertyDetails)
-  console.log(propertyDetails)
   // console.log(propertyImagesData)
   function numDifferentiation(value) {
     var val = Math.abs(value)
@@ -107,7 +114,7 @@ const Property = () => {
           {/* <h2>
             {propertyDetails.property_name}
           </h2> */}
-          <Example />
+          <Example data={propertyDetails.image} />
           <h2 className="mobile-title">Property Details</h2>
           <div className="parent">
             <div className="grid-child div1">

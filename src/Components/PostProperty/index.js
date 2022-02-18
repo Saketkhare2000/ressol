@@ -21,39 +21,39 @@ const PostProperty = () => {
   const [spinner, setSpinner] = React.useState(false);
   //name state
   const [name, setName] = React.useState("");
-  const [for_status, setFor_Status] = React.useState("");
+  const [for_status, setFor_Status] = React.useState(null);
   //description state
-  const [description, setDescription] = React.useState("");
+  const [description, setDescription] = React.useState(null);
   //price state
-  const [price, setPrice] = React.useState();
+  const [price, setPrice] = React.useState(null);
   //location state
   const [city, setCity] = React.useState("");
   const [state, setState] = React.useState("");
   //size state
-  const [property_size, setProperty_Size] = React.useState("");
+  const [property_size, setProperty_Size] = React.useState(null);
   //bedrooms state
-  const [bedrooms, setBedrooms] = React.useState();
+  const [bedrooms, setBedrooms] = React.useState(null);
   //bathrooms state
-  const [bathrooms, setBathrooms] = React.useState();
-  const [location, setLocation] = React.useState("");
+  const [bathrooms, setBathrooms] = React.useState(null);
+  const [location, setLocation] = React.useState(null);
   //address state
-  const [address, setAddress] = React.useState("");
+  const [address, setAddress] = React.useState(null);
   //pinCode state
-  const [pincode, setPincode] = React.useState();
+  const [pincode, setPincode] = React.useState(null);
   //prime state
   const [prime_property, setPrime_Property] = React.useState(false);
   //furnished state
-  const [furnishing_status, setFurnishing_status] = React.useState("");
+  const [furnishing_status, setFurnishing_status] = React.useState(null);
   const [possession_status, setPossession_Status] = React.useState("");
   //availability state
-  const [availability, setAvailability] = React.useState("");
-  const [floor, setFloor] = React.useState("");
-  const [property_type, setProperty_Type] = React.useState("");
+  const [availability, setAvailability] = React.useState(null);
+  const [floor, setFloor] = React.useState(null);
+  const [property_type, setProperty_Type] = React.useState(null);
   const [image, setImage] = useState([]);
   const [imagePostData, setImagePostData] = useState([]);
-  const [cornerPlot, setCornerPlot] = useState("")
-  const [gatedCommunity, setGatedCommunity] = useState("")
-  const [amenities, setAmenities] = useState("")
+  const [cornerPlot, setCornerPlot] = useState(null)
+  const [gatedCommunity, setGatedCommunity] = useState(null)
+  const [amenities, setAmenities] = useState(null)
   const { setAlert } = useContext(WebContext);
   const userDetails = useSelector((state) => state.userData.userData);
 
@@ -62,7 +62,6 @@ const PostProperty = () => {
   const dateString = date.toDateString();
   const navigate = useNavigate();
   const data = {
-    features: [],
     amenities: [],
     floor: floor,
     name: slugify(name, '_'),
@@ -378,7 +377,7 @@ const PostProperty = () => {
                 {/* Amenities */}
                 <div className="form-group">
                   <h2 className="header-mobile">Amenities Available</h2>
-                  <Select onChange={(e) => handleAmenities(e)} isMulti options={amenitiesOptions} placeholder="Amenities Available" required />
+                  <Select onChange={(e) => handleAmenities(e)} isMulti closeMenuOnSelect={false} options={amenitiesOptions} placeholder="Amenities Available" required />
                 </div>
               </div>
             )
@@ -495,7 +494,7 @@ const PostProperty = () => {
                 </div>
                 <div className="form-group">
                   <h2 className="header-mobile">Amenities Available</h2>
-                  <Select onChange={(e) => handleAmenities(e)} isMulti options={amenitiesOptions} placeholder="Amenities Available" required />
+                  <Select onChange={(e) => handleAmenities(e)} isMulti closeMenuOnSelect={false} options={amenitiesOptions} placeholder="Amenities Available" required />
                 </div>
               </div>
             )

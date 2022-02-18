@@ -1,8 +1,25 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import "../Prime/style.css"
+import { useDispatch, useSelector } from "react-redux";
+import axios from 'axios';
+
 const Prime = () => {
+    const userDetails = useSelector((state) => state.userData.userData);
+
+    const handlePayment = () => {
+        axios({
+            method: 'post',
+            url: 'http://localhost:8000/api/pay/',
+            data: {
+                id: userDetails.id,
+                subscription_type: 'Basic'
+            },
+
+        })
+    }
     return (
-        <div className='prime-page page'>
+        <div className='prime-page page' >
             <h2>9Roof Prime Membership</h2>
             <div className="prime-plans-container">
                 {/* Basic Plan  */}
@@ -25,7 +42,10 @@ const Prime = () => {
                         </ul>
                     </div>
                     <div className="prime-plan-button">
-                        <button className="btn btn-secondary">Continue</button>
+
+                        <a href="https://rzp.io/l/NNJKlXQe6" target="_blank" rel="noopener noreferrer" className='btn btn-secondary' onClick={handlePayment}>Continue</a>
+                        {/* <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_IxDEDRq8TTyi3v" async> </script> </form> */}
+                        {/* <button className="btn btn-secondary">Continue</button> */}
                     </div>
                 </div>
                 {/* Pro Plan  */}
@@ -75,7 +95,7 @@ const Prime = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

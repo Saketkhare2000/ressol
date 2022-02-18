@@ -8,7 +8,7 @@ import "../FeaturedProperties/style.css"
 const FeaturedProperties = () => {
     const [featuredPropertyList, setFeaturedPropertyList] = React.useState([])
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/filter?featured=True`)
+        axios.get(`http://localhost:8000/api/filter?prime=True&popular=True`)
             .then(res => {
                 setFeaturedPropertyList(res.data)
             })

@@ -44,6 +44,10 @@
 .prime-plan .prime-plan-button {
   margin: 12px 0;
 }
+.prime-plan-button a {
+  display: block;
+  text-align: center;
+}
 .prime-plan .prime-plan-price {
   color: var(--brand--green);
 }

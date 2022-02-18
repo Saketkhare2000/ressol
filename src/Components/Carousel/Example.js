@@ -45,7 +45,8 @@ export const Example = () => {
   // absolute page index as the `motion` component's `key` prop, `AnimatePresence` will
   // detect it as an entirely new image. So you can infinitely paginate as few as 1 images.
   const imageIndex = wrap(0, images.length, page);
-
+  console.log(images)
+  console.log(imageIndex)
   const paginate = (newDirection) => {
     setPage([page + newDirection, newDirection]);
   };

@@ -34,9 +34,9 @@ const Filter = () => {
   const [minarea, setMinArea] = React.useState(null);
   const [maxarea, setMaxArea] = React.useState(null);
   const [furnishing_status, setFurnishing_status] = React.useState(null);
-  const [is_prime, setIs_Prime] = React.useState("False");
-  const [cornerPlot, setCornerPlot] = React.useState("All")
-  const [gatedCommunity, setGatedCommunity] = React.useState("All")
+  const [is_prime, setIs_Prime] = React.useState(null);
+  const [cornerPlot, setCornerPlot] = React.useState(null)
+  const [gatedCommunity, setGatedCommunity] = React.useState(null)
   const [floor, setFloor] = React.useState(null);
   const [amenities, setAmenities] = useState(null)
 
@@ -48,7 +48,7 @@ const Filter = () => {
     city: city,
     min: minprice,
     max: maxprice,
-    propertyName: propertyName,
+    property_name: propertyName,
     minarea: minarea,
     maxarea: maxarea,
     type: property_type,
@@ -326,11 +326,11 @@ const Filter = () => {
                         <h3>Possession Status</h3>
                         <div className="filter-item">
                           <div className="select-option">
-                            <input type="radio" onChange={(e) => setPossession_Status((e.target.value))} name="possession_status" id="ready-to-move" value='Ready To Move' />
+                            <input type="radio" onChange={(e) => setPossession_Status((e.target.value))} name="possession_status" id="ready-to-move" value='ready to move' />
                             <label htmlFor="possession_status">Ready To Move</label>
                           </div>
                           <div className="select-option">
-                            <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" value='Under Construction' />
+                            <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" value='under construction' />
                             <label htmlFor="possession_status">Under Construction</label>
                           </div>
 
@@ -447,11 +447,11 @@ const Filter = () => {
                         <h3>Possession Status</h3>
                         <div className="filter-item">
                           <div className="select-option">
-                            <input type="radio" onChange={(e) => setPossession_Status((e.target.value))} name="possession_status" id="ready-to-move" value='Ready To Move' />
+                            <input type="radio" onChange={(e) => setPossession_Status((e.target.value))} name="possession_status" id="ready-to-move" value='ready to move' />
                             <label htmlFor="possession_status">Ready To Move</label>
                           </div>
                           <div className="select-option">
-                            <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" value='Under Construction' />
+                            <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" value='under construction' />
                             <label htmlFor="possession_status">Under Construction</label>
                           </div>
 
