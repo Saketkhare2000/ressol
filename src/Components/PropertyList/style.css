@@ -63,3 +63,21 @@
   color: var(--text-dark);
   text-transform: capitalize;
 }
+@media screen and (min-width: 576px) {
+  .mobile-title {
+    margin-bottom: 1em;
+    margin-left: 8px;
+  }
+  .property-detail-card .img-container {
+    width: 200px;
+  }
+  .property-detail-card .property-detail-card-details .property-price {
+    font-size: 22px;
+  }
+  .property-detail-card .property-detail-card-details .property-name {
+    font-size: 20px;
+  }
+  .property-detail-card .property-detail-card-details .property-city {
+    font-size: 16px;
+  }
+}

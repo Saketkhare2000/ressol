@@ -117,3 +117,10 @@ input[type="password"] {
   line-height: 19px;
   color: var(--accent--gray);
 }
+@media screen and (min-width: 576px) {
+  .login-page {
+    max-width: 480px;
+    margin: 0px auto;
+    margin-bottom: 10vh;
+  }
+}

@@ -128,7 +128,7 @@ const Property = () => {
 
   return (
     loader ? <Loader /> :
-      (<motion.div
+      (<div
         initial="show"
         animate="animate"
         exit="exit"
@@ -209,9 +209,6 @@ const Property = () => {
           </div>
           {/* Conditional Rendering  */}
           {/* ----------------Description Section Starts ------------------  */}
-
-
-
           {(() => {
             // Flat/Apartment Property Type Filters 
             if (propertyDetails.property_type === "FL" || propertyDetails.property_type === "VI") {
@@ -366,30 +363,61 @@ const Property = () => {
               return (<></>)
             }
           })()}
-        </div>
-        {/* About Owner Description  */}
-        <div className="about-owner-container">
-          <h2 className="mobile-title">Posted By</h2>
-          <div className="owner-details">
-            <div className="owner-image">
-              {propertyDetails.posted_by.image == null ? (
-                <img src={SampleUserImg} alt="user" />
-              ) : (
-                <img src={propertyDetails.posted_by.image.image.full_size} alt="user" />
-              )}
+
+          {/* ----------------Description Section Ends ------------------  */}
+          {/* Amenities Section  */}
+          {(() => {
+            if (propertyDetails.property_type === "FL" || propertyDetails.property_type === "VI" || propertyDetails.property_type === "CM") {
+              return (
+                <div className="amenities-container">
+                  <h2 className="mobile-title">Amenities</h2>
+                  <div className="amenities-list">
+                    {
+                      propertyDetails.amenities.length > 0 ?
+                        propertyDetails.amenities.map((amenity, index) => {
+                          return (
+                            <div className="amenities-card" key={index}>
+                              {/* <img src={amenity.icon} alt="amenity" /> */}
+                              {amenity}
+                            </div>
+                          )
+                        })
+                        : <div className="amenities-card">No Amenities Available</div>
+                    }
+                  </div>
+                </div>
+              )
+            }
+            else {
+              return (<></>)
+            }
+          })()}
+
+          {/* About Owner Description  */}
+          <div className="about-owner-container">
+            <h2 className="mobile-title">Posted By</h2>
+            <div className="owner-details">
+              <div className="owner-image">
+                {propertyDetails.posted_by.image == null ? (
+                  <img src={SampleUserImg} alt="user" />
+                ) : (
+                  <img src={propertyDetails.posted_by.image.image.full_size} alt="user" />
+                )}
+              </div>
+              <div className="owner-contact">
+                <h3>{propertyDetails.posted_by.username}</h3>
+                <p>Location: {propertyDetails.posted_by.city}, {propertyDetails.posted_by.state}</p>
+              </div>
+              <button className="btn btn-primary" onClick={handleContact}>
+                Contact Owner
+              </button>
             </div>
-            <div className="owner-contact">
-              <h3>{propertyDetails.posted_by.username}</h3>
-              <p>Location: {propertyDetails.posted_by.city}, {propertyDetails.posted_by.state}</p>
-            </div>
-            <button className="btn btn-primary" onClick={handleContact}>
-              Contact Owner
-            </button>
           </div>
-        </div>.
-      </motion.div>
+        </div>
+      </div>
+
       )
-  );
+  )
 };
 
 export default Property;

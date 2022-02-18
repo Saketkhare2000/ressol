@@ -143,6 +143,20 @@
 .specification-container .specification-value {
   text-transform: capitalize;
 }
+.amenities-container .amenities-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 4px;
+}
+.amenities-container .amenities-list .amenities-card {
+  margin-right: 24px;
+  margin-top: 12px;
+  border-radius: 4px;
+  font-size: 17px;
+}
 @media screen and (max-width: 576px) {
   .property-btn-container button {
     width: 100%;

@@ -48,10 +48,16 @@
 }
 .dashboard-header .user-details .mobile-title {
   margin-bottom: 0 !important;
+  font-weight: 600;
 }
 .dashboard-header .user-details .user-prime-status {
   color: var(--brand--green);
   font-weight: 500;
+}
+.dashboard-header .user-details .contacts-remaining span {
+  color: var(--brand--green);
+  font-weight: 500;
+  padding-left: 4px;
 }
 .dashboard-page form {
   width: 100% !important;
@@ -82,6 +88,13 @@
   vertical-align: middle;
   border-bottom: 1px solid var(--card-border);
   width: 100%;
+}
+.dashboard-desktop,
+.dashboard-menus {
+  width: 100%;
+}
+.dashboard-desktop .btn-container {
+  display: none;
 }
 .disclosure-btn {
   background-color: rgb(255, 255, 255);
@@ -136,4 +149,32 @@ button {
 }
 .dashboard-page .css-1s2u09g-control {
   width: 160px;
+}
+@media screen and (min-width: 576px) {
+  .dashboard-page {
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .dashboard-desktop {
+    width: 40%;
+    padding-top: 14px;
+    padding-left: 20px;
+  }
+  .dashboard-menus {
+    width: 50%;
+  }
+  .btn-container {
+    display: none;
+  }
+  .dashboard-desktop .btn-container {
+    display: flex;
+    flex-direction: column;
+    margin: 12px 0 0 0;
+  }
+  .dashboard-desktop .btn-container .choose-color,
+  .dashboard-desktop .btn-container .choose-color .css-1s2u09g-control,
+  .dashboard-desktop .btn-container button {
+    width: 100%;
+  }
 }

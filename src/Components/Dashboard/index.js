@@ -50,81 +50,92 @@ const Dashoard = () => {
 
   return loggedIn ? (
     <div className="dashboard-page page">
-      <div className="dashboard-header">
-        <div className="user-image">
-          {userDetails.image == null ? (
-            <img src={SampleUserImg} alt="user" />
-          ) : (
-            <img src={userDetails.image.image.full_size} alt="user" />
-          )}
+      <div className="dashboard-desktop">
+        <div className="dashboard-header">
+          <div className="user-image">
+            {userDetails.image == null ? (
+              <img src={SampleUserImg} alt="user" />
+            ) : (
+              <img src={userDetails.image.image.full_size} alt="user" />
+            )}
+          </div>
+          <div className="user-details">
+            <h3 className="mobile-title">{userDetails.username}</h3>
+            {userDetails.is_prime ? <p className="user-prime-status">Prime Member</p> : <p className="user-prime-status">Regular Member</p>}
+            <p className="contacts-remaining">
+              No. of contacts remaining: <span>{"15"}</span>
+            </p>
+          </div>
         </div>
-        <div className="user-details">
-          <h3 className="mobile-title">{userDetails.username}</h3>
-          {userDetails.is_prime ? <p className="user-prime-status">Prime Member</p> : <p className="user-prime-status">Regular Member</p>}
-
+        <div className="btn-container">
+          <Select options={options} placeholder="Choose Color" onChange={handleStateChange} className="choose-color" />
+          <button className="btn" onClick={logout}>
+            Log Out
+          </button>
         </div>
-
       </div>
-      <motion.div className="disclosure-btn" layout>
-        <motion.div
-          onClick={() => NavigateTo('/dashboard/profile-details')}
-          layout
-          className="btn-top"
-        >
-          <motion.p layout>
-            <AiOutlineUser style={{ fontSize: "20px" }} />
-            Profile Details
-          </motion.p>
-          <IoCaretUpCircleSharp
-            className={`down-icon`}
-          />
+      <div className="dashboard-menus">
+        <motion.div className="disclosure-btn" layout>
+          <motion.div
+            onClick={() => NavigateTo('/dashboard/profile-details')}
+            layout
+            className="btn-top"
+          >
+            <motion.p layout>
+              <AiOutlineUser style={{ fontSize: "20px" }} />
+              Profile Details
+            </motion.p>
+            <IoCaretUpCircleSharp
+              className={`down-icon`}
+            />
+          </motion.div>
         </motion.div>
-      </motion.div>
-      <motion.div className="disclosure-btn" layout>
-        <motion.div
-          onClick={() => NavigateTo('/dashboard/manage-properties')}
-          layout
-          className="btn-top"
-        >
-          <motion.p layout>
-            <BiBuildingHouse style={{ fontSize: "20px" }} />
-            Manage Properties
-          </motion.p>
-          <IoCaretUpCircleSharp
-            className={`down-icon`}
-          />
+        <motion.div className="disclosure-btn" layout>
+          <motion.div
+            onClick={() => NavigateTo('/dashboard/manage-properties')}
+            layout
+            className="btn-top"
+          >
+            <motion.p layout>
+              <BiBuildingHouse style={{ fontSize: "20px" }} />
+              Manage Properties
+            </motion.p>
+            <IoCaretUpCircleSharp
+              className={`down-icon`}
+            />
+          </motion.div>
         </motion.div>
-      </motion.div>
-      <motion.div className="disclosure-btn" layout>
-        <motion.div
-          onClick={() => NavigateTo('/dashboard/wishlist')}
-          layout
-          className="btn-top"
-        >
-          <motion.p layout>
-            <GrContact style={{ fontSize: "20px" }} />
-            View Responses
-          </motion.p>
-          <IoCaretUpCircleSharp
-            className={`down-icon`}
-          />
+        <motion.div className="disclosure-btn" layout>
+          <motion.div
+            onClick={() => NavigateTo('/dashboard/view-responses')}
+            layout
+            className="btn-top"
+          >
+            <motion.p layout>
+              <GrContact style={{ fontSize: "20px" }} />
+              View Responses
+            </motion.p>
+            <IoCaretUpCircleSharp
+              className={`down-icon`}
+            />
+          </motion.div>
         </motion.div>
-      </motion.div>
-      <motion.div className="disclosure-btn" layout>
-        <motion.div
-          onClick={() => NavigateTo('/dashboard/wishlist')}
-          layout
-          className="btn-top"
-        >
-          <motion.p layout>
-            <AiOutlineBook style={{ fontSize: "20px" }} />
-            Wishlist
-          </motion.p>
-          <IoCaretUpCircleSharp
-            className={`down-icon`}
-          />
+        <motion.div className="disclosure-btn" layout>
+          <motion.div
+            onClick={() => NavigateTo('/dashboard/wishlist')}
+            layout
+            className="btn-top"
+          >
+            <motion.p layout>
+              <AiOutlineBook style={{ fontSize: "20px" }} />
+              Wishlist
+            </motion.p>
+            <IoCaretUpCircleSharp
+              className={`down-icon`}
+            />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
       <div className="btn-container">
         <Select options={options} placeholder="Choose Color" onChange={handleStateChange} />
         <button className="btn" onClick={logout}>

@@ -18,11 +18,12 @@ import { Link } from "react-router-dom";
 const Wishlist = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     // const userDetails = useSelector((state) => state.userData.userData);
     // const wishlistDetails = userDetails.wishlist
     /////////////
     const { userName } = useContext(WebContext);
+    console.log(userName);
+
     useEffect(() => {
         dispatch(getUserData(userName, key));
     }, []);
