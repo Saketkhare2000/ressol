@@ -60,6 +60,18 @@ export const getPropertyList = (data) => async (dispatch) => {
 }
 
 
+export const deleteImage = (id) => async (dispatch) => {
+  const res = await axios.delete(
+    `http://localhost:8000/api/image/${id}/`,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return (res.data);
+};
+
 export const uploadImage = (image) => async (dispatch) => {
   const formData = new FormData();
   formData.append("image", image);
