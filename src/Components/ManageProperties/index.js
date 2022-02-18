@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
+import { WebContext } from "../../Context/WebContext";
+
 import { useSelector } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
 import "./style.css"
@@ -13,6 +15,8 @@ import axios from 'axios';
 
 const ManageProperties = () => {
     const navigate = useNavigate();
+    const { editPropertyId, setEditPropertyId } = useContext(WebContext);
+
     const userDetails = useSelector((state) => state.userData.userData);
     const yourPropertyDetails = userDetails.properties
     console.log(yourPropertyDetails);
@@ -25,16 +29,21 @@ const ManageProperties = () => {
         }
         return val;
     }
-    
+    const handleEdit = (id) => {
+        console.log("edit");
+        console.log(id)
+        setEditPropertyId(id);
+        navigate("/dashboard/manage-properties/edit-property/")
+    }
     const handleDelete = (id) => {
-      console.log(id)
-      axios({
-        method: "delete",
-        url: `http://localhost:8000/api/property/${id}/`,
-      })
-        .catch((err) => {
-          console.log(err);
-        });
+        console.log(id)
+        axios({
+            method: "delete",
+            url: `http://localhost:8000/api/property/${id}/`,
+        })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
     return (
@@ -64,9 +73,9 @@ const ManageProperties = () => {
                                 </div>
                                 {/* </Link> */}
                                 <div className="options-btn-container">
-                                    <AiOutlineDelete style={{ fontSize: "22px" }} className="delete-icon" onClick={()=>{handleDelete(yourPropertyDetails[property].id);}} />
+                                    <AiOutlineDelete style={{ fontSize: "22px" }} className="delete-icon" onClick={() => { handleDelete(yourPropertyDetails[property].id); }} />
                                     <button className=' btn-secondary' >Disable Property</button>
-                                    <button className='btn-primary'>Edit</button>
+                                    <button className='btn-primary' onClick={() => handleEdit(yourPropertyDetails[property].id)}>Edit</button>
                                 </div>
                             </div>
                         </AnimatePresence>

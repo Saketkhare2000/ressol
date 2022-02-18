@@ -20,6 +20,7 @@ const WebProvider = (props) => {
   const [userData, setUserData] = useState();
   const [registerKey, setRegisterKey] = useState("");
   const [filterData, setFilterData] = useState();
+  const [editPropertyId, setEditPropertyId] = useState("");
   const value = {
     loggedIn,
     setLoggedIn,
@@ -41,6 +42,8 @@ const WebProvider = (props) => {
     setRegisterKey,
     filterData,
     setFilterData,
+    editPropertyId,
+    setEditPropertyId,
   };
 
   return (

@@ -56,7 +56,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.05 }}
                 >
                   <AiOutlineUser style={{ fontSize: "24px" }} />
-                  Account
+                  Dashboard
                 </motion.li>
               </Link>
             </ul>

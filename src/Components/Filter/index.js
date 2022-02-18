@@ -208,7 +208,7 @@ const Filter = () => {
     console.log(data)
     dispatch(getPropertyList(data)).then(() => {
       console.log("dispatched")
-      navigate(`/propertylist/filter-search`)
+      navigate(`/propertylist/results`)
     }
     )
 

@@ -124,7 +124,7 @@ const Property = () => {
       navigate("/login")
     }
   }
-
+  console.log(propertyDetails.property_type)
 
   return (
     loader ? <Loader /> :
@@ -148,17 +148,45 @@ const Property = () => {
             </div>
             <div className="grid-child div2">
               <span>Price</span>
-              <p>₹ {numDifferentiation(propertyDetails.price)}</p>
+              <p>₹ {(propertyDetails.price)}</p>
               {/* <p>{(propertyDetails.address)}</p> */}
             </div>
             <div className="grid-child div3">
-              <span>City</span>
-              <p className="property-city">{propertyDetails.city}</p>
+              <span>Property Type</span>
+              {(() => {
+                // Flat/Apartment Property Type Filters 
+                if (propertyDetails.property_type === "FL") {
+                  return (
+                    <p>Flat/Apartment</p>
+                  )
+                }
+                else if (propertyDetails.property_type === "VI") {
+                  return (
+                    <p>House/Villa</p>
+
+                  )
+                }
+                else if (propertyDetails.property_type === "PT") {
+                  return (
+                    <p>Plot</p>
+
+                  )
+                }
+                else if (propertyDetails.property_type === "CM") {
+                  return (
+                    <p>Commercial</p>
+
+                  )
+                }
+                else {
+                  return (<></>)
+                }
+              })()}
             </div>
             <div className="grid-child div4">
-              <span>State</span>
+              <span>For</span>
               <p className="property-state">
-                {propertyDetails.state}
+                {propertyDetails.for_status}
               </p>
             </div>
 
@@ -179,73 +207,188 @@ const Property = () => {
 
 
           </div>
-          {/* Description Section   */}
-          <div className="description">
-            <h2 className="mobile-title">Description</h2>
-            <p>{propertyDetails.description}</p>
-            {/* Property Specifications Starts  */}
-            <div className="specification-container">
-              <h4 className="specification-title">Price</h4>
-              <h4 className="specification-value"><span>&#8377;</span> {propertyDetails.price}</h4>
-            </div>
-            <div className="specification-container">
-              <h4 className="specification-title">Area</h4>
-              <h4 className="specification-value">{propertyDetails.property_size} <span>sq-ft</span></h4>
-            </div>
-            <div className="specification-container">
-              <h4 className="specification-title">Bedrooms</h4>
-              <h4 className="specification-value">{propertyDetails.bedrooms}</h4>
-            </div>
-            <div className="specification-container">
-              <h4 className="specification-title">Bathrooms</h4>
-              <h4 className="specification-value">{propertyDetails.bathrooms}</h4>
-            </div>
-            <div className="specification-container">
-              <h4 className="specification-title">Furnishing</h4>
-              <h4 className="specification-value"  >{propertyDetails.furnishing_status}</h4>
-            </div>
-          </div>
-          {/* Amenities Section  */}
-          <div className="amenities-section">
-            <h2 className="mobile-title">Amenities</h2>
-            <div className="amenities-container">
-              <div className="amenities-child">
-                <h4>Amenities</h4>
-              </div>
-            </div>
-            {/* <div className="amenities-container">
-              <div className="amenities-child">
-                <h4>Amenities</h4>
-                <ul>
-                  {propertyDetails.amenities.map((amenity, index) => {
-                    return <li key={index}>{amenity}</li>
-                  })}
-                </ul>
-              </div>
-            </div> */}
-          </div>
-          {/* About Owner Description  */}
-          <div className="about-owner-container">
-            <h2 className="mobile-title">Posted By</h2>
-            <div className="owner-details">
-              <div className="owner-image">
-                {propertyDetails.posted_by.image == null ? (
-                  <img src={SampleUserImg} alt="user" />
-                ) : (
-                  <img src={propertyDetails.posted_by.image.image.full_size} alt="user" />
-                )}
-              </div>
-              <div className="owner-contact">
-                <h3>{propertyDetails.posted_by.username}</h3>
-                <p>Location: {propertyDetails.posted_by.city}, {propertyDetails.posted_by.state}</p>
-              </div>
-              <button className="btn btn-primary" onClick={handleContact}>
-                Contact Owner
-              </button>
-            </div>
-          </div>.
+          {/* Conditional Rendering  */}
+          {/* ----------------Description Section Starts ------------------  */}
+
+
+
+          {(() => {
+            // Flat/Apartment Property Type Filters 
+            if (propertyDetails.property_type === "FL" || propertyDetails.property_type === "VI") {
+              return (
+                <div className="description">
+                  <h2 className="mobile-title">Description</h2>
+                  <p>{propertyDetails.description}</p>
+                  {/* Property Specifications Starts  */}
+
+                  {/* Locality  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">Locality</h4>
+                    <h4 className="specification-value">{propertyDetails.location}</h4>
+                  </div>
+                  {/* City  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">City</h4>
+                    <h4 className="specification-value">{propertyDetails.city}</h4>
+                  </div>
+                  {/* Address  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">Address</h4>
+                    <h4 className="specification-value">{propertyDetails.address}</h4>
+                  </div>
+                  {/* Area  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">Area</h4>
+                    <h4 className="specification-value">{propertyDetails.property_size} <span>sq-ft</span></h4>
+                  </div>
+                  {/* Bedrooms  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">Bedrooms</h4>
+                    <h4 className="specification-value">{propertyDetails.bedrooms}</h4>
+                  </div>
+                  <div className="specification-container">
+                    <h4 className="specification-title">Bathrooms</h4>
+                    <h4 className="specification-value">{propertyDetails.bathrooms}</h4>
+                  </div>
+                  <div className="specification-container">
+                    <h4 className="specification-title">Floor</h4>
+                    <h4 className="specification-value">{propertyDetails.floor}</h4>
+                  </div>
+                  <div className="specification-container">
+                    <h4 className="specification-title">Furnishing</h4>
+                    <h4 className="specification-value"  >{propertyDetails.furnishing_status}</h4>
+                  </div>
+                  <div className="specification-container">
+                    <h4 className="specification-title">Possession Status</h4>
+                    <h4 className="specification-value"  >{propertyDetails.possession}</h4>
+                  </div>
+                  <div className="specification-container">
+                    <h4 className="specification-title">Available From</h4>
+                    <h4 className="specification-value"  >{propertyDetails.availability}</h4>
+                  </div>
+                </div>
+              )
+            }
+            else if (propertyDetails.property_type === "PT") {
+              return (
+                <div className="description">
+                  <h2 className="mobile-title">Description</h2>
+                  <p>{propertyDetails.description}</p>
+                  {/* Property Specifications Starts  */}
+
+                  {/* Location  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">Location</h4>
+                    <h4 className="specification-value">{propertyDetails.location}</h4>
+                  </div>
+                  {/* City  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">City</h4>
+                    <h4 className="specification-value">{propertyDetails.city}</h4>
+                  </div>
+                  {/* Address  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">Address</h4>
+                    <h4 className="specification-value">{propertyDetails.address}</h4>
+                  </div>
+                  {/* Area  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">Area</h4>
+                    <h4 className="specification-value">{propertyDetails.property_size} <span>sq-ft</span></h4>
+                  </div>
+                  {/* Corner  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">Corner Plot</h4>
+                    {
+                      propertyDetails.corner ? <h4 className="specification-value">Yes</h4> : <h4 className="specification-value">No</h4>
+                    }
+                  </div>
+                  {/* Gated Community  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">Inside Gated Community</h4>
+                    {
+                      propertyDetails.gated ? <h4 className="specification-value">Yes</h4> : <h4 className="specification-value">No</h4>
+                    }
+                  </div>
+
+                </div>
+              )
+            }
+            else if (propertyDetails.property_type === "CM") {
+              return (
+                <div className="description">
+                  <h2 className="mobile-title">Description</h2>
+                  <p>{propertyDetails.description}</p>
+                  {/* Property Specifications Starts  */}
+
+                  {/* Locality  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">Locality</h4>
+                    <h4 className="specification-value">{propertyDetails.location}</h4>
+                  </div>
+                  {/* City  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">City</h4>
+                    <h4 className="specification-value">{propertyDetails.city}</h4>
+                  </div>
+                  {/* Address  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">Address</h4>
+                    <h4 className="specification-value">{propertyDetails.address}</h4>
+                  </div>
+                  {/* Area  */}
+                  <div className="specification-container">
+                    <h4 className="specification-title">Area</h4>
+                    <h4 className="specification-value">{propertyDetails.property_size} <span>sq-ft</span></h4>
+                  </div>
+
+                  <div className="specification-container">
+                    <h4 className="specification-title">Washrooms</h4>
+                    <h4 className="specification-value">{propertyDetails.bathrooms}</h4>
+                  </div>
+                  <div className="specification-container">
+                    <h4 className="specification-title">Floor</h4>
+                    <h4 className="specification-value">{propertyDetails.floor}</h4>
+                  </div>
+                  <div className="specification-container">
+                    <h4 className="specification-title">Furnishing</h4>
+                    <h4 className="specification-value"  >{propertyDetails.furnishing_status}</h4>
+                  </div>
+                  <div className="specification-container">
+                    <h4 className="specification-title">Possession Status</h4>
+                    <h4 className="specification-value"  >{propertyDetails.possession}</h4>
+                  </div>
+
+                </div>
+              )
+            }
+            else {
+              return (<></>)
+            }
+          })()}
         </div>
-      </motion.div >)
+        {/* About Owner Description  */}
+        <div className="about-owner-container">
+          <h2 className="mobile-title">Posted By</h2>
+          <div className="owner-details">
+            <div className="owner-image">
+              {propertyDetails.posted_by.image == null ? (
+                <img src={SampleUserImg} alt="user" />
+              ) : (
+                <img src={propertyDetails.posted_by.image.image.full_size} alt="user" />
+              )}
+            </div>
+            <div className="owner-contact">
+              <h3>{propertyDetails.posted_by.username}</h3>
+              <p>Location: {propertyDetails.posted_by.city}, {propertyDetails.posted_by.state}</p>
+            </div>
+            <button className="btn btn-primary" onClick={handleContact}>
+              Contact Owner
+            </button>
+          </div>
+        </div>.
+      </motion.div>
+      )
   );
 };
 

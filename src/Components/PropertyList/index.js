@@ -46,7 +46,7 @@ const PropertyDeatiledCard = () => {
 
       <div className="back" onClick={() => navigate('/')}>
         <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
-        <h1 className="mobile-title">Properties in <span className="city-name"> {result} </span></h1>
+        <h1 className="mobile-title">Properties <span className="city-name"> ({result}) </span></h1>
         {/* <p>Go Back</p> */}
       </div>
       {
