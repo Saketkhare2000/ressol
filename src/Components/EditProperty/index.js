@@ -72,6 +72,31 @@ const EditProperty = () => {
 
     const { editPropertyId, setEditPropertyId } = useContext(WebContext);
 
+    const property_type = propertyDetails.property_type
+
+    const furnishing_default = {F:false,SF:false,UF:false}
+    if (propertyDetails.furnishing_status === "furnished"){
+      furnishing_default.F = true
+    }else if (propertyDetails.furnishing_status === "semifurnished") { 
+      furnishing_default.SF = true
+    }else if (propertyDetails.furnishing_status === "unfurnished") { 
+      furnishing_default.UF = true
+    }
+
+    const possession_default = {UC:false,RD:false}
+    if (propertyDetails.possession === "ready to move"){
+      possession_default.RD = true
+    }else { 
+      possession_default.UC = true
+    }
+
+    const bedroom_default = {1:false,2:false,3:false,4:false,"5+":false}
+    bedroom_default[propertyDetails.bedrooms] = true
+
+    const bathroom_default = {1:false,2:false,3:false,'4+':false}
+    bathroom_default[propertyDetails.bathrooms] = true
+    
+
 
 
     const cityOptions = cityData.map(city => {
@@ -197,6 +222,245 @@ const EditProperty = () => {
                     </div>
                 </div>
                 {/* -------------Feature Starts------------------ */}
+
+        {(() => {
+          if (property_type === "FL" || property_type === "VI") {
+            return (
+              <div className="form-section">
+                <h2 className="section-title">Property Feature</h2>
+                {/* Furnishing Status  */}
+                <div className="form-group" >
+                  <h2 className="header-mobile">Furnishing Status</h2>
+                  <div className="select-options">
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="furnished" value='furnished' checked={furnishing_default.F} />
+                      <label htmlFor="furnishing_status">Furnished</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="semifurnished" value='semifurnished' checked={furnishing_default.SF} />
+                      <label htmlFor="furnishing_status">Semi-Furnished</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="unfurnished" value='unfurnished' checked={furnishing_default.UF}/>
+                      <label htmlFor="furnishing_status">Unfurnished</label>
+                    </div>
+
+                  </div>
+                </div>
+                {/* Area  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Total Area (in sqft)</h2>
+                  <input type="text" onChange={(e) => setProperty_Size(e.target.value)} placeholder="Enter Total Area (Ex - 1500)" name="property_size" id="property_size" defaultValue={propertyDetails.property_size} />
+                </div>
+                {/* Possession Status  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Possession Status</h2>
+                  <div className="select-options">
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" checked={possession_default.UC} value='Under Construction' defaultValue={propertyDetails.possession} />
+                      <label htmlFor="possession_status">Under Construction</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="ready-to-move" value='Ready To Move' checked={possession_default.RD}/>
+                      <label htmlFor="possession_status">Ready To Move</label>
+                    </div>
+
+                  </div>
+
+                </div>
+                {/* Available From  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Available From</h2>
+                  <input type="date" onChange={(e) => setAvailability(e.target.value)} name="availability" id="availability" defaultValue={propertyDetails.availability}/>
+                </div>
+                {/* Bedrooms  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Bedrooms</h2>
+                  {/* <input type="number" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="bedrooms" /> */}
+                  <div className="select-options">
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBedrooms((e.target.value))} name="bedrooms" id="1" value='1' checked={bedroom_default[1]}/>
+                      <label htmlFor="bedrooms">1</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="2" value='2' checked={bedroom_default[2]} />
+                      <label htmlFor="bedrooms">2</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="3" value='3' checked={bedroom_default[3]}/>
+                      <label htmlFor="bedrooms">3</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="4" value='4' checked={bedroom_default[4]}/>
+                      <label htmlFor="bedrooms">4</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="5" value='5+' checked={bedroom_default["5+"]}/>
+                      <label htmlFor="sale">5+</label>
+                    </div>
+                  </div>
+
+                </div>
+                {/* Bathrooms  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Bathrooms</h2>
+                  <div className="select-options">
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="1" value='1' checked={bathroom_default[1]} />
+                      <label htmlFor="bathrooms">1</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="2" value='2' checked={bathroom_default[2]}/>
+                      <label htmlFor="bathrooms">2</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="3" value='3' checked={bathroom_default[3]} />
+                      <label htmlFor="bathrooms">3</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="4" value='4+' checked={bathroom_default["4+"]} />
+                      <label htmlFor="bathrooms">4+</label>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floor  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Floor</h2>
+                  <Select width='280px' onChange={selectFloor} placeholder="Select Floor" options={floorOptions} required />
+                </div>
+                {/* Amenities */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Amenities Available</h2>
+                  <Select onChange={(e) => handleAmenities(e)} isMulti closeMenuOnSelect={false} options={amenitiesOptions} placeholder="Amenities Available" required />
+                </div>
+              </div>
+            )
+          } else if (property_type === "PL") {
+            return (
+              <div className="form-section">
+                <h2 className="section-title">Property Feature</h2>
+                {/* Area  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Total Area (in sqft)</h2>
+                  <input type="number" onChange={(e) => setProperty_Size(e.target.value)} placeholder="Enter Total Area (Ex - 1500)" name="property_size" id="property_size" defaultValue={propertyDetails.property_size} />
+                </div>
+                {/* Corner Plot  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Corner Plot</h2>
+                  <div className="select-options">
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="True" name="for" id="true" />
+                      <label htmlFor="true">Yes</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="False" name="for" id="false" />
+                      <label htmlFor="false">No</label>
+                    </div>
+                  </div>
+                </div>
+                {/* Gated Community  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Gated Community</h2>
+                  <div className="select-options">
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="True" name="for" id="true" />
+                      <label htmlFor="true">Yes</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="False" name="for" id="false" />
+                      <label htmlFor="false">No</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          } else if (property_type === "CM") {
+            return (
+              <div className="form-section">
+                <h2 className="section-title">Property Feature</h2>
+                {/* Possession Status  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Possession Status</h2>
+                  <div className="select-options">
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" value='Under Construction' />
+                      <label htmlFor="possession_status">Under Construction</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="ready-to-move" value='Ready To Move' />
+                      <label htmlFor="possession_status">Ready To Move</label>
+                    </div>
+
+                  </div>
+
+                </div>
+                {/* Furnishing Status  */}
+                <div className="form-group" >
+                  <h2 className="header-mobile">Furnishing Status</h2>
+                  <div className="select-options">
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="furnished" value='furnished' />
+                      <label htmlFor="furnishing_status">Furnished</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="semifurnished" value='semifurnished' />
+                      <label htmlFor="furnishing_status">Semi-Furnished</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="unfurnished" value='unfurnished' />
+                      <label htmlFor="furnishing_status">Unfurnished</label>
+                    </div>
+
+                  </div>
+                </div>
+                {/* Bathrooms  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Washrooms</h2>
+                  <div className="select-options">
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="1" value='1' />
+                      <label htmlFor="bathrooms">1</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="2" value='2' />
+                      <label htmlFor="bathrooms">2</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="3" value='3' />
+                      <label htmlFor="bathrooms">3</label>
+                    </div>
+                    <div className="select-option">
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="4" value='4+' />
+                      <label htmlFor="bathrooms">4+</label>
+                    </div>
+
+                  </div>
+                </div>
+                {/* Area  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Total Area (in sqft)</h2>
+                  <input type="number" onChange={(e) => setProperty_Size(e.target.value)} placeholder="Enter Total Area (Ex - 1500)" name="property_size" id="property_size" />
+                </div>
+                {/* Floor  */}
+                <div className="form-group">
+                  <h2 className="header-mobile">Floor</h2>
+                  <Select onChange={selectFloor} placeholder="Select Floor" options={floorOptions} required />
+                </div>
+                <div className="form-group">
+                  <h2 className="header-mobile">Amenities Available</h2>
+                  <Select onChange={(e) => handleAmenities(e)} isMulti closeMenuOnSelect={false} options={amenitiesOptions} placeholder="Amenities Available" required />
+                </div>
+              </div>
+            )
+          }
+          else {
+            return (
+              <></>
+            )
+          }
+        })()}
+
 
                 {/* -------------Feature Ends------------------ */}
                 <div className="form-section">
