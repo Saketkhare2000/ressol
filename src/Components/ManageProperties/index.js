@@ -8,6 +8,7 @@ import "./style.css"
 import Loader from "../Loader";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 
 const ManageProperties = () => {
@@ -24,6 +25,18 @@ const ManageProperties = () => {
         }
         return val;
     }
+    
+    const handleDelete = (id) => {
+      console.log(id)
+      axios({
+        method: "delete",
+        url: `http://localhost:8000/api/property/${id}/`,
+      })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
     return (
         <div className='page'><div className="back" onClick={() => navigate('/dashboard')}>
             <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
@@ -51,8 +64,8 @@ const ManageProperties = () => {
                                 </div>
                                 {/* </Link> */}
                                 <div className="options-btn-container">
-                                    <AiOutlineDelete style={{ fontSize: "22px" }} className="delete-icon" />
-                                    <button className=' btn-secondary'>Disable Property</button>
+                                    <AiOutlineDelete style={{ fontSize: "22px" }} className="delete-icon" onClick={()=>{handleDelete(yourPropertyDetails[property].id);}} />
+                                    <button className=' btn-secondary' >Disable Property</button>
                                     <button className='btn-primary'>Edit</button>
                                 </div>
                             </div>

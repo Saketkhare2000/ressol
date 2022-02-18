@@ -19,6 +19,7 @@ const Property = () => {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const navigate = useNavigate();
   const [wishlistStatus, setWishlistStatus] = useState(false);
+  const [contactStatus, setContactStatus] = useState(false);
   const [loader, setLoader] = React.useState(true);
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/api/property/${id}/?expand=posted_by.image,image`)
@@ -73,9 +74,26 @@ const Property = () => {
     }
     return val;
   }
+
   const handleContact = () => {
     if (loggedIn) {
-      console.log("contact")
+      console.log(propertyDetails)
+      axios({
+        method: "post",
+        url: `http://localhost:8000/api/contact`,
+        data: {
+          buyer: userDetails.id,
+          owner: propertyDetails.posted_by.id,
+          property: propertyDetails.id,
+        },
+      })
+        .then((res) => {
+          console.log("Contact")
+          setContactStatus(!contactStatus)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
     else {
       navigate("/login")
@@ -146,9 +164,12 @@ const Property = () => {
 
           </div>
           <div className="property-btn-container">
-            <button className="btn btn-primary" onClick={handleContact}>
+            {contactStatus ? <button className="btn btn-primary" onClick={handleContact}>
+              Already Contacted
+            </button> : <button className="btn btn-primary" onClick={handleContact}>
               Contact Owner
-            </button>
+            </button>}
+
             {wishlistStatus ? <button className="btn btn-secondary" onClick={addToWishlist}>
               Remove From Wishlist
             </button> : <button className="btn btn-secondary" onClick={addToWishlist}>
