@@ -204,6 +204,7 @@ const EditProperty = () => {
       setImage((prevState) => prevState.filter((value)=> {return value.pk != id}))
       setImagePostData((prevState) => prevState.filter((value)=> {return value != id}))
     })};
+    console.log(imagePostData)
 
   const submitProperty = (e) => {
     e.preventDefault();
