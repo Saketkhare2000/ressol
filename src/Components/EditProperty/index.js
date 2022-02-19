@@ -100,40 +100,18 @@ const EditProperty = () => {
     const [cornerPlot, setCornerPlot] = useState(null)
     const [gatedCommunity, setGatedCommunity] = useState(null)
     const [amenities, setAmenities] = useState(null)
-  const { setAlert } = useContext(WebContext);
+    const { setAlert } = useContext(WebContext);
 
     const { editPropertyId, setEditPropertyId } = useContext(WebContext);
 
-  const [image, setImage] = useState([]);
-  const [imagePostData, setImagePostData] = useState([]);
+    const [image, setImage] = useState([]);
+    const [imagePostData, setImagePostData] = useState([]);
 
   console.log(propertyDetails.description)
   console.log(description)
 
     const property_type = propertyDetails.property_type
 
-    const furnishing_default = {F:false,SF:false,UF:false}
-    if (propertyDetails.furnishing_status === "furnished"){
-      furnishing_default.F = true
-    }else if (propertyDetails.furnishing_status === "semifurnished") { 
-      furnishing_default.SF = true
-    }else if (propertyDetails.furnishing_status === "unfurnished") { 
-      furnishing_default.UF = true
-    }
-
-    const possession_default = {UC:false,RD:false}
-    if (propertyDetails.possession === "ready to move"){
-      possession_default.RD = true
-    }else { 
-      possession_default.UC = true
-    }
-
-    const bedroom_default = {1:false,2:false,3:false,4:false,"5+":false}
-    bedroom_default[propertyDetails.bedrooms] = true
-
-    const bathroom_default = {1:false,2:false,3:false,'4+':false}
-    bathroom_default[propertyDetails.bathrooms] = true
-    
 
   const data = {
     amenities: [],
@@ -341,15 +319,15 @@ const EditProperty = () => {
                   <h2 className="header-mobile">Furnishing Status</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="furnished" value='furnished' checked={furnishing_default.F} />
+                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="furnished" value='furnished' checked={furnishing_status == 'furnished'} />
                       <label htmlFor="furnishing_status">Furnished</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="semifurnished" value='semifurnished' checked={furnishing_default.SF} />
+                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="semifurnished" value='semifurnished' checked={furnishing_status == 'semifurnished'} />
                       <label htmlFor="furnishing_status">Semi-Furnished</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="unfurnished" value='unfurnished' checked={furnishing_default.UF}/>
+                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="unfurnished" value='unfurnished' checked={furnishing_status == 'unfurnished'}/>
                       <label htmlFor="furnishing_status">Unfurnished</label>
                     </div>
 
@@ -365,11 +343,11 @@ const EditProperty = () => {
                   <h2 className="header-mobile">Possession Status</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" checked={possession_default.UC} value='Under Construction' defaultValue={propertyDetails.possession} />
+                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" checked={possession_status == 'Under Construction'} value='Under Construction' />
                       <label htmlFor="possession_status">Under Construction</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="ready-to-move" value='Ready To Move' checked={possession_default.RD}/>
+                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="ready-to-move" value='Ready To Move' checked={possession_status == 'Ready To Move'}/>
                       <label htmlFor="possession_status">Ready To Move</label>
                     </div>
 
@@ -387,23 +365,23 @@ const EditProperty = () => {
                   {/* <input type="number" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="bedrooms" /> */}
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBedrooms((e.target.value))} name="bedrooms" id="1" value='1' checked={bedroom_default[1]}/>
+                      <input type="radio" onChange={(e) => setBedrooms((e.target.value))} name="bedrooms" id="1" value='1' checked={bedrooms == '1'}/>
                       <label htmlFor="bedrooms">1</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="2" value='2' checked={bedroom_default[2]} />
+                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="2" value='2' checked={bedrooms == '2'} />
                       <label htmlFor="bedrooms">2</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="3" value='3' checked={bedroom_default[3]}/>
+                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="3" value='3' checked={bedrooms == '3'}/>
                       <label htmlFor="bedrooms">3</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="4" value='4' checked={bedroom_default[4]}/>
+                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="4" value='4' checked={bedrooms == '4'}/>
                       <label htmlFor="bedrooms">4</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="5" value='5+' checked={bedroom_default["5+"]}/>
+                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="5" value='5+' checked={bedrooms == '5+'}/>
                       <label htmlFor="sale">5+</label>
                     </div>
                   </div>
@@ -414,19 +392,19 @@ const EditProperty = () => {
                   <h2 className="header-mobile">Bathrooms</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="1" value='1' checked={bathroom_default[1]} />
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="1" value='1' checked={bathrooms == '1'} />
                       <label htmlFor="bathrooms">1</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="2" value='2' checked={bathroom_default[2]}/>
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="2" value='2' checked={bathrooms == '2'}/>
                       <label htmlFor="bathrooms">2</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="3" value='3' checked={bathroom_default[3]} />
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="3" value='3' checked={bathrooms == '3'} />
                       <label htmlFor="bathrooms">3</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="4" value='4+' checked={bathroom_default["4+"]} />
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="4" value='4+' checked={bathrooms == "4+"} />
                       <label htmlFor="bathrooms">4+</label>
                     </div>
                   </div>
@@ -458,11 +436,11 @@ const EditProperty = () => {
                   <h2 className="header-mobile">Corner Plot</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="True" name="for" id="true" />
+                      <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="True" name="for" id="true" checked={cornerPlot == 'True'}/>
                       <label htmlFor="true">Yes</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="False" name="for" id="false" />
+                      <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="False" name="for" id="false" checked={cornerPlot == 'False'}/>
                       <label htmlFor="false">No</label>
                     </div>
                   </div>
@@ -472,11 +450,11 @@ const EditProperty = () => {
                   <h2 className="header-mobile">Gated Community</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="True" name="for" id="true" />
+                      <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="True" name="for" id="true" checked={gatedCommunity == 'True'} />
                       <label htmlFor="true">Yes</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="False" name="for" id="false" />
+                      <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="False" name="for" id="false" checked={gatedCommunity == 'False'}/>
                       <label htmlFor="false">No</label>
                     </div>
                   </div>
@@ -492,11 +470,11 @@ const EditProperty = () => {
                   <h2 className="header-mobile">Possession Status</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" value='Under Construction' />
+                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" value='Under Construction' checked={possession_status == 'Under Construction'} />
                       <label htmlFor="possession_status">Under Construction</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="ready-to-move" value='Ready To Move' />
+                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="ready-to-move" value='Ready To Move' checked={possession_status == 'Ready To Move'}/>
                       <label htmlFor="possession_status">Ready To Move</label>
                     </div>
 
@@ -508,15 +486,15 @@ const EditProperty = () => {
                   <h2 className="header-mobile">Furnishing Status</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="furnished" value='furnished' />
+                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="furnished" value='furnished' checked={furnishing_status == 'furnished'}/>
                       <label htmlFor="furnishing_status">Furnished</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="semifurnished" value='semifurnished' />
+                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="semifurnished" value='semifurnished' checked={furnishing_status == 'semifurnished'}/>
                       <label htmlFor="furnishing_status">Semi-Furnished</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="unfurnished" value='unfurnished' />
+                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="unfurnished" value='unfurnished' checked={furnishing_status == 'unfurnished'}/>
                       <label htmlFor="furnishing_status">Unfurnished</label>
                     </div>
 
@@ -527,19 +505,19 @@ const EditProperty = () => {
                   <h2 className="header-mobile">Washrooms</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="1" value='1' />
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="1" value='1' checked={bathrooms == '1'}/>
                       <label htmlFor="bathrooms">1</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="2" value='2' />
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="2" value='2' checked={bathrooms == '2'}/>
                       <label htmlFor="bathrooms">2</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="3" value='3' />
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="3" value='3' checked={bathrooms == '3'}/>
                       <label htmlFor="bathrooms">3</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="4" value='4+' />
+                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="4" value='4+' checked={bathrooms == '4+'}/>
                       <label htmlFor="bathrooms">4+</label>
                     </div>
 
@@ -548,7 +526,7 @@ const EditProperty = () => {
                 {/* Area  */}
                 <div className="form-group">
                   <h2 className="header-mobile">Total Area (in sqft)</h2>
-                  <input type="number" onChange={(e) => setProperty_Size(e.target.value)} placeholder="Enter Total Area (Ex - 1500)" name="property_size" id="property_size" />
+                  <input type="number" onChange={(e) => setProperty_Size(e.target.value)} placeholder="Enter Total Area (Ex - 1500)" name="property_size" id="property_size" defaultValue={propertyDetails.property_size} />
                 </div>
                 {/* Floor  */}
                 <div className="form-group">
