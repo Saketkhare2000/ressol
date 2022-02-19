@@ -12,11 +12,13 @@ import axios from "axios";
 import { CgSpinner } from "react-icons/cg";
 import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
 import { useDispatch } from 'react-redux';
-
+import { useNavigate } from "react-router";
+import slugify from "slugify";
 
 
 const EditProperty = () => {
     const [propertyDetails, setPropertyDetails] = React.useState({});
+    const navigate = useNavigate()
 
     // Useeffect
     useEffect(() => {
@@ -24,6 +26,28 @@ const EditProperty = () => {
             .then(res => {
                 setLoader(true)
                 setPropertyDetails(res.data)
+                setDescription(res.data.description)
+                setName(res.data.name)
+                setLocation(res.data.location)
+                setAddress(res.data.address)
+                setPincode(res.data.pincode)
+                setCity(res.data.city)
+                setState(res.data.state)
+                setPrice(res.data.price)
+                setProperty_Size(res.data.property_size)
+
+                setBedrooms(res.data.bedrooms)
+                setBathrooms(res.data.bathrooms)
+                setFurnishing_status(res.data.furnishing_status)
+
+                setPossession_Status(res.data.possession)
+                setAvailability(res.data.availability)
+                setFloor(res.data.floor)
+                setCornerPlot(res.data.corner)
+                setGatedCommunity(res.data.gated)
+                setAmenities(res.data.amenities)
+                setFor_status(res.data.for_status)
+                setPostedBy(res.data.posted_by.id)
                 return res.data
             })
             .then((res) => {
@@ -40,8 +64,8 @@ const EditProperty = () => {
                     console.log(image)
                 }
             })
-            .catch(err => {
-                console.log(err);
+              .catch(err => {
+                  console.log(err);
             })
     }, [])
     console.log(propertyDetails)
@@ -51,14 +75,18 @@ const EditProperty = () => {
     const [loader, setLoader] = React.useState(true);
   const [spinner, setSpinner] = React.useState(false);
 
-    const [name, setName] = React.useState("");
-    const [description, setDescription] = React.useState(null);
+   const default_name = propertyDetails.property_name
+   console.log(default_name)
+    const [name, setName] = React.useState('');
+    const [description, setDescription] = React.useState(propertyDetails.description);
     const [location, setLocation] = React.useState(null);
     const [address, setAddress] = React.useState(null);
     const [pincode, setPincode] = React.useState(null);
     const [city, setCity] = React.useState("");
     const [state, setState] = React.useState("");
     const [price, setPrice] = React.useState(null);
+    const [for_status, setFor_status] = React.useState(null);
+    const [posted_by, setPostedBy] = React.useState(null);
     const [property_size, setProperty_Size] = React.useState(null);
     const [imageData, setImageData] = React.useState([]);
 
@@ -72,11 +100,15 @@ const EditProperty = () => {
     const [cornerPlot, setCornerPlot] = useState(null)
     const [gatedCommunity, setGatedCommunity] = useState(null)
     const [amenities, setAmenities] = useState(null)
+  const { setAlert } = useContext(WebContext);
 
     const { editPropertyId, setEditPropertyId } = useContext(WebContext);
 
   const [image, setImage] = useState([]);
   const [imagePostData, setImagePostData] = useState([]);
+
+  console.log(propertyDetails.description)
+  console.log(description)
 
     const property_type = propertyDetails.property_type
 
@@ -103,7 +135,33 @@ const EditProperty = () => {
     bathroom_default[propertyDetails.bathrooms] = true
     
 
-
+  const data = {
+    amenities: [],
+    floor: floor,
+    for_status: for_status,
+    posted_by: posted_by,
+    name: slugify(name, '_'),
+    property_name: name,
+    description: description,
+    location: location,
+    address: address,
+    city: city.toLowerCase(),
+    possession: possession_status.toLowerCase(),
+    state: state.toLowerCase(),
+    pincode: pincode,
+    prime_property: true,
+    price: parseInt(price),
+    property_size: parseInt(property_size),
+    furnishing_status: furnishing_status,
+    availability: availability,
+    bedrooms: parseInt(bedrooms),
+    bathrooms: parseInt(bathrooms),
+    property_type: property_type,
+    image: imagePostData,
+    corner: cornerPlot,
+    gated: gatedCommunity,
+    amenities: amenities
+  }
 
     const cityOptions = cityData.map(city => {
         const { name } = city;
@@ -154,10 +212,49 @@ const EditProperty = () => {
     function capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  
-  function submitProperty(){
-    return
-  }
+
+  const submitProperty = (e) => {
+    e.preventDefault();
+    console.log(data)
+    setSpinner(true);
+    axios(`http://127.0.0.1:8000/api/property/${propertyDetails.id}/`, {
+      method: "patch",
+      data: data,
+      headers: {
+        'Content-type': 'application/json',
+      }
+    }).then(res => {
+      setSpinner(false);
+      setAlert({
+        type: "success",
+        message: "Property Posted Successfully",
+        show: true
+      })
+      setTimeout(() => {
+        setAlert({
+          type: "",
+          message: "",
+          show: false
+        })
+      }, 2000)
+      navigate("/dashboard")
+    }).catch(err => {
+      console.log(err);
+      setSpinner(false);
+      setAlert({
+        type: "danger",
+        message: err.message,
+        show: true
+      })
+      setTimeout(() => {
+        setAlert({
+          type: "",
+          message: "",
+          show: false
+        })
+      }, 2000)
+    })
+    }
    console.log(image)
 
     return (
