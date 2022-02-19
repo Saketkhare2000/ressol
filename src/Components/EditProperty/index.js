@@ -191,19 +191,21 @@ const EditProperty = () => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  const deleteImage = (e, id) =>  {
-  e.preventDefault()
-   axios.delete(
-    `http://localhost:8000/api/image/${id}/`,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  ).then(() =>{
-      setImage((prevState) => prevState.filter((value)=> {return value.pk != id}))
-      setImagePostData((prevState) => prevState.filter((value)=> {return value != id}))
-    })};
+  const deleteImage = (e, id) => {
+    e.preventDefault()
+    axios.delete(
+      `http://localhost:8000/api/image/${id}/`,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    ).then(() => {
+      setImage((prevState) => prevState.filter((value) => { return value.pk != id }))
+      setImagePostData((prevState) => prevState.filter((value) => { return value != id }))
+    })
+  };
+  console.log(imagePostData)
 
   const submitProperty = (e) => {
     e.preventDefault();
@@ -595,8 +597,8 @@ const EditProperty = () => {
                     }))
                 }} name="photos" id="photo" />
                 {image.length === 0 ? null : (
-                <button onClick={(e) => deleteImage(e, image[0]['pk'])}>remove</button>
-                    )}
+                  <button onClick={(e) => deleteImage(e, image[0]['pk'])}>remove</button>
+                )}
               </div>
               {/* 2nd Image Upload Container  */}
 
@@ -616,8 +618,8 @@ const EditProperty = () => {
                     }))
                 }} name="photos" id="photo" />
                 {image.length <= 1 ? null : (
-                <button onClick={(e) => deleteImage(e, image[1]['pk'])}>remove</button>
-                    )}
+                  <button onClick={(e) => deleteImage(e, image[1]['pk'])}>remove</button>
+                )}
               </div>
               {/* 3rd Image Upload Container  */}
 
@@ -638,7 +640,7 @@ const EditProperty = () => {
                     }))
                 }} name="photos" id="photo" />
                 {image.length <= 2 ? null : (
-                <button onClick={(e) => deleteImage(e, image[2]['pk'])}>remove</button>)
+                  <button onClick={(e) => deleteImage(e, image[2]['pk'])}>remove</button>)
                 }
               </div>
               {/* 4th Image Upload Container  */}
@@ -660,8 +662,8 @@ const EditProperty = () => {
                     }))
                 }} name="photos" id="photo" />
                 {image.length <= 3 ? null : (
-                <button onClick={(e) => deleteImage(e, image[3]['pk'])}>remove</button>
-                    )}
+                  <button onClick={(e) => deleteImage(e, image[3]['pk'])}>remove</button>
+                )}
               </div>
               {/* 5th Image Upload Container  */}
 
@@ -682,8 +684,8 @@ const EditProperty = () => {
                     }))
                 }} name="photos" id="photo" />
                 {image.length <= 4 ? null : (
-                <button onClick={(e) => deleteImage(e, image[4]['pk'])}>remove</button>
-                    )}
+                  <button onClick={(e) => deleteImage(e, image[4]['pk'])}>remove</button>
+                )}
               </div>
               {/* 6th Image Upload Container  */}
 
@@ -702,8 +704,8 @@ const EditProperty = () => {
                     }))
                 }} name="photos" id="photo" />
                 {image.length <= 5 ? null : (
-                <button onClick={(e) => deleteImage(e, image[5]['pk'])}>remove</button>
-  )}
+                  <button onClick={(e) => deleteImage(e, image[5]['pk'])}>remove</button>
+                )}
               </div>
             </div>
             {/* <div class="parent upload-image-section">

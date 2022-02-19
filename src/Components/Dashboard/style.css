@@ -120,6 +120,9 @@
   font-weight: 500;
   font-size: 18px;
 }
+.user-details .mobile-title {
+  margin-left: 0 !important;
+}
 .down-icon {
   transform: rotateZ(90deg);
   font-size: 42px;
@@ -150,7 +153,7 @@ button {
 .dashboard-page .css-1s2u09g-control {
   width: 160px;
 }
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 768px) {
   .dashboard-page {
     flex-direction: row-reverse;
     flex-wrap: wrap;

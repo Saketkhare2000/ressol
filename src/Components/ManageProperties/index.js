@@ -3,6 +3,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import { WebContext } from "../../Context/WebContext";
+import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
 
 import { useSelector } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -59,7 +60,13 @@ const ManageProperties = () => {
                                 {/* <Link to={`/property/${yourPropertyDetails[property].id}`}> */}
                                 <div key={index} className="your-property-detail-card">
                                     <div className="img-container">
-                                        <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-1.2.1" alt="" />
+                                        {/* <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-1.2.1" alt="" /> */}
+                                        {
+                                            yourPropertyDetails[property].image.length > 0 ?
+                                                <img src={yourPropertyDetails[property].image[0].image.full_size} alt="" />
+                                                :
+                                                <img src={SamplePropertyImage} alt="" />
+                                        }
                                     </div>
                                     <div className="property-detail-card-details">
                                         <p className="property-price">₹ {numDifferentiation(yourPropertyDetails[property].price)}</p>

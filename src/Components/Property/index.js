@@ -21,16 +21,25 @@ const Property = () => {
   const [wishlistStatus, setWishlistStatus] = useState(false);
   const [contactStatus, setContactStatus] = useState(false);
   const [loader, setLoader] = React.useState(true);
+  const [availabilityDate, setAvailabilityDate] = React.useState("");
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/api/property/${id}/?expand=posted_by.image,image`)
       .then(res => {
         setLoader(true)
         setPropertyDetails(res.data)
+        console.log(res.data)
         return res.data
       })
       .then((res) => {
         setLoader(false)
-        console.log(res.image)
+        if (res.availability !== null) {
+          let time = new Date(res.availability)
+          setAvailabilityDate(time.toLocaleString('en-US', {
+            weekday: 'short', // long, short, narrow
+            day: 'numeric', // numeric, 2-digit
+            year: 'numeric', // numeric, 2-digit
+          }))
+        }
         if (res.image && res.image.length > 0) {
           const propertyImagesData = [];
           res.image.map((image, index) => {
@@ -49,6 +58,7 @@ const Property = () => {
       })
   }, [])
   console.log(imageData)
+  console.log(availabilityDate)
   // if (loggedIn) {
   //   console.log(userDetails.wishlist);
   //   userDetails.wishlist.map(property => {
@@ -261,7 +271,10 @@ const Property = () => {
                   </div>
                   <div className="specification-container">
                     <h4 className="specification-title">Available From</h4>
-                    <h4 className="specification-value"  >{propertyDetails.availability}</h4>
+                    {
+                      availabilityDate ? <h4 className="specification-value"  >{availabilityDate}</h4> : <></>
+                    }
+
                   </div>
                 </div>
               )
@@ -382,7 +395,7 @@ const Property = () => {
                             </div>
                           )
                         })
-                        : <div className="amenities-card">No Amenities Available</div>
+                        : <div className="amenities-card">Amenities Data not found</div>
                     }
                   </div>
                 </div>

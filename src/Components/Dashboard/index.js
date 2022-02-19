@@ -22,6 +22,7 @@ const Dashoard = () => {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const key = useSelector((state) => state.auth.key);
   const userDetails = useSelector((state) => state.userData.userData);
+  console.log(userDetails)
 
 
   const options = [
@@ -61,10 +62,11 @@ const Dashoard = () => {
           </div>
           <div className="user-details">
             <h3 className="mobile-title">{userDetails.username}</h3>
-            {userDetails.is_prime ? <p className="user-prime-status">Prime Member</p> : <p className="user-prime-status">Regular Member</p>}
+            {userDetails.prime_status && userDetails.prime_status.is_prime ? <p className="user-prime-status">{userDetails.prime_status.subscription_type} Member</p> : <p className="user-prime-status">Buy Prime Membership</p>}
             <p className="contacts-remaining">
-              No. of contacts remaining: <span>{"15"}</span>
+              No. of contacts remaining:  {userDetails.prime_status && userDetails.prime_status.is_prime ? <span>{userDetails.prime_status.counter_limit - userDetails.prime_status.contact_counter}</span> : <span>{5}</span>}
             </p>
+            {userDetails.prime_status && userDetails.prime_status.is_prime ? <p >Valid Until : {userDetails.prime_status.subscription_period}  </p> : <></>}
           </div>
         </div>
         <div className="btn-container">
