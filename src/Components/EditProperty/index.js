@@ -27,7 +27,7 @@ const EditProperty = () => {
         setLoader(true)
         setPropertyDetails(res.data)
         setDescription(res.data.description)
-        setName(res.data.name)
+        setName(res.data.property_name)
         setLocation(res.data.location)
         setAddress(res.data.address)
         setPincode(res.data.pincode)
@@ -48,6 +48,7 @@ const EditProperty = () => {
         setAmenities(res.data.amenities)
         setFor_status(res.data.for_status)
         setPostedBy(res.data.posted_by.id)
+        setImagePostData(res.data.image)
         return res.data
       })
       .then((res) => {
