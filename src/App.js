@@ -20,6 +20,9 @@ import CompleteProfile from "./Components/CompleteProfile";
 import ProfileDetails from "./Components/ProfileDetails";
 import ManageProperties from "./Components/ManageProperties";
 import Wishlist from "./Components/Wishlist";
+import Prime from "./Components/Prime";
+import EditProperty from "./Components/EditProperty";
+import ViewResponse from "./Components/ViewResponse";
 function App() {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   return (
@@ -68,9 +71,17 @@ function App() {
           ) : (
             <Route path="/dashboard/wishlist" element={<LogIn />} />
           )}
+          {loggedIn ? (
+            <Route path="/dashboard/view-responses" element={<ViewResponse />} />
+          ) : (
+            <Route path="/dashboard/view-responses" element={<LogIn />} />
+          )}
           <Route path="filter" element={<Filter />} />
+          <Route path="/prime" element={<Prime />} />
+          <Route path="/dashboard/manage-properties/edit-property/" element={<EditProperty />} />
         </Routes>
-        {/* <Footer /> */}
+        <Spacer />
+        <Footer />
         <Spacer />
         <ScrollToTop />
       </BrowserRouter>

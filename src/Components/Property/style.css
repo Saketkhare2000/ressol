@@ -121,10 +121,41 @@
   padding: 8px 22px;
   width: 60%;
 }
+.about-owner-container .owner-details .owner-image {
+  width: 72px;
+  height: 72px;
+}
+.about-owner-container .owner-details .owner-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
 .about-owner-container .owner-details button {
   font-size: 16px;
   margin: 8px 0;
   width: 100%;
+}
+.property-city,
+.property-state {
+  text-transform: capitalize;
+}
+.specification-container .specification-value {
+  text-transform: capitalize;
+}
+.amenities-container .amenities-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 4px;
+}
+.amenities-container .amenities-list .amenities-card {
+  margin-right: 24px;
+  margin-top: 12px;
+  border-radius: 4px;
+  font-size: 17px;
 }
 @media screen and (max-width: 576px) {
   .property-btn-container button {

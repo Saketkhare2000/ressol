@@ -9,6 +9,7 @@
   flex-direction: row;
   align-items: center;
   margin-right: 12px;
+  cursor: pointer;
 }
 .displaycard .displaycard-details {
   height: 130px;

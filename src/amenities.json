@@ -1,0 +1,34 @@
+[
+    {
+        "value": "Parking",
+        "label": "Parking"
+    },
+    {
+        "value": "Lift",
+        "label": "Lift"
+    },
+    {
+        "value": "Park",
+        "label": "Park"
+    },
+    {
+        "value": "Gymnasium",
+        "label" : "Gymnasium"
+    },
+    {
+        "value": "Swimming Pool",
+        "label" : "Swimming Pool"
+    },
+    {
+        "value": "Power Backup",
+        "label" : "Power Backup"
+    },
+    {
+        "value": "Wi-Fi Connectivity",
+        "label" : "Wi-Fi Connectivity"
+    },
+    {
+        "value": "Air Conditioned",
+        "label" : "Air Conditioned"
+    }
+]

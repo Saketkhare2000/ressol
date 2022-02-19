@@ -137,3 +137,10 @@ input[type="password"] {
     transform: rotate(360deg);
   }
 }
+@media screen and (min-width: 576px) {
+  .signup-page {
+    max-width: 576px;
+    margin: 0px auto;
+    margin-bottom: 10vh;
+  }
+}

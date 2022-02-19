@@ -1,7 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { slideUp } from "../Animation";
-import Row from "../Components/Row";
+import AdBanner from "../Components/AdBanner";
+// import ExploreCity from "../Components/ExploreCity";
+import DisplayRow from "../Components/DisplayRow";
+import FeaturedProperties from "../Components/FeaturedProperties";
 
 const Home = () => {
   return (
@@ -14,7 +17,10 @@ const Home = () => {
         variants={slideUp}
         className="page"
       >
-        <Row />
+        <DisplayRow />
+        <FeaturedProperties />
+        {/* <AdBanner /> */}
+        {/* <ExploreCity /> */}
       </motion.div>
     </AnimatePresence>
   );

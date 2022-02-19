@@ -1,0 +1,96 @@
+.prime-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 90vh;
+}
+.prime-page h2 {
+  color: var(--brand--green);
+}
+.prime-page .prime-plans-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+.prime-page .prime-plans-container .prime-plan {
+  width: 281px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px 16px;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  margin: 8px 8px;
+  transition: all 150ms ease-in-out;
+}
+.prime-page .prime-plans-container .prime-plan:hover {
+  transform: scale(1.02);
+}
+.prime-plans-container .prime-plan h3 {
+  color: var(--text-dark);
+}
+.prime-plans-container .prime-plan p {
+  color: var(--text-dark);
+  text-align: center;
+}
+.prime-plan .prime-plan-price,
+.prime-plan .prime-plan-button {
+  margin: 12px 0;
+}
+.prime-plan-button a {
+  display: block;
+  text-align: center;
+}
+.prime-plan .prime-plan-price {
+  color: var(--brand--green);
+}
+.prime-plan .prime-plan-price h2 {
+  font-weight: 600;
+  display: inline-block;
+}
+.prime-plan .prime-plan-price span {
+  font-size: 16px;
+  font-weight: 400;
+}
+.prime-plan .prime-plan-features ul {
+  list-style: none;
+}
+.prime-plan .prime-plan-features ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 0;
+  margin: 4px 0;
+}
+.prime-plan-features ul li span {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 2px 0;
+}
+.prime-plan .prime-plan-button {
+  width: 100%;
+}
+.prime-plan .prime-plan-button .btn {
+  padding: 12px 12px;
+  font-size: 16px;
+  width: 100%;
+}
+.prime-page .prime-plans-container .prime-plan:nth-child(2) {
+  border: 2px solid var(--brand--green);
+}
+@media screen and (max-width: 576px) {
+  .prime-page {
+    height: auto;
+  }
+  .prime-page .prime-plans-container .prime-plan {
+    width: 90%;
+    margin: 12px 0;
+  }
+}

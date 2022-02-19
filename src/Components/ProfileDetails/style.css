@@ -20,7 +20,6 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 20px;
 }
 .profile-user-image {
   width: 72px;
@@ -34,4 +33,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
+}
+.profile-user-details {
+  padding: 8px 0;
 }
