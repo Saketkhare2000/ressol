@@ -23,6 +23,7 @@ import Wishlist from "./Components/Wishlist";
 import Prime from "./Components/Prime";
 import EditProperty from "./Components/EditProperty";
 import ViewResponse from "./Components/ViewResponse";
+import OTPHandle from "./Components/OTPHandle";
 function App() {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   return (
@@ -79,6 +80,7 @@ function App() {
           <Route path="filter" element={<Filter />} />
           <Route path="/prime" element={<Prime />} />
           <Route path="/dashboard/manage-properties/edit-property/" element={<EditProperty />} />
+          <Route path="/otphandle" element={<OTPHandle />} />
         </Routes>
         <Spacer />
         <Footer />

@@ -16,10 +16,11 @@ const LogIn = () => {
 
   const [error, setError] = useState("");
 
-  const { userName, setUserName } = useContext(WebContext);
-  console.log(userName)
+  const { userName, setUserName, phoneNumber, setPhoneNumber } = useContext(WebContext);
+  console.log(phoneNumber)
   const userDetails = {
-    username: userName,
+    // username: userName,
+    phone: phoneNumber,
     password: password,
   };
 
@@ -46,26 +47,26 @@ const LogIn = () => {
         <form className="login-form" action="">
           <div className="form-category">
             <input
-              onChange={(e) => setUserName(e.target.value)}
-              id="Username"
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              id="phone"
               type="text"
-              placeholder="Username"
+              placeholder="Mobile Number"
             />
           </div>
-          <div className="form-category">
+          {/* <div className="form-category">
             <input
               onChange={(e) => setPassword(e.target.value)}
               id="Password"
               type="password"
               placeholder="Password"
             />
-          </div>
+          </div> */}
           <motion.button
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.03 }}
             onClick={handleLogin}
           >
-            Log In
+            Login with OTP
           </motion.button>
         </form>
         <p className="label">

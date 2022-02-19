@@ -329,7 +329,7 @@ const Filter = () => {
                     onChange={(e) => setProperty_Type(e.target.value)}
                     name="property_type"
                     id="property_type"
-                    value="PL"
+                    value="PT"
                   />
                   <label htmlFor="property_type">Plot</label>
                 </div>
@@ -504,7 +504,7 @@ const Filter = () => {
                       </div>
                     </motion.div>
                   );
-                } else if (property_type === "PL") {
+                } else if (property_type === "PT") {
                   return (
                     <motion.div
                       initial={{ opacity: 0, y: -30 }}

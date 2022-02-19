@@ -72,10 +72,10 @@ const ProfileDetails = () => {
                         <label htmlFor="select">Name</label>
                         <input type="text" placeholder="Name" value={userDetails.username} />
                     </motion.div>
-                    <motion.div layout className="form-group">
+                    {/* <motion.div layout className="form-group">
                         <label htmlFor="select">Email</label>
                         <input type="text" placeholder="Email" value={userDetails.email} />
-                    </motion.div>
+                    </motion.div> */}
                     <motion.div layout className="form-group">
                         <label htmlFor="select">Phone</label>
                         <input

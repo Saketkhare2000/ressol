@@ -10,6 +10,7 @@ const WebProvider = (props) => {
     type: "",
   });
   const [userName, setUserName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   //access token state
   const [accessToken, setAccessToken] = useState("");
   //refresh token state
@@ -44,6 +45,8 @@ const WebProvider = (props) => {
     setFilterData,
     editPropertyId,
     setEditPropertyId,
+    phoneNumber,
+    setPhoneNumber,
   };
 
   return (

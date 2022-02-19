@@ -18,7 +18,7 @@ const CompleteProfile = () => {
     const [state, setState] = useState("");
     const [mobile, setMobile] = useState("");
     const [user_type, setUser_Type] = useState("");
-    const [bio, setBio] = useState("");
+    // const [bio, setBio] = useState("");
     const [image, setImage] = useState("");
     console.log(image);
     const { userName, setAlert, registerKey } = useContext(WebContext);
@@ -29,7 +29,7 @@ const CompleteProfile = () => {
     console.log(registerKey)
     const profileDetails = {
         user: "1",
-        bio: bio,
+        // bio: bio,
         mobile: mobile,
         city: city,
         state: state,
@@ -66,7 +66,7 @@ const CompleteProfile = () => {
 
         axios({
             method: "patch",
-            url: `http://localhost:8000/api/profile/${userName}/`,
+            url: `http://localhost:8000/api/profile_name/${userName}/`,
             data: profileDetails,
             headers: {
                 "X-CSRFToken": csrftoken,
@@ -129,7 +129,7 @@ const CompleteProfile = () => {
                 exit="hidden"
                 className="signup-card"
             >
-                <h1>Complete Your Profile</h1>
+                <h2>Complete Your Profile</h2>
                 <form className="signup-form" action="">
                     <div className="user-image">
                         {image === "" ? (
@@ -180,9 +180,9 @@ const CompleteProfile = () => {
                     <div className="form-category">
                         <Select className='select-input' placeholder="Your State" onChange={handleChangeState} options={stateOptions} openMenuOnClick={false} />
                     </div>
-                    <div className="form-category">
+                    {/* <div className="form-category">
                         <textarea name="bio" id="bio" placeholder='Tell us about yourself (optional)' onChange={(e) => setBio(e.target.value)} ></textarea>
-                    </div>
+                    </div> */}
                     <motion.button
                         whileTap={{ scale: 0.9 }}
                         whileHover={{ scale: 1.01 }}
