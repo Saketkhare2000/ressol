@@ -22,6 +22,8 @@ const WebProvider = (props) => {
   const [registerKey, setRegisterKey] = useState("");
   const [filterData, setFilterData] = useState();
   const [editPropertyId, setEditPropertyId] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const value = {
     loggedIn,
     setLoggedIn,
@@ -47,6 +49,10 @@ const WebProvider = (props) => {
     setEditPropertyId,
     phoneNumber,
     setPhoneNumber,
+    firstname,
+    setFirstname,
+    lastname,
+    setLastname,
   };
 
   return (

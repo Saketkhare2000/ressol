@@ -21,7 +21,7 @@ const CompleteProfile = () => {
     // const [bio, setBio] = useState("");
     const [image, setImage] = useState("");
     console.log(image);
-    const { userName, setAlert, registerKey } = useContext(WebContext);
+    const { userName, setAlert, registerKey, firstname, setFirstname, lastname, setLastname } = useContext(WebContext);
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -29,6 +29,8 @@ const CompleteProfile = () => {
     console.log(registerKey)
     const profileDetails = {
         user: "1",
+        first_name: firstname,
+        last_name: lastname,
         // bio: bio,
         mobile: mobile,
         city: city,

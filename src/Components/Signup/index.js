@@ -26,10 +26,11 @@ const SignUp = () => {
   //mobile number
   const [mobileNumber, setMobileNumber] = useState(0);
 
-  const { setAlert, userName, setUserName, registerKey, setRegisterKey } = useContext(WebContext);
+  const { setAlert, userName, setUserName, registerKey, setRegisterKey, firstname, setFirstname, lastname, setLastname } = useContext(WebContext);
 
   console.log(registerKey)
   const username = firstName + lastName + Math.floor((Math.random() * 1000)).toString()
+
   const userDetails = {
     first_name: firstName,
     last_name: lastName,
@@ -194,6 +195,8 @@ const SignUp = () => {
 
           console.log(res);
           setUserName(username);
+          setFirstname(firstName);
+          setLastname(lastName);
           setRegisterKey(res.data.key);
           setAlert({
             show: true,

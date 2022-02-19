@@ -21,7 +21,7 @@ const LogIn = () => {
   const userDetails = {
     // username: userName,
     phone: phoneNumber,
-    password: password,
+    // password: password,
   };
 
   const handleLogin = async (e) => {

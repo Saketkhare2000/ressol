@@ -1,0 +1,3 @@
+.otp-input input[type="text"]::placeholder {
+  text-align: center;
+}

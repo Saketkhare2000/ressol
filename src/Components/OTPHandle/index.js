@@ -1,5 +1,5 @@
 import React from 'react'
-
+import "../../Components/OTPHandle/style.css";
 const OTPHandle = () => {
   return (
     <div className='page'>
@@ -7,11 +7,12 @@ const OTPHandle = () => {
         <div className="login-card">
           <h2>Verification</h2>
           <form className="login-form" action="">
-            <div className="form-category">
+            <div className="form-category otp-input" >
               <input
                 id="phone"
                 type="text"
-                placeholder="XXXX"
+                placeholder="Enter XXXX OTP"
+
               />
             </div>
             <button
