@@ -14,13 +14,13 @@ import areaData from "../../area.json";
 import floorData from "../../floor.json";
 import amenitiesData from "../../amenities.json";
 
-import Select from 'react-select'
+import Select from "react-select";
 import Multiselect from "multiselect-react-dropdown";
 const Filter = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Common Filter States 
+  // Common Filter States
   const [propertyFor, setPropertyFor] = React.useState(null);
   const [city, setCity] = React.useState(null);
   const [minprice, setMinPrice] = React.useState(null);
@@ -35,10 +35,10 @@ const Filter = () => {
   const [maxarea, setMaxArea] = React.useState(null);
   const [furnishing_status, setFurnishing_status] = React.useState(null);
   const [is_prime, setIs_Prime] = React.useState(null);
-  const [cornerPlot, setCornerPlot] = React.useState(null)
-  const [gatedCommunity, setGatedCommunity] = React.useState(null)
+  const [cornerPlot, setCornerPlot] = React.useState(null);
+  const [gatedCommunity, setGatedCommunity] = React.useState(null);
   const [floor, setFloor] = React.useState(null);
-  const [amenities, setAmenities] = useState(null)
+  const [amenities, setAmenities] = useState(null);
 
   /////////////////////////////////////////////////////////////////////////
 
@@ -61,47 +61,47 @@ const Filter = () => {
     corner: cornerPlot,
     gated: gatedCommunity,
     amenities: amenities,
-    expand: "image"
+    expand: "image",
   };
 
   ///////////////////////////////////////////////////////////////////////////////
 
-  //  Select & Multi Select Dropdown Values 
-  const cityOptions = cityData.map(city => {
+  //  Select & Multi Select Dropdown Values
+  const cityOptions = cityData.map((city) => {
     const { name } = city;
     return {
       value: name,
       label: name,
-    }
+    };
   });
-  const priceOptions = priceData.map(price => {
+  const priceOptions = priceData.map((price) => {
     const { value, label } = price;
     return {
       value: value,
       label: label,
-    }
+    };
   });
-  const areaOptions = areaData.map(area => {
+  const areaOptions = areaData.map((area) => {
     const { value, label } = area;
     return {
       value: value,
       label: label,
-    }
+    };
   });
-  const floorOptions = floorData.map(floor => {
+  const floorOptions = floorData.map((floor) => {
     const { value, label } = floor;
     return {
       value: value,
       label: label,
-    }
+    };
   });
-  const amenitiesOptions = amenitiesData.map(amenities => {
+  const amenitiesOptions = amenitiesData.map((amenities) => {
     const { value, label } = amenities;
     return {
       value: value,
       label: label,
-    }
-  })
+    };
+  });
   const bedData = [
     { value: "1", label: "1 BHK" },
     { value: "2", label: "2 BHK" },
@@ -129,90 +129,88 @@ const Filter = () => {
   // Select & Multi Select Dropdown Handle Functions
 
   const handleChangeBedrooms = (e) => {
-    const bedValue = []
-    e.map(bedroom => {
-      return bedValue.push(bedroom.value)
-    })
-    setBedRooms(bedValue)
-  }
+    const bedValue = [];
+    e.map((bedroom) => {
+      return bedValue.push(bedroom.value);
+    });
+    setBedRooms(bedValue);
+  };
   const handleChangeBathrooms = (e) => {
-    const bathroomValue = []
-    console.log(e)
-    e.map(bathroom => {
-      return bathroomValue.push(bathroom.value)
-    })
-    setBathrooms(bathroomValue)
-  }
+    const bathroomValue = [];
+    console.log(e);
+    e.map((bathroom) => {
+      return bathroomValue.push(bathroom.value);
+    });
+    setBathrooms(bathroomValue);
+  };
   const handleChangeFurnishing = (e) => {
-    const furnishingValue = []
-    console.log(e)
-    e.map(furnishing => {
-      return furnishingValue.push(furnishing.value)
-    })
-    setFurnishing_status(furnishingValue)
-  }
+    const furnishingValue = [];
+    console.log(e);
+    e.map((furnishing) => {
+      return furnishingValue.push(furnishing.value);
+    });
+    setFurnishing_status(furnishingValue);
+  };
   const handleChangeFloor = (e) => {
-    const floorValue = []
-    console.log(e)
-    e.map(floor => {
-      return floorValue.push(floor.value)
-    })
-    setFloor(floorValue)
-  }
+    const floorValue = [];
+    console.log(e);
+    e.map((floor) => {
+      return floorValue.push(floor.value);
+    });
+    setFloor(floorValue);
+  };
   const handleAmenities = (e) => {
-    const amenitiesValue = []
-    e.map(amenities => {
-      return amenitiesValue.push(amenities.value)
-    })
-    setAmenities(amenitiesValue)
-  }
+    const amenitiesValue = [];
+    e.map((amenities) => {
+      return amenitiesValue.push(amenities.value);
+    });
+    setAmenities(amenitiesValue);
+  };
   const handleChangeCity = (selectedOption) => {
     setCity(selectedOption.value.toLowerCase());
-  }
+  };
   const handleChangeMinPrice = (selectedOption) => {
     setMinPrice(selectedOption.value);
-  }
+  };
   const handleChangeMaxPrice = (selectedOption) => {
     setMaxPrice(selectedOption.value);
-  }
+  };
   const handleChangeMinArea = (selectedOption) => {
     setMinArea(selectedOption.value);
-  }
+  };
   const handleChangeMaxArea = (selectedOption) => {
     setMaxArea(selectedOption.value);
-  }
+  };
   const handleIsPrime = (e) => {
     if (e.target.checked) {
-      setIs_Prime("True")
+      setIs_Prime("True");
     } else {
-      setIs_Prime("False")
+      setIs_Prime("False");
     }
-  }
+  };
   const handleCornerPlot = (e) => {
     if (e.target.checked) {
-      setCornerPlot("True")
+      setCornerPlot("True");
     } else {
-      setCornerPlot("False")
+      setCornerPlot("False");
     }
-  }
+  };
   const handleGatedCommunity = (e) => {
     if (e.target.checked) {
-      setGatedCommunity("True")
+      setGatedCommunity("True");
     } else {
-      setGatedCommunity("False")
+      setGatedCommunity("False");
     }
-  }
+  };
 
   // Final Filter Search Handle Function
   const handleSearch = () => {
-    console.log(data)
+    console.log(data);
     dispatch(getPropertyList(data)).then(() => {
-      console.log("dispatched")
-      navigate(`/propertylist/results`)
-    }
-    )
-
-  }
+      console.log("dispatched");
+      navigate(`/propertylist/results`);
+    });
+  };
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div
@@ -223,7 +221,7 @@ const Filter = () => {
         className="filter-page page"
       >
         <motion.div className="filter-header">
-          <div className="search" onClick={() => navigate('/')}>
+          <div className="search" onClick={() => navigate("/")}>
             <FontAwesomeIcon icon={faArrowLeft} />
             <p>Filters</p>
           </div>
@@ -235,11 +233,23 @@ const Filter = () => {
               <h3>Property For</h3>
               <div className="filter-item">
                 <div className="select-option">
-                  <input onChange={(e) => setPropertyFor(e.target.value)} type="radio" name="for" id="for" value="sale" />
+                  <input
+                    onChange={(e) => setPropertyFor(e.target.value)}
+                    type="radio"
+                    name="for"
+                    id="for"
+                    value="sale"
+                  />
                   <label htmlFor="Buy">Buy</label>
                 </div>
                 <div className="select-option">
-                  <input type="radio" name="for" id="for" value="rent" onChange={(e) => setPropertyFor(e.target.value)} />
+                  <input
+                    type="radio"
+                    name="for"
+                    id="for"
+                    value="rent"
+                    onChange={(e) => setPropertyFor(e.target.value)}
+                  />
                   <label htmlFor="Rent">Rent</label>
                 </div>
                 {/* <div className="select-option">
@@ -251,44 +261,89 @@ const Filter = () => {
             <div className="filter-group">
               <h3>City</h3>
               <div className="filter-item">
-                <Select width='100px' onChange={handleChangeCity} options={cityOptions} placeholder="City" openMenuOnClick={true} required />
-
+                <Select
+                  width="100px"
+                  onChange={handleChangeCity}
+                  options={cityOptions}
+                  placeholder="City"
+                  openMenuOnClick={true}
+                  required
+                />
               </div>
             </div>
             <div className="filter-group">
               <h3>Budget</h3>
               <div className="filter-item">
-                <Select onChange={handleChangeMinPrice} placeholder="Min" options={priceOptions} required />
+                <Select
+                  onChange={handleChangeMinPrice}
+                  placeholder="Min"
+                  options={priceOptions}
+                  required
+                />
                 <p>To</p>
-                <Select onChange={handleChangeMaxPrice} placeholder="Max" options={priceOptions} required />
+                <Select
+                  onChange={handleChangeMaxPrice}
+                  placeholder="Max"
+                  options={priceOptions}
+                  required
+                />
               </div>
             </div>
             <div className="filter-group">
               <h3>Property Name</h3>
               <div className="filter-item">
-                <input type="text" name="name" id="name" onChange={(e) => setPropertyName(e.target.value)} placeholder="Property/Project Name" />
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  onChange={(e) => setPropertyName(e.target.value)}
+                  placeholder="Property/Project Name"
+                />
               </div>
             </div>
             <div className="filter-group">
               <h3>Property Type</h3>
               <div className="filter-item">
                 <div className="select-option">
-                  <input type="radio" onChange={(e) => setProperty_Type(e.target.value)} name="property_type" id="property_type" value="FL" />
+                  <input
+                    type="radio"
+                    onChange={(e) => setProperty_Type(e.target.value)}
+                    name="property_type"
+                    id="property_type"
+                    value="FL"
+                  />
                   <label htmlFor="property_type">Flat</label>
                 </div>
                 <div className="select-option">
-                  <input type="radio" onChange={(e) => setProperty_Type(e.target.value)} name="property_type" id="property_type" value="VI" />
+                  <input
+                    type="radio"
+                    onChange={(e) => setProperty_Type(e.target.value)}
+                    name="property_type"
+                    id="property_type"
+                    value="VI"
+                  />
                   <label htmlFor="property_type">House/Villa</label>
                 </div>
                 <div className="select-option">
-                  <input type="radio" onChange={(e) => setProperty_Type(e.target.value)} name="property_type" id="property_type" value="PL" />
+                  <input
+                    type="radio"
+                    onChange={(e) => setProperty_Type(e.target.value)}
+                    name="property_type"
+                    id="property_type"
+                    value="PL"
+                  />
                   <label htmlFor="property_type">Plot</label>
                 </div>
                 <div className="select-option">
-                  <input type="radio" onChange={(e) => setProperty_Type(e.target.value)} name="property_type" id="property_type" value="CM" />
+                  <input
+                    type="radio"
+                    onChange={(e) => setProperty_Type(e.target.value)}
+                    name="property_type"
+                    id="property_type"
+                    value="CM"
+                  />
                   <label htmlFor="property_type">Commercial</label>
                 </div>
-
               </div>
             </div>
 
@@ -297,29 +352,47 @@ const Filter = () => {
             {/* Changeable Specifications Section  */}
             <AnimatePresence>
               {(() => {
-                // Flat/Apartment Property Type Filters 
+                // Flat/Apartment Property Type Filters
                 if (property_type === "FL" || property_type === "VI") {
                   return (
                     <motion.div
                       initial={{ opacity: 0, y: -30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, ease: "easeOut", staggerChildren: 0.1 }}
+                      transition={{
+                        duration: 0.4,
+                        ease: "easeOut",
+                        staggerChildren: 0.1,
+                      }}
                       exit={{ opacity: 0, y: -100 }}
-
-                      className="specifications-section">
+                      className="specifications-section"
+                    >
                       <h3 className="advanced-filters">Advanced Filters</h3>
                       {/* Bedrooms  */}
                       <div className="filter-group">
                         <h3>Bedrooms</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeBedrooms(e)} closeMenuOnSelect={false} isMulti options={bedOptions} placeholder="Bedrooms" required />
+                          <Select
+                            onChange={(e) => handleChangeBedrooms(e)}
+                            closeMenuOnSelect={false}
+                            isMulti
+                            options={bedOptions}
+                            placeholder="Bedrooms"
+                            required
+                          />
                         </div>
                       </div>
                       {/* Bathrooms  */}
                       <div className="filter-group">
                         <h3>Bathrooms</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeBathrooms(e)} closeMenuOnSelect={false} isMulti options={bathroomOptions} placeholder="Bathrooms" required />
+                          <Select
+                            onChange={(e) => handleChangeBathrooms(e)}
+                            closeMenuOnSelect={false}
+                            isMulti
+                            options={bathroomOptions}
+                            placeholder="Bathrooms"
+                            required
+                          />
                         </div>
                       </div>
                       {/* Possession Status  */}
@@ -327,80 +400,154 @@ const Filter = () => {
                         <h3>Possession Status</h3>
                         <div className="filter-item">
                           <div className="select-option">
-                            <input type="radio" onChange={(e) => setPossession_Status((e.target.value))} name="possession_status" id="ready-to-move" value='ready to move' />
-                            <label htmlFor="possession_status">Ready To Move</label>
+                            <input
+                              type="radio"
+                              onChange={(e) =>
+                                setPossession_Status(e.target.value)
+                              }
+                              name="possession_status"
+                              id="ready-to-move"
+                              value="ready to move"
+                            />
+                            <label htmlFor="possession_status">
+                              Ready To Move
+                            </label>
                           </div>
                           <div className="select-option">
-                            <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" value='under construction' />
-                            <label htmlFor="possession_status">Under Construction</label>
+                            <input
+                              type="radio"
+                              onChange={(e) =>
+                                setPossession_Status(e.target.value)
+                              }
+                              name="possession_status"
+                              id="under-construction"
+                              value="under construction"
+                            />
+                            <label htmlFor="possession_status">
+                              Under Construction
+                            </label>
                           </div>
-
                         </div>
                       </div>
                       {/* Covered Area  */}
                       <div className="filter-group">
                         <h3>Covered Area (in sqft)</h3>
                         <div className="filter-item">
-                          <Select onChange={handleChangeMinArea} placeholder="Min" options={areaOptions} required />
+                          <Select
+                            onChange={handleChangeMinArea}
+                            placeholder="Min"
+                            options={areaOptions}
+                            required
+                          />
                           <p>To</p>
-                          <Select onChange={handleChangeMaxArea} placeholder="Max" options={areaOptions} required />
+                          <Select
+                            onChange={handleChangeMaxArea}
+                            placeholder="Max"
+                            options={areaOptions}
+                            required
+                          />
                         </div>
                       </div>
                       {/* Furnishing Status  */}
                       <div className="filter-group">
                         <h3>Furnishing</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeFurnishing(e)} closeMenuOnSelect={false} isMulti options={furnishingOptions} placeholder="Furnishing Status" required />
+                          <Select
+                            onChange={(e) => handleChangeFurnishing(e)}
+                            closeMenuOnSelect={false}
+                            isMulti
+                            options={furnishingOptions}
+                            placeholder="Furnishing Status"
+                            required
+                          />
                         </div>
                       </div>
                       {/* Floor Number  */}
                       <div className="filter-group">
                         <h3>Floor</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeFloor(e)} closeMenuOnSelect={false} isMulti options={floorOptions} placeholder="Floor" required />
+                          <Select
+                            onChange={(e) => handleChangeFloor(e)}
+                            closeMenuOnSelect={false}
+                            isMulti
+                            options={floorOptions}
+                            placeholder="Floor"
+                            required
+                          />
                         </div>
                       </div>
                       {/* Amenities  */}
                       <div className="filter-group">
                         <h3>Amenities</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleAmenities(e)} closeMenuOnSelect={false} isMulti options={amenitiesOptions} placeholder="Amenities Available" required />
+                          <Select
+                            onChange={(e) => handleAmenities(e)}
+                            closeMenuOnSelect={false}
+                            isMulti
+                            options={amenitiesOptions}
+                            placeholder="Amenities Available"
+                            required
+                          />
                         </div>
                       </div>
                       {/* Prime Property Checkbox  */}
                       <div className="filter-group">
                         <h3>Show Prime Property</h3>
                         <div className="filter-item">
-                          <input type="checkbox" onChange={handleIsPrime} name="prime_property" id="prime_property" />
+                          <input
+                            type="checkbox"
+                            onChange={handleIsPrime}
+                            name="prime_property"
+                            id="prime_property"
+                          />
                           <label htmlFor="prime_property">Yes</label>
                         </div>
                       </div>
                     </motion.div>
-                  )
-                }
-                else if (property_type === "PL") {
+                  );
+                } else if (property_type === "PL") {
                   return (
                     <motion.div
                       initial={{ opacity: 0, y: -30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, ease: "easeOut", staggerChildren: 0.1 }}
+                      transition={{
+                        duration: 0.4,
+                        ease: "easeOut",
+                        staggerChildren: 0.1,
+                      }}
                       exit={{ opacity: 0, y: -100 }}
-                      className="specifications-section">
+                      className="specifications-section"
+                    >
                       <h3 className="advanced-filters">Advanced Filters</h3>
                       {/* Covered Area  */}
                       <div className="filter-group">
                         <h3>Covered Area (in sqft)</h3>
                         <div className="filter-item">
-                          <Select onChange={handleChangeMinArea} placeholder="Min" options={areaOptions} required />
+                          <Select
+                            onChange={handleChangeMinArea}
+                            placeholder="Min"
+                            options={areaOptions}
+                            required
+                          />
                           <p>To</p>
-                          <Select onChange={handleChangeMaxArea} placeholder="Max" options={areaOptions} required />
+                          <Select
+                            onChange={handleChangeMaxArea}
+                            placeholder="Max"
+                            options={areaOptions}
+                            required
+                          />
                         </div>
                       </div>
                       {/* Corner Plot Checkbox  */}
                       <div className="filter-group">
                         <h3>Corner Plot</h3>
                         <div className="filter-item">
-                          <input type="checkbox" onChange={handleCornerPlot} name="corner_plot" id="corner_plot" />
+                          <input
+                            type="checkbox"
+                            onChange={handleCornerPlot}
+                            name="corner_plot"
+                            id="corner_plot"
+                          />
                           <label htmlFor="corner_plot">Corner Plot</label>
                         </div>
                       </div>
@@ -408,7 +555,12 @@ const Filter = () => {
                       <div className="filter-group">
                         <h3>Gated Community</h3>
                         <div className="filter-item">
-                          <input type="checkbox" onChange={handleGatedCommunity} name="gated_community" id="gated_community" />
+                          <input
+                            type="checkbox"
+                            onChange={handleGatedCommunity}
+                            name="gated_community"
+                            id="gated_community"
+                          />
                           <label htmlFor="corner_plot">Gated Community</label>
                         </div>
                       </div>
@@ -416,30 +568,48 @@ const Filter = () => {
                       <div className="filter-group">
                         <h3>Show Prime Property</h3>
                         <div className="filter-item">
-                          <input type="checkbox" onChange={handleIsPrime} name="prime_property" id="prime_property" />
+                          <input
+                            type="checkbox"
+                            onChange={handleIsPrime}
+                            name="prime_property"
+                            id="prime_property"
+                          />
                           <label htmlFor="prime_property">Yes</label>
                         </div>
                       </div>
                     </motion.div>
-                  )
-                }
-                else if (property_type === "CM") {
+                  );
+                } else if (property_type === "CM") {
                   return (
                     <motion.div
                       initial={{ opacity: 0, y: -30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, ease: "easeOut", staggerChildren: 0.1 }}
+                      transition={{
+                        duration: 0.4,
+                        ease: "easeOut",
+                        staggerChildren: 0.1,
+                      }}
                       exit={{ opacity: 0, y: -100 }}
-
-                      className="specifications-section">
+                      className="specifications-section"
+                    >
                       <h3 className="advanced-filters">Advanced Filters</h3>
                       {/* Covered Area  */}
                       <div className="filter-group">
                         <h3>Covered Area (in sqft)</h3>
                         <div className="filter-item">
-                          <Select onChange={handleChangeMinArea} placeholder="Min" options={areaOptions} required />
+                          <Select
+                            onChange={handleChangeMinArea}
+                            placeholder="Min"
+                            options={areaOptions}
+                            required
+                          />
                           <p>To</p>
-                          <Select onChange={handleChangeMaxArea} placeholder="Max" options={areaOptions} required />
+                          <Select
+                            onChange={handleChangeMaxArea}
+                            placeholder="Max"
+                            options={areaOptions}
+                            required
+                          />
                         </div>
                       </div>
 
@@ -448,67 +618,122 @@ const Filter = () => {
                         <h3>Possession Status</h3>
                         <div className="filter-item">
                           <div className="select-option">
-                            <input type="radio" onChange={(e) => setPossession_Status((e.target.value))} name="possession_status" id="ready-to-move" value='ready to move' />
-                            <label htmlFor="possession_status">Ready To Move</label>
+                            <input
+                              type="radio"
+                              onChange={(e) =>
+                                setPossession_Status(e.target.value)
+                              }
+                              name="possession_status"
+                              id="ready-to-move"
+                              value="ready to move"
+                            />
+                            <label htmlFor="possession_status">
+                              Ready To Move
+                            </label>
                           </div>
                           <div className="select-option">
-                            <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" value='under construction' />
-                            <label htmlFor="possession_status">Under Construction</label>
+                            <input
+                              type="radio"
+                              onChange={(e) =>
+                                setPossession_Status(e.target.value)
+                              }
+                              name="possession_status"
+                              id="under-construction"
+                              value="under construction"
+                            />
+                            <label htmlFor="possession_status">
+                              Under Construction
+                            </label>
                           </div>
-
                         </div>
                       </div>
                       {/* Bathrooms  */}
                       <div className="filter-group">
                         <h3>Washrooms</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeBathrooms(e)} closeMenuOnSelect={false} isMulti options={bathroomOptions} placeholder="Washrooms" required />
+                          <Select
+                            onChange={(e) => handleChangeBathrooms(e)}
+                            closeMenuOnSelect={false}
+                            isMulti
+                            options={bathroomOptions}
+                            placeholder="Washrooms"
+                            required
+                          />
                         </div>
                       </div>
                       {/* Furnishing Status  */}
                       <div className="filter-group">
                         <h3>Furnishing</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeFurnishing(e)} closeMenuOnSelect={false} isMulti options={furnishingOptions} placeholder="Furnishing Status" required />
+                          <Select
+                            onChange={(e) => handleChangeFurnishing(e)}
+                            closeMenuOnSelect={false}
+                            isMulti
+                            options={furnishingOptions}
+                            placeholder="Furnishing Status"
+                            required
+                          />
                         </div>
                       </div>
                       {/* Floor Number  */}
                       <div className="filter-group">
                         <h3>Floor</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleChangeFloor(e)} closeMenuOnSelect={false} isMulti options={floorOptions} placeholder="Floor" required />
+                          <Select
+                            onChange={(e) => handleChangeFloor(e)}
+                            closeMenuOnSelect={false}
+                            isMulti
+                            options={floorOptions}
+                            placeholder="Floor"
+                            required
+                          />
                         </div>
                       </div>
                       {/* Amenities  */}
                       <div className="filter-group">
                         <h3>Amenities</h3>
                         <div className="filter-item">
-                          <Select onChange={(e) => handleAmenities(e)} isMulti options={amenitiesOptions} placeholder="Amenities Available" required />
+                          <Select
+                            onChange={(e) => handleAmenities(e)}
+                            isMulti
+                            options={amenitiesOptions}
+                            placeholder="Amenities Available"
+                            required
+                          />
                         </div>
                       </div>
                       {/* Prime Property Checkbox  */}
                       <div className="filter-group">
                         <h3>Show Prime Property</h3>
                         <div className="filter-item">
-                          <input type="checkbox" onChange={handleIsPrime} name="prime_property" id="prime_property" />
+                          <input
+                            type="checkbox"
+                            onChange={handleIsPrime}
+                            name="prime_property"
+                            id="prime_property"
+                          />
                           <label htmlFor="prime_property">Yes</label>
                         </div>
                       </div>
                     </motion.div>
-                  )
-                }
-                else {
-                  return (<></>)
+                  );
+                } else {
+                  return <></>;
                 }
               })()}
             </AnimatePresence>
             {/* Search Button  */}
-            <button type="button" className="btn filter-btn" onClick={handleSearch}>Search Properties</button>
+            <button
+              type="button"
+              className="btn filter-btn"
+              onClick={handleSearch}
+            >
+              Search Properties
+            </button>
           </form>
-
         </motion.div>
-      </motion.div >
-    </AnimatePresence >
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

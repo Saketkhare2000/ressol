@@ -17,7 +17,7 @@ const LogIn = () => {
   const [error, setError] = useState("");
 
   const { userName, setUserName } = useContext(WebContext);
-  console.log(userName)
+  console.log(userName);
   const userDetails = {
     username: userName,
     password: password,
@@ -74,14 +74,9 @@ const LogIn = () => {
         {/* <p className="reset">Reset password</p> */}
       </motion.div>
     </div>
-  )
-    :
-    <>
-
-      {navigate("/dashboard")}
-    </>
-
-
+  ) : (
+    <>{navigate("/dashboard")}</>
+  );
 };
 
 export default LogIn;
