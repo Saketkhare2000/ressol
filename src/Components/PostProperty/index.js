@@ -32,9 +32,9 @@ const PostProperty = () => {
   //size state
   const [property_size, setProperty_Size] = React.useState(null);
   //bedrooms state
-  const [bedrooms, setBedrooms] = React.useState(null);
+  const [bedrooms, setBedrooms] = React.useState("");
   //bathrooms state
-  const [bathrooms, setBathrooms] = React.useState(null);
+  const [bathrooms, setBathrooms] = React.useState("");
   const [location, setLocation] = React.useState(null);
   //address state
   const [address, setAddress] = React.useState(null);
@@ -46,14 +46,14 @@ const PostProperty = () => {
   const [furnishing_status, setFurnishing_status] = React.useState(null);
   const [possession_status, setPossession_Status] = React.useState("");
   //availability state
-  const [availability, setAvailability] = React.useState(null);
+  const [availability, setAvailability] = React.useState([]);
   const [floor, setFloor] = React.useState(null);
   const [property_type, setProperty_Type] = React.useState(null);
   const [image, setImage] = useState([]);
   const [imagePostData, setImagePostData] = useState([]);
   const [cornerPlot, setCornerPlot] = useState(null)
   const [gatedCommunity, setGatedCommunity] = useState(null)
-  const [amenities, setAmenities] = useState(null)
+  const [amenities, setAmenities] = useState([])
   const { setAlert } = useContext(WebContext);
   const userDetails = useSelector((state) => state.userData.userData);
 
@@ -153,7 +153,7 @@ const PostProperty = () => {
   const typeOptions = [
     { value: "FL", label: "Flat" },
     { value: "VI", label: "House/Villa" },
-    { value: "PL", label: "Plot" },
+    { value: "PT", label: "Plot" },
     { value: "CM", label: "Commercial" },
   ];
   const floorOptions = floorData.map(floor => {
@@ -377,11 +377,11 @@ const PostProperty = () => {
                 {/* Amenities */}
                 <div className="form-group">
                   <h2 className="header-mobile">Amenities Available</h2>
-                  <Select onChange={(e) => handleAmenities(e)} isMulti closeMenuOnSelect={false} options={amenitiesOptions} placeholder="Amenities Available" required />
+                  <Select onChange={(e) => handleAmenities(e)} isMulti closeMenuOnSelect={false} options={amenitiesOptions} placeholder="Amenities Available" />
                 </div>
               </div>
             )
-          } else if (property_type === "PL") {
+          } else if (property_type === "PT") {
             return (
               <div className="form-section">
                 <h2 className="section-title">Property Feature</h2>
@@ -395,11 +395,11 @@ const PostProperty = () => {
                   <h2 className="header-mobile">Corner Plot</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="True" name="for" id="true" />
+                      <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="True" name="corner" id="true" />
                       <label htmlFor="true">Yes</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="False" name="for" id="false" />
+                      <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="False" name="corner" id="false" />
                       <label htmlFor="false">No</label>
                     </div>
                   </div>
@@ -409,11 +409,11 @@ const PostProperty = () => {
                   <h2 className="header-mobile">Gated Community</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="True" name="for" id="true" />
+                      <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="True" name="gated" id="true" />
                       <label htmlFor="true">Yes</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="False" name="for" id="false" />
+                      <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="False" name="gated" id="false" />
                       <label htmlFor="false">No</label>
                     </div>
                   </div>
