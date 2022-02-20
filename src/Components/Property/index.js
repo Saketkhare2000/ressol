@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { WebContext } from "../../Context/WebContext";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SampleUserImg from "../../assets/images/sample-user-img.png";
@@ -12,6 +13,8 @@ import "./style.css";
 import Loader from "../Loader";
 const Property = () => {
   const id = useParams().slug;
+  const { setAlert } = useContext(WebContext);
+
   const [propertyDetails, setPropertyDetails] = React.useState({});
   // const [propertyImagesData, setPropertyImagesData] = React.useState([]);
   const [imageData, setImageData] = React.useState([]);
@@ -98,9 +101,32 @@ const Property = () => {
         .then((res) => {
           console.log("Contact");
           setContactStatus(!contactStatus);
+          setAlert({
+            show: true,
+            message: "Owner Contacted",
+            type: "success",
+          });
+          setTimeout(() => {
+            setAlert({
+              show: false,
+              message: "",
+              type: "",
+            });
+          }, 2000);
         })
         .catch((err) => {
-          console.log(err);
+          setAlert({
+            show: true,
+            message: "Buy Prime Membership to Contact",
+            type: "danger",
+          });
+          setTimeout(() => {
+            setAlert({
+              show: false,
+              message: "",
+              type: "",
+            });
+          }, 3000);
         });
     } else {
       navigate("/login");
@@ -180,7 +206,7 @@ const Property = () => {
             <div className="property-btn-container">
               {contactStatus ? (
                 <button className="btn btn-primary" onClick={handleContact}>
-                  Already Contacted
+                  Owner Contacted
                 </button>
               ) : (
                 <button className="btn btn-primary" onClick={handleContact}>
