@@ -48,6 +48,9 @@ nav {
   font-weight: 500;
   color: #ffffff;
 }
+.navbar .top-header .top-navLinks {
+  display: none;
+}
 .navbar .search-bar {
   display: flex;
   align-items: center;
@@ -67,7 +70,6 @@ nav {
   font-size: 14px;
   line-height: 19px;
   /* identical to box height */
-
   color: #747474;
 }
 .navbar-bottom {
@@ -112,4 +114,28 @@ nav {
   align-items: center;
   flex-direction: column;
   justify-content: center;
+}
+@media screen and (min-width: 768px) {
+  .navbar .top-header .top-navLinks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+  }
+  .navbar .top-header .top-navLinks li {
+    display: inline-block;
+    padding: 0 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--bg-white);
+  }
+  .navbar .top-header .top-navLinks li:hover {
+    opacity: 0.7;
+  }
+  .navbar .search-bar {
+    width: 70%;
+  }
+  .navbar-bottom {
+    display: none;
+  }
 }

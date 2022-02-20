@@ -10,7 +10,7 @@ import { AiOutlineHome, AiOutlineUser, AiOutlinePlus } from "react-icons/ai";
 import { useSelector } from "react-redux";
 const Navbar = () => {
   const { filter, setFilter } = useContext(WebContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   return (
     <motion.header>
@@ -20,17 +20,31 @@ const Navbar = () => {
         </AnimatePresence>
       ) : (
         <AnimatePresence initial={false} exitBeforeEnter={true}>
-          <motion.nav
-            className="navbar"
-          >
+          <motion.nav className="navbar">
             <div className="top-header">
               <div className="logo">
                 <Link to="/">9Roof</Link>
               </div>
-              <button onClick={() => navigate('/prime')} className="btn btn-outline">Prime</button>
+              <ul className="top-navLinks">
+                <Link to="/">
+                  <li className="top-navLink">Home</li>
+                </Link>
+                <Link to="/">
+                  <li className="top-navLink">Post Property</li>
+                </Link>
+                <Link to="/">
+                  <li className="top-navLink">Dashboard</li>
+                </Link>
+              </ul>
+              <button
+                onClick={() => navigate("/prime")}
+                className="btn btn-outline"
+              >
+                Prime
+              </button>
             </div>
             <div className="search-bar">
-              <motion.div onClick={() => navigate('/filter')} className="input">
+              <motion.div onClick={() => navigate("/filter")} className="input">
                 Search for Properties
               </motion.div>
             </div>

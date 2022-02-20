@@ -96,13 +96,18 @@ function App() {
           )}
           <Route path="filter" element={<Filter />} />
           <Route path="/prime" element={<Prime />} />
-          <Route path="/dashboard/manage-properties/edit-property/" element={<EditProperty />} />
-          <Route path="/dashboard/transaction-history" element={<TransactionHistory />} />
+          <Route
+            path="/dashboard/manage-properties/edit-property/"
+            element={<EditProperty />}
+          />
+          <Route
+            path="/dashboard/transaction-history"
+            element={<TransactionHistory />}
+          />
           <Route path="/otphandle" element={<OTPHandle />} />
         </Routes>
         <Spacer />
         <Footer />
-        <Spacer />
         <ScrollToTop />
       </BrowserRouter>
     </WebProvider>
