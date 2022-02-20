@@ -42,7 +42,7 @@ const PostProperty = () => {
   //prime state
   const [prime_property, setPrime_Property] = React.useState(false);
   //furnished state
-  const [furnishing_status, setFurnishing_status] = React.useState(null);
+  const [furnishing_status, setFurnishing_status] = React.useState("");
   const [possession_status, setPossession_Status] = React.useState("");
   //availability state
   const [availability, setAvailability] = React.useState([]);
@@ -592,6 +592,15 @@ const PostProperty = () => {
                       <label htmlFor="false">No</label>
                     </div>
                   </div>
+                </div>
+                <div className="form-group">
+                  <h2 className="header-mobile">Available From</h2>
+                  <input
+                    type="date"
+                    onChange={(e) => setAvailability(e.target.value)}
+                    name="availability"
+                    id="availability"
+                  />
                 </div>
               </div>
             );

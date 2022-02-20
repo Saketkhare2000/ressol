@@ -86,8 +86,12 @@ const ManageProperties = () => {
                                 </div>
                                 {/* </Link> */}
                                 <div className="options-btn-container">
-                                    <AiOutlineDelete style={{ fontSize: "22px" }} className="delete-icon" onClick={() => { handleDelete(yourPropertyDetails[property].id); }} />
-                                    <button className=' btn-secondary' >Disable Property</button>
+                                    <div className="delete-btn" onClick={() => { handleDelete(yourPropertyDetails[property].id); }}>
+                                        <AiOutlineDelete style={{ fontSize: "22px" }} className="delete-icon" />
+                                        <p>Delete</p>
+                                    </div>
+
+                                    {/* <button className=' btn-secondary' >Disable Property</button> */}
                                     <button className='btn-primary' onClick={() => handleEdit(yourPropertyDetails[property].id)}>Edit</button>
                                 </div>
                             </div>

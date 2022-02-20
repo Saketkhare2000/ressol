@@ -48,7 +48,37 @@ const FeaturedProperties = () => {
                                 {item.property_name}
                             </p>
                             <p className='property-prime'>Prime Property</p>
-                            <p className="property-price">₹ {numDifferentiation(item.price)}</p>
+                            <p className="property-price">₹ {numDifferentiation(item.price)}
+                            </p>
+                            <p className='property-type'>
+                                {(() => {
+                                    if (item.property_type === "FL") {
+                                        return (
+                                            <>Flat</>
+
+                                        )
+                                    } else if (item.property_type === "VI") {
+                                        return (
+                                            <>House</>
+
+
+                                        )
+                                    }
+                                    else if (item.property_type === "PT") {
+                                        return (
+                                            <>Plot</>
+
+                                        )
+                                    }
+
+                                    else {
+                                        return (
+                                            <>Commercial</>
+
+                                        )
+                                    }
+                                })()}
+                            </p>
                             <p className="property-location">
                                 {item.location} | {item.city}
                             </p>
