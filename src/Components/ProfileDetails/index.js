@@ -47,9 +47,9 @@ const ProfileDetails = () => {
                     <h2>Profile</h2>
                     {/* <p>Go Back</p> */}
                 </div>
-                <button className="btn btn-secondary">
+                {/* <button className="btn btn-secondary">
                     Edit
-                </button>
+                </button> */}
             </div>
             <motion.form
                 initial={{ opacity: 0, y: -20 }}

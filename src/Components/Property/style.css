@@ -180,5 +180,8 @@
   }
   .each-property .property-details .property-details-child {
     padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }

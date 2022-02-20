@@ -6,6 +6,7 @@ import { WebContext } from "../../Context/WebContext";
 import { useDispatch, useSelector } from "react-redux";
 import { userAuth } from "../../actions/userActions";
 import "./style.css";
+import axios from "axios";
 
 const LogIn = () => {
   let navigate = useNavigate();
@@ -24,14 +25,22 @@ const LogIn = () => {
     // password: password,
   };
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    await dispatch(userAuth(userDetails));
-    if (loggedIn) {
-      navigate("/");
-    } else {
-      setError("Invalid username or password");
-    }
+    axios({
+      method: "post",
+      url: "http://localhost:8000/api/otp/",
+      data: userDetails,
+    }).then((res) => {
+      console.log(res.data);
+    });
+    navigate("/otphandle")
+    // await dispatch(userAuth(userDetails));
+    // if (loggedIn) {
+    //   navigate("/");
+    // } else {
+    //   setError("Invalid username or password");
+    // }
   };
 
   return !loggedIn ? (
@@ -50,6 +59,7 @@ const LogIn = () => {
               onChange={(e) => setPhoneNumber(e.target.value)}
               id="phone"
               type="text"
+              required
               placeholder="Mobile Number"
             />
           </div>
@@ -62,6 +72,7 @@ const LogIn = () => {
             />
           </div> */}
           <motion.button
+            type="submit"
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.03 }}
             onClick={handleLogin}
