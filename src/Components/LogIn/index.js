@@ -75,14 +75,9 @@ const LogIn = () => {
         {/* <p className="reset">Reset password</p> */}
       </motion.div>
     </div>
-  )
-    :
-    <>
-
-      {navigate("/dashboard")}
-    </>
-
-
+  ) : (
+    <>{navigate("/dashboard")}</>
+  );
 };
 
 export default LogIn;

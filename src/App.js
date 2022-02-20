@@ -58,12 +58,18 @@ function App() {
             <Route path="/post" element={<LogIn />} />
           )}
           {loggedIn ? (
-            <Route path="/dashboard/profile-details" element={<ProfileDetails />} />
+            <Route
+              path="/dashboard/profile-details"
+              element={<ProfileDetails />}
+            />
           ) : (
             <Route path="/dashboard/profile-details" element={<LogIn />} />
           )}
           {loggedIn ? (
-            <Route path="/dashboard/manage-properties" element={<ManageProperties />} />
+            <Route
+              path="/dashboard/manage-properties"
+              element={<ManageProperties />}
+            />
           ) : (
             <Route path="/dashboard/manage-properties" element={<LogIn />} />
           )}
@@ -73,7 +79,10 @@ function App() {
             <Route path="/dashboard/wishlist" element={<LogIn />} />
           )}
           {loggedIn ? (
-            <Route path="/dashboard/view-responses" element={<ViewResponse />} />
+            <Route
+              path="/dashboard/view-responses"
+              element={<ViewResponse />}
+            />
           ) : (
             <Route path="/dashboard/view-responses" element={<LogIn />} />
           )}

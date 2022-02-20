@@ -5,6 +5,7 @@
   border-radius: 4px;
   margin-bottom: 8px;
 }
+
 .each-property h2 {
   font-size: 20px;
   margin-bottom: 8px;
@@ -165,5 +166,19 @@
 @media screen and (max-width: 768px) {
   .about-owner-container .owner-details {
     width: 100%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .each-property .property-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .each-property .property-details .carousel,
+  .each-property .property-details .property-details-child {
+    width: 50%;
+  }
+  .each-property .property-details .property-details-child {
+    padding-left: 20px;
   }
 }
