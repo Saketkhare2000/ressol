@@ -15,6 +15,18 @@ const OTPHandle = () => {
   };
   console.log(otpdetails)
 
+  const verifyOTP = (e) => {
+    e.preventDefault();
+    axios({
+      method: "post",
+      url: "http://localhost:8000/api/otp/callback/",
+      data: otpdetails,
+    }).then((res) => {
+      console.log(res.data);
+      navigate("/")
+    });
+  }
+
 
   return (
     <div className='page'>
@@ -32,9 +44,9 @@ const OTPHandle = () => {
                 onChange={(e) => setOtp(e.target.value)}
               />
             </div>
-            <div className="btn btn-primary">
+            <button className="btn btn-primary" onClick={(e) => verifyOTP(e)}>
               Verify
-            </div>
+            </button>
           </form>
         </div>
       </div>
