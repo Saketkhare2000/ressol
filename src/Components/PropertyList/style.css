@@ -52,6 +52,9 @@
   color: var(--accent--gray);
   margin: 4px 0;
 }
+.property-detail-card .property-detail-card-details .property-type {
+  margin: 2px 0;
+}
 .property-detail-card .property-detail-card-details .property-price {
   font-size: 18px;
   font-weight: 600;

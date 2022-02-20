@@ -17,14 +17,33 @@ const LogIn = () => {
 
   const [error, setError] = useState("");
 
-  const { userName, setUserName, phoneNumber, setPhoneNumber } = useContext(WebContext);
+  const { userName, setUserName, phoneNumber, setPhoneNumber, setAlert } = useContext(WebContext);
   console.log(phoneNumber)
   const userDetails = {
     // username: userName,
     phone: phoneNumber,
     // password: password,
   };
-
+  // Validator Function Phone Number
+  // const validateMobile = (mobile) => {
+  //   if (mobile.length !== 10) {
+  //     setError("Invalid Mobile Number");
+  //     setAlert({
+  //       show: true,
+  //       message: "Enter a valid mobile number",
+  //       type: "danger",
+  //     });
+  //     setTimeout(() => {
+  //       setAlert({
+  //         show: false,
+  //         message: "",
+  //         type: "",
+  //       });
+  //     }, 2000);
+  //   } else {
+  //     setError("");
+  //   }
+  // };
   const handleLogin = (e) => {
     e.preventDefault();
     axios({
@@ -35,12 +54,8 @@ const LogIn = () => {
       console.log(res.data);
     });
     navigate("/otphandle")
-    // await dispatch(userAuth(userDetails));
-    // if (loggedIn) {
-    //   navigate("/");
-    // } else {
-    //   setError("Invalid username or password");
-    // }
+
+
   };
 
   return !loggedIn ? (

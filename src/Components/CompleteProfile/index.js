@@ -21,7 +21,7 @@ const CompleteProfile = () => {
     // const [bio, setBio] = useState("");
     const [image, setImage] = useState("");
     console.log(image);
-    const { userName, setAlert, registerKey, firstname, setFirstname, lastname, setLastname } = useContext(WebContext);
+    const { userName, setAlert, registerKey, firstname, setFirstname, lastname, setLastname, phoneNumber, setPhoneNumber } = useContext(WebContext);
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -32,11 +32,14 @@ const CompleteProfile = () => {
         first_name: firstname,
         last_name: lastname,
         // bio: bio,
-        mobile: mobile,
+        mobile: phoneNumber,
         city: city,
         state: state,
         user_type: user_type,
         image: image.pk,
+    };
+    const userDetails = {
+        phone: phoneNumber,
     };
     console.log(profileDetails);
     const cityOptions = cityData.map(city => {
@@ -72,7 +75,7 @@ const CompleteProfile = () => {
             data: profileDetails,
             headers: {
                 "X-CSRFToken": csrftoken,
-                "Authorization": `Token ${registerKey}`,
+                // "Authorization": `Token ${registerKey}`,
             },
         })
             .then((res) => {
@@ -89,7 +92,15 @@ const CompleteProfile = () => {
                         message: "",
                     });
                 }, 2000);
-                navigate("/dashboard");
+                // navigate("/otphandle");
+                axios({
+                    method: "post",
+                    url: "http://localhost:8000/api/otp/",
+                    data: userDetails,
+                }).then((res) => {
+                    console.log(res.data);
+                });
+                navigate("/otphandle")
             })
             .catch((err) => {
                 console.log(err);
@@ -167,7 +178,7 @@ const CompleteProfile = () => {
                     </div>
                     <div className="form-category">
                         <input
-                            onChange={(e) => setMobile(e.target.value)}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
                             id="phonenumber"
                             type="text"
                             placeholder="Enter Mobile Number"

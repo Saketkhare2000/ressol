@@ -7,6 +7,8 @@ import axios from "axios";
 import validator from "validator";
 import { CgSpinner } from "react-icons/cg";
 import { WebContext } from "../../Context/WebContext";
+import slugify from "slugify";
+
 const SignUp = () => {
   const [spinner, setSpinner] = useState(false);
   //register state
@@ -34,15 +36,9 @@ const SignUp = () => {
   const userDetails = {
     first_name: firstName,
     last_name: lastName,
-    username: username,
+    username: slugify(username, "_"),
     password1: password,
-    password2: password,
-    // email: email,
-    // mobile_number: mobileNumber,
-    // area: "area 51",
-    // city: "city 51",
-    // address: "address 51",
-    // pincode: "51",
+    password2: confirmPassword,
   };
   const navigate = useNavigate();
   //validator functions
@@ -194,7 +190,8 @@ const SignUp = () => {
           // axios.defaults.headers.common['Accept'] = 'application/json';
 
           console.log(res);
-          setUserName(username);
+          setUserName(slugify(username, "_"));
+          console.log(userName)
           setFirstname(firstName);
           setLastname(lastName);
           setRegisterKey(res.data.key);

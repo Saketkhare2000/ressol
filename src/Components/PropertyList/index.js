@@ -69,8 +69,43 @@ const PropertyDeatiledCard = () => {
                     <p className="property-name">
                       {propertyList[property].property_name}
                     </p>
+                    {/* <p className="property-type">
+                      {propertyList[property].property_type}
+                    </p> */}
+                    {(() => {
+                      if (propertyList[property].property_type === "FL") {
+                        return (
+                          <p className="property-type">
+                            Flat
+                          </p>
+                        )
+                      } else if (propertyList[property].property_type === "VI") {
+                        return (
+                          <p className="property-type">
+                            House
+                          </p>
+
+                        )
+                      }
+                      else if (propertyList[property].property_type === "PT") {
+                        return (
+                          <p className="property-type">
+                            Plot
+                          </p>
+
+                        )
+                      }
+
+                      else {
+                        return (
+                          <p className="property-type">
+                            Commercial
+                          </p>
+                        )
+                      }
+                    })()}
                     <p className="property-city">
-                      {propertyList[property].city}
+                      {propertyList[property].location}, {propertyList[property].city}
                     </p>
                   </div>
                 </div>

@@ -39,7 +39,7 @@ const OTPHandle = () => {
           message: "",
           type: "",
         });
-      }, 2000);
+      }, 4000);
       // setLoggedIn(true);
       dispatch({ type: "LOGGED_IN" });
       console.log(loggedIn)
@@ -58,7 +58,7 @@ const OTPHandle = () => {
             message: "",
             type: "",
           });
-        }, 2000);
+        }, 4000);
         navigate("/login")
       })
   }
