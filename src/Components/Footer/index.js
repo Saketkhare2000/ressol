@@ -34,8 +34,8 @@ const Footer = () => {
             <span> &copy; 2022 9Roof. All Rights Reserved.</span>
           </div>
           <div className="details">
-            <p>+91-99999-XXXXX</p>
-            <p>abc.def@ghi.com</p>
+            <Link to="/about">About Us</Link>
+            <Link to="/contact">Contact Us</Link>
           </div>
           <div className="developer">
             Developed by <a href="http://cybercycloid.com/">Cybercycloid</a>
