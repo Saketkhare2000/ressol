@@ -53,6 +53,20 @@ const Property = () => {
         } else {
           setImageData([SamplePropertyImage]);
         }
+      }).then(()=>{
+        axios.get(`http://127.0.0.1:8000/api/profile/${userDetails.mobile}/`)
+        .then((userRes)=>{
+            const wish = userRes.data.wishlist.filter((item) => {
+              return item == id
+            })
+            if (wish.length === 0) {
+            setWishlistStatus(false)
+            } else{
+
+            setWishlistStatus(true)
+            }
+          })
+
       })
       .catch((err) => {
         console.log(err);
