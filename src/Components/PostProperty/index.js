@@ -89,7 +89,7 @@ const PostProperty = () => {
   };
 
   const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const key = useSelector((state) => state.auth.key);
+  // const key = useSelector((state) => state.auth.key);
 
   const submitProperty = (e) => {
     e.preventDefault();
@@ -98,10 +98,10 @@ const PostProperty = () => {
     axios("http://127.0.0.1:8000/api/property/", {
       method: "post",
       data: data,
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Token ${key}`,
-      },
+      // headers: {
+      //   "Content-type": "application/json",
+      //   Authorization: `Token ${key}`,
+      // },
     })
       .then((res) => {
         setSpinner(false);

@@ -12,17 +12,18 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 const ViewResponse = () => {
     const navigate = useNavigate();
     const loggedIn = useSelector((state) => state.auth.loggedIn);
-    const key = useSelector((state) => state.auth.key);
+    // const key = useSelector((state) => state.auth.key);
     const [contactedByDetails, setContactedByDetails] = React.useState()
     const [timestamp, setTimeStamp] = React.useState()
-    const { userName } = useContext(WebContext);
+    // const { userName } = useContext(WebContext);
+    const { phoneNumber } = useContext(WebContext);
     useEffect(() => {
         axios({
             method: "get",
-            url: `http://localhost:8000/api/profile/${userName}/?expand=image,contacted_by.user,contacted_by.property,contacted_to.user,contacted_to.property`,
-            headers: {
-                Authorization: `Bearer ${key}`,
-            },
+            url: `http://localhost:8000/api/profile/${phoneNumber}/?expand=image,contacted_by.user,contacted_by.property,contacted_to.user,contacted_to.property`,
+            // headers: {
+            //     Authorization: `Bearer ${key}`,
+            // },
         })
             .then((res) => {
                 // setResponseDetails(res.data)

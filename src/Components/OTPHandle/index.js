@@ -2,12 +2,17 @@ import React, { useContext, useState } from 'react'
 import { WebContext } from "../../Context/WebContext";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { userAuth } from "../../actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
 
 import "../../Components/OTPHandle/style.css";
 const OTPHandle = () => {
+  const dispatch = useDispatch();
+
   const { phoneNumber, setPhoneNumber, setAlert } = useContext(WebContext);
   const [otp, setOtp] = useState("");
   let navigate = useNavigate();
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
 
   const otpdetails = {
     phone: phoneNumber,
@@ -23,9 +28,41 @@ const OTPHandle = () => {
       data: otpdetails,
     }).then((res) => {
       console.log(res.data);
-      navigate("/")
-    });
+      setAlert({
+        show: true,
+        message: "OTP Verification Successful",
+        type: "success",
+      });
+      setTimeout(() => {
+        setAlert({
+          show: false,
+          message: "",
+          type: "",
+        });
+      }, 2000);
+      // setLoggedIn(true);
+      dispatch({ type: "LOGGED_IN" });
+      console.log(loggedIn)
+      navigate("/dashboard")
+    })
+      .catch((err) => {
+        console.log(err)
+        setAlert({
+          show: true,
+          message: "Incorrect OTP. Retry Logging in",
+          type: "danger",
+        });
+        setTimeout(() => {
+          setAlert({
+            show: false,
+            message: "",
+            type: "",
+          });
+        }, 2000);
+        navigate("/login")
+      })
   }
+
 
 
   return (

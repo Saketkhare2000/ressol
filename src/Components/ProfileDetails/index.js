@@ -69,8 +69,12 @@ const ProfileDetails = () => {
                 </div>
                 <div className="profile-user-details">
                     <motion.div layout className="form-group">
-                        <label htmlFor="select">Name</label>
-                        <input type="text" placeholder="Name" value={userDetails.username} />
+                        <label htmlFor="select">First Name</label>
+                        <input type="text" placeholder="Name" value={userDetails.first_name} />
+                    </motion.div>
+                    <motion.div layout className="form-group">
+                        <label htmlFor="select">Last Name</label>
+                        <input type="text" placeholder="Name" value={userDetails.last_name} />
                     </motion.div>
                     {/* <motion.div layout className="form-group">
                         <label htmlFor="select">Email</label>
@@ -94,7 +98,7 @@ const ProfileDetails = () => {
                     </motion.div>
                     <motion.div layout className="form-group">
                         <label htmlFor="select">Bio</label>
-                        <input type="text" placeholder="Edit Bio" value={userDetails.bio} />
+                        <input type="text" placeholder="Bio" value={userDetails.bio} />
                     </motion.div>
                 </div>
                 {/* <motion.div layout className="form-group">

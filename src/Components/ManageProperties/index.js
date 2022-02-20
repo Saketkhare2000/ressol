@@ -1,11 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import { WebContext } from "../../Context/WebContext";
 import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserData } from "../../actions/userActions";
 
-import { useSelector } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
 import "./style.css"
 import Loader from "../Loader";
@@ -16,8 +17,13 @@ import axios from 'axios';
 
 const ManageProperties = () => {
     const navigate = useNavigate();
-    const { editPropertyId, setEditPropertyId } = useContext(WebContext);
+    const dispatch = useDispatch();
 
+    const { editPropertyId, setEditPropertyId, phoneNumber } = useContext(WebContext);
+    useEffect(() => {
+        // dispatch(getUserData(userName, key));
+        dispatch(getUserData(phoneNumber));
+    }, []);
     const userDetails = useSelector((state) => state.userData.userData);
     const yourPropertyDetails = userDetails.properties
     console.log(yourPropertyDetails);

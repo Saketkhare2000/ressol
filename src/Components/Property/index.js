@@ -405,7 +405,7 @@ const Property = () => {
               )}
             </div>
             <div className="owner-contact">
-              <h3>{propertyDetails.posted_by.username}</h3>
+              <h3>{propertyDetails.posted_by.first_name} {propertyDetails.posted_by.last_name}</h3>
               <p>
                 Location: {propertyDetails.posted_by.city},{" "}
                 {propertyDetails.posted_by.state}

@@ -70,8 +70,8 @@ input[type="password"] {
   padding: 0px 10px;
   font-family: Open Sans;
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 400 !important;
+  font-size: 13px !important;
   line-height: 19px;
   color: var(--text-dark);
 }
@@ -118,14 +118,15 @@ input[type="password"] {
   text-align: center;
   font-family: var(--font-family);
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
+  /* font-weight: 600; */
+  font-size: 15px;
   line-height: 19px;
   color: var(--text-dark);
 }
 .signup-page .signup-card .label a {
   color: var(--brand--green);
   text-decoration: underline;
+  font-weight: 600;
 }
 @keyframes load3 {
   0% {

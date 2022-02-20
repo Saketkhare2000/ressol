@@ -1,39 +1,39 @@
 import axios from "axios";
 //action creators
 
-export const userAuth = (userDetails) => async (dispatch) => {
-  //Fetch axios request
-  const auth = await axios({
-    method: "post",
-    url: "http://127.0.0.1:8000/auth/login/",
-    data: userDetails,
-  });
-  console.log(auth);
-  //set access token
-  dispatch({
-    type: "LOGGED_IN",
-    payload: {
-      // access: auth.data.access,
-      // refresh: auth.data.refresh,
-      key: auth.data.key,
-    },
-  });
-};
+// export const userAuth = () => async (dispatch) => {
+//   //Fetch axios request
+//   // const auth = await axios({
+//   //   method: "post",
+//   //   url: "http://127.0.0.1:8000/auth/login/",
+//   //   data: userDetails,
+//   // });
+//   // console.log(auth);
+//   //set access token
+//   dispatch({
+//     type: "LOGGED_IN",
+//     // payload: {
+//     //   // access: auth.data.access,
+//     //   // refresh: auth.data.refresh,
+//     //   // key: auth.data.key,
+//     // },
+//   });
+// };
 
-export const userLogout = () => (dispatch) => {
-  dispatch({
-    type: "LOGGED_OUT",
-  });
-};
+// export const userLogout = () => (dispatch) => {
+//   dispatch({
+//     type: "LOGGED_OUT",
+//   });
+// };
 
-export const getUserData = (userName, key) => async (dispatch) => {
+export const getUserData = (phoneNumber) => async (dispatch) => {
   //Fetch axios request
   const userData = await axios({
     method: "get",
-    url: `http://localhost:8000/api/profile/${userName}/?expand=image,properties.image,wishlist.image,prime_status`,
-    headers: {
-      Authorization: `Bearer ${key}`,
-    },
+    url: `http://localhost:8000/api/profile/${phoneNumber}/?expand=image,properties.image,wishlist.image,prime_status`,
+    // headers: {
+    //   Authorization: `Bearer ${key}`,
+    // },
   });
   //set user data
   dispatch({

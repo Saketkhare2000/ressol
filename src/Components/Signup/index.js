@@ -259,7 +259,7 @@ const SignUp = () => {
             exit="hidden"
             className="signup-card"
           >
-            <h2>Sign Up</h2>
+            <h2>Create Account</h2>
             <form className="signup-form" action="">
               <div className="form-category">
                 <input

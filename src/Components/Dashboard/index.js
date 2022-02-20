@@ -15,15 +15,18 @@ import Select from 'react-select'
 const Dashoard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { userName } = useContext(WebContext);
+  // const { userName } = useContext(WebContext);
+  const { phoneNumber } = useContext(WebContext);
+
   useEffect(() => {
-    dispatch(getUserData(userName, key));
+    // dispatch(getUserData(userName, key));
+    dispatch(getUserData(phoneNumber));
   }, []);
   const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const key = useSelector((state) => state.auth.key);
+  // const key = useSelector((state) => state.auth.key);
   const userDetails = useSelector((state) => state.userData.userData);
   console.log(userDetails)
-
+  console.log(phoneNumber)
 
   const options = [
     { value: '#059862', label: 'Default Green' },
@@ -61,7 +64,7 @@ const Dashoard = () => {
             )}
           </div>
           <div className="user-details">
-            <h3 className="mobile-title">{userDetails.username}</h3>
+            <h3 className="mobile-title">{userDetails.first_name} {userDetails.last_name}</h3>
             {userDetails.prime_status && userDetails.prime_status.is_prime ? <p className="user-prime-status">{userDetails.prime_status.subscription_type} Member</p> : <p className="user-prime-status">Buy Prime Membership</p>}
             <p className="contacts-remaining">
               No. of contacts remaining:  {userDetails.prime_status && userDetails.prime_status.is_prime ? <span>{userDetails.prime_status.counter_limit - userDetails.prime_status.contact_counter}</span> : <span>{5}</span>}

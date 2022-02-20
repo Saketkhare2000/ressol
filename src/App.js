@@ -7,7 +7,8 @@ import LogIn from "./Components/LogIn";
 import Dashboard from "./Components/Dashboard";
 import Nav from "./Components/Navbar";
 import WebProvider from "./Context/WebContext";
-import About from "./Pages/About";
+import AboutUs from "./Components/AboutUs";
+import ContactUs from "./Components/ContactUs";
 import Home from "./Pages/Home";
 import Post from "./Pages/Post";
 import Signup from "./Pages/Signup";
@@ -25,8 +26,13 @@ import EditProperty from "./Components/EditProperty";
 import ViewResponse from "./Components/ViewResponse";
 import OTPHandle from "./Components/OTPHandle";
 import TransactionHistory from "./Components/TransactionHistory";
+// import { WebContext } from "../src/Context/WebContext";
+// import { useContext } from "react";
+
 function App() {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
+  // const { loggedIn } = useContext(WebContext);
+
   return (
     <WebProvider>
       <BrowserRouter>
@@ -34,7 +40,8 @@ function App() {
         <Spacer />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/about" element={<About />} /> */}
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactUs />} />
           <Route path="/completeprofile" element={<CompleteProfile />} />
           <Route path="/property/:slug" element={<Property />} />
           <Route path="/propertylist/:slug" element={<PropertyList />} />

@@ -21,14 +21,14 @@ const Wishlist = () => {
     // const userDetails = useSelector((state) => state.userData.userData);
     // const wishlistDetails = userDetails.wishlist
     /////////////
-    const { userName } = useContext(WebContext);
-    console.log(userName);
+    // const { userName } = useContext(WebContext);
+    const { phoneNumber } = useContext(WebContext);
 
     useEffect(() => {
-        dispatch(getUserData(userName, key));
+        dispatch(getUserData(phoneNumber));
     }, []);
     const loggedIn = useSelector((state) => state.auth.loggedIn);
-    const key = useSelector((state) => state.auth.key);
+    // const key = useSelector((state) => state.auth.key);
     const userDetails = useSelector((state) => state.userData.userData);
     const [wishlistDetails, setWishlistDetails] = useState(userDetails.wishlist);
     console.log(wishlistDetails)
@@ -52,7 +52,7 @@ const Wishlist = () => {
             },
         })
             .then((res) => {
-                dispatch(getUserData(userDetails.username, key))
+                dispatch(getUserData(phoneNumber))
                     .then((res) => {
                         setWishlistDetails(res.wishlist)
                     })

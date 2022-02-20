@@ -44,7 +44,6 @@
   height: 72px;
   object-fit: cover;
   border-radius: 50%;
-  margin-right: 20px;
 }
 .dashboard-header .user-details .mobile-title {
   margin-bottom: 0 !important;
