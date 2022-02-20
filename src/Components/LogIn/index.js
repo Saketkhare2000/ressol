@@ -53,6 +53,18 @@ const LogIn = () => {
     }).then((res) => {
       console.log(res.data);
     });
+    setAlert({
+      show: true,
+      message: "OTP sent to your mobile number",
+      type: "success",
+    });
+    setTimeout(() => {
+      setAlert({
+        show: false,
+        message: "",
+        type: "",
+      });
+    }, 2000);
     navigate("/otphandle")
 
 
@@ -75,7 +87,7 @@ const LogIn = () => {
               id="phone"
               type="text"
               required
-              placeholder="Mobile Number"
+              placeholder="Enter 10-digit Mobile Number"
             />
           </div>
           {/* <div className="form-category">
@@ -96,7 +108,7 @@ const LogIn = () => {
           </motion.button>
         </form>
         <p className="label">
-          New to Reessol? <Link to="/signup">Sign Up Here</Link>
+          New to 9Roof? <Link to="/signup">Sign Up Here</Link>
         </p>
         {/* <p className="reset">Reset password</p> */}
       </motion.div>

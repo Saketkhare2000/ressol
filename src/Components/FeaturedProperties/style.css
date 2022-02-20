@@ -1,17 +1,23 @@
+.card-row {
+  padding: 16px 4px;
+  margin: 0 16px 8px 0;
+  border-bottom: 1px solid var(--card-border);
+}
 .featured-card-row {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   overflow-x: scroll;
+  margin: 8px 0;
 }
 .featured-card-row .card-details {
   /* width: 240px; */
   height: 290px;
-  margin: 0 16px 0 0;
+  margin: 0 16px 8px 0;
   border: 1px solid var(--card-border);
   border-radius: 4px;
-  padding: 4px;
+  padding: 8px 4px;
 }
 .featured-card-row .card-details .img-container {
   width: 200px;

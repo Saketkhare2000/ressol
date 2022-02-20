@@ -132,8 +132,15 @@ nav {
   .navbar .top-header .top-navLinks li:hover {
     opacity: 0.7;
   }
+  .navbar .top-header .top-navLinks .top-navLink {
+    padding: 4px 0;
+    margin: 0 56px;
+  }
+  /* .navbar .top-header .top-navLinks .top-navLink.post-property-btn {
+    border-bottom: 1px solid var(--card-border);
+  } */
   .navbar .search-bar {
-    width: 70%;
+    width: 40%;
   }
   .navbar-bottom {
     display: none;

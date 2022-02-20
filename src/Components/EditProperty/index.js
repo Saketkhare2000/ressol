@@ -598,7 +598,7 @@ const EditProperty = () => {
                     }))
                 }} name="photos" id="photo" />
                 {image.length === 0 ? null : (
-                  <button onClick={(e) => deleteImage(e, image[0]['pk'])}>remove</button>
+                  <button onClick={(e) => deleteImage(e, image[0]['pk'])}>Remove</button>
                 )}
               </div>
               {/* 2nd Image Upload Container  */}
@@ -619,7 +619,7 @@ const EditProperty = () => {
                     }))
                 }} name="photos" id="photo" />
                 {image.length <= 1 ? null : (
-                  <button onClick={(e) => deleteImage(e, image[1]['pk'])}>remove</button>
+                  <button onClick={(e) => deleteImage(e, image[1]['pk'])}>Remove</button>
                 )}
               </div>
               {/* 3rd Image Upload Container  */}
@@ -641,7 +641,7 @@ const EditProperty = () => {
                     }))
                 }} name="photos" id="photo" />
                 {image.length <= 2 ? null : (
-                  <button onClick={(e) => deleteImage(e, image[2]['pk'])}>remove</button>)
+                  <button onClick={(e) => deleteImage(e, image[2]['pk'])}>Remove</button>)
                 }
               </div>
               {/* 4th Image Upload Container  */}
@@ -663,7 +663,7 @@ const EditProperty = () => {
                     }))
                 }} name="photos" id="photo" />
                 {image.length <= 3 ? null : (
-                  <button onClick={(e) => deleteImage(e, image[3]['pk'])}>remove</button>
+                  <button onClick={(e) => deleteImage(e, image[3]['pk'])}>Remove</button>
                 )}
               </div>
               {/* 5th Image Upload Container  */}
@@ -685,7 +685,7 @@ const EditProperty = () => {
                     }))
                 }} name="photos" id="photo" />
                 {image.length <= 4 ? null : (
-                  <button onClick={(e) => deleteImage(e, image[4]['pk'])}>remove</button>
+                  <button onClick={(e) => deleteImage(e, image[4]['pk'])}>Remove</button>
                 )}
               </div>
               {/* 6th Image Upload Container  */}
@@ -705,7 +705,7 @@ const EditProperty = () => {
                     }))
                 }} name="photos" id="photo" />
                 {image.length <= 5 ? null : (
-                  <button onClick={(e) => deleteImage(e, image[5]['pk'])}>remove</button>
+                  <button onClick={(e) => deleteImage(e, image[5]['pk'])}>Remove</button>
                 )}
               </div>
             </div>

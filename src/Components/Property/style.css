@@ -172,7 +172,7 @@
   .each-property .property-details {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
   }
   .each-property .property-details .carousel,
   .each-property .property-details .property-details-child {

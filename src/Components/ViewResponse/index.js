@@ -75,7 +75,7 @@ const ViewResponse = () => {
                         return (
                             <div className="view-response-card">
                                 <div className="contacted-by-details">
-                                    <p className='contacted-by-title'>{contactedByDetails[contact].user.username}
+                                    <p className='contacted-by-title'>{contactedByDetails[contact].user.first_name} {contactedByDetails[contact].user.last_name}
                                         {(() => {
                                             if (contactedByDetails[contact].user.user_type === "Buyer/Owner") {
                                                 return (
@@ -107,34 +107,34 @@ const ViewResponse = () => {
 
                                 </div>
                                 <div className="property-details">
-                                    <div className="property-price">₹ {contactedByDetails[contact].property.price}</div>
+                                    <div className="property-price">Price : ₹{contactedByDetails[contact].property.price}</div>
                                     <div className="property-type">
                                         {(() => {
                                             if (contactedByDetails[contact].property.property_type === "FL") {
                                                 return (
-                                                    <p>Flat/Apartment</p>
+                                                    <p>Type : Flat/Apartment</p>
                                                 )
                                             } else if (contactedByDetails[contact].property.property_type === "VI") {
                                                 return (
-                                                    <p>House/Villa</p>
+                                                    <p>Type : House/Villa</p>
 
                                                 )
                                             }
                                             else if (contactedByDetails[contact].property.property_type === "PT") {
                                                 return (
-                                                    <p>Plot</p>
+                                                    <p>Type : Plot</p>
 
                                                 )
                                             }
 
                                             else {
                                                 return (
-                                                    <p>Commercial</p>
+                                                    <p>Type : Commercial</p>
                                                 )
                                             }
                                         })()}
                                     </div>
-                                    <div className="property-for">{contactedByDetails[contact].property.for_status}</div>
+                                    <div className="property-for">For : {contactedByDetails[contact].property.for_status}</div>
                                 </div>
                             </div>
                         );

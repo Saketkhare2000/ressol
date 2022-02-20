@@ -29,10 +29,10 @@ const Navbar = () => {
                 <Link to="/">
                   <li className="top-navLink">Home</li>
                 </Link>
-                <Link to="/">
-                  <li className="top-navLink">Post Property</li>
+                <Link to="/post">
+                  <li className="top-navLink post-property-btn">Post Property</li>
                 </Link>
-                <Link to="/">
+                <Link to="/dashboard">
                   <li className="top-navLink">Dashboard</li>
                 </Link>
               </ul>

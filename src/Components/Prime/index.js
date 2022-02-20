@@ -9,6 +9,8 @@ const server = "http://localhost:8000"
 const Prime = () => {
   const navigate = useNavigate();
   const userDetails = useSelector((state) => state.userData.userData);
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+
 
   const handlePaymentSuccess = async (response) => {
     try {
@@ -103,8 +105,8 @@ const Prime = () => {
   };
 
   return (
-    <div className='prime-page page' >
-      <h2>9Roof Prime Membership</h2>
+    <div className='prime-page page'>
+      <h2 h2 > 9Roof Prime Membership</h2 >
       <div className="prime-plans-container">
         {/* Basic Plan  */}
         <div className="prime-plan">

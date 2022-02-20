@@ -114,10 +114,16 @@
   width: 73%;
   padding: 10px 8px;
 }
-
-.post-property button {
-  width: 100%;
+.upload-image-container button {
+  width: 66%;
+  padding: 8px 4px;
+  outline: none;
+  border: none;
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: var(--brand-green);
 }
+
 .css-b62m3t-container {
   width: 100%;
   margin: 12px 0;

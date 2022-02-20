@@ -1,3 +1,54 @@
+.post-page .mobile-title {
+  font-size: 22px;
+  margin-left: 0 !important;
+  padding: 12px 0;
+  width: 100%;
+  border-bottom: 1px solid var(--card-border);
+}
+.post-page .post-property .section-title {
+  font-weight: 400;
+}
+@media screen and (min-width: 768px) {
+  .post-page .post-property .section-title {
+    font-weight: 500 !important;
+    font-size: 18px;
+  }
+}
+.post-form {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.post-form .banner-image {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .post-form .banner-image {
+    display: block;
+    width: 80%;
+    height: 68vh;
+    position: relative;
+  }
+  .post-form .banner-image .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    background: linear-gradient(
+      0.2deg,
+      rgba(99, 99, 99, 0) 99.81%,
+      rgba(95, 95, 95, 0) 99.81%
+    );
+  }
+  .post-form .banner-image img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .form-section {
   display: flex;
   flex-direction: column;
@@ -150,7 +201,6 @@
     width: 45%;
   }
   .post-property button {
-    width: 45% !important;
     margin: 0 auto;
   }
 }

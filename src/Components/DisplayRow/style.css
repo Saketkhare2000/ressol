@@ -4,7 +4,8 @@
 }
 .row .card-row {
   margin-bottom: 8px;
-  padding: 6px 0;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--card-border);
 }
 .row .propertycard-row {
   display: flex;
@@ -22,6 +23,7 @@
 .mobile-title {
   font-size: var(--mobile-title);
   color: var(--text-dark);
+  font-weight: 500;
 }
 
 ::-webkit-scrollbar {
@@ -39,6 +41,16 @@
   align-items: center;
   margin-right: 12px;
   cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .displaycard {
+    min-width: 300px;
+    max-height: 180px;
+  }
+  .displaycard .displaycard-details {
+    height: 180px;
+    width: 100%;
+  }
 }
 .displaycard .displaycard-details {
   height: 130px;

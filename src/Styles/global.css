@@ -24,6 +24,13 @@
     --header--mobile: 20px;
   }
 }
+@media screen and (min-width: 1200px) {
+  :root {
+    --mobile-title: 22px;
+    --header--mobile: 22px;
+  }
+}
+
 body {
   font-family: var(--font-family);
   background-color: var(--bg-white);
@@ -40,7 +47,9 @@ body {
 }
 .page {
   padding: 0px 10px;
+  min-height: 50vh;
 }
+
 @media screen and (min-width: 1200px) {
   .page {
     max-width: 1200px;
