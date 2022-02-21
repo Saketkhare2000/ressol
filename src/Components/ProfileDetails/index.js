@@ -70,11 +70,14 @@ const ProfileDetails = () => {
                 <div className="profile-user-details">
                     <motion.div layout className="form-group">
                         <label htmlFor="select">First Name</label>
-                        <input type="text" placeholder="Name" value={userDetails.first_name} />
+                        <p>{userDetails.first_name}</p>
+                        {/* <input type="text" placeholder="Name" value={userDetails.first_name} /> */}
                     </motion.div>
                     <motion.div layout className="form-group">
                         <label htmlFor="select">Last Name</label>
-                        <input type="text" placeholder="Name" value={userDetails.last_name} />
+                        <p>{userDetails.last_name}</p>
+
+                        {/* <input type="text" placeholder="Name" value={userDetails.last_name} /> */}
                     </motion.div>
                     {/* <motion.div layout className="form-group">
                         <label htmlFor="select">Email</label>
@@ -82,23 +85,31 @@ const ProfileDetails = () => {
                     </motion.div> */}
                     <motion.div layout className="form-group">
                         <label htmlFor="select">Phone</label>
-                        <input
+                        {/* <input
                             type="text"
                             placeholder="Phone"
                             value={userDetails.mobile}
-                        />
+                        /> */}
+                        <p>{userDetails.mobile}</p>
+
                     </motion.div>
                     <motion.div layout className="form-group">
                         <label htmlFor="select">City</label>
-                        <input type="text" placeholder="City" value={userDetails.city} />
+                        {/* <input type="text" placeholder="City" value={userDetails.city} /> */}
+                        <p>{userDetails.city}</p>
+
                     </motion.div>
                     <motion.div layout className="form-group">
                         <label htmlFor="select">State</label>
-                        <input type="text" placeholder="State" value={userDetails.state} />
+                        {/* <input type="text" placeholder="State" value={userDetails.state} /> */}
+                        <p>{userDetails.state}</p>
+
                     </motion.div>
                     <motion.div layout className="form-group">
                         <label htmlFor="select">Bio</label>
-                        <input type="text" placeholder="Bio" value={userDetails.bio} />
+                        {/* <input type="text" placeholder="Bio" value={userDetails.bio} /> */}
+                        <p>{userDetails.bio}</p>
+
                     </motion.div>
                 </div>
                 {/* <motion.div layout className="form-group">

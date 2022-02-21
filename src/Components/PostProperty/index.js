@@ -751,6 +751,15 @@ const PostProperty = () => {
                       required
                     />
                   </div>
+                  <div className="form-group">
+                    <h2 className="header-mobile">Available From</h2>
+                    <input
+                      type="date"
+                      onChange={(e) => setAvailability(e.target.value)}
+                      name="availability"
+                      id="availability"
+                    />
+                  </div>
                 </div>
               );
             } else {

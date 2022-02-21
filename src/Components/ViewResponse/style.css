@@ -35,7 +35,11 @@
   margin-left: 8px;
   font-size: 17px;
 }
+.contact-details {
+  font-size: 15px;
+}
 .contact-details span {
+  font-size: 15px;
   font-weight: 400;
 }
 .contact-details p {

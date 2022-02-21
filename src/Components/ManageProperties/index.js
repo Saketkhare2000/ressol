@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserData } from "../../actions/userActions";
 
 import { AiOutlineDelete } from "react-icons/ai";
+import { MdOutlineModeEditOutline } from "react-icons/md";
 import "./style.css"
 import Loader from "../Loader";
 import { motion, AnimatePresence } from "framer-motion";
@@ -76,9 +77,39 @@ const ManageProperties = () => {
                                     </div>
                                     <div className="property-detail-card-details">
                                         <p className="property-price">₹ {numDifferentiation(yourPropertyDetails[property].price)}</p>
-                                        <p className="property-name">
-                                            {yourPropertyDetails[property].property_name}
-                                        </p>
+
+                                        {(() => {
+                                            if (yourPropertyDetails[property].property_type === "FL") {
+                                                return (
+                                                    <p className="property-name">
+                                                        {yourPropertyDetails[property].property_name} | Flat
+                                                    </p>
+                                                )
+                                            } else if (yourPropertyDetails[property].property_type === "VI") {
+                                                return (
+                                                    <p className="property-name">
+                                                        {yourPropertyDetails[property].property_name} | House/Villa
+                                                    </p>
+
+                                                )
+                                            }
+                                            else if (yourPropertyDetails[property].property_type === "PT") {
+                                                return (
+                                                    <p className="property-name">
+                                                        {yourPropertyDetails[property].property_name} | Plot
+                                                    </p>
+
+                                                )
+                                            }
+
+                                            else {
+                                                return (
+                                                    <p className="property-name">
+                                                        {yourPropertyDetails[property].property_name} | Commercial
+                                                    </p>
+                                                )
+                                            }
+                                        })()}
                                         <p className="property-city">
                                             {yourPropertyDetails[property].city}
                                         </p>
@@ -92,7 +123,7 @@ const ManageProperties = () => {
                                     </div>
 
                                     {/* <button className=' btn-secondary' >Disable Property</button> */}
-                                    <button className='btn-primary' onClick={() => handleEdit(yourPropertyDetails[property].id)}>Edit</button>
+                                    <button className='btn-primary' onClick={() => handleEdit(yourPropertyDetails[property].id)}>Edit  <MdOutlineModeEditOutline style={{ color: "white" }} /></button>
                                 </div>
                             </div>
                         </AnimatePresence>

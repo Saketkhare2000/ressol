@@ -6,7 +6,7 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 10px;
+  padding: 12px 10px;
   background-color: var(--brand--green);
   color: white;
   position: fixed;
@@ -116,6 +116,9 @@ nav {
   justify-content: center;
 }
 @media screen and (min-width: 768px) {
+  .prime-btn {
+    display: none;
+  }
   .navbar .top-header .top-navLinks {
     display: flex;
     align-items: center;
@@ -123,22 +126,32 @@ nav {
     list-style: none;
   }
   .navbar .top-header .top-navLinks li {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
     padding: 0 20px;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 500;
     color: var(--bg-white);
   }
-  .navbar .top-header .top-navLinks li:hover {
-    opacity: 0.7;
+
+  .navbar .top-header .top-navLinks li svg {
+    margin-left: 4px;
   }
   .navbar .top-header .top-navLinks .top-navLink {
-    padding: 4px 0;
-    margin: 0 56px;
+    padding: 4px 8px;
+    margin: 0 0 0 56px;
   }
   /* .navbar .top-header .top-navLinks .top-navLink.post-property-btn {
     border-bottom: 1px solid var(--card-border);
   } */
+  .post-property-btn {
+    padding: 4px 8px;
+    color: var(--brand--green) !important;
+  }
+  .prime-btn {
+    padding: 4px 8px !important;
+  }
   .navbar .search-bar {
     width: 40%;
   }

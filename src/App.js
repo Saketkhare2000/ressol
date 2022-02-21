@@ -60,6 +60,11 @@ function App() {
           ) : (
             <Route path="/dashboard" element={<LogIn />} />
           )}
+          {/* {loggedIn ? (
+            <Route path="/post" element={<Post />} />
+          ) : (
+            <Route path="/dashboard" element={<LogIn />} />
+          )} */}
           <Route path="/post" element={<Post />} />
 
           {loggedIn ? (

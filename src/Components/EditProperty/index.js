@@ -253,7 +253,7 @@ const EditProperty = () => {
   console.log(image)
 
   return (
-    <div className='page'>
+    <div className='edit-property-page page'>
       <h3 className="mobile-title">Edit Property</h3>
       <form action="" className='post-property'>
         <div className="form-section">
@@ -576,7 +576,7 @@ const EditProperty = () => {
         </div>
 
         {/* Photos  */}
-        <div className="form-section">
+        <div className="form-section photos-mobile-section">
           <h2 className="section-title">Photos</h2>
           <div className="form-group">
             {/* <h2 className="header-mobile">Maximum upload 6 photos</h2> */}
@@ -737,7 +737,7 @@ const EditProperty = () => {
               whileHover={{ scale: 1.01 }}
               onClick={submitProperty}
             >
-              Post Property
+              Save Changes
             </button>}
 
       </form>

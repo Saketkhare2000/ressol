@@ -1,17 +1,22 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { WebContext } from "../../Context/WebContext";
 import Button from "../Button";
 import Filter from "../Filter";
 import "./style.css";
-import { pageSlideLeft } from "../../Animation";
-import { AiOutlineHome, AiOutlineUser, AiOutlinePlus } from "react-icons/ai";
+import { pageSlideLeft, subMenuAnimate } from "../../Animation";
+import { AiOutlineHome, AiOutlineUser, AiOutlineDown, AiFillCaretDown } from "react-icons/ai";
 import { useSelector } from "react-redux";
 const Navbar = () => {
   const { filter, setFilter } = useContext(WebContext);
   const navigate = useNavigate();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const [hover, setIsHover] = useState(false);
+  const toggleMouseMenu = () => {
+    setIsHover(!hover);
+    console.log('hover')
+  };
   return (
     <motion.header>
       {filter ? (
@@ -22,32 +27,35 @@ const Navbar = () => {
         <AnimatePresence initial={false} exitBeforeEnter={true}>
           <motion.nav className="navbar">
             <div className="top-header">
-              <div className="logo">
+              <motion.div className="logo">
                 <Link to="/">9Roof</Link>
-              </div>
-              <ul className="top-navLinks">
+              </motion.div>
+              <motion.ul className="top-navLinks">
                 <Link to="/">
                   <li className="top-navLink">Home</li>
                 </Link>
+                <Link
+                  to="/dashboard">
+                  <motion.li
+                    whileHover={toggleMouseMenu}
+                    className="top-navLink">Dashboard <AiFillCaretDown /></motion.li>
+                </Link>
                 <Link to="/post">
-                  <li className="top-navLink post-property-btn">Post Property</li>
+                  <li className="top-navLink post-property-btn btn btn-secondary">Post Property</li>
                 </Link>
-                <Link to="/dashboard">
-                  <li className="top-navLink">Dashboard</li>
-                </Link>
-              </ul>
+              </motion.ul>
               <button
                 onClick={() => navigate("/prime")}
-                className="btn btn-outline"
+                className="btn btn-outline prime-btn"
               >
                 Prime
               </button>
             </div>
-            <div className="search-bar">
+            {/* <div className="search-bar">
               <motion.div onClick={() => navigate("/filter")} className="input">
                 Search for Properties
               </motion.div>
-            </div>
+            </div> */}
           </motion.nav>
 
           <motion.nav className="navbar-bottom">

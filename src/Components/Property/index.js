@@ -451,9 +451,15 @@ const Property = () => {
                 {propertyDetails.posted_by.state}
               </p>
             </div>
-            <button className="btn btn-primary" onClick={handleContact}>
-              Contact Owner
-            </button>
+            {contactStatus ? (
+              <button className="btn btn-primary" onClick={handleContact}>
+                Owner Contacted
+              </button>
+            ) : (
+              <button className="btn btn-primary" onClick={handleContact}>
+                Contact Owner
+              </button>
+            )}
           </div>
         </div>
       </div>

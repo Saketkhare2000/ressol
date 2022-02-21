@@ -69,7 +69,7 @@ const Dashoard = () => {
             <p className="contacts-remaining">
               No. of contacts remaining:  {userDetails.prime_status && userDetails.prime_status.is_prime ? <span>{userDetails.prime_status.counter_limit - userDetails.prime_status.contact_counter}</span> : <span>{5}</span>}
             </p>
-            {userDetails.prime_status && userDetails.prime_status.is_prime ? <p >Valid For : {userDetails.prime_status.subscription_period} Days  </p> : <></>}
+            {userDetails.prime_status && userDetails.prime_status.is_prime ? <p className="validity">Valid For : {userDetails.prime_status.subscription_period} Days  </p> : <></>}
           </div>
         </div>
         <div className="btn-container">

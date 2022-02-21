@@ -106,7 +106,7 @@ const Prime = () => {
 
   return (
     <div className='prime-page page'>
-      <h2 h2 > 9Roof Prime Membership</h2 >
+      <h2> 9Roof Prime Membership</h2 >
       <div className="prime-plans-container">
         {/* Basic Plan  */}
         <div className="prime-plan">

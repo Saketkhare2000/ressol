@@ -6,9 +6,11 @@
   border-bottom: 1px solid var(--card-border);
 }
 .post-page .post-property .section-title {
-  font-weight: 400;
+  font-weight: 500;
+  padding: 4px 0;
+  border-bottom: 5px solid var(--brand-green);
 }
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .post-page .post-property .section-title {
     font-weight: 500 !important;
     font-size: 18px;
