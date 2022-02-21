@@ -7,7 +7,8 @@ import LogIn from "./Components/LogIn";
 import Dashboard from "./Components/Dashboard";
 import Nav from "./Components/Navbar";
 import WebProvider from "./Context/WebContext";
-import About from "./Pages/About";
+import AboutUs from "./Components/AboutUs";
+import ContactUs from "./Components/ContactUs";
 import Home from "./Pages/Home";
 import Post from "./Pages/Post";
 import Signup from "./Pages/Signup";
@@ -20,8 +21,18 @@ import CompleteProfile from "./Components/CompleteProfile";
 import ProfileDetails from "./Components/ProfileDetails";
 import ManageProperties from "./Components/ManageProperties";
 import Wishlist from "./Components/Wishlist";
+import Prime from "./Components/Prime";
+import EditProperty from "./Components/EditProperty";
+import ViewResponse from "./Components/ViewResponse";
+import OTPHandle from "./Components/OTPHandle";
+import TransactionHistory from "./Components/TransactionHistory";
+// import { WebContext } from "../src/Context/WebContext";
+// import { useContext } from "react";
+
 function App() {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
+  // const { loggedIn } = useContext(WebContext);
+
   return (
     <WebProvider>
       <BrowserRouter>
@@ -29,7 +40,8 @@ function App() {
         <Spacer />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/about" element={<About />} /> */}
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactUs />} />
           <Route path="/completeprofile" element={<CompleteProfile />} />
           <Route path="/property/:slug" element={<Property />} />
           <Route path="/propertylist/:slug" element={<PropertyList />} />
@@ -48,18 +60,26 @@ function App() {
           ) : (
             <Route path="/dashboard" element={<LogIn />} />
           )}
-          {loggedIn ? (
+          {/* {loggedIn ? (
             <Route path="/post" element={<Post />} />
           ) : (
-            <Route path="/post" element={<LogIn />} />
-          )}
+            <Route path="/dashboard" element={<LogIn />} />
+          )} */}
+          <Route path="/post" element={<Post />} />
+
           {loggedIn ? (
-            <Route path="/dashboard/profile-details" element={<ProfileDetails />} />
+            <Route
+              path="/dashboard/profile-details"
+              element={<ProfileDetails />}
+            />
           ) : (
             <Route path="/dashboard/profile-details" element={<LogIn />} />
           )}
           {loggedIn ? (
-            <Route path="/dashboard/manage-properties" element={<ManageProperties />} />
+            <Route
+              path="/dashboard/manage-properties"
+              element={<ManageProperties />}
+            />
           ) : (
             <Route path="/dashboard/manage-properties" element={<LogIn />} />
           )}
@@ -68,10 +88,28 @@ function App() {
           ) : (
             <Route path="/dashboard/wishlist" element={<LogIn />} />
           )}
+          {loggedIn ? (
+            <Route
+              path="/dashboard/view-responses"
+              element={<ViewResponse />}
+            />
+          ) : (
+            <Route path="/dashboard/view-responses" element={<LogIn />} />
+          )}
           <Route path="filter" element={<Filter />} />
+          <Route path="/prime" element={<Prime />} />
+          <Route
+            path="/dashboard/manage-properties/edit-property/"
+            element={<EditProperty />}
+          />
+          <Route
+            path="/dashboard/transaction-history"
+            element={<TransactionHistory />}
+          />
+          <Route path="/otphandle" element={<OTPHandle />} />
         </Routes>
-        {/* <Footer /> */}
         <Spacer />
+        <Footer />
         <ScrollToTop />
       </BrowserRouter>
     </WebProvider>

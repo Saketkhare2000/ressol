@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserData } from "../../actions/userActions";
+import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
+
 import { AiOutlineDelete } from "react-icons/ai";
 import "./style.css"
+import axios from "axios";
+import { WebContext } from "../../Context/WebContext";
 import Loader from "../Loader";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -12,9 +17,21 @@ import { Link } from "react-router-dom";
 
 const Wishlist = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    // const userDetails = useSelector((state) => state.userData.userData);
+    // const wishlistDetails = userDetails.wishlist
+    /////////////
+    // const { userName } = useContext(WebContext);
+    const { phoneNumber } = useContext(WebContext);
+
+    useEffect(() => {
+        dispatch(getUserData(phoneNumber));
+    }, []);
+    const loggedIn = useSelector((state) => state.auth.loggedIn);
+    // const key = useSelector((state) => state.auth.key);
     const userDetails = useSelector((state) => state.userData.userData);
-    const wishlistDetails = userDetails.wishlist
-    console.log(userDetails);
+    const [wishlistDetails, setWishlistDetails] = useState(userDetails.wishlist);
+    console.log(wishlistDetails)
     function numDifferentiation(value) {
         var val = Math.abs(value)
         if (val >= 10000000) {
@@ -23,6 +40,27 @@ const Wishlist = () => {
             val = Math.floor((val / 100000).toFixed(2)) + ' Lac';
         }
         return val;
+    }
+    const removeWishlist = (id) => {
+
+        axios({
+            method: "post",
+            url: `http://localhost:8000/api/wish`,
+            data: {
+                profile: userDetails.id,
+                property: id,
+            },
+        })
+            .then((res) => {
+                dispatch(getUserData(phoneNumber))
+                    .then((res) => {
+                        setWishlistDetails(res.wishlist)
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+            )
     }
     return (
         <div className='page'><div className="back" onClick={() => navigate('/dashboard')}>
@@ -35,9 +73,15 @@ const Wishlist = () => {
                         <AnimatePresence>
                             <div className="wishlist-property-card">
                                 <Link to={`/property/${wishlistDetails[property].id}`}>
-                                    <div key={index} className="property-detail-card">
+                                    <div key={index} className="wishlist-detail-card">
                                         <div className="img-container">
-                                            <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-1.2.1" alt="" />
+                                            {/* <img src={wishlistDetails[property].image[0].image.full_size} alt="" /> */}
+                                            {
+                                                wishlistDetails[property].image.length > 0 ?
+                                                    <img src={wishlistDetails[property].image[0].image.full_size} alt="" />
+                                                    :
+                                                    <img src={SamplePropertyImage} alt="" />
+                                            }
                                         </div>
                                         <div className="property-detail-card-details">
                                             <p className="property-price">₹ {numDifferentiation(wishlistDetails[property].price)}</p>
@@ -50,7 +94,9 @@ const Wishlist = () => {
                                         </div>
                                     </div>
                                 </Link>
-                                <AiOutlineDelete style={{ fontSize: "22px" }} onClick={(e) => console.log("Remove from Wishlist")} />
+                                <div className="options-btn-container">
+                                    <button className=' btn-secondary' onClick={(e) => removeWishlist(wishlistDetails[property].id)}>Remove</button>
+                                </div>
                             </div>
                         </AnimatePresence>
                     );

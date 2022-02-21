@@ -55,3 +55,23 @@ export const slideUp = {
     opacity: 0,
   },
 };
+export const subMenuAnimate = {
+  enter: {
+    opacity: 1,
+    rotateX: 0,
+    transition: {
+      duration: 0.1,
+    },
+    display: "block",
+  },
+  exit: {
+    opacity: 0,
+    rotateX: -15,
+    transition: {
+      duration: 0.1,
+    },
+    transitionEnd: {
+      display: "none",
+    },
+  },
+};

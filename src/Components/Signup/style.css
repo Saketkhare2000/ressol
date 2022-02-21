@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   padding: 0px 10px;
+  min-height: 60vh;
 }
 .spinner-container {
   display: flex;
@@ -70,8 +71,8 @@ input[type="password"] {
   padding: 0px 10px;
   font-family: Open Sans;
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 400 !important;
+  font-size: 13px !important;
   line-height: 19px;
   color: var(--text-dark);
 }
@@ -118,14 +119,15 @@ input[type="password"] {
   text-align: center;
   font-family: var(--font-family);
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
+  /* font-weight: 600; */
+  font-size: 15px;
   line-height: 19px;
   color: var(--text-dark);
 }
 .signup-page .signup-card .label a {
   color: var(--brand--green);
   text-decoration: underline;
+  font-weight: 600;
 }
 @keyframes load3 {
   0% {
@@ -135,5 +137,12 @@ input[type="password"] {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
+  }
+}
+@media screen and (min-width: 576px) {
+  .signup-page {
+    max-width: 576px;
+    margin: 0px auto;
+    margin-bottom: 10vh;
   }
 }

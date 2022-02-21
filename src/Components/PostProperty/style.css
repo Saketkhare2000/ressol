@@ -1,5 +1,66 @@
-.form-group {
-  margin: 20px 0px;
+.post-page .mobile-title {
+  font-size: 22px;
+  margin-left: 0 !important;
+  padding: 12px 0;
+  width: 100%;
+  border-bottom: 1px solid var(--card-border);
+}
+.post-page .post-property .section-title {
+  font-weight: 500;
+  padding: 4px 0;
+  border-bottom: 5px solid var(--brand-green);
+}
+@media screen and (max-width: 768px) {
+  .post-page .post-property .section-title {
+    font-weight: 500 !important;
+    font-size: 18px;
+  }
+}
+.post-form {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.post-form .banner-image {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .post-form .banner-image {
+    display: block;
+    width: 80%;
+    height: 68vh;
+    position: relative;
+  }
+  .post-form .banner-image .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    background: linear-gradient(
+      0.2deg,
+      rgba(99, 99, 99, 0) 99.81%,
+      rgba(95, 95, 95, 0) 99.81%
+    );
+  }
+  .post-form .banner-image img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 12px 0;
+}
+.form-section .form-group {
+  width: 100%;
+  margin: 16px 0px 12px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,20 +70,35 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin: 8px 0px;
-  margin-bottom: 10px;
+  margin: 16px 0px;
   font-size: 16px;
   font-family: var(--font-family);
   transition: all 0.3s ease-in-out;
 }
-.form-group input[type="radio"] {
-  width: auto;
+.post-property input[type="radio"] {
+  appearance: none;
+  height: 16px;
+  width: 16px !important;
+  border-radius: 2px !important;
+  cursor: pointer !important;
+  border: 1px solid var(--accent--gray) !important;
+  transition: all 200ms ease-in-out !important;
+  position: relative !important;
+  top: 0px !important;
+  font-size: 16px !important;
+  padding: 0 !important;
+}
+.post-property input[type="radio"]:hover {
+  border: 1px solid var(--text-dark) !important;
+}
+.post-property input[type="radio"]:checked {
+  border: 6px solid var(--brand--green) !important;
 }
 .form-group .select-options {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 16px 0;
+  margin: 4px 0;
   flex-wrap: wrap;
 }
 .form-group .select-options .select-option {
@@ -69,14 +145,64 @@
   font-weight: 500;
   font-size: 16px;
 }
-.form-group h2 {
-  opacity: 0.8;
+.post-property .section-title {
+  font-weight: 600;
+  font-size: 20px;
+}
+.post-property .form-group h2 {
+  opacity: 1;
+  font-weight: 500;
+  font-size: 16px;
 }
 .form-group hr {
   width: 100%;
   border: solid 0.5px var(--card-border);
   opacity: 0.3;
 }
+.upload-image-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+}
+.upload-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 8px;
+  width: 160px;
+}
+.upload-image-container img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+.upload-image-container input {
+  width: 73%;
+  padding: 10px 8px;
+}
+
 .post-property button {
   width: 100%;
+}
+.css-b62m3t-container {
+  width: 100%;
+  margin: 12px 0;
+}
+@media screen and (min-width: 576px) {
+  .css-b62m3t-container {
+    width: 45%;
+    margin: 12px 0;
+  }
+  .post-property .form-group input[type="text"] {
+    width: 45%;
+  }
+  .post-property .form-group input[type="date"] {
+    width: 45%;
+  }
+  .post-property button {
+    margin: 0 auto;
+  }
 }

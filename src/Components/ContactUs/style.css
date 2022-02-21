@@ -1,0 +1,39 @@
+.contact-us-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--card-border);
+}
+.contact-us-page .back {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px 0;
+}
+.contact-us-page .back:hover .back-icon {
+  transform: translateX(-5px);
+}
+.contact-us-page .back-icon {
+  font-size: 22px;
+  transition: all 0.1s ease;
+}
+.contact-us-page .back h2 {
+  margin-left: 8px;
+}
+.contact-us-content p {
+  color: var(--accent--gray);
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+.contact-us-content p span {
+  color: var(--text-dark);
+}
+@media screen and (max-width: 576px) {
+  .contact-us-content p {
+    font-size: 14px;
+  }
+}

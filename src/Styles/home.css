@@ -1,0 +1,25 @@
+.home-page .search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 0;
+}
+.home-page .search-bar svg {
+  margin-right: 12px;
+}
+.home-page .search-bar .input {
+  border: 1px solid var(--card-border);
+  padding: 12px;
+  width: 60%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+  /* .home-page .search-bar {
+    display: none;
+  } */
+  .home-page .search-bar .input {
+    width: 100%;
+  }
+}

@@ -1,0 +1,100 @@
+.footer {
+  margin-top: 40px;
+  width: 100%;
+}
+.footer-top {
+  background-color: var(--brand--green);
+}
+.footer-top .footer-content .download,
+.footer-top .footer-content .social-links {
+  display: flex;
+  align-items: flex-end;
+  color: var(--bg-white);
+  font-weight: 400;
+}
+.footer-top .footer-content .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-top .footer-content .download .storeIcons,
+.footer-top .footer-content .social-links .social-icons {
+  padding-left: 8px;
+  color: var(--bg-white);
+  height: auto;
+  width: auto;
+}
+.footer-bottom {
+  background-color: var(--text-dark);
+  width: 100%;
+}
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px 10px;
+}
+.footer .footer-bottom .logo {
+  font-size: 22px;
+  color: var(--bg-white);
+  font-weight: 500;
+}
+.footer .footer-bottom .logo span {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--accent--gray);
+}
+.footer .footer-bottom .details {
+  display: flex;
+  align-items: center;
+}
+.footer .footer-bottom .details a {
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff80;
+  padding: 0 12px;
+}
+.footer .footer-bottom .details a:hover {
+  color: #ffffff;
+}
+.footer .footer-bottom .developer {
+  font-size: 14px;
+  font-weight: 300;
+  color: #ffffff80;
+}
+.footer .footer-bottom .developer a {
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+}
+@media screen and (max-width: 768px) {
+  .footer {
+    margin-bottom: 82px;
+  }
+  .footer-content {
+    flex-direction: column;
+  }
+  .footer-top .footer-content .download {
+    margin-bottom: 16px;
+  }
+  .footer .footer-bottom .logo {
+    font-size: 18px;
+  }
+  .footer .footer-bottom .logo span {
+    font-size: 10px;
+  }
+  .footer .footer-bottom .details {
+    margin: 16px 0;
+  }
+  .footer .footer-bottom .details a {
+    font-size: 14px;
+  }
+  .footer .footer-bottom .developer {
+    font-size: 10px;
+  }
+  .footer .footer-bottom .developer a {
+    font-size: 14px;
+  }
+}

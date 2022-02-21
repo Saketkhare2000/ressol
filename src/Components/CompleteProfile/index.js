@@ -18,10 +18,10 @@ const CompleteProfile = () => {
     const [state, setState] = useState("");
     const [mobile, setMobile] = useState("");
     const [user_type, setUser_Type] = useState("");
-    const [bio, setBio] = useState("");
+    // const [bio, setBio] = useState("");
     const [image, setImage] = useState("");
     console.log(image);
-    const { userName, setAlert, registerKey } = useContext(WebContext);
+    const { userName, setAlert, registerKey, firstname, setFirstname, lastname, setLastname, phoneNumber, setPhoneNumber } = useContext(WebContext);
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -29,12 +29,17 @@ const CompleteProfile = () => {
     console.log(registerKey)
     const profileDetails = {
         user: "1",
-        bio: bio,
-        mobile: mobile,
+        first_name: firstname,
+        last_name: lastname,
+        // bio: bio,
+        mobile: phoneNumber,
         city: city,
         state: state,
         user_type: user_type,
         image: image.pk,
+    };
+    const userDetails = {
+        phone: phoneNumber,
     };
     console.log(profileDetails);
     const cityOptions = cityData.map(city => {
@@ -66,11 +71,11 @@ const CompleteProfile = () => {
 
         axios({
             method: "patch",
-            url: `http://localhost:8000/api/profile/${userName}/`,
+            url: `http://localhost:8000/api/profile_name/${userName}/`,
             data: profileDetails,
             headers: {
                 "X-CSRFToken": csrftoken,
-                "Authorization": `Token ${registerKey}`,
+                // "Authorization": `Token ${registerKey}`,
             },
         })
             .then((res) => {
@@ -87,7 +92,15 @@ const CompleteProfile = () => {
                         message: "",
                     });
                 }, 2000);
-                navigate("/dashboard");
+                // navigate("/otphandle");
+                axios({
+                    method: "post",
+                    url: "http://localhost:8000/api/otp/",
+                    data: userDetails,
+                }).then((res) => {
+                    console.log(res.data);
+                });
+                navigate("/otphandle")
             })
             .catch((err) => {
                 console.log(err);
@@ -129,7 +142,7 @@ const CompleteProfile = () => {
                 exit="hidden"
                 className="signup-card"
             >
-                <h1>Complete Your Profile</h1>
+                <h2>Complete Your Profile</h2>
                 <form className="signup-form" action="">
                     <div className="user-image">
                         {image === "" ? (
@@ -165,7 +178,7 @@ const CompleteProfile = () => {
                     </div>
                     <div className="form-category">
                         <input
-                            onChange={(e) => setMobile(e.target.value)}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
                             id="phonenumber"
                             type="text"
                             placeholder="Enter Mobile Number"
@@ -180,9 +193,9 @@ const CompleteProfile = () => {
                     <div className="form-category">
                         <Select className='select-input' placeholder="Your State" onChange={handleChangeState} options={stateOptions} openMenuOnClick={false} />
                     </div>
-                    <div className="form-category">
+                    {/* <div className="form-category">
                         <textarea name="bio" id="bio" placeholder='Tell us about yourself (optional)' onChange={(e) => setBio(e.target.value)} ></textarea>
-                    </div>
+                    </div> */}
                     <motion.button
                         whileTap={{ scale: 0.9 }}
                         whileHover={{ scale: 1.01 }}

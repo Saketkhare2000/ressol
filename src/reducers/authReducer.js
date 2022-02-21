@@ -1,7 +1,7 @@
 //create auth reducer
 const initState = {
   loggedIn: false,
-  key: "",
+  // key: "",
 
 };
 const authReducer = (state = initState, action) => {
@@ -10,14 +10,14 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         loggedIn: true,
-        key: action.payload.key,
+        // key: action.payload.key,
 
       };
     case "LOGGED_OUT":
       return {
         ...state,
         loggedIn: false,
-        key: "",
+        // key: "",
       };
     default:
       return state;

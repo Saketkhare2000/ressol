@@ -1,0 +1,77 @@
+.about-us-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--card-border);
+}
+.about-us-page .back {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px 0;
+}
+.about-us-page .back:hover .back-icon {
+  transform: translateX(-5px);
+}
+.about-us-page .back-icon {
+  font-size: 22px;
+  transition: all 0.1s ease;
+}
+.about-us-page .back h2 {
+  margin-left: 8px;
+}
+.about-us-content .logo {
+  color: var(--brand--green);
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.about-us-content p {
+  color: var(--text-dark);
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 4px;
+  line-height: 28px;
+}
+.about-us-content .company-details {
+  width: 100%;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.about-us-content .company-details .company-details-item {
+  width: 49%;
+  padding: 8px 12px;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  margin: 4px 0;
+}
+.about-us-content .company-details .company-details-item h3 {
+  color: var(--text-dark);
+}
+.about-us-content .company-details .company-details-item h3 span {
+  color: var(--brand--green);
+}
+@media screen and (max-width: 576px) {
+  .about-us-content .logo {
+    font-size: 22px;
+  }
+  .about-us-content p {
+    font-size: 14px;
+  }
+  .about-us-content .company-details {
+    flex-direction: column;
+  }
+  .about-us-content .company-details .company-details-item {
+    width: 100%;
+  }
+  .about-us-content .company-details .company-details-item h3 {
+    font-size: 14px;
+  }
+}

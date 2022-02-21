@@ -10,6 +10,7 @@ const WebProvider = (props) => {
     type: "",
   });
   const [userName, setUserName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   //access token state
   const [accessToken, setAccessToken] = useState("");
   //refresh token state
@@ -19,6 +20,10 @@ const WebProvider = (props) => {
   const [prime, setIsPrime] = useState(true);
   const [userData, setUserData] = useState();
   const [registerKey, setRegisterKey] = useState("");
+  const [filterData, setFilterData] = useState();
+  const [editPropertyId, setEditPropertyId] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const value = {
     loggedIn,
     setLoggedIn,
@@ -38,13 +43,23 @@ const WebProvider = (props) => {
     setUserName,
     registerKey,
     setRegisterKey,
+    filterData,
+    setFilterData,
+    editPropertyId,
+    setEditPropertyId,
+    phoneNumber,
+    setPhoneNumber,
+    firstname,
+    setFirstname,
+    lastname,
+    setLastname,
   };
 
   return (
-    <WebContext.Provider value={value}>
+    <WebContext.Provider value={value} >
       <Alert />
       {props.children}
-    </WebContext.Provider>
+    </WebContext.Provider >
   );
 };
 

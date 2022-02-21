@@ -1,64 +1,77 @@
 import axios from "axios";
 //action creators
 
-export const userAuth = (userDetails) => async (dispatch) => {
-  //Fetch axios request
-  const auth = await axios({
-    method: "post",
-    url: "http://127.0.0.1:8000/auth/login/",
-    data: userDetails,
-  });
-  console.log(auth);
-  //set access token
-  dispatch({
-    type: "LOGGED_IN",
-    payload: {
-      // access: auth.data.access,
-      // refresh: auth.data.refresh,
-      key: auth.data.key,
-    },
-  });
-};
+// export const userAuth = () => async (dispatch) => {
+//   //Fetch axios request
+//   // const auth = await axios({
+//   //   method: "post",
+//   //   url: "http://127.0.0.1:8000/auth/login/",
+//   //   data: userDetails,
+//   // });
+//   // console.log(auth);
+//   //set access token
+//   dispatch({
+//     type: "LOGGED_IN",
+//     // payload: {
+//     //   // access: auth.data.access,
+//     //   // refresh: auth.data.refresh,
+//     //   // key: auth.data.key,
+//     // },
+//   });
+// };
 
-export const userLogout = () => (dispatch) => {
-  dispatch({
-    type: "LOGGED_OUT",
-  });
-};
+// export const userLogout = () => (dispatch) => {
+//   dispatch({
+//     type: "LOGGED_OUT",
+//   });
+// };
 
-export const getUserData = (userName, key) => async (dispatch) => {
+export const getUserData = (phoneNumber) => async (dispatch) => {
   //Fetch axios request
   const userData = await axios({
     method: "get",
-    url: `http://localhost:8000/api/profile/${userName}/?expand=image,properties,wishlist`,
-    headers: {
-      Authorization: `Bearer ${key}`,
-    },
+    url: `http://localhost:8000/api/profile/${phoneNumber}/?expand=image,properties.image,wishlist.image,prime_status`,
+    // headers: {
+    //   Authorization: `Bearer ${key}`,
+    // },
   });
-  console.log(userData.data);
   //set user data
   dispatch({
     type: "SET_USER_DATA",
     payload: userData.data,
   });
+  return userData.data;
 };
-export const getPropertyList = (city) => async (dispatch) => {
+
+
+export const getPropertyList = (data) => async (dispatch) => {
   //Fetch axios request
   const propertyList = await axios({
     method: "get",
     url: `http://localhost:8000/api/filter`,
-    params: {
-      city: city,
-    },
+    params: data,
   });
-  console.log(propertyList.data);
-  // console.log(propertyList.data);
   //set user data
   dispatch({
     type: "SET_PROPERTY_DATA",
     payload: propertyList.data,
   });
+
 }
+
+
+export const deleteImage = (id) => async (dispatch) => {
+  const res = await axios.delete(
+    `http://localhost:8000/api/image/${id}/`,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return (res.data);
+};
+
 export const uploadImage = (image) => async (dispatch) => {
   const formData = new FormData();
   formData.append("image", image);
@@ -78,8 +91,18 @@ export const uploadImage = (image) => async (dispatch) => {
   return (res.data);
 };
 
-
-
+// export const getFeaturedProperties = (data) => async (dispatch) => {
+//   const propertyList = await axios({
+//     method: "get",
+//     url: `http://localhost:8000/api/filter`,
+//     params: data,
+//   });
+//   //set user data
+//   dispatch({
+//     type: "SET_PROPERTY_DATA",
+//     payload: propertyList.data,
+//   });
+// }
 
 
 

@@ -1,0 +1,16 @@
+.otp-input input[type="text"]::placeholder {
+  text-align: center;
+}
+.otp-input input[type="text"] {
+  text-align: center;
+}
+.otp-input .btn.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center !important;
+}
+.login-page p {
+  text-align: center;
+  margin: 8px 0;
+}

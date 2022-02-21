@@ -1,39 +1,101 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { WebContext } from "../../Context/WebContext";
 import Button from "../Button";
 import Filter from "../Filter";
 import "./style.css";
-import { pageSlideLeft } from "../../Animation";
-import { AiOutlineHome, AiOutlineUser, AiOutlinePlus } from "react-icons/ai";
+import { pageSlideLeft, subMenuAnimate } from "../../Animation";
+import {
+  AiOutlineHome,
+  AiOutlineUser,
+  AiOutlineDown,
+  AiFillCaretDown,
+} from "react-icons/ai";
 import { useSelector } from "react-redux";
 const Navbar = () => {
   const { filter, setFilter } = useContext(WebContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const [hover, setIsHover] = useState(false);
+  const toggleMouseMenu = () => {
+    setIsHover(!hover);
+    console.log("hover");
+  };
   return (
     <motion.header>
       {filter ? (
-        <AnimatePresence initial={false} exitBeforeEnter={true}>
-          <Filter />
-        </AnimatePresence>
+        <Filter />
       ) : (
-        <AnimatePresence initial={false} exitBeforeEnter={true}>
-          <motion.nav
-            className="navbar"
-          >
+        <>
+          <motion.nav className="navbar">
             <div className="top-header">
-              <div className="logo">
-                <Link to="/">Reessol</Link>
-              </div>
-              <Button title="Prime" variant="outline" />
+              <motion.div className="logo">
+                <Link to="/">9Roof</Link>
+              </motion.div>
+              <motion.ul className="top-navLinks">
+                <Link to="/">
+                  <li className="top-navLink">Home</li>
+                </Link>
+                <motion.div
+                  onMouseEnter={toggleMouseMenu}
+                  onMouseLeave={toggleMouseMenu}
+                  className="div"
+                >
+                  <motion.li className="top-navLink">
+                    Dashboard <AiFillCaretDown />
+                    <motion.div className={hover ? "menu-item" : "hidden"}>
+                      <motion.div
+                        className="sub-menu"
+                        initial="exit"
+                        animate={hover ? "enter" : "exit"}
+                        variants={subMenuAnimate}
+                      >
+                        {!loggedIn ? (
+                          <div className="sub-menu-container">
+                            <Link to="/login">
+                              <div className="sub-menu-item">Login</div>
+                            </Link>
+                            <Link to="/signup">
+                              <div className="sub-menu-item">Sign up</div>
+                            </Link>
+                            <Link to="/prime">
+                              <div className="sub-menu-item">Prime</div>
+                            </Link>
+                          </div>
+                        ) : (
+                          <div className="sub-menu-container">
+                            <Link to="/dashboard">
+                              <div className="sub-menu-item">Dashboard</div>
+                            </Link>
+                            <Link to="/prime">
+                              <div className="sub-menu-item">Prime</div>
+                            </Link>
+                          </div>
+                        )}
+                      </motion.div>
+                    </motion.div>
+                  </motion.li>
+                </motion.div>
+
+                <Link to="/post">
+                  <li className="top-navLink post-property-btn btn btn-secondary">
+                    Post Property
+                  </li>
+                </Link>
+              </motion.ul>
+              <button
+                onClick={() => navigate("/prime")}
+                className="btn btn-outline prime-btn"
+              >
+                Prime
+              </button>
             </div>
-            <div className="search-bar">
-              <motion.div onClick={() => navigate('/filter')} className="input">
+            {/* <div className="search-bar">
+              <motion.div onClick={() => navigate("/filter")} className="input">
                 Search for Properties
               </motion.div>
-            </div>
+            </div> */}
           </motion.nav>
 
           <motion.nav className="navbar-bottom">
@@ -56,12 +118,12 @@ const Navbar = () => {
                   whileHover={{ scale: 1.05 }}
                 >
                   <AiOutlineUser style={{ fontSize: "24px" }} />
-                  Account
+                  Dashboard
                 </motion.li>
               </Link>
             </ul>
           </motion.nav>
-        </AnimatePresence>
+        </>
       )}
     </motion.header>
   );

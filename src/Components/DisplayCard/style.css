@@ -9,6 +9,7 @@
   flex-direction: row;
   align-items: center;
   margin-right: 12px;
+  cursor: pointer;
 }
 .displaycard .displaycard-details {
   height: 130px;
@@ -17,6 +18,19 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+@media screen and (min-width: 768px) {
+  .displaycard {
+    min-width: 330px;
+    max-height: 172px;
+  }
+  .displaycard .displaycard-details {
+    height: 180px;
+    width: 100%;
+  }
+  .displaycard .displaycard-details p {
+    font-size: 20px;
+  }
 }
 .displaycard .displaycard-details img {
   position: absolute;
