@@ -60,19 +60,18 @@ export const subMenuAnimate = {
     opacity: 1,
     rotateX: 0,
     transition: {
-      duration: 0.5
+      duration: 0.1,
     },
-    display: "block"
+    display: "block",
   },
   exit: {
     opacity: 0,
     rotateX: -15,
     transition: {
-      duration: 0.5,
-      delay: 0.3
+      duration: 0.1,
     },
     transitionEnd: {
-      display: "none"
-    }
-  }
+      display: "none",
+    },
+  },
 };

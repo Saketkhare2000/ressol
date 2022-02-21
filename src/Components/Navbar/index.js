@@ -6,7 +6,12 @@ import Button from "../Button";
 import Filter from "../Filter";
 import "./style.css";
 import { pageSlideLeft, subMenuAnimate } from "../../Animation";
-import { AiOutlineHome, AiOutlineUser, AiOutlineDown, AiFillCaretDown } from "react-icons/ai";
+import {
+  AiOutlineHome,
+  AiOutlineUser,
+  AiOutlineDown,
+  AiFillCaretDown,
+} from "react-icons/ai";
 import { useSelector } from "react-redux";
 const Navbar = () => {
   const { filter, setFilter } = useContext(WebContext);
@@ -15,16 +20,14 @@ const Navbar = () => {
   const [hover, setIsHover] = useState(false);
   const toggleMouseMenu = () => {
     setIsHover(!hover);
-    console.log('hover')
+    console.log("hover");
   };
   return (
     <motion.header>
       {filter ? (
-        <AnimatePresence initial={false} exitBeforeEnter={true}>
-          <Filter />
-        </AnimatePresence>
+        <Filter />
       ) : (
-        <AnimatePresence initial={false} exitBeforeEnter={true}>
+        <>
           <motion.nav className="navbar">
             <div className="top-header">
               <motion.div className="logo">
@@ -34,14 +37,51 @@ const Navbar = () => {
                 <Link to="/">
                   <li className="top-navLink">Home</li>
                 </Link>
-                <Link
-                  to="/dashboard">
-                  <motion.li
-                    whileHover={toggleMouseMenu}
-                    className="top-navLink">Dashboard <AiFillCaretDown /></motion.li>
-                </Link>
+                <motion.div
+                  onMouseEnter={toggleMouseMenu}
+                  onMouseLeave={toggleMouseMenu}
+                  className="div"
+                >
+                  <motion.li className="top-navLink">
+                    Dashboard <AiFillCaretDown />
+                    <motion.div className={hover ? "menu-item" : "hidden"}>
+                      <motion.div
+                        className="sub-menu"
+                        initial="exit"
+                        animate={hover ? "enter" : "exit"}
+                        variants={subMenuAnimate}
+                      >
+                        {!loggedIn ? (
+                          <div className="sub-menu-container">
+                            <Link to="/login">
+                              <div className="sub-menu-item">Login</div>
+                            </Link>
+                            <Link to="/signup">
+                              <div className="sub-menu-item">Sign up</div>
+                            </Link>
+                            <Link to="/prime">
+                              <div className="sub-menu-item">Prime</div>
+                            </Link>
+                          </div>
+                        ) : (
+                          <div className="sub-menu-container">
+                            <Link to="/dashboard">
+                              <div className="sub-menu-item">Dashboard</div>
+                            </Link>
+                            <Link to="/prime">
+                              <div className="sub-menu-item">Prime</div>
+                            </Link>
+                          </div>
+                        )}
+                      </motion.div>
+                    </motion.div>
+                  </motion.li>
+                </motion.div>
+
                 <Link to="/post">
-                  <li className="top-navLink post-property-btn btn btn-secondary">Post Property</li>
+                  <li className="top-navLink post-property-btn btn btn-secondary">
+                    Post Property
+                  </li>
                 </Link>
               </motion.ul>
               <button
@@ -83,7 +123,7 @@ const Navbar = () => {
               </Link>
             </ul>
           </motion.nav>
-        </AnimatePresence>
+        </>
       )}
     </motion.header>
   );

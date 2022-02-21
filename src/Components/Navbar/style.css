@@ -116,8 +116,41 @@ nav {
   justify-content: center;
 }
 @media screen and (min-width: 768px) {
-  .prime-btn {
+  .hidden {
     display: none;
+  }
+  .menu-item {
+    /* width: 200px; */
+    perspective: 2000px;
+  }
+
+  .sub-menu {
+    position: absolute;
+    top: 0px;
+    padding: 15px;
+    background-color: var(--brand--green);
+    border-radius: 6px;
+    transform-origin: 50% -30px;
+  }
+  .sub-menu-item {
+    margin: 8px 0px;
+  }
+  .sub-menu-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform-origin: 0 0;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  .sub-menu-container {
+    z-index: 2;
+  }
+
+  .prime-btn {
+    /* display: none; */
   }
   .navbar .top-header .top-navLinks {
     display: flex;
@@ -126,8 +159,7 @@ nav {
     list-style: none;
   }
   .navbar .top-header .top-navLinks li {
-    display: flex;
-    align-items: center;
+    width: fit-content;
     margin-right: 4px;
     padding: 0 20px;
     font-size: 17px;
@@ -139,6 +171,7 @@ nav {
     margin-left: 4px;
   }
   .navbar .top-header .top-navLinks .top-navLink {
+    position: relative;
     padding: 4px 8px;
     margin: 0 0 0 56px;
   }
