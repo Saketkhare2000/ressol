@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import "../Prime/style.css"
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { WebContext } from "../../Context/WebContext";
+import { getUserData } from "../../actions/userActions";
+
+import { useDispatch, useSelector } from "react-redux";
 
 const server = "http://localhost:8000"
 
@@ -10,8 +13,13 @@ const Prime = () => {
   const navigate = useNavigate();
   const userDetails = useSelector((state) => state.userData.userData);
   const loggedIn = useSelector((state) => state.auth.loggedIn);
-
-
+  const dispatch = useDispatch();
+  // const { userName } = useContext(WebContext);
+  const { phoneNumber } = useContext(WebContext);
+  useEffect(() => {
+    // dispatch(getUserData(userName, key));
+    dispatch(getUserData(phoneNumber));
+  }, []);
   const handlePaymentSuccess = async (response) => {
     try {
       let bodyData = new FormData();
