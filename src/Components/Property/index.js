@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import React, { useEffect, useState, useContext } from "react";
 import { WebContext } from "../../Context/WebContext";
 import { useSelector } from "react-redux";
@@ -13,7 +12,7 @@ import "./style.css";
 import Loader from "../Loader";
 const Property = () => {
   const id = useParams().slug;
-  const { setAlert } = useContext(WebContext);
+  const { setAlert, base_url } = useContext(WebContext);
 
   const [propertyDetails, setPropertyDetails] = React.useState({});
   // const [propertyImagesData, setPropertyImagesData] = React.useState([]);
@@ -26,58 +25,54 @@ const Property = () => {
   const [loader, setLoader] = React.useState(true);
   const [availabilityDate, setAvailabilityDate] = React.useState("");
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/property/${id}/?expand=posted_by.image,image`)
-      .then(res => {
-        setLoader(true)
-        setPropertyDetails(res.data)
-        console.log(res.data)
-        return res.data
+    axios
+      .get(`${base_url}api/property/${id}/?expand=posted_by.image,image`)
+      .then((res) => {
+        setLoader(true);
+        setPropertyDetails(res.data);
+        return res.data;
       })
       .then((res) => {
-        setLoader(false)
+        setLoader(false);
         if (res.availability !== null) {
-          let time = new Date(res.availability)
-          setAvailabilityDate(time.toLocaleString('en-US', {
-            weekday: 'short', // long, short, narrow
-            day: 'numeric', // numeric, 2-digit
-            year: 'numeric', // numeric, 2-digit
-          }))
+          let time = new Date(res.availability);
+          setAvailabilityDate(
+            time.toLocaleString("en-US", {
+              weekday: "short", // long, short, narrow
+              day: "numeric", // numeric, 2-digit
+              year: "numeric", // numeric, 2-digit
+            })
+          );
         }
         if (res.image && res.image.length > 0) {
           const propertyImagesData = [];
           res.image.map((image, index) => {
             return propertyImagesData.push(image.image.full_size);
           });
-          console.log(propertyImagesData);
           setImageData(propertyImagesData);
         } else {
           setImageData([SamplePropertyImage]);
         }
-      }).then(() => {
-        axios.get(`http://127.0.0.1:8000/api/profile/${userDetails.mobile}/`)
+      })
+      .then(() => {
+        axios
+          .get(`${base_url}api/profile/${userDetails.mobile}/`)
           .then((userRes) => {
             const wish = userRes.data.wishlist.filter((item) => {
-              return item == id
-            })
+              return item == id;
+            });
             if (wish.length === 0) {
-              setWishlistStatus(false)
+              setWishlistStatus(false);
             } else {
-
-              setWishlistStatus(true)
+              setWishlistStatus(true);
             }
-          })
-
+          });
       })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, [])
-  console.log(imageData)
-  console.log(availabilityDate)
+      .catch((err) => {});
+  }, []);
   // if (loggedIn) {
-  //   console.log(userDetails.wishlist);
   //   userDetails.wishlist.map(property => {
-  //     if (property.id === propertyDetails.id) {
+  //     if (property.id === propertyDetails.id) {W
   //       return setWishlistStatus(true)
   //     }
   //     else {
@@ -88,8 +83,6 @@ const Property = () => {
   // else {
   //   return setWishlistStatus(false)
   // }
-  // console.log(propertyDetails)
-  // console.log(propertyImagesData)
   function numDifferentiation(value) {
     var val = Math.abs(value);
     if (val >= 10000000) {
@@ -102,10 +95,9 @@ const Property = () => {
 
   const handleContact = () => {
     if (loggedIn) {
-      console.log(propertyDetails);
       axios({
         method: "post",
-        url: `http://localhost:8000/api/contact`,
+        url: `${base_url}api/contact`,
         data: {
           buyer: userDetails.id,
           owner: propertyDetails.posted_by.id,
@@ -113,7 +105,6 @@ const Property = () => {
         },
       })
         .then((res) => {
-          console.log("Contact");
           setContactStatus(!contactStatus);
           setAlert({
             show: true,
@@ -151,24 +142,20 @@ const Property = () => {
     if (loggedIn) {
       axios({
         method: "post",
-        url: `http://localhost:8000/api/wish`,
+        url: `${base_url}api/wish`,
         data: {
           profile: userDetails.id,
           property: propertyDetails.id,
         },
       })
         .then((res) => {
-          console.log("Clicked");
           setWishlistStatus(!wishlistStatus);
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => {});
     } else {
       navigate("/login");
     }
   };
-  console.log(propertyDetails.property_type);
 
   return loader ? (
     <Loader />
@@ -257,54 +244,71 @@ const Property = () => {
                 {/* Locality  */}
                 <div className="specification-container">
                   <h4 className="specification-title">Locality</h4>
-                  <h4 className="specification-value">{propertyDetails.location}</h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.location}
+                  </h4>
                 </div>
                 {/* City  */}
                 <div className="specification-container">
                   <h4 className="specification-title">City</h4>
-                  <h4 className="specification-value">{propertyDetails.city}</h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.city}
+                  </h4>
                 </div>
                 {/* Address  */}
                 <div className="specification-container">
                   <h4 className="specification-title">Address</h4>
-                  <h4 className="specification-value">{propertyDetails.address}</h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.address}
+                  </h4>
                 </div>
                 {/* Area  */}
                 <div className="specification-container">
                   <h4 className="specification-title">Area</h4>
-                  <h4 className="specification-value">{propertyDetails.property_size} <span>sq-ft</span></h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.property_size} <span>sq-ft</span>
+                  </h4>
                 </div>
                 {/* Bedrooms  */}
                 <div className="specification-container">
                   <h4 className="specification-title">Bedrooms</h4>
-                  <h4 className="specification-value">{propertyDetails.bedrooms}</h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.bedrooms}
+                  </h4>
                 </div>
                 <div className="specification-container">
                   <h4 className="specification-title">Bathrooms</h4>
-                  <h4 className="specification-value">{propertyDetails.bathrooms}</h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.bathrooms}
+                  </h4>
                 </div>
                 <div className="specification-container">
                   <h4 className="specification-title">Floor</h4>
-                  <h4 className="specification-value">{propertyDetails.floor}</h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.floor}
+                  </h4>
                 </div>
                 <div className="specification-container">
                   <h4 className="specification-title">Furnishing</h4>
-                  <h4 className="specification-value"  >{propertyDetails.furnishing_status}</h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.furnishing_status}
+                  </h4>
                 </div>
                 <div className="specification-container">
                   <h4 className="specification-title">Possession Status</h4>
-                  <h4 className="specification-value"  >{propertyDetails.possession}</h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.possession}
+                  </h4>
                 </div>
                 <div className="specification-container">
                   <h4 className="specification-title">Available From</h4>
-                  {
-                    availabilityDate ? <h4 className="specification-value"  >{availabilityDate}</h4> : <></>
-                  }
-
+                  {availabilityDate ? (
+                    <h4 className="specification-value">{availabilityDate}</h4>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
-
-
             );
           } else if (propertyDetails.property_type === "PT") {
             return (
@@ -394,41 +398,44 @@ const Property = () => {
                   </h4>
                 </div>
               </div>
-            )
+            );
           }
         })()}
         {/* ----------------Description Section Ends ------------------  */}
 
         {/* Amenities Section  */}
 
-        {
-          (() => {
-            if (propertyDetails.property_type === "FL" || propertyDetails.property_type === "VI" || propertyDetails.property_type === "CM") {
-              return (
-                <div className="amenities-container">
-                  <h2 className="mobile-title">Amenities</h2>
-                  <div className="amenities-list">
-                    {
-                      propertyDetails.amenities.length > 0 ?
-                        propertyDetails.amenities.map((amenity, index) => {
-                          return (
-                            <div className="amenities-card" key={index}>
-                              {/* <img src={amenity.icon} alt="amenity" /> */}
-                              {amenity}
-                            </div>
-                          )
-                        })
-                        : <div className="amenities-card">Amenities Data not found</div>
-                    }
-                  </div>
+        {(() => {
+          if (
+            propertyDetails.property_type === "FL" ||
+            propertyDetails.property_type === "VI" ||
+            propertyDetails.property_type === "CM"
+          ) {
+            return (
+              <div className="amenities-container">
+                <h2 className="mobile-title">Amenities</h2>
+                <div className="amenities-list">
+                  {propertyDetails.amenities.length > 0 ? (
+                    propertyDetails.amenities.map((amenity, index) => {
+                      return (
+                        <div className="amenities-card" key={index}>
+                          {/* <img src={amenity.icon} alt="amenity" /> */}
+                          {amenity}
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="amenities-card">
+                      Amenities Data not found
+                    </div>
+                  )}
                 </div>
-              );
-            } else {
-              return <></>;
-            }
-          })()
-        }
-
+              </div>
+            );
+          } else {
+            return <></>;
+          }
+        })()}
 
         {/* About Owner Description  */}
         <div className="about-owner-container">
@@ -445,7 +452,10 @@ const Property = () => {
               )}
             </div>
             <div className="owner-contact">
-              <h3>{propertyDetails.posted_by.first_name} {propertyDetails.posted_by.last_name}</h3>
+              <h3>
+                {propertyDetails.posted_by.first_name}{" "}
+                {propertyDetails.posted_by.last_name}
+              </h3>
               <p>
                 Location: {propertyDetails.posted_by.city},{" "}
                 {propertyDetails.posted_by.state}
@@ -463,7 +473,7 @@ const Property = () => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import axios from "axios";
+import { useContext } from "react";
 //action creators
-
+import { WebContext } from "../Context/WebContext";
 // export const userAuth = () => async (dispatch) => {
 //   //Fetch axios request
 //   // const auth = await axios({
@@ -26,11 +27,11 @@ import axios from "axios";
 //   });
 // };
 
-export const getUserData = (phoneNumber) => async (dispatch) => {
+export const getUserData = (phoneNumber, base_url) => async (dispatch) => {
   //Fetch axios request
   const userData = await axios({
     method: "get",
-    url: `http://localhost:8000/api/profile/${phoneNumber}/?expand=image,properties.image,wishlist.image,prime_status`,
+    url: `${base_url}api/profile/${phoneNumber}/?expand=image,properties.image,wishlist.image,prime_status`,
     // headers: {
     //   Authorization: `Bearer ${key}`,
     // },
@@ -43,12 +44,11 @@ export const getUserData = (phoneNumber) => async (dispatch) => {
   return userData.data;
 };
 
-
-export const getPropertyList = (data) => async (dispatch) => {
+export const getPropertyList = (data, base_url) => async (dispatch) => {
   //Fetch axios request
   const propertyList = await axios({
     method: "get",
-    url: `http://localhost:8000/api/filter`,
+    url: `${base_url}api/filter`,
     params: data,
   });
   //set user data
@@ -56,45 +56,37 @@ export const getPropertyList = (data) => async (dispatch) => {
     type: "SET_PROPERTY_DATA",
     payload: propertyList.data,
   });
-
-}
-
-
-export const deleteImage = (id) => async (dispatch) => {
-  const res = await axios.delete(
-    `http://localhost:8000/api/image/${id}/`,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
-  return (res.data);
 };
 
-export const uploadImage = (image) => async (dispatch) => {
+export const deleteImage = (id, base_url) => async (dispatch) => {
+  const res = await axios.delete(`${base_url}api/image/${id}/`, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const uploadImage = (image, base_url) => async (dispatch) => {
+  const { base_url } = useContext(WebContext);
   const formData = new FormData();
   formData.append("image", image);
   formData.append("name", image.name);
   formData.append("type", image.type);
   formData.append("size", image.size);
 
-  const res = await axios.post(
-    "http://localhost:8000/api/image/",
-    formData,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
-  return (res.data);
+  const res = await axios.post(`${base_url}api/image/`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
 };
 
 // export const getFeaturedProperties = (data) => async (dispatch) => {
 //   const propertyList = await axios({
 //     method: "get",
-//     url: `http://localhost:8000/api/filter`,
+//     url: `${base_url}api/filter`,
 //     params: data,
 //   });
 //   //set user data
@@ -104,17 +96,12 @@ export const uploadImage = (image) => async (dispatch) => {
 //   });
 // }
 
-
-
-
-
-
 // export const updateUserData =
 //   (userDetails, accessToken) => async (dispatch) => {
 //     //Fetch axios request
 //     const userData = await axios({
 //       method: "put",
-//       url: `http://localhost:8000/api/profile/${userDetails.first_name}`,
+//       url: `${base_url}api/profile/${userDetails.first_name}`,
 //       headers: {
 //         Authorization: `Bearer ${accessToken}`,
 //       },

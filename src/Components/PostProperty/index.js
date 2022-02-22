@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./style.css";
 import { CgSpinner } from "react-icons/cg";
-import { AnimatePresence, motion } from "framer-motion";
 import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
@@ -40,7 +39,6 @@ const PostProperty = () => {
   //pinCode state
   const [pincode, setPincode] = React.useState(null);
   //prime state
-  const [prime_property, setPrime_Property] = React.useState(false);
   //furnished state
   const [furnishing_status, setFurnishing_status] = React.useState("");
   const [possession_status, setPossession_Status] = React.useState("");
@@ -50,15 +48,14 @@ const PostProperty = () => {
   const [property_type, setProperty_Type] = React.useState(null);
   const [image, setImage] = useState([]);
   const [imagePostData, setImagePostData] = useState([]);
-  const [cornerPlot, setCornerPlot] = useState(null)
-  const [gatedCommunity, setGatedCommunity] = useState(null)
-  const [amenities, setAmenities] = useState([])
-  const { setAlert } = useContext(WebContext);
+  const [cornerPlot, setCornerPlot] = useState(null);
+  const [gatedCommunity, setGatedCommunity] = useState(null);
+  const [amenities, setAmenities] = useState([]);
+  const { setAlert, base_url } = useContext(WebContext);
   const userDetails = useSelector((state) => state.userData.userData);
 
   const date = new Date(availability);
   const dispatch = useDispatch();
-  const dateString = date.toDateString();
   const navigate = useNavigate();
   const data = {
     amenities: [],
@@ -89,28 +86,33 @@ const PostProperty = () => {
   };
 
   const deleteImage = (e, id) => {
-    e.preventDefault()
-    axios.delete(
-      `http://localhost:8000/api/image/${id}/`,
-      {
+    e.preventDefault();
+    axios
+      .delete(`${base_url}api/image/${id}/`, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      }
-    ).then(() => {
-      setImage((prevState) => prevState.filter((value) => { return value.pk != id }))
-      setImagePostData((prevState) => prevState.filter((value) => { return value != id }))
-    })
+      })
+      .then(() => {
+        setImage((prevState) =>
+          prevState.filter((value) => {
+            return value.pk != id;
+          })
+        );
+        setImagePostData((prevState) =>
+          prevState.filter((value) => {
+            return value != id;
+          })
+        );
+      });
   };
 
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
   // const key = useSelector((state) => state.auth.key);
 
   const submitProperty = (e) => {
     e.preventDefault();
-    console.log(data);
     setSpinner(true);
-    axios("http://127.0.0.1:8000/api/property/", {
+    axios(`${base_url}api/property/`, {
       method: "post",
       data: data,
       // headers: {
@@ -135,7 +137,6 @@ const PostProperty = () => {
         navigate("/dashboard");
       })
       .catch((err) => {
-        console.log(err);
         setSpinner(false);
         setAlert({
           type: "danger",
@@ -366,7 +367,9 @@ const PostProperty = () => {
                           id="semifurnished"
                           value="semifurnished"
                         />
-                        <label htmlFor="furnishing_status">Semi-Furnished</label>
+                        <label htmlFor="furnishing_status">
+                          Semi-Furnished
+                        </label>
                       </div>
                       <div className="select-option">
                         <input
@@ -547,10 +550,16 @@ const PostProperty = () => {
                   {/* Amenities */}
                   <div className="form-group">
                     <h2 className="header-mobile">Amenities Available</h2>
-                    <Select onChange={(e) => handleAmenities(e)} isMulti closeMenuOnSelect={false} options={amenitiesOptions} placeholder="Amenities Available" />
+                    <Select
+                      onChange={(e) => handleAmenities(e)}
+                      isMulti
+                      closeMenuOnSelect={false}
+                      options={amenitiesOptions}
+                      placeholder="Amenities Available"
+                    />
                   </div>
                 </div>
-              )
+              );
             } else if (property_type === "PT") {
               return (
                 <div className="form-section">
@@ -571,11 +580,23 @@ const PostProperty = () => {
                     <h2 className="header-mobile">Corner Plot</h2>
                     <div className="select-options">
                       <div className="select-option">
-                        <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="True" name="corner" id="true" />
+                        <input
+                          type="radio"
+                          onChange={(e) => setCornerPlot(e.target.value)}
+                          value="True"
+                          name="corner"
+                          id="true"
+                        />
                         <label htmlFor="true">Yes</label>
                       </div>
                       <div className="select-option">
-                        <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="False" name="corner" id="false" />
+                        <input
+                          type="radio"
+                          onChange={(e) => setCornerPlot(e.target.value)}
+                          value="False"
+                          name="corner"
+                          id="false"
+                        />
                         <label htmlFor="false">No</label>
                       </div>
                     </div>
@@ -585,11 +606,23 @@ const PostProperty = () => {
                     <h2 className="header-mobile">Gated Community</h2>
                     <div className="select-options">
                       <div className="select-option">
-                        <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="True" name="gated" id="true" />
+                        <input
+                          type="radio"
+                          onChange={(e) => setGatedCommunity(e.target.value)}
+                          value="True"
+                          name="gated"
+                          id="true"
+                        />
                         <label htmlFor="true">Yes</label>
                       </div>
                       <div className="select-option">
-                        <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="False" name="gated" id="false" />
+                        <input
+                          type="radio"
+                          onChange={(e) => setGatedCommunity(e.target.value)}
+                          value="False"
+                          name="gated"
+                          id="false"
+                        />
                         <label htmlFor="false">No</label>
                       </div>
                     </div>
@@ -659,7 +692,9 @@ const PostProperty = () => {
                           id="semifurnished"
                           value="semifurnished"
                         />
-                        <label htmlFor="furnishing_status">Semi-Furnished</label>
+                        <label htmlFor="furnishing_status">
+                          Semi-Furnished
+                        </label>
                       </div>
                       <div className="select-option">
                         <input
@@ -797,17 +832,25 @@ const PostProperty = () => {
                   ) : (
                     <img src={image[0].image.full_size} alt="property" />
                   )}
-                  <input type="file" accept="image/*" onChange={(e) => {
-                    (dispatch(uploadImage(e.target.files[0]))
-                      .then((res) => {
-
-                        setImage(image => [...image, res]);
-                        setImagePostData(imagePostData => [...imagePostData, res.pk]);
-
-                      }))
-                  }} name="photos" id="photo" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      dispatch(uploadImage(e.target.files[0])).then((res) => {
+                        setImage((image) => [...image, res]);
+                        setImagePostData((imagePostData) => [
+                          ...imagePostData,
+                          res.pk,
+                        ]);
+                      });
+                    }}
+                    name="photos"
+                    id="photo"
+                  />
                   {image.length === 0 ? null : (
-                    <button onClick={(e) => deleteImage(e, image[0]['pk'])}>Remove</button>
+                    <button onClick={(e) => deleteImage(e, image[0]["pk"])}>
+                      Remove
+                    </button>
                   )}
                 </div>
                 {/* 2nd Image Upload Container  */}
@@ -818,17 +861,25 @@ const PostProperty = () => {
                   ) : (
                     <img src={image[1].image.full_size} alt="property" />
                   )}
-                  <input type="file" accept="image/*" onChange={(e) => {
-                    (dispatch(uploadImage(e.target.files[0]))
-                      .then((res) => {
-                        setImage(image => [...image, res]);
-                        setImagePostData(imagePostData => [...imagePostData, res.pk]);
-
-
-                      }))
-                  }} name="photos" id="photo" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      dispatch(uploadImage(e.target.files[0])).then((res) => {
+                        setImage((image) => [...image, res]);
+                        setImagePostData((imagePostData) => [
+                          ...imagePostData,
+                          res.pk,
+                        ]);
+                      });
+                    }}
+                    name="photos"
+                    id="photo"
+                  />
                   {image.length <= 1 ? null : (
-                    <button onClick={(e) => deleteImage(e, image[1]['pk'])}>Remove</button>
+                    <button onClick={(e) => deleteImage(e, image[1]["pk"])}>
+                      Remove
+                    </button>
                   )}
                 </div>
                 {/* 3rd Image Upload Container  */}
@@ -839,19 +890,26 @@ const PostProperty = () => {
                   ) : (
                     <img src={image[2].image.full_size} alt="property" />
                   )}
-                  <input type="file" accept="image/*" onChange={(e) => {
-                    (dispatch(uploadImage(e.target.files[0]))
-                      .then((res) => {
-
-                        setImage(image => [...image, res]);
-                        setImagePostData(imagePostData => [...imagePostData, res.pk]);
-
-
-                      }))
-                  }} name="photos" id="photo" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      dispatch(uploadImage(e.target.files[0])).then((res) => {
+                        setImage((image) => [...image, res]);
+                        setImagePostData((imagePostData) => [
+                          ...imagePostData,
+                          res.pk,
+                        ]);
+                      });
+                    }}
+                    name="photos"
+                    id="photo"
+                  />
                   {image.length <= 2 ? null : (
-                    <button onClick={(e) => deleteImage(e, image[2]['pk'])}>Remove</button>)
-                  }
+                    <button onClick={(e) => deleteImage(e, image[2]["pk"])}>
+                      Remove
+                    </button>
+                  )}
                 </div>
                 {/* 4th Image Upload Container  */}
 
@@ -861,18 +919,25 @@ const PostProperty = () => {
                   ) : (
                     <img src={image[3].image.full_size} alt="property" />
                   )}
-                  <input type="file" accept="image/*" onChange={(e) => {
-                    (dispatch(uploadImage(e.target.files[0]))
-                      .then((res) => {
-
-                        setImage(image => [...image, res]);
-                        setImagePostData(imagePostData => [...imagePostData, res.pk]);
-
-
-                      }))
-                  }} name="photos" id="photo" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      dispatch(uploadImage(e.target.files[0])).then((res) => {
+                        setImage((image) => [...image, res]);
+                        setImagePostData((imagePostData) => [
+                          ...imagePostData,
+                          res.pk,
+                        ]);
+                      });
+                    }}
+                    name="photos"
+                    id="photo"
+                  />
                   {image.length <= 3 ? null : (
-                    <button onClick={(e) => deleteImage(e, image[3]['pk'])}>Remove</button>
+                    <button onClick={(e) => deleteImage(e, image[3]["pk"])}>
+                      Remove
+                    </button>
                   )}
                 </div>
                 {/* 5th Image Upload Container  */}
@@ -883,18 +948,25 @@ const PostProperty = () => {
                   ) : (
                     <img src={image[4].image.full_size} alt="property" />
                   )}
-                  <input type="file" accept="image/*" onChange={(e) => {
-                    (dispatch(uploadImage(e.target.files[0]))
-                      .then((res) => {
-
-                        setImage(image => [...image, res]);
-                        setImagePostData(imagePostData => [...imagePostData, res.pk]);
-
-
-                      }))
-                  }} name="photos" id="photo" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      dispatch(uploadImage(e.target.files[0])).then((res) => {
+                        setImage((image) => [...image, res]);
+                        setImagePostData((imagePostData) => [
+                          ...imagePostData,
+                          res.pk,
+                        ]);
+                      });
+                    }}
+                    name="photos"
+                    id="photo"
+                  />
                   {image.length <= 4 ? null : (
-                    <button onClick={(e) => deleteImage(e, image[4]['pk'])}>Remove</button>
+                    <button onClick={(e) => deleteImage(e, image[4]["pk"])}>
+                      Remove
+                    </button>
                   )}
                 </div>
 
@@ -906,19 +978,27 @@ const PostProperty = () => {
                   ) : (
                     <img src={image[5].image.full_size} alt="property" />
                   )}
-                  <input type="file" accept="image/*" onChange={(e) => {
-                    (dispatch(uploadImage(e.target.files[0]))
-                      .then((res) => {
-                        setImage(image => [...image, res]);
-                        setImagePostData(imagePostData => [...imagePostData, res.pk]);
-
-                      }))
-                  }} name="photos" id="photo" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      dispatch(uploadImage(e.target.files[0])).then((res) => {
+                        setImage((image) => [...image, res]);
+                        setImagePostData((imagePostData) => [
+                          ...imagePostData,
+                          res.pk,
+                        ]);
+                      });
+                    }}
+                    name="photos"
+                    id="photo"
+                  />
                   {image.length <= 5 ? null : (
-                    <button onClick={(e) => deleteImage(e, image[5]['pk'])}>Remove</button>
+                    <button onClick={(e) => deleteImage(e, image[5]["pk"])}>
+                      Remove
+                    </button>
                   )}
                 </div>
-
               </div>
               {/* <div class="parent upload-image-section">
             <div class="div1 upload-image-container"> <img src={SamplePropertyImage} alt="sample-property" />
@@ -951,11 +1031,15 @@ const PostProperty = () => {
             </button>
           )}
         </form>
-        <div className="banner-image"> <img src="https://i.insider.com/5cbf3c8fb14bf426443fd865?width=700" alt="" />
+        <div className="banner-image">
+          {" "}
+          <img
+            src="https://i.insider.com/5cbf3c8fb14bf426443fd865?width=700"
+            alt=""
+          />
           {/* <div className="overlay"></div> */}
         </div>
       </div>
-
     </div>
     //         ) :
     //         <h2> Please login to post property</h2>

@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
-import { FaGooglePlay, FaApple, FaFacebook, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import {
+  FaGooglePlay,
+  FaApple,
+  FaFacebook,
+  FaTwitter,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -15,14 +21,23 @@ const Footer = () => {
           </div>
           <div className="social-links">
             Connect with us:
-            <a href="">
-              <FaFacebook className="social-icons" style={{ fontSize: "18px" }} />
+            <a href="#">
+              <FaFacebook
+                className="social-icons"
+                style={{ fontSize: "18px" }}
+              />
             </a>
             <a href="#">
-              <FaTwitter className="social-icons" style={{ fontSize: "18px" }} />
+              <FaTwitter
+                className="social-icons"
+                style={{ fontSize: "18px" }}
+              />
             </a>
             <a href="#">
-              <FaWhatsapp className="social-icons" style={{ fontSize: "18px" }} />
+              <FaWhatsapp
+                className="social-icons"
+                style={{ fontSize: "18px" }}
+              />
             </a>
           </div>
         </div>
@@ -30,7 +45,7 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="footer-content">
           <div className="logo">
-            <Link to='/'>9Roof</Link>
+            <Link to="/">9Roof</Link>
             <span> &copy; 2022 9Roof. All Rights Reserved.</span>
           </div>
           <div className="details">

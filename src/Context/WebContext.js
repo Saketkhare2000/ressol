@@ -4,6 +4,7 @@ import Alert from "../Components/Alert";
 export const WebContext = createContext();
 
 const WebProvider = (props) => {
+  const base_url = "http://localhost:8000/";
   const [alert, setAlert] = useState({
     show: false,
     message: "",
@@ -53,13 +54,14 @@ const WebProvider = (props) => {
     setFirstname,
     lastname,
     setLastname,
+    base_url,
   };
 
   return (
-    <WebContext.Provider value={value} >
+    <WebContext.Provider value={value}>
       <Alert />
       {props.children}
-    </WebContext.Provider >
+    </WebContext.Provider>
   );
 };
 

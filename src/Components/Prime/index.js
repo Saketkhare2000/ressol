@@ -1,13 +1,13 @@
-import React, { useEffect, useContext } from 'react'
-import "../Prime/style.css"
+import React, { useEffect, useContext } from "react";
+import "../Prime/style.css";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import { WebContext } from "../../Context/WebContext";
 import { getUserData } from "../../actions/userActions";
 
 import { useDispatch, useSelector } from "react-redux";
 
-const server = "http://localhost:8000"
+// const server = "http://localhost:8000";
 
 const Prime = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Prime = () => {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const dispatch = useDispatch();
   // const { userName } = useContext(WebContext);
-  const { phoneNumber } = useContext(WebContext);
+  const { phoneNumber, base_url } = useContext(WebContext);
   useEffect(() => {
     // dispatch(getUserData(userName, key));
     dispatch(getUserData(phoneNumber));
@@ -28,7 +28,7 @@ const Prime = () => {
       bodyData.append("response", JSON.stringify(response));
 
       await axios({
-        url: `${server}/api/pay/callback/`,
+        url: `${base_url}/api/pay/callback/`,
         method: "POST",
         data: bodyData,
         headers: {
@@ -37,15 +37,10 @@ const Prime = () => {
         },
       })
         .then((res) => {
-          console.log("Everything is OK!");
           navigate("/dashboard");
         })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error) {
-      console.log(console.error());
-    }
+        .catch((err) => {});
+    } catch (error) {}
   };
 
   // this will load a script tag which will open up Razorpay payment card to make transactions
@@ -65,7 +60,7 @@ const Prime = () => {
     bodyData.append("subscription_type", subscription_type);
 
     const data = await axios({
-      url: `${server}/api/pay/`,
+      url: `${base_url}/api/pay/`,
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -76,14 +71,12 @@ const Prime = () => {
       return res;
     });
 
-    // console.log(data)
-
     // in data we will receive an object from the backend with the information about the payment
     //that has been made by the user
 
     var options = {
-      key_id: 'rzp_test_fZKYjMuBhXDFuk',
-      key_secret: 'NZKM6V0kgO4rpTvcGeFCXkSV',
+      key_id: "rzp_test_fZKYjMuBhXDFuk",
+      key_secret: "NZKM6V0kgO4rpTvcGeFCXkSV",
       amount: data.data.payment.amount,
       currency: "INR",
       name: "9Roof",
@@ -113,8 +106,8 @@ const Prime = () => {
   };
 
   return (
-    <div className='prime-page page'>
-      <h2> 9Roof Prime Membership</h2 >
+    <div className="prime-page page">
+      <h2> 9Roof Prime Membership</h2>
       <div className="prime-plans-container">
         {/* Basic Plan  */}
         <div className="prime-plan">
@@ -136,8 +129,12 @@ const Prime = () => {
             </ul>
           </div>
           <div className="prime-plan-button" onClick={showRazorpay}>
-
-            <button className="btn btn-secondary" onClick={() => showRazorpay("Basic")}>Continue</button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => showRazorpay("Basic")}
+            >
+              Continue
+            </button>
           </div>
         </div>
         {/* Pro Plan  */}
@@ -160,7 +157,12 @@ const Prime = () => {
             </ul>
           </div>
           <div className="prime-plan-button">
-            <button className="btn btn-primary" onClick={() => showRazorpay("Pro")}>Continue</button>
+            <button
+              className="btn btn-primary"
+              onClick={() => showRazorpay("Pro")}
+            >
+              Continue
+            </button>
           </div>
         </div>
         {/* Premium Plan  */}
@@ -183,12 +185,17 @@ const Prime = () => {
             </ul>
           </div>
           <div className="prime-plan-button">
-            <button className="btn btn-secondary" onClick={() => showRazorpay("Premium")}>Continue</button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => showRazorpay("Premium")}
+            >
+              Continue
+            </button>
           </div>
         </div>
       </div>
-    </div >
-  )
-}
+    </div>
+  );
+};
 
-export default Prime
+export default Prime;

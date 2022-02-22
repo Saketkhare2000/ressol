@@ -11,20 +11,24 @@ const DisplayCard = ({ data }) => {
   const [city, setCity] = React.useState(null);
   const [possessionStatus, setPossessionStatus] = React.useState(null);
   const displayProperties = (title) => {
-
-    console.log(city)
-    const data = { city: title.toLowerCase(), possession: possessionStatus, expand: "image" }
-    console.log(data)
+    console.log(city);
+    const data = {
+      city: title.toLowerCase(),
+      possession: possessionStatus,
+      expand: "image",
+    };
+    console.log(data);
     dispatch(getPropertyList(data)).then(() => {
-      console.log("dispatched")
-      navigate(`/propertylist/${title}`)
-    }
-    )
-  }
-
+      console.log("dispatched");
+      navigate(`/propertylist/${title}`);
+    });
+  };
 
   return data.map((item, index) => (
-    <div className="displaycard" onClick={(e) => displayProperties(item.imgTitle)}>
+    <div
+      className="displaycard"
+      onClick={(e) => displayProperties(item.imgTitle)}
+    >
       <div key={index} className="displaycard-details">
         <img src={item.img} alt="" />
         <div className="overlay"></div>
