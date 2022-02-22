@@ -34,8 +34,8 @@ const Navbar = () => {
                 <Link to="/">9Roof</Link>
               </motion.div>
               <motion.ul className="top-navLinks">
-                <Link to="/">
-                  <li className="top-navLink">Home</li>
+                <Link to="/prime">
+                  <li className="top-navLink">Prime</li>
                 </Link>
                 <motion.div
                   onMouseEnter={toggleMouseMenu}
@@ -43,7 +43,7 @@ const Navbar = () => {
                   className="div"
                 >
                   <motion.li className="top-navLink">
-                    Dashboard <AiFillCaretDown />
+                    Account <AiFillCaretDown />
                     <motion.div className={hover ? "menu-item" : "hidden"}>
                       <motion.div
                         className="sub-menu"

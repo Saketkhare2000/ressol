@@ -108,6 +108,14 @@ const PropertyDeatiledCard = () => {
                       {propertyList[property].location}, {propertyList[property].city}
                     </p>
                   </div>
+                  <div className="property-detail-btn-container">
+                    <button className="btn btn-primary">
+                      Contact Agent
+                    </button>
+                    <button className="btn btn-secondary">
+                      Add To Wishlist
+                    </button>
+                  </div>
                 </div>
               </Link>
             </AnimatePresence>

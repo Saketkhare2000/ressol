@@ -20,13 +20,14 @@ const ViewResponse = () => {
     useEffect(() => {
         axios({
             method: "get",
-            url: `http://localhost:8000/api/profile/${phoneNumber}/?expand=image,contacted_by.user,contacted_by.property,contacted_to.user,contacted_to.property`,
+            url: `http://localhost:8000/api/profile/${phoneNumber}/?expand=image,contacted_by.user,contacted_by.property,contacted_to.user,contacted_to.property,prime_status`,
             // headers: {
             //     Authorization: `Bearer ${key}`,
             // },
         })
             .then((res) => {
                 // setResponseDetails(res.data)
+                console.log(res.data)
                 return res.data
             }
             )
