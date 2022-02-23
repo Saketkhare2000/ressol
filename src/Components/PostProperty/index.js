@@ -282,39 +282,14 @@ const PostProperty = () => {
           </div>
           <div className="form-section">
             <h2 className="section-title">Property Location</h2>
-            {/* Locality  */}
+            {/* State  */}
             <div className="form-group">
-              <h2 className="header-mobile">Locality</h2>
-              <input
-                type="text"
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="Locality"
-                name="locality"
-                id="locality"
-              />
-            </div>
-
-            {/* Address */}
-            <div className="form-group">
-              <h2 className="header-mobile">Address</h2>
-              <input
-                type="text"
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder="Enter Address"
-                name="address"
-                id="address"
-              />
-            </div>
-
-            {/* Pincode  */}
-            <div className="form-group">
-              <h2 className="header-mobile">Pincode</h2>
-              <input
-                type="text"
-                onChange={(e) => setPincode(e.target.value)}
-                placeholder="Enter Pincode"
-                name="pincode"
-                id="pincode"
+              <h2 className="header-mobile">State</h2>
+              <Select
+                onChange={handleChangeState}
+                placeholder="Select State"
+                options={stateOptions}
+                openMenuOnClick={false}
               />
             </div>
             {/* City  */}
@@ -328,16 +303,43 @@ const PostProperty = () => {
                 required
               />
             </div>
-            {/* State  */}
+            {/* Locality  */}
             <div className="form-group">
-              <h2 className="header-mobile">State</h2>
-              <Select
-                onChange={handleChangeState}
-                placeholder="Select State"
-                options={stateOptions}
-                openMenuOnClick={false}
+              <h2 className="header-mobile">Locality</h2>
+              <input
+                type="text"
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder="Locality"
+                name="locality"
+                id="locality"
               />
             </div>
+            {/* Pincode  */}
+            <div className="form-group">
+              <h2 className="header-mobile">Pincode</h2>
+              <input
+                type="text"
+                onChange={(e) => setPincode(e.target.value)}
+                placeholder="Enter Pincode"
+                name="pincode"
+                id="pincode"
+              />
+            </div>
+            {/* Address */}
+            <div className="form-group">
+              <h2 className="header-mobile">Address</h2>
+              <input
+                type="text"
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Enter Address"
+                name="address"
+                id="address"
+              />
+            </div>
+
+
+
+
           </div>
           {/* ------------- Features Starts ----------------- */}
           {(() => {

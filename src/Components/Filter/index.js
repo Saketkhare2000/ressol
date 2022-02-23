@@ -263,6 +263,18 @@ const Filter = () => {
             </div>
           </div>
           <div className="filter-group">
+            <h3>Locality</h3>
+            <div className="filter-item">
+              <input
+                type="text"
+                name="locality"
+                id="locality"
+                // onChange={(e) => setPropertyName(e.target.value)}
+                placeholder="Locality Name"
+              />
+            </div>
+          </div>
+          <div className="filter-group">
             <h3>Budget</h3>
             <div className="filter-item">
               <Select
