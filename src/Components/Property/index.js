@@ -10,6 +10,9 @@ import { Example } from "../Carousel/Example";
 import axios from "axios";
 import "./style.css";
 import Loader from "../Loader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
 const Property = () => {
   const id = useParams().slug;
   const { setAlert, base_url } = useContext(WebContext);
@@ -167,6 +170,11 @@ const Property = () => {
       variants={slideUp}
       className="page"
     >
+      <div className="back property-list-back" onClick={() => navigate("/")}>
+        <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
+        <h1 className="mobile-title">Back</h1>
+        {/* <p>Go Back</p> */}
+      </div>
       <div className="each-property">
         <div className="property-details">
           <Example data={imageData} />

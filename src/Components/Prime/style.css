@@ -11,7 +11,6 @@
   color: var(--brand--green);
   margin: 16px 0 0 0;
   padding: 4px 0;
-  border-bottom: 1px solid var(--card-border);
 }
 .prime-page .prime-plans-container {
   display: flex;

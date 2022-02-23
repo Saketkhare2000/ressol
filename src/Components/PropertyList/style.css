@@ -20,6 +20,9 @@
 .property-list-back {
   margin: 12px 0;
 }
+.property-list-back .back-icon {
+  cursor: pointer;
+}
 .profile-details-page .back {
   display: flex;
   justify-content: space-between;

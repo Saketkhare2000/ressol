@@ -15,7 +15,7 @@ const Prime = () => {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const dispatch = useDispatch();
   // const { userName } = useContext(WebContext);
-  const { phoneNumber, base_url } = useContext(WebContext);
+  const { firstname, lastname, phoneNumber, base_url } = useContext(WebContext);
   useEffect(() => {
     // dispatch(getUserData(userName, key));
     dispatch(getUserData(phoneNumber));
@@ -28,7 +28,7 @@ const Prime = () => {
       bodyData.append("response", JSON.stringify(response));
 
       await axios({
-        url: `${base_url}/api/pay/callback/`,
+        url: `${base_url}api/pay/callback/`,
         method: "POST",
         data: bodyData,
         headers: {
@@ -60,7 +60,7 @@ const Prime = () => {
     bodyData.append("subscription_type", subscription_type);
 
     const data = await axios({
-      url: `${base_url}/api/pay/`,
+      url: `${base_url}api/pay/`,
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -89,9 +89,8 @@ const Prime = () => {
         handlePaymentSuccess(response);
       },
       prefill: {
-        name: "User's name",
-        email: "janmejay.cybercycloid@gmail.com",
-        contact: "9753059576",
+        name: `${firstname} ${lastname}`,
+        contact: `${phoneNumber}`,
       },
       notes: {
         address: "Razorpay Corporate Office",
