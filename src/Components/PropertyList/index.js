@@ -1,10 +1,13 @@
 import { useSelector } from "react-redux";
+import React, { useContext, useState } from "react";
+import { WebContext } from "../../Context/WebContext";
+
 import { Link, useParams } from "react-router-dom";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import axios from "axios";
 import Loader from "../Loader";
 import "./style.css";
 import { motion } from "framer-motion";
@@ -12,6 +15,13 @@ const PropertyDeatiledCard = () => {
   const navigate = useNavigate();
   const result = useParams().slug.toLowerCase();
   const propertyList = useSelector((state) => state.propertyList.propertyData);
+  const userDetails = useSelector((state) => state.userData.userData);
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const { setAlert, base_url } = useContext(WebContext);
+  const [wishlistStatus, setWishlistStatus] = useState(false);
+  const [contactStatus, setContactStatus] = useState(false);
+
+  console.log(userDetails.wishlist)
   function numDifferentiation(value) {
     var val = Math.abs(value);
     if (val >= 10000000) {
@@ -21,7 +31,76 @@ const PropertyDeatiledCard = () => {
     }
     return val;
   }
-  //cardData state
+  const addToWishlist = (propertyid) => {
+    if (loggedIn) {
+      axios({
+        method: "post",
+        url: `${base_url}api/wish`,
+        data: {
+          profile: userDetails.id,
+          property: propertyid,
+        },
+      })
+        .then((res) => {
+          console.log("Clicked")
+          setWishlistStatus(!wishlistStatus);
+        })
+        .catch((err) => { });
+    } else {
+      navigate("/login");
+    }
+  };
+  const handleContact = () => {
+    if (loggedIn) {
+      axios({
+        method: "post",
+        url: `${base_url}api/contact`,
+        data: {
+          buyer: userDetails.id,
+          // owner: propertyDetails.posted_by.id,
+          // property: propertyDetails.id,
+        },
+      })
+        .then((res) => {
+          setContactStatus(!contactStatus);
+          setAlert({
+            show: true,
+            message: "Owner Contacted",
+            type: "success",
+          });
+          setTimeout(() => {
+            setAlert({
+              show: false,
+              message: "",
+              type: "",
+            });
+          }, 2000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      navigate("/login");
+
+    }
+  };
+  const NavigateTo = (path) => {
+    setAlert(
+      {
+        show: true,
+        message: "Login To Continue",
+        type: "danger",
+      }
+    )
+    setTimeout(() => {
+      setAlert({
+        show: false,
+        message: "",
+        type: "",
+      });
+    }, 3000);
+    navigate(path);
+  };
   return (
     <motion.div
       animate={{ opacity: 1 }}
@@ -82,8 +161,39 @@ const PropertyDeatiledCard = () => {
                 </div>
               </Link>
               <div className="property-detail-btn-container">
-                <button className="btn btn-primary">Contact Agent</button>
-                <button className="btn btn-secondary">Add To Wishlist</button>
+                {/* {wishlistStatus ? (
+                  <button className="btn btn-secondary" onClick={addToWishlist}>
+                    Remove From Wishlist
+                  </button>
+                ) : (
+                  <button className="btn btn-secondary" onClick={addToWishlist}>
+                    Add To Wishlist
+                  </button>
+                )} */}
+                {(() => {
+                  if (loggedIn) {
+                    return (
+                      <>
+                        {wishlistStatus ? (
+                          <button className="btn btn-secondary" onClick={() => addToWishlist(propertyList[property].id)}>Remove From Wishlist</button>
+                        ) : (
+                          <button className="btn btn-secondary" onClick={() => addToWishlist(propertyList[property].id)}>Add To Wishlist</button>
+                        )}
+                        <button className="btn btn-primary" onClick={handleContact}>Contact Agent</button>
+                      </>
+                    )
+                  }
+                  else {
+                    return (
+                      <>
+                        <button className="btn btn-secondary" onClick={() => NavigateTo("/login")}>Add To Wishlist</button>
+                        <button className="btn btn-primary" onClick={() => NavigateTo("/login")}>Contact Agent</button>
+                      </>
+                    )
+                  }
+                })()}
+                {/* <button className="btn btn-secondary">Add To Wishlist</button>
+                <button className="btn btn-primary">Contact Agent</button> */}
               </div>
             </div>
           );

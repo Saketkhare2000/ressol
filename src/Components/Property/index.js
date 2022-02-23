@@ -27,6 +27,8 @@ const Property = () => {
   const [contactStatus, setContactStatus] = useState(false);
   const [loader, setLoader] = React.useState(true);
   const [availabilityDate, setAvailabilityDate] = React.useState("");
+
+
   useEffect(() => {
     axios
       .get(`${base_url}api/property/${id}/?expand=posted_by.image,image`)
@@ -71,7 +73,7 @@ const Property = () => {
             }
           });
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
   // if (loggedIn) {
   //   userDetails.wishlist.map(property => {
@@ -154,7 +156,7 @@ const Property = () => {
         .then((res) => {
           setWishlistStatus(!wishlistStatus);
         })
-        .catch((err) => {});
+        .catch((err) => { });
     } else {
       navigate("/login");
     }
