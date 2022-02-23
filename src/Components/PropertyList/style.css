@@ -2,7 +2,6 @@
   text-transform: capitalize;
 }
 .mobile-title {
-  margin-bottom: 0.5em;
   margin-left: 4px;
   display: inline-block;
 }
@@ -33,9 +32,12 @@
 }
 .property-list-back {
   margin: 12px 0;
+  cursor: pointer;
 }
 .property-list-back .back-icon {
   cursor: pointer;
+  font-size: 18px;
+  transition: all 0.1s ease;
 }
 .profile-details-page .back {
   display: flex;
@@ -43,9 +45,10 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  margin: 24px 0;
 }
-
+.back:hover .back-icon {
+  transform: translateX(-5px);
+}
 .property-detail-card .img-container {
   overflow: hidden;
   width: 156px;
@@ -129,7 +132,6 @@
 }
 @media screen and (min-width: 576px) {
   .mobile-title {
-    margin-bottom: 1em;
     margin-left: 8px;
   }
   .property-detail-card .img-container {

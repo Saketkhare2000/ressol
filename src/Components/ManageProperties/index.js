@@ -41,14 +41,14 @@ const ManageProperties = () => {
     axios({
       method: "delete",
       url: `${base_url}api/property/${id}/`,
-    }).catch((err) => { });
+    }).catch((err) => {});
   };
 
   return (
     <div className="page">
       <div className="back" onClick={() => navigate("/dashboard")}>
         <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
-        <h1 className="mobile-title">Manage Properties</h1>
+        <h2>Manage Properties</h2>
       </div>
       {yourPropertyDetails ? (
         Object.keys(yourPropertyDetails).map((property, index) => {

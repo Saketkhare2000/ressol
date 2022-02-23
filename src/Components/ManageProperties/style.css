@@ -83,6 +83,15 @@
     height: 132px;
   }
 }
+.back-icon {
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+.back h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 8px;
+}
 .options-btn-container {
   background: #f5f5f5;
   padding: 8px 8px;

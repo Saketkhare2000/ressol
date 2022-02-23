@@ -50,14 +50,14 @@ const Wishlist = () => {
         .then((res) => {
           setWishlistDetails(res.wishlist);
         })
-        .catch((err) => { });
+        .catch((err) => {});
     });
   };
   return (
     <div className="page">
       <div className="back" onClick={() => navigate("/dashboard")}>
         <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
-        <h1 className="mobile-title">Wishlist</h1>
+        <h2>Wishlist</h2>
       </div>
       {wishlistDetails ? (
         Object.keys(wishlistDetails).map((property, index) => {
