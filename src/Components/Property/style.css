@@ -122,7 +122,44 @@
 }
 .about-owner-container .owner-details .owner-contact {
   padding: 8px 22px;
-  width: 60%;
+  width: 70%;
+}
+.about-owner-container .owner-details .owner-contact p span {
+  font-weight: 500;
+  font-size: 15px;
+}
+.about-owner-container .owner-details .owner-contact .owner-user-type {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 4px 0;
+  width: 100%;
+}
+.about-owner-container .owner-details .owner-contact .owner-user-type h4 {
+  font-weight: 500;
+  font-size: 16px;
+}
+.about-owner-container
+  .owner-details
+  .owner-contact
+  .owner-user-type
+  .prime-user {
+  color: var(--brand--green);
+  font-weight: 400;
+  font-size: 15px;
+  margin: 0 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.about-owner-container
+  .owner-details
+  .owner-contact
+  .owner-user-type
+  .prime-user
+  svg {
+  margin: 0 4px;
 }
 .about-owner-container .owner-details .owner-image {
   width: 72px;

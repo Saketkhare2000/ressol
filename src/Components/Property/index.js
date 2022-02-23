@@ -12,6 +12,7 @@ import "./style.css";
 import Loader from "../Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FaCrown } from "react-icons/fa";
 
 const Property = () => {
   const id = useParams().slug;
@@ -31,7 +32,7 @@ const Property = () => {
 
   useEffect(() => {
     axios
-      .get(`${base_url}api/property/${id}/?expand=posted_by.image,image`)
+      .get(`${base_url}api/property/${id}/?expand=posted_by.image,image,posted_by.prime_status`)
       .then((res) => {
         setLoader(true);
         setPropertyDetails(res.data);
@@ -75,6 +76,7 @@ const Property = () => {
       })
       .catch((err) => { });
   }, []);
+  console.log(propertyDetails)
   // if (loggedIn) {
   //   userDetails.wishlist.map(property => {
   //     if (property.id === propertyDetails.id) {W
@@ -466,20 +468,43 @@ const Property = () => {
                 {propertyDetails.posted_by.first_name}{" "}
                 {propertyDetails.posted_by.last_name}
               </h3>
+              <div className="owner-user-type">
+                {(() => {
+                  if (propertyDetails.posted_by.user_type === "Agent") {
+                    return <h4 >Agent </h4>
+                  }
+                  else if (propertyDetails.posted_by.user_type === "Buyer/Owner") {
+                    return <h4 >Individual </h4>
+
+                  }
+                  else {
+                    <></>
+                  }
+                })()}
+
+                {propertyDetails.posted_by.prime_status.is_prime ? (
+                  <h4 className="prime-user"><FaCrown /> Prime Verified</h4>
+                ) : (
+                  <></>
+                )}
+              </div>
+
               <p>
-                Location: {propertyDetails.posted_by.city},{" "}
+                <span>Location :</span>  {propertyDetails.posted_by.city},{" "}
                 {propertyDetails.posted_by.state}
               </p>
             </div>
-            {contactStatus ? (
-              <button className="btn btn-primary" onClick={handleContact}>
-                Owner Contacted
-              </button>
-            ) : (
-              <button className="btn btn-primary" onClick={handleContact}>
-                Contact Owner
-              </button>
-            )}
+            {
+              contactStatus ? (
+                <button className="btn btn-primary" onClick={handleContact}>
+                  Owner Contacted
+                </button>
+              ) : (
+                <button className="btn btn-primary" onClick={handleContact}>
+                  Contact Owner
+                </button>
+              )
+            }
           </div>
         </div>
       </div>

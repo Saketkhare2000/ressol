@@ -152,6 +152,15 @@ const PropertyDeatiledCard = () => {
                         return <p className="property-type">Commercial</p>;
                       }
                     })()}
+                    {(() => {
+                      if (propertyList[property].for_status === "sale") {
+                        return <p className="property-type">For: Sale</p>;
+                      } else if (propertyList[property].for_status === "rent") {
+                        return <p className="property-type">For: Rent</p>;
+                      } else {
+                        return <></>;
+                      }
+                    })()}
                     <p className="property-city">
                       {propertyList[property].location},{" "}
                       {propertyList[property].city}
