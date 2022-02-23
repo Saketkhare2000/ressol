@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPropertyList } from "../../actions/userActions";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -13,10 +13,11 @@ import floorData from "../../floor.json";
 import amenitiesData from "../../amenities.json";
 
 import Select from "react-select";
+import { WebContext } from "../../Context/WebContext";
 const Filter = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const { base_url } = useContext(WebContext);
   // Common Filter States
   const [propertyFor, setPropertyFor] = React.useState(null);
   const [city, setCity] = React.useState(null);
@@ -199,7 +200,7 @@ const Filter = () => {
 
   // Final Filter Search Handle Function
   const handleSearch = () => {
-    dispatch(getPropertyList(data)).then(() => {
+    dispatch(getPropertyList(data, base_url)).then(() => {
       navigate(`/propertylist/results`);
     });
   };

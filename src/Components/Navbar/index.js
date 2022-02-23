@@ -34,42 +34,42 @@ const Navbar = () => {
                 <motion.div
                   onMouseEnter={toggleMouseMenu}
                   onMouseLeave={toggleMouseMenu}
-                  className="div"
+                  className="top-navLink"
                 >
-                  <motion.li className="top-navLink">
+                  <motion.li className="dropdown-link">
                     Account <AiFillCaretDown />
-                    <motion.div className={hover ? "menu-item" : "hidden"}>
-                      <motion.div
-                        className="sub-menu"
-                        initial="exit"
-                        animate={hover ? "enter" : "exit"}
-                        variants={subMenuAnimate}
-                      >
-                        {!loggedIn ? (
-                          <div className="sub-menu-container">
-                            <Link to="/login">
-                              <div className="sub-menu-item">Login</div>
-                            </Link>
-                            <Link to="/signup">
-                              <div className="sub-menu-item">Sign up</div>
-                            </Link>
-                            <Link to="/prime">
-                              <div className="sub-menu-item">Prime</div>
-                            </Link>
-                          </div>
-                        ) : (
-                          <div className="sub-menu-container">
-                            <Link to="/dashboard">
-                              <div className="sub-menu-item">Dashboard</div>
-                            </Link>
-                            <Link to="/prime">
-                              <div className="sub-menu-item">Prime</div>
-                            </Link>
-                          </div>
-                        )}
-                      </motion.div>
-                    </motion.div>
                   </motion.li>
+                  <motion.div className={hover ? "menu-item" : "hidden"}>
+                    <motion.div
+                      className="sub-menu"
+                      initial="exit"
+                      animate={hover ? "enter" : "exit"}
+                      variants={subMenuAnimate}
+                    >
+                      {!loggedIn ? (
+                        <div className="sub-menu-container">
+                          <Link to="/login">
+                            <div className="sub-menu-item">Login</div>
+                          </Link>
+                          <Link to="/signup">
+                            <div className="sub-menu-item">Sign up</div>
+                          </Link>
+                          <Link to="/prime">
+                            <div className="sub-menu-item">Prime</div>
+                          </Link>
+                        </div>
+                      ) : (
+                        <div className="sub-menu-container">
+                          <Link to="/dashboard">
+                            <div className="sub-menu-item">Dashboard</div>
+                          </Link>
+                          <Link to="/prime">
+                            <div className="sub-menu-item">Prime</div>
+                          </Link>
+                        </div>
+                      )}
+                    </motion.div>
+                  </motion.div>
                 </motion.div>
 
                 <Link to="/post">

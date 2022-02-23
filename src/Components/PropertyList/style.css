@@ -55,7 +55,6 @@
 }
 .property-detail-card .property-detail-card-details {
   margin-left: 15px;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -85,7 +84,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: fit-content;
 }
 @media screen and (min-width: 576px) {
   .mobile-title {
