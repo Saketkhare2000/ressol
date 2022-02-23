@@ -24,7 +24,9 @@
 .each-property .carousel {
   min-height: 240px !important;
 }
-
+.each-property .property-details {
+  padding: 0 0px;
+}
 .grid-child {
   display: flex;
   flex-direction: column;

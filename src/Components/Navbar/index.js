@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { WebContext } from "../../Context/WebContext";
@@ -7,15 +9,20 @@ import Filter from "../Filter";
 import "./style.css";
 import { subMenuAnimate } from "../../Animation";
 import { AiOutlineHome, AiOutlineUser, AiFillCaretDown } from "react-icons/ai";
+import { FaCrown } from 'react-icons/fa';
 import { useSelector } from "react-redux";
 const Navbar = () => {
-  const { filter } = useContext(WebContext);
+  const { filter, setAlert } = useContext(WebContext);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const [hover, setIsHover] = useState(false);
   const toggleMouseMenu = () => {
     setIsHover(!hover);
   };
+
+
   return (
     <motion.header>
       {filter ? (
@@ -29,7 +36,7 @@ const Navbar = () => {
               </motion.div>
               <motion.ul className="top-navLinks">
                 <Link to="/prime">
-                  <li className="top-navLink">Prime</li>
+                  <li className="top-navLink"><FaCrown />Prime</li>
                 </Link>
                 <motion.div
                   onMouseEnter={toggleMouseMenu}
@@ -54,17 +61,23 @@ const Navbar = () => {
                           <Link to="/signup">
                             <div className="sub-menu-item">Sign up</div>
                           </Link>
-                          <Link to="/prime">
+                          {/* <Link to="/prime">
                             <div className="sub-menu-item">Prime</div>
-                          </Link>
+                          </Link> */}
                         </div>
                       ) : (
                         <div className="sub-menu-container">
                           <Link to="/dashboard">
                             <div className="sub-menu-item">Dashboard</div>
                           </Link>
-                          <Link to="/prime">
-                            <div className="sub-menu-item">Prime</div>
+                          <Link to="/dashboard/manage-properties">
+                            <div className="sub-menu-item">Manage Properties</div>
+                          </Link>
+                          <Link to="/dashboard/view-responses">
+                            <div className="sub-menu-item">View Responses</div>
+                          </Link>
+                          <Link to="/dashboard/wishlist">
+                            <div className="sub-menu-item">Wishlist</div>
                           </Link>
                         </div>
                       )}
@@ -78,12 +91,13 @@ const Navbar = () => {
                   </li>
                 </Link>
               </motion.ul>
-              <button
+              <div
+                className="prime-btn"
                 onClick={() => navigate("/prime")}
-                className="btn btn-outline prime-btn"
               >
+                <FaCrown />
                 Prime
-              </button>
+              </div>
             </div>
             {/* <div className="search-bar">
               <motion.div onClick={() => navigate("/filter")} className="input">

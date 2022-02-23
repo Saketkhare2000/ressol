@@ -20,7 +20,7 @@ const ManageProperties = () => {
   const { setEditPropertyId, phoneNumber, base_url } = useContext(WebContext);
   useEffect(() => {
     // dispatch(getUserData(userName, key));
-    dispatch(getUserData(phoneNumber));
+    dispatch(getUserData(phoneNumber, base_url));
   }, []);
   const userDetails = useSelector((state) => state.userData.userData);
   const yourPropertyDetails = userDetails.properties;
@@ -41,7 +41,7 @@ const ManageProperties = () => {
     axios({
       method: "delete",
       url: `${base_url}api/property/${id}/`,
-    }).catch((err) => {});
+    }).catch((err) => { });
   };
 
   return (

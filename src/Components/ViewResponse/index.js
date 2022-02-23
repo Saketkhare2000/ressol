@@ -12,6 +12,7 @@ const ViewResponse = () => {
   const navigate = useNavigate();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   // const key = useSelector((state) => state.auth.key);
+  const [primeDetails, setPrimeDetails] = React.useState();
   const [contactedByDetails, setContactedByDetails] = React.useState();
   const [timestamp, setTimeStamp] = React.useState();
   // const { userName } = useContext(WebContext);
@@ -25,7 +26,7 @@ const ViewResponse = () => {
       // },
     })
       .then((res) => {
-        // setResponseDetails(res.data)
+        setPrimeDetails(res.data.prime_status)
         return res.data;
       })
       .then((res) => {
@@ -49,9 +50,10 @@ const ViewResponse = () => {
           setTimeStamp(timeData);
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
-
+  console.log(primeDetails)
+  console.log(contactedByDetails)
   return (
     <div className="page">
       <div className="back" onClick={() => navigate("/dashboard")}>
@@ -82,10 +84,21 @@ const ViewResponse = () => {
                       }
                     })()}
                   </p>
-                  <p className="contact-number">
-                    <BsFillTelephoneFill />{" "}
-                    {contactedByDetails[contact].user.mobile}
-                  </p>
+                  {
+                    primeDetails.is_prime ? <p className="contact-number">
+                      <BsFillTelephoneFill />{" "}
+                      {contactedByDetails[contact].user.mobile}
+                    </p>
+                      :
+                      <p className="contact-number">
+
+                        <BsFillTelephoneFill />{" "}
+                        XXXX-XXXX-XX
+                        (For Prime Members)
+
+                      </p>
+                  }
+
                 </div>
                 <div className="property-title">
                   <div className="property-name">

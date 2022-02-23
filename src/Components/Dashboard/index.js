@@ -11,6 +11,7 @@ import { AiOutlineUser, AiOutlineBook } from "react-icons/ai";
 import { BiBuildingHouse } from "react-icons/bi";
 import { GrContact } from "react-icons/gr";
 import Select from "react-select";
+import { FaCrown } from "react-icons/fa";
 
 const Dashoard = () => {
   const navigate = useNavigate();
@@ -63,7 +64,7 @@ const Dashoard = () => {
             </h3>
             {userDetails.prime_status && userDetails.prime_status.is_prime ? (
               <p className="user-prime-status">
-                {userDetails.prime_status.subscription_type} Member
+                <FaCrown /> {userDetails.prime_status.subscription_type} Member
               </p>
             ) : (
               <p className="user-prime-status">Buy Prime Membership</p>

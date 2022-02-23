@@ -22,7 +22,7 @@ const Wishlist = () => {
   const { phoneNumber, base_url } = useContext(WebContext);
 
   useEffect(() => {
-    dispatch(getUserData(phoneNumber));
+    dispatch(getUserData(phoneNumber, base_url));
   }, []);
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   // const key = useSelector((state) => state.auth.key);
@@ -50,7 +50,7 @@ const Wishlist = () => {
         .then((res) => {
           setWishlistDetails(res.wishlist);
         })
-        .catch((err) => {});
+        .catch((err) => { });
     });
   };
   return (

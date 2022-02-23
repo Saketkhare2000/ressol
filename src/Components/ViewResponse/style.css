@@ -8,14 +8,16 @@
   border: 1px solid var(--card-border);
   border-radius: 4px;
   width: 100%;
-  padding: 4px 12px;
-  margin: 8px 0;
+  padding: 0px 0px;
+  margin: 12px 0;
 }
 .view-response-card .contacted-by-details {
   display: flex;
-  margin: 8px 0;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
+  background-color: #e2f8f0;
+  padding: 10px 8px;
 }
 .view-response-card .property-details {
   display: flex;
@@ -23,8 +25,6 @@
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #e2f8f0;
-  padding: 8px 8px;
   border-radius: 4px;
 }
 .contacted-by-title {
@@ -37,6 +37,7 @@
 }
 .contact-details {
   font-size: 15px;
+  padding: 0 8px;
 }
 .contact-details span {
   font-size: 15px;
@@ -48,6 +49,7 @@
 }
 .contacted-by-details .contact-number {
   color: var(--brand--green);
+  margin: 4px 0;
 }
 .contacted-by-title span {
   font-weight: 400;
@@ -56,6 +58,9 @@
 .property-name {
   margin: 8px 0;
   font-weight: 500;
+}
+.property-details {
+  padding: 0 8px;
 }
 .property-details > div {
   margin: 4px 0;
@@ -68,4 +73,5 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  padding: 0 8px;
 }

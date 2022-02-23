@@ -110,6 +110,15 @@ nav {
   flex-direction: column;
   justify-content: center;
 }
+.prime-btn {
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.prime-btn svg {
+  margin: 0 6px;
+}
 @media screen and (min-width: 768px) {
   .hidden {
     display: none;
@@ -132,13 +141,16 @@ nav {
     border: solid 1px var(--card-border);
   }
   .sub-menu-item {
-    margin: 16px 0px;
-    padding: 8px 0px;
+    /* margin: 16px 0px; */
+    padding: 16px 14px;
     transition: all 0.1s ease-in-out;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border);
   }
   .sub-menu-item:hover {
     background-color: var(--brand--green);
     color: white;
+    /* text-decoration: underline; */
   }
   .sub-menu-background {
     position: absolute;
@@ -163,18 +175,21 @@ nav {
     align-items: center;
     justify-content: space-between;
     list-style: none;
-    width: 400px;
+    width: 420px;
   }
   .navbar .top-header .top-navLinks li {
     width: fit-content;
     margin-right: 4px;
     font-size: 17px;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--bg-white);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   .navbar .top-header .top-navLinks li svg {
-    margin-left: 4px;
+    margin: 0 4px;
   }
   .navbar .top-header .top-navLinks .top-navLink {
     position: relative;
