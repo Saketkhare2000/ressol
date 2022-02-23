@@ -170,10 +170,10 @@ const CompleteProfile = () => {
                                 <input type="radio" name="usertype" value="Agent" onChange={(e) => setUser_Type(e.target.value)} />
                                 <span>Agent</span>
                             </div>
-                            <div className="select-option">
+                            {/* <div className="select-option">
                                 <input type="radio" name="usertype" onChange={(e) => setUser_Type(e.target.value)} value="Builder" />
                                 <span>Builder</span>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="form-category">

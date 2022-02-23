@@ -12,10 +12,11 @@ const server = "http://localhost:8000"
 const Prime = () => {
   const navigate = useNavigate();
   const userDetails = useSelector((state) => state.userData.userData);
+  // const userDetails = useSelector((state) => state.userData);
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const dispatch = useDispatch();
   // const { userName } = useContext(WebContext);
-  const { phoneNumber } = useContext(WebContext);
+  const { phoneNumber, alert, setAlert } = useContext(WebContext);
   useEffect(() => {
     // dispatch(getUserData(userName, key));
     dispatch(getUserData(phoneNumber));
@@ -38,10 +39,37 @@ const Prime = () => {
       })
         .then((res) => {
           console.log("Everything is OK!");
+          setAlert({
+            show: true,
+            message: "Congratulations! Payment Successful",
+            type: "success",
+          });
+          setTimeout(() => {
+            setAlert({
+              show: false,
+              message: "",
+              type: "",
+            });
+          }, 4000);
+
           navigate("/dashboard");
         })
         .catch((err) => {
           console.log(err);
+          setAlert({
+            show: false,
+            message: "Transaction Failed",
+            type: "danger",
+          });
+          setTimeout(() => {
+            setAlert({
+              show: false,
+              message: "",
+              type: "",
+            });
+          }, 4000);
+          navigate("/dashboard");
+
         });
     } catch (error) {
       console.log(console.error());
