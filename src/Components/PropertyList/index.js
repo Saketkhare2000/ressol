@@ -21,7 +21,7 @@ const PropertyDeatiledCard = () => {
   const [wishlistStatus, setWishlistStatus] = useState(false);
   const [contactStatus, setContactStatus] = useState(false);
 
-  console.log(userDetails.wishlist)
+  console.log(userDetails.wishlist);
   function numDifferentiation(value) {
     var val = Math.abs(value);
     if (val >= 10000000) {
@@ -42,10 +42,10 @@ const PropertyDeatiledCard = () => {
         },
       })
         .then((res) => {
-          console.log("Clicked")
+          console.log("Clicked");
           setWishlistStatus(!wishlistStatus);
         })
-        .catch((err) => { });
+        .catch((err) => {});
     } else {
       navigate("/login");
     }
@@ -81,17 +81,14 @@ const PropertyDeatiledCard = () => {
         });
     } else {
       navigate("/login");
-
     }
   };
   const NavigateTo = (path) => {
-    setAlert(
-      {
-        show: true,
-        message: "Login To Continue",
-        type: "danger",
-      }
-    )
+    setAlert({
+      show: true,
+      message: "Login To Continue",
+      type: "danger",
+    });
     setTimeout(() => {
       setAlert({
         show: false,
@@ -110,9 +107,9 @@ const PropertyDeatiledCard = () => {
     >
       <div className="back property-list-back" onClick={() => navigate("/")}>
         <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
-        <h1 className="mobile-title">
+        <h2 className="mobile-title">
           Properties <span className="city-name"> ({result}) </span>
-        </h1>
+        </h2>
         {/* <p>Go Back</p> */}
       </div>
       {propertyList ? (
@@ -144,9 +141,13 @@ const PropertyDeatiledCard = () => {
                     {(() => {
                       if (propertyList[property].property_type === "FL") {
                         return <p className="property-type">Flat</p>;
-                      } else if (propertyList[property].property_type === "VI") {
+                      } else if (
+                        propertyList[property].property_type === "VI"
+                      ) {
                         return <p className="property-type">House</p>;
-                      } else if (propertyList[property].property_type === "PT") {
+                      } else if (
+                        propertyList[property].property_type === "PT"
+                      ) {
                         return <p className="property-type">Plot</p>;
                       } else {
                         return <p className="property-type">Commercial</p>;
@@ -166,7 +167,6 @@ const PropertyDeatiledCard = () => {
                       {propertyList[property].city}
                     </p>
                   </div>
-
                 </div>
               </Link>
               <div className="property-detail-btn-container">
@@ -184,21 +184,49 @@ const PropertyDeatiledCard = () => {
                     return (
                       <>
                         {wishlistStatus ? (
-                          <button className="btn btn-secondary" onClick={() => addToWishlist(propertyList[property].id)}>Remove From Wishlist</button>
+                          <button
+                            className="btn btn-secondary"
+                            onClick={() =>
+                              addToWishlist(propertyList[property].id)
+                            }
+                          >
+                            Remove From Wishlist
+                          </button>
                         ) : (
-                          <button className="btn btn-secondary" onClick={() => addToWishlist(propertyList[property].id)}>Add To Wishlist</button>
+                          <button
+                            className="btn btn-secondary"
+                            onClick={() =>
+                              addToWishlist(propertyList[property].id)
+                            }
+                          >
+                            Add To Wishlist
+                          </button>
                         )}
-                        <button className="btn btn-primary" onClick={handleContact}>Contact Agent</button>
+                        <button
+                          className="btn btn-primary"
+                          onClick={handleContact}
+                        >
+                          Contact Agent
+                        </button>
                       </>
-                    )
-                  }
-                  else {
+                    );
+                  } else {
                     return (
                       <>
-                        <button className="btn btn-secondary" onClick={() => NavigateTo("/login")}>Add To Wishlist</button>
-                        <button className="btn btn-primary" onClick={() => NavigateTo("/login")}>Contact Agent</button>
+                        <button
+                          className="btn btn-secondary"
+                          onClick={() => NavigateTo("/login")}
+                        >
+                          Add To Wishlist
+                        </button>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => NavigateTo("/login")}
+                        >
+                          Contact Agent
+                        </button>
                       </>
-                    )
+                    );
                   }
                 })()}
                 {/* <button className="btn btn-secondary">Add To Wishlist</button>

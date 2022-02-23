@@ -26,7 +26,7 @@ const ViewResponse = () => {
       // },
     })
       .then((res) => {
-        setPrimeDetails(res.data.prime_status)
+        setPrimeDetails(res.data.prime_status);
         return res.data;
       })
       .then((res) => {
@@ -50,15 +50,15 @@ const ViewResponse = () => {
           setTimeStamp(timeData);
         }
       })
-      .catch((err) => { });
+      .catch((err) => {});
   }, []);
-  console.log(primeDetails)
-  console.log(contactedByDetails)
+  console.log(primeDetails);
+  console.log(contactedByDetails);
   return (
     <div className="page">
       <div className="back" onClick={() => navigate("/dashboard")}>
         <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
-        <h1 className="mobile-title">View Responses</h1>
+        <h2>View Responses</h2>
       </div>
       <div className="view-response-container">
         {contactedByDetails ? (
@@ -84,21 +84,16 @@ const ViewResponse = () => {
                       }
                     })()}
                   </p>
-                  {
-                    primeDetails.is_prime ? <p className="contact-number">
+                  {primeDetails.is_prime ? (
+                    <p className="contact-number">
                       <BsFillTelephoneFill />{" "}
                       {contactedByDetails[contact].user.mobile}
                     </p>
-                      :
-                      <p className="contact-number">
-
-                        <BsFillTelephoneFill />{" "}
-                        XXXX-XXXX-XX
-                        (For Prime Members)
-
-                      </p>
-                  }
-
+                  ) : (
+                    <p className="contact-number">
+                      <BsFillTelephoneFill /> XXXX-XXXX-XX (For Prime Members)
+                    </p>
+                  )}
                 </div>
                 <div className="property-title">
                   <div className="property-name">

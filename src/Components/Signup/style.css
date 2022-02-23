@@ -53,7 +53,6 @@
   justify-content: center;
 }
 .signup-page .signup-card .signup-form .form-category label {
-  font-family: Open Sans;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -69,12 +68,12 @@ input[type="password"] {
   border: solid 1px var(--card-border);
   border-radius: 2px;
   padding: 0px 10px;
-  font-family: Open Sans;
   font-style: normal;
-  font-weight: 400 !important;
+  font-weight: 500 !important;
   font-size: 13px !important;
   line-height: 19px;
   color: var(--text-dark);
+  font-family: var(--font-family);
 }
 .signup-page .signup-card .signup-form .form-category select {
   width: 30%;

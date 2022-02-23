@@ -1,5 +1,4 @@
 .mobile-title {
-  margin-bottom: 0.5em;
   margin-left: 4px;
   display: inline-block;
 }
@@ -11,6 +10,12 @@
 }
 .options-btn-container button {
   cursor: pointer;
+}
+.back {
+  display: flex;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 .wishlist-property-card {
   display: flex;
