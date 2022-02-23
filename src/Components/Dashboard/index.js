@@ -10,33 +10,27 @@ import { IoCaretUpCircleSharp } from "react-icons/io5";
 import { AiOutlineUser, AiOutlineBook } from "react-icons/ai";
 import { BiBuildingHouse } from "react-icons/bi";
 import { GrContact } from "react-icons/gr";
-import Select from 'react-select'
+import Select from "react-select";
 
 const Dashoard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const { userName } = useContext(WebContext);
-  const { phoneNumber } = useContext(WebContext);
+  const { phoneNumber, base_url } = useContext(WebContext);
 
   useEffect(() => {
-    // dispatch(getUserData(userName, key));
-    dispatch(getUserData(phoneNumber));
+    dispatch(getUserData(phoneNumber, base_url));
   }, []);
   const loggedIn = useSelector((state) => state.auth.loggedIn);
-  // const key = useSelector((state) => state.auth.key);
   const userDetails = useSelector((state) => state.userData.userData);
-  console.log(userDetails)
-  console.log(phoneNumber)
 
   const options = [
-    { value: '#059862', label: 'Default Green' },
-    { value: '#f75590', label: 'Pink' },
-    { value: '#85C7F2', label: 'Light Sky Blue' },
-    { value: '#BA2D0B', label: 'Orange' },
-    { value: '#083D77', label: 'Indigo' },
-    { value: '#3a3a3a', label: 'Black' }
-  ]
-
+    { value: "#059862", label: "Default Green" },
+    { value: "#f75590", label: "Pink" },
+    { value: "#85C7F2", label: "Light Sky Blue" },
+    { value: "#BA2D0B", label: "Orange" },
+    { value: "#083D77", label: "Indigo" },
+    { value: "#3a3a3a", label: "Black" },
+  ];
 
   const logout = (e) => {
     e.preventDefault();
@@ -45,8 +39,8 @@ const Dashoard = () => {
   };
 
   const handleStateChange = (color) => {
-    document.documentElement.style.setProperty('--brand--green', color.value)
-  }
+    document.documentElement.style.setProperty("--brand--green", color.value);
+  };
 
   const NavigateTo = (path) => {
     navigate(path);
@@ -64,16 +58,43 @@ const Dashoard = () => {
             )}
           </div>
           <div className="user-details">
-            <h3 className="mobile-title">{userDetails.first_name} {userDetails.last_name}</h3>
-            {userDetails.prime_status && userDetails.prime_status.is_prime ? <p className="user-prime-status">{userDetails.prime_status.subscription_type} Member</p> : <p className="user-prime-status">Buy Prime Membership</p>}
+            <h3 className="mobile-title">
+              {userDetails.first_name} {userDetails.last_name}
+            </h3>
+            {userDetails.prime_status && userDetails.prime_status.is_prime ? (
+              <p className="user-prime-status">
+                {userDetails.prime_status.subscription_type} Member
+              </p>
+            ) : (
+              <p className="user-prime-status">Buy Prime Membership</p>
+            )}
             <p className="contacts-remaining">
-              No. of contacts remaining:  {userDetails.prime_status && userDetails.prime_status.is_prime ? <span>{userDetails.prime_status.counter_limit - userDetails.prime_status.contact_counter}</span> : <span>{5}</span>}
+              No. of contacts remaining:{" "}
+              {userDetails.prime_status && userDetails.prime_status.is_prime ? (
+                <span>
+                  {userDetails.prime_status.counter_limit -
+                    userDetails.prime_status.contact_counter}
+                </span>
+              ) : (
+                <span>{5}</span>
+              )}
             </p>
-            {userDetails.prime_status && userDetails.prime_status.is_prime ? <p className="validity">Valid For : {userDetails.prime_status.subscription_period} Days  </p> : <></>}
+            {userDetails.prime_status && userDetails.prime_status.is_prime ? (
+              <p className="validity">
+                Valid For : {userDetails.prime_status.subscription_period} Days{" "}
+              </p>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div className="btn-container">
-          <Select options={options} placeholder="Choose Color" onChange={handleStateChange} className="choose-color" />
+          <Select
+            options={options}
+            placeholder="Choose Color"
+            onChange={handleStateChange}
+            className="choose-color"
+          />
           <button className="btn" onClick={logout}>
             Log Out
           </button>
@@ -82,7 +103,7 @@ const Dashoard = () => {
       <div className="dashboard-menus">
         <motion.div className="disclosure-btn" layout>
           <motion.div
-            onClick={() => NavigateTo('/dashboard/profile-details')}
+            onClick={() => NavigateTo("/dashboard/profile-details")}
             layout
             className="btn-top"
           >
@@ -90,14 +111,12 @@ const Dashoard = () => {
               <AiOutlineUser style={{ fontSize: "20px" }} />
               Profile Details
             </motion.p>
-            <IoCaretUpCircleSharp
-              className={`down-icon`}
-            />
+            <IoCaretUpCircleSharp className={`down-icon`} />
           </motion.div>
         </motion.div>
         <motion.div className="disclosure-btn" layout>
           <motion.div
-            onClick={() => NavigateTo('/dashboard/manage-properties')}
+            onClick={() => NavigateTo("/dashboard/manage-properties")}
             layout
             className="btn-top"
           >
@@ -105,14 +124,12 @@ const Dashoard = () => {
               <BiBuildingHouse style={{ fontSize: "20px" }} />
               Manage Properties
             </motion.p>
-            <IoCaretUpCircleSharp
-              className={`down-icon`}
-            />
+            <IoCaretUpCircleSharp className={`down-icon`} />
           </motion.div>
         </motion.div>
         <motion.div className="disclosure-btn" layout>
           <motion.div
-            onClick={() => NavigateTo('/dashboard/view-responses')}
+            onClick={() => NavigateTo("/dashboard/view-responses")}
             layout
             className="btn-top"
           >
@@ -120,14 +137,12 @@ const Dashoard = () => {
               <GrContact style={{ fontSize: "20px" }} />
               View Responses
             </motion.p>
-            <IoCaretUpCircleSharp
-              className={`down-icon`}
-            />
+            <IoCaretUpCircleSharp className={`down-icon`} />
           </motion.div>
         </motion.div>
         <motion.div className="disclosure-btn" layout>
           <motion.div
-            onClick={() => NavigateTo('/dashboard/wishlist')}
+            onClick={() => NavigateTo("/dashboard/wishlist")}
             layout
             className="btn-top"
           >
@@ -135,23 +150,23 @@ const Dashoard = () => {
               <AiOutlineBook style={{ fontSize: "20px" }} />
               Wishlist
             </motion.p>
-            <IoCaretUpCircleSharp
-              className={`down-icon`}
-            />
+            <IoCaretUpCircleSharp className={`down-icon`} />
           </motion.div>
         </motion.div>
       </div>
       <div className="btn-container">
-        <Select options={options} placeholder="Choose Color" onChange={handleStateChange} />
+        <Select
+          options={options}
+          placeholder="Choose Color"
+          onChange={handleStateChange}
+        />
         <button className="btn" onClick={logout}>
           Log Out
         </button>
       </div>
     </div>
   ) : (
-    <>
-      {navigate("/login")}
-    </>
+    <>{navigate("/login")}</>
   );
 };
 

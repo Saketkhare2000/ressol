@@ -1,26 +1,20 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { WebContext } from "../../Context/WebContext";
 import Button from "../Button";
 import Filter from "../Filter";
 import "./style.css";
-import { pageSlideLeft, subMenuAnimate } from "../../Animation";
-import {
-  AiOutlineHome,
-  AiOutlineUser,
-  AiOutlineDown,
-  AiFillCaretDown,
-} from "react-icons/ai";
+import { subMenuAnimate } from "../../Animation";
+import { AiOutlineHome, AiOutlineUser, AiFillCaretDown } from "react-icons/ai";
 import { useSelector } from "react-redux";
 const Navbar = () => {
-  const { filter, setFilter } = useContext(WebContext);
+  const { filter } = useContext(WebContext);
   const navigate = useNavigate();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const [hover, setIsHover] = useState(false);
   const toggleMouseMenu = () => {
     setIsHover(!hover);
-    console.log("hover");
   };
   return (
     <motion.header>

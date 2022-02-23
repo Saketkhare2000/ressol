@@ -1,85 +1,80 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from "react";
 import cityData from "../../cities.json";
 import stateData from "../../state.json";
 import floorData from "../../floor.json";
 import amenitiesData from "../../amenities.json";
-import Select from 'react-select'
-import "../../Components/EditProperty/style.css"
+import Select from "react-select";
+import "../../Components/EditProperty/style.css";
 import { WebContext } from "../../Context/WebContext";
 import { uploadImage } from "../../actions/userActions";
-import Loader from "../Loader";
 import axios from "axios";
 import { CgSpinner } from "react-icons/cg";
 import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import slugify from "slugify";
 
-
 const EditProperty = () => {
   const [propertyDetails, setPropertyDetails] = React.useState({});
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const { base_url } = useContext(WebContext);
   // Useeffect
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/property/${editPropertyId}/?expand=posted_by.image,image`)
-      .then(res => {
-        setLoader(true)
-        setPropertyDetails(res.data)
-        setDescription(res.data.description)
-        setName(res.data.property_name)
-        setLocation(res.data.location)
-        setAddress(res.data.address)
-        setPincode(res.data.pincode)
-        setCity(res.data.city)
-        setState(res.data.state)
-        setPrice(res.data.price)
-        setProperty_Size(res.data.property_size)
+    axios
+      .get(
+        `${base_url}api/property/${editPropertyId}/?expand=posted_by.image,image`
+      )
+      .then((res) => {
+        setLoader(true);
+        setPropertyDetails(res.data);
+        setDescription(res.data.description);
+        setName(res.data.property_name);
+        setLocation(res.data.location);
+        setAddress(res.data.address);
+        setPincode(res.data.pincode);
+        setCity(res.data.city);
+        setState(res.data.state);
+        setPrice(res.data.price);
+        setProperty_Size(res.data.property_size);
 
-        setBedrooms(res.data.bedrooms)
-        setBathrooms(res.data.bathrooms)
-        setFurnishing_status(res.data.furnishing_status)
+        setBedrooms(res.data.bedrooms);
+        setBathrooms(res.data.bathrooms);
+        setFurnishing_status(res.data.furnishing_status);
 
-        setPossession_Status(res.data.possession)
-        setAvailability(res.data.availability)
-        setFloor(res.data.floor)
-        setCornerPlot(res.data.corner)
-        setGatedCommunity(res.data.gated)
-        setAmenities(res.data.amenities)
-        setFor_status(res.data.for_status)
-        setPostedBy(res.data.posted_by.id)
-        setImagePostData(res.data.image)
-        return res.data
+        setPossession_Status(res.data.possession);
+        setAvailability(res.data.availability);
+        setFloor(res.data.floor);
+        setCornerPlot(res.data.corner);
+        setGatedCommunity(res.data.gated);
+        setAmenities(res.data.amenities);
+        setFor_status(res.data.for_status);
+        setPostedBy(res.data.posted_by.id);
+        setImagePostData(res.data.image);
+        return res.data;
       })
       .then((res) => {
-        setLoader(false)
-        console.log(res.image)
+        setLoader(false);
         if (res.image && res.image.length > 0) {
           const propertyImagesData = [];
           res.image.map((image, index) => {
-            return propertyImagesData.push(image)
-          }
-          )
-          console.log(propertyImagesData)
-          setImage(propertyImagesData)
-          console.log(image)
+            return propertyImagesData.push(image);
+          });
+          setImage(propertyImagesData);
         }
       })
-      .catch(err => {
-        console.log(err);
-      })
-  }, [])
-  console.log(propertyDetails)
+      .catch((err) => {});
+  }, []);
 
   const dispatch = useDispatch();
 
   const [loader, setLoader] = React.useState(true);
   const [spinner, setSpinner] = React.useState(false);
 
-  const default_name = propertyDetails.property_name
-  console.log(default_name)
-  const [name, setName] = React.useState('');
-  const [description, setDescription] = React.useState(propertyDetails.description);
+  const default_name = propertyDetails.property_name;
+  const [name, setName] = React.useState("");
+  const [description, setDescription] = React.useState(
+    propertyDetails.description
+  );
   const [location, setLocation] = React.useState(null);
   const [address, setAddress] = React.useState(null);
   const [pincode, setPincode] = React.useState(null);
@@ -98,9 +93,9 @@ const EditProperty = () => {
   const [availability, setAvailability] = React.useState(null);
   const [floor, setFloor] = React.useState(null);
   const [bathrooms, setBathrooms] = React.useState(null);
-  const [cornerPlot, setCornerPlot] = useState(null)
-  const [gatedCommunity, setGatedCommunity] = useState(null)
-  const [amenities, setAmenities] = useState(null)
+  const [cornerPlot, setCornerPlot] = useState(null);
+  const [gatedCommunity, setGatedCommunity] = useState(null);
+  const [amenities, setAmenities] = useState(null);
   const { setAlert } = useContext(WebContext);
 
   const { editPropertyId, setEditPropertyId } = useContext(WebContext);
@@ -108,18 +103,14 @@ const EditProperty = () => {
   const [image, setImage] = useState([]);
   const [imagePostData, setImagePostData] = useState([]);
 
-  console.log(propertyDetails.description)
-  console.log(description)
-
-  const property_type = propertyDetails.property_type
-
+  const property_type = propertyDetails.property_type;
 
   const data = {
     amenities: [],
     floor: floor,
     for_status: for_status,
     posted_by: posted_by,
-    name: slugify(name, '_'),
+    name: slugify(name, "_"),
     property_name: name,
     description: description,
     location: location,
@@ -139,123 +130,127 @@ const EditProperty = () => {
     image: imagePostData,
     corner: cornerPlot,
     gated: gatedCommunity,
-    amenities: amenities
-  }
+    amenities: amenities,
+  };
 
-  const cityOptions = cityData.map(city => {
+  const cityOptions = cityData.map((city) => {
     const { name } = city;
     return {
       value: name,
       label: name,
-    }
+    };
   });
-  const stateOptions = stateData.map(state => {
+  const stateOptions = stateData.map((state) => {
     const { name } = state;
     return {
       value: name,
       label: name,
-    }
+    };
   });
-  const floorOptions = floorData.map(floor => {
+  const floorOptions = floorData.map((floor) => {
     const { value, label } = floor;
     return {
       value: value,
       label: label,
-    }
+    };
   });
-  const amenitiesOptions = amenitiesData.map(amenities => {
+  const amenitiesOptions = amenitiesData.map((amenities) => {
     const { value, label } = amenities;
     return {
       value: value,
       label: label,
-    }
-  })
+    };
+  });
   const handleChangeCity = (selectedOption) => {
-
     setCity(selectedOption.value);
-  }
+  };
   const handleChangeState = (selectedOption) => {
     setState(selectedOption.value);
-  }
+  };
 
   const selectFloor = (selectedOption) => {
     setFloor(selectedOption.value);
-  }
+  };
   const handleAmenities = (e) => {
-    const amenitiesValue = []
-    e.map(amenities => {
-      return amenitiesValue.push(amenities.value)
-    })
-    setAmenities(amenitiesValue)
-  }
+    const amenitiesValue = [];
+    e.map((amenities) => {
+      return amenitiesValue.push(amenities.value);
+    });
+    setAmenities(amenitiesValue);
+  };
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   const deleteImage = (e, id) => {
-    e.preventDefault()
-    axios.delete(
-      `http://localhost:8000/api/image/${id}/`,
-      {
+    e.preventDefault();
+    axios
+      .delete(`${base_url}api/image/${id}/`, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      }
-    ).then(() => {
-      setImage((prevState) => prevState.filter((value) => { return value.pk != id }))
-      setImagePostData((prevState) => prevState.filter((value) => { return value != id }))
-    })
+      })
+      .then(() => {
+        setImage((prevState) =>
+          prevState.filter((value) => {
+            return value.pk !== id;
+          })
+        );
+        setImagePostData((prevState) =>
+          prevState.filter((value) => {
+            return value !== id;
+          })
+        );
+      });
   };
-  console.log(imagePostData)
 
   const submitProperty = (e) => {
     e.preventDefault();
-    console.log(data)
     setSpinner(true);
-    axios(`http://127.0.0.1:8000/api/property/${propertyDetails.id}/`, {
+    axios(`${base_url}api/property/${propertyDetails.id}/`, {
       method: "patch",
       data: data,
       headers: {
-        'Content-type': 'application/json',
-      }
-    }).then(res => {
-      setSpinner(false);
-      setAlert({
-        type: "success",
-        message: "Property Posted Successfully",
-        show: true
-      })
-      setTimeout(() => {
-        setAlert({
-          type: "",
-          message: "",
-          show: false
-        })
-      }, 2000)
-      navigate("/dashboard")
-    }).catch(err => {
-      console.log(err);
-      setSpinner(false);
-      setAlert({
-        type: "danger",
-        message: err.message,
-        show: true
-      })
-      setTimeout(() => {
-        setAlert({
-          type: "",
-          message: "",
-          show: false
-        })
-      }, 2000)
+        "Content-type": "application/json",
+      },
     })
-  }
-  console.log(image)
+      .then((res) => {
+        setSpinner(false);
+        setAlert({
+          type: "success",
+          message: "Property Posted Successfully",
+          show: true,
+        });
+        setTimeout(() => {
+          setAlert({
+            type: "",
+            message: "",
+            show: false,
+          });
+        }, 2000);
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        setSpinner(false);
+        setAlert({
+          type: "danger",
+          message: err.message,
+          show: true,
+        });
+        setTimeout(() => {
+          setAlert({
+            type: "",
+            message: "",
+            show: false,
+          });
+        }, 2000);
+      });
+  };
 
   return (
-    <div className='edit-property-page page'>
+    <div className="edit-property-page page">
       <h3 className="mobile-title">Edit Property</h3>
-      <form action="" className='post-property'>
+      <form action="" className="post-property">
         <div className="form-section">
           <h2 className="section-title">Property Details</h2>
           {/* Property Name  */}
@@ -267,7 +262,8 @@ const EditProperty = () => {
               placeholder="Name of Property/Project"
               name="name"
               id="name"
-              defaultValue={propertyDetails.property_name} />
+              defaultValue={propertyDetails.property_name}
+            />
           </div>
           {/* Property Description  */}
           <div className="form-group">
@@ -278,9 +274,9 @@ const EditProperty = () => {
               placeholder="Property Description"
               name="description"
               id="description"
-              defaultValue={propertyDetails.description} />
+              defaultValue={propertyDetails.description}
+            />
           </div>
-
         </div>
         <div className="form-section">
           <h2 className="section-title">Property Location</h2>
@@ -300,18 +296,38 @@ const EditProperty = () => {
           {/* Address */}
           <div className="form-group">
             <h2 className="header-mobile">Address</h2>
-            <input type="text" onChange={(e) => setAddress(e.target.value)} placeholder="Enter Address" name="address" id="address" defaultValue={propertyDetails.address} />
+            <input
+              type="text"
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Enter Address"
+              name="address"
+              id="address"
+              defaultValue={propertyDetails.address}
+            />
           </div>
 
           {/* Pincode  */}
           <div className="form-group">
             <h2 className="header-mobile">Pincode</h2>
-            <input type="text" onChange={(e) => setPincode(e.target.value)} placeholder="Enter Pincode" name="pincode" id="pincode" defaultValue={propertyDetails.pincode} />
+            <input
+              type="text"
+              onChange={(e) => setPincode(e.target.value)}
+              placeholder="Enter Pincode"
+              name="pincode"
+              id="pincode"
+              defaultValue={propertyDetails.pincode}
+            />
           </div>
           {/* City  */}
           <div className="form-group">
             <h2 className="header-mobile">City</h2>
-            <Select onChange={handleChangeCity} placeholder="Select City" options={cityOptions} openMenuOnClick={false} required />
+            <Select
+              onChange={handleChangeCity}
+              placeholder="Select City"
+              options={cityOptions}
+              openMenuOnClick={false}
+              required
+            />
           </div>
           {/* State  */}
           <div className="form-group">
@@ -332,49 +348,96 @@ const EditProperty = () => {
               <div className="form-section">
                 <h2 className="section-title">Property Feature</h2>
                 {/* Furnishing Status  */}
-                <div className="form-group" >
+                <div className="form-group">
                   <h2 className="header-mobile">Furnishing Status</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="furnished" value='furnished' checked={furnishing_status == 'furnished'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setFurnishing_status(e.target.value)}
+                        name="furnishing_status"
+                        id="furnished"
+                        value="furnished"
+                        checked={furnishing_status == "furnished"}
+                      />
                       <label htmlFor="furnishing_status">Furnished</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="semifurnished" value='semifurnished' checked={furnishing_status == 'semifurnished'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setFurnishing_status(e.target.value)}
+                        name="furnishing_status"
+                        id="semifurnished"
+                        value="semifurnished"
+                        checked={furnishing_status == "semifurnished"}
+                      />
                       <label htmlFor="furnishing_status">Semi-Furnished</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="unfurnished" value='unfurnished' checked={furnishing_status == 'unfurnished'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setFurnishing_status(e.target.value)}
+                        name="furnishing_status"
+                        id="unfurnished"
+                        value="unfurnished"
+                        checked={furnishing_status == "unfurnished"}
+                      />
                       <label htmlFor="furnishing_status">Unfurnished</label>
                     </div>
-
                   </div>
                 </div>
                 {/* Area  */}
                 <div className="form-group">
                   <h2 className="header-mobile">Total Area (in sqft)</h2>
-                  <input type="text" onChange={(e) => setProperty_Size(e.target.value)} placeholder="Enter Total Area (Ex - 1500)" name="property_size" id="property_size" defaultValue={propertyDetails.property_size} />
+                  <input
+                    type="text"
+                    onChange={(e) => setProperty_Size(e.target.value)}
+                    placeholder="Enter Total Area (Ex - 1500)"
+                    name="property_size"
+                    id="property_size"
+                    defaultValue={propertyDetails.property_size}
+                  />
                 </div>
                 {/* Possession Status  */}
                 <div className="form-group">
                   <h2 className="header-mobile">Possession Status</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" checked={possession_status == 'Under Construction'} value='Under Construction' />
-                      <label htmlFor="possession_status">Under Construction</label>
+                      <input
+                        type="radio"
+                        onChange={(e) => setPossession_Status(e.target.value)}
+                        name="possession_status"
+                        id="under-construction"
+                        checked={possession_status == "Under Construction"}
+                        value="Under Construction"
+                      />
+                      <label htmlFor="possession_status">
+                        Under Construction
+                      </label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="ready-to-move" value='Ready To Move' checked={possession_status == 'Ready To Move'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setPossession_Status(e.target.value)}
+                        name="possession_status"
+                        id="ready-to-move"
+                        value="Ready To Move"
+                        checked={possession_status == "Ready To Move"}
+                      />
                       <label htmlFor="possession_status">Ready To Move</label>
                     </div>
-
                   </div>
-
                 </div>
                 {/* Available From  */}
                 <div className="form-group">
                   <h2 className="header-mobile">Available From</h2>
-                  <input type="date" onChange={(e) => setAvailability(e.target.value)} name="availability" id="availability" defaultValue={propertyDetails.availability} />
+                  <input
+                    type="date"
+                    onChange={(e) => setAvailability(e.target.value)}
+                    name="availability"
+                    id="availability"
+                    defaultValue={propertyDetails.availability}
+                  />
                 </div>
                 {/* Bedrooms  */}
                 <div className="form-group">
@@ -382,46 +445,108 @@ const EditProperty = () => {
                   {/* <input type="number" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="bedrooms" /> */}
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBedrooms((e.target.value))} name="bedrooms" id="1" value='1' checked={bedrooms == '1'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBedrooms(e.target.value)}
+                        name="bedrooms"
+                        id="1"
+                        value="1"
+                        checked={bedrooms == "1"}
+                      />
                       <label htmlFor="bedrooms">1</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="2" value='2' checked={bedrooms == '2'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBedrooms(e.target.value)}
+                        name="bedrooms"
+                        id="2"
+                        value="2"
+                        checked={bedrooms == "2"}
+                      />
                       <label htmlFor="bedrooms">2</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="3" value='3' checked={bedrooms == '3'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBedrooms(e.target.value)}
+                        name="bedrooms"
+                        id="3"
+                        value="3"
+                        checked={bedrooms == "3"}
+                      />
                       <label htmlFor="bedrooms">3</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="4" value='4' checked={bedrooms == '4'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBedrooms(e.target.value)}
+                        name="bedrooms"
+                        id="4"
+                        value="4"
+                        checked={bedrooms == "4"}
+                      />
                       <label htmlFor="bedrooms">4</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBedrooms(e.target.value)} name="bedrooms" id="5" value='5+' checked={bedrooms == '5+'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBedrooms(e.target.value)}
+                        name="bedrooms"
+                        id="5"
+                        value="5+"
+                        checked={bedrooms == "5+"}
+                      />
                       <label htmlFor="sale">5+</label>
                     </div>
                   </div>
-
                 </div>
                 {/* Bathrooms  */}
                 <div className="form-group">
                   <h2 className="header-mobile">Bathrooms</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="1" value='1' checked={bathrooms == '1'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBathrooms(e.target.value)}
+                        name="bathrooms"
+                        id="1"
+                        value="1"
+                        checked={bathrooms == "1"}
+                      />
                       <label htmlFor="bathrooms">1</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="2" value='2' checked={bathrooms == '2'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBathrooms(e.target.value)}
+                        name="bathrooms"
+                        id="2"
+                        value="2"
+                        checked={bathrooms == "2"}
+                      />
                       <label htmlFor="bathrooms">2</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="3" value='3' checked={bathrooms == '3'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBathrooms(e.target.value)}
+                        name="bathrooms"
+                        id="3"
+                        value="3"
+                        checked={bathrooms == "3"}
+                      />
                       <label htmlFor="bathrooms">3</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="4" value='4+' checked={bathrooms == "4+"} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBathrooms(e.target.value)}
+                        name="bathrooms"
+                        id="4"
+                        value="4+"
+                        checked={bathrooms == "4+"}
+                      />
                       <label htmlFor="bathrooms">4+</label>
                     </div>
                   </div>
@@ -430,15 +555,28 @@ const EditProperty = () => {
                 {/* Floor  */}
                 <div className="form-group">
                   <h2 className="header-mobile">Floor</h2>
-                  <Select width='280px' onChange={selectFloor} placeholder="Select Floor" options={floorOptions} required />
+                  <Select
+                    width="280px"
+                    onChange={selectFloor}
+                    placeholder="Select Floor"
+                    options={floorOptions}
+                    required
+                  />
                 </div>
                 {/* Amenities */}
                 <div className="form-group">
                   <h2 className="header-mobile">Amenities Available</h2>
-                  <Select onChange={(e) => handleAmenities(e)} isMulti closeMenuOnSelect={false} options={amenitiesOptions} placeholder="Amenities Available" required />
+                  <Select
+                    onChange={(e) => handleAmenities(e)}
+                    isMulti
+                    closeMenuOnSelect={false}
+                    options={amenitiesOptions}
+                    placeholder="Amenities Available"
+                    required
+                  />
                 </div>
               </div>
-            )
+            );
           } else if (property_type === "PL") {
             return (
               <div className="form-section">
@@ -446,18 +584,39 @@ const EditProperty = () => {
                 {/* Area  */}
                 <div className="form-group">
                   <h2 className="header-mobile">Total Area (in sqft)</h2>
-                  <input type="number" onChange={(e) => setProperty_Size(e.target.value)} placeholder="Enter Total Area (Ex - 1500)" name="property_size" id="property_size" defaultValue={propertyDetails.property_size} />
+                  <input
+                    type="number"
+                    onChange={(e) => setProperty_Size(e.target.value)}
+                    placeholder="Enter Total Area (Ex - 1500)"
+                    name="property_size"
+                    id="property_size"
+                    defaultValue={propertyDetails.property_size}
+                  />
                 </div>
                 {/* Corner Plot  */}
                 <div className="form-group">
                   <h2 className="header-mobile">Corner Plot</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="True" name="for" id="true" checked={cornerPlot == 'True'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setCornerPlot(e.target.value)}
+                        value="True"
+                        name="for"
+                        id="true"
+                        checked={cornerPlot == "True"}
+                      />
                       <label htmlFor="true">Yes</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setCornerPlot(e.target.value)} value="False" name="for" id="false" checked={cornerPlot == 'False'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setCornerPlot(e.target.value)}
+                        value="False"
+                        name="for"
+                        id="false"
+                        checked={cornerPlot == "False"}
+                      />
                       <label htmlFor="false">No</label>
                     </div>
                   </div>
@@ -467,17 +626,31 @@ const EditProperty = () => {
                   <h2 className="header-mobile">Gated Community</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="True" name="for" id="true" checked={gatedCommunity == 'True'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setGatedCommunity(e.target.value)}
+                        value="True"
+                        name="for"
+                        id="true"
+                        checked={gatedCommunity == "True"}
+                      />
                       <label htmlFor="true">Yes</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setGatedCommunity(e.target.value)} value="False" name="for" id="false" checked={gatedCommunity == 'False'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setGatedCommunity(e.target.value)}
+                        value="False"
+                        name="for"
+                        id="false"
+                        checked={gatedCommunity == "False"}
+                      />
                       <label htmlFor="false">No</label>
                     </div>
                   </div>
                 </div>
               </div>
-            )
+            );
           } else if (property_type === "CM") {
             return (
               <div className="form-section">
@@ -487,34 +660,68 @@ const EditProperty = () => {
                   <h2 className="header-mobile">Possession Status</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="under-construction" value='Under Construction' checked={possession_status == 'Under Construction'} />
-                      <label htmlFor="possession_status">Under Construction</label>
+                      <input
+                        type="radio"
+                        onChange={(e) => setPossession_Status(e.target.value)}
+                        name="possession_status"
+                        id="under-construction"
+                        value="Under Construction"
+                        checked={possession_status == "Under Construction"}
+                      />
+                      <label htmlFor="possession_status">
+                        Under Construction
+                      </label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setPossession_Status(e.target.value)} name="possession_status" id="ready-to-move" value='Ready To Move' checked={possession_status == 'Ready To Move'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setPossession_Status(e.target.value)}
+                        name="possession_status"
+                        id="ready-to-move"
+                        value="Ready To Move"
+                        checked={possession_status == "Ready To Move"}
+                      />
                       <label htmlFor="possession_status">Ready To Move</label>
                     </div>
-
                   </div>
-
                 </div>
                 {/* Furnishing Status  */}
-                <div className="form-group" >
+                <div className="form-group">
                   <h2 className="header-mobile">Furnishing Status</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="furnished" value='furnished' checked={furnishing_status == 'furnished'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setFurnishing_status(e.target.value)}
+                        name="furnishing_status"
+                        id="furnished"
+                        value="furnished"
+                        checked={furnishing_status == "furnished"}
+                      />
                       <label htmlFor="furnishing_status">Furnished</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="semifurnished" value='semifurnished' checked={furnishing_status == 'semifurnished'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setFurnishing_status(e.target.value)}
+                        name="furnishing_status"
+                        id="semifurnished"
+                        value="semifurnished"
+                        checked={furnishing_status == "semifurnished"}
+                      />
                       <label htmlFor="furnishing_status">Semi-Furnished</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setFurnishing_status(e.target.value)} name="furnishing_status" id="unfurnished" value='unfurnished' checked={furnishing_status == 'unfurnished'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setFurnishing_status(e.target.value)}
+                        name="furnishing_status"
+                        id="unfurnished"
+                        value="unfurnished"
+                        checked={furnishing_status == "unfurnished"}
+                      />
                       <label htmlFor="furnishing_status">Unfurnished</label>
                     </div>
-
                   </div>
                 </div>
                 {/* Bathrooms  */}
@@ -522,48 +729,90 @@ const EditProperty = () => {
                   <h2 className="header-mobile">Washrooms</h2>
                   <div className="select-options">
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="1" value='1' checked={bathrooms == '1'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBathrooms(e.target.value)}
+                        name="bathrooms"
+                        id="1"
+                        value="1"
+                        checked={bathrooms == "1"}
+                      />
                       <label htmlFor="bathrooms">1</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="2" value='2' checked={bathrooms == '2'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBathrooms(e.target.value)}
+                        name="bathrooms"
+                        id="2"
+                        value="2"
+                        checked={bathrooms == "2"}
+                      />
                       <label htmlFor="bathrooms">2</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="3" value='3' checked={bathrooms == '3'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBathrooms(e.target.value)}
+                        name="bathrooms"
+                        id="3"
+                        value="3"
+                        checked={bathrooms == "3"}
+                      />
                       <label htmlFor="bathrooms">3</label>
                     </div>
                     <div className="select-option">
-                      <input type="radio" onChange={(e) => setBathrooms(e.target.value)} name="bathrooms" id="4" value='4+' checked={bathrooms == '4+'} />
+                      <input
+                        type="radio"
+                        onChange={(e) => setBathrooms(e.target.value)}
+                        name="bathrooms"
+                        id="4"
+                        value="4+"
+                        checked={bathrooms == "4+"}
+                      />
                       <label htmlFor="bathrooms">4+</label>
                     </div>
-
                   </div>
                 </div>
                 {/* Area  */}
                 <div className="form-group">
                   <h2 className="header-mobile">Total Area (in sqft)</h2>
-                  <input type="number" onChange={(e) => setProperty_Size(e.target.value)} placeholder="Enter Total Area (Ex - 1500)" name="property_size" id="property_size" defaultValue={propertyDetails.property_size} />
+                  <input
+                    type="number"
+                    onChange={(e) => setProperty_Size(e.target.value)}
+                    placeholder="Enter Total Area (Ex - 1500)"
+                    name="property_size"
+                    id="property_size"
+                    defaultValue={propertyDetails.property_size}
+                  />
                 </div>
                 {/* Floor  */}
                 <div className="form-group">
                   <h2 className="header-mobile">Floor</h2>
-                  <Select onChange={selectFloor} placeholder="Select Floor" options={floorOptions} required />
+                  <Select
+                    onChange={selectFloor}
+                    placeholder="Select Floor"
+                    options={floorOptions}
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <h2 className="header-mobile">Amenities Available</h2>
-                  <Select onChange={(e) => handleAmenities(e)} isMulti closeMenuOnSelect={false} options={amenitiesOptions} placeholder="Amenities Available" required />
+                  <Select
+                    onChange={(e) => handleAmenities(e)}
+                    isMulti
+                    closeMenuOnSelect={false}
+                    options={amenitiesOptions}
+                    placeholder="Amenities Available"
+                    required
+                  />
                 </div>
               </div>
-            )
-          }
-          else {
-            return (
-              <></>
-            )
+            );
+          } else {
+            return <></>;
           }
         })()}
-
 
         {/* -------------Feature Ends------------------ */}
         <div className="form-section">
@@ -571,7 +820,14 @@ const EditProperty = () => {
           {/* Price  */}
           <div className="form-group">
             <h2 className="header-mobile">Total Price (in &#8377;)</h2>
-            <input type="text" onChange={(e) => setPrice(e.target.value)} name="price" id="price" placeholder="Enter Total Price (Ex - 1250000)" defaultValue={propertyDetails.price} />
+            <input
+              type="text"
+              onChange={(e) => setPrice(e.target.value)}
+              name="price"
+              id="price"
+              placeholder="Enter Total Price (Ex - 1250000)"
+              defaultValue={propertyDetails.price}
+            />
           </div>
         </div>
 
@@ -588,17 +844,25 @@ const EditProperty = () => {
                 ) : (
                   <img src={image[0].image.full_size} alt="property" />
                 )}
-                <input type="file" accept="image/*" onChange={(e) => {
-                  (dispatch(uploadImage(e.target.files[0]))
-                    .then((res) => {
-
-                      setImage(image => [...image, res]);
-                      setImagePostData(imagePostData => [...imagePostData, res.pk]);
-
-                    }))
-                }} name="photos" id="photo" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    dispatch(uploadImage(e.target.files[0])).then((res) => {
+                      setImage((image) => [...image, res]);
+                      setImagePostData((imagePostData) => [
+                        ...imagePostData,
+                        res.pk,
+                      ]);
+                    });
+                  }}
+                  name="photos"
+                  id="photo"
+                />
                 {image.length === 0 ? null : (
-                  <button onClick={(e) => deleteImage(e, image[0]['pk'])}>Remove</button>
+                  <button onClick={(e) => deleteImage(e, image[0]["pk"])}>
+                    Remove
+                  </button>
                 )}
               </div>
               {/* 2nd Image Upload Container  */}
@@ -609,17 +873,25 @@ const EditProperty = () => {
                 ) : (
                   <img src={image[1].image.full_size} alt="property" />
                 )}
-                <input type="file" accept="image/*" onChange={(e) => {
-                  (dispatch(uploadImage(e.target.files[0]))
-                    .then((res) => {
-                      setImage(image => [...image, res]);
-                      setImagePostData(imagePostData => [...imagePostData, res.pk]);
-
-
-                    }))
-                }} name="photos" id="photo" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    dispatch(uploadImage(e.target.files[0])).then((res) => {
+                      setImage((image) => [...image, res]);
+                      setImagePostData((imagePostData) => [
+                        ...imagePostData,
+                        res.pk,
+                      ]);
+                    });
+                  }}
+                  name="photos"
+                  id="photo"
+                />
                 {image.length <= 1 ? null : (
-                  <button onClick={(e) => deleteImage(e, image[1]['pk'])}>Remove</button>
+                  <button onClick={(e) => deleteImage(e, image[1]["pk"])}>
+                    Remove
+                  </button>
                 )}
               </div>
               {/* 3rd Image Upload Container  */}
@@ -630,19 +902,26 @@ const EditProperty = () => {
                 ) : (
                   <img src={image[2].image.full_size} alt="property" />
                 )}
-                <input type="file" accept="image/*" onChange={(e) => {
-                  (dispatch(uploadImage(e.target.files[0]))
-                    .then((res) => {
-
-                      setImage(image => [...image, res]);
-                      setImagePostData(imagePostData => [...imagePostData, res.pk]);
-
-
-                    }))
-                }} name="photos" id="photo" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    dispatch(uploadImage(e.target.files[0])).then((res) => {
+                      setImage((image) => [...image, res]);
+                      setImagePostData((imagePostData) => [
+                        ...imagePostData,
+                        res.pk,
+                      ]);
+                    });
+                  }}
+                  name="photos"
+                  id="photo"
+                />
                 {image.length <= 2 ? null : (
-                  <button onClick={(e) => deleteImage(e, image[2]['pk'])}>Remove</button>)
-                }
+                  <button onClick={(e) => deleteImage(e, image[2]["pk"])}>
+                    Remove
+                  </button>
+                )}
               </div>
               {/* 4th Image Upload Container  */}
 
@@ -652,18 +931,25 @@ const EditProperty = () => {
                 ) : (
                   <img src={image[3].image.full_size} alt="property" />
                 )}
-                <input type="file" accept="image/*" onChange={(e) => {
-                  (dispatch(uploadImage(e.target.files[0]))
-                    .then((res) => {
-
-                      setImage(image => [...image, res]);
-                      setImagePostData(imagePostData => [...imagePostData, res.pk]);
-
-
-                    }))
-                }} name="photos" id="photo" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    dispatch(uploadImage(e.target.files[0])).then((res) => {
+                      setImage((image) => [...image, res]);
+                      setImagePostData((imagePostData) => [
+                        ...imagePostData,
+                        res.pk,
+                      ]);
+                    });
+                  }}
+                  name="photos"
+                  id="photo"
+                />
                 {image.length <= 3 ? null : (
-                  <button onClick={(e) => deleteImage(e, image[3]['pk'])}>Remove</button>
+                  <button onClick={(e) => deleteImage(e, image[3]["pk"])}>
+                    Remove
+                  </button>
                 )}
               </div>
               {/* 5th Image Upload Container  */}
@@ -674,18 +960,25 @@ const EditProperty = () => {
                 ) : (
                   <img src={image[4].image.full_size} alt="property" />
                 )}
-                <input type="file" accept="image/*" onChange={(e) => {
-                  (dispatch(uploadImage(e.target.files[0]))
-                    .then((res) => {
-
-                      setImage(image => [...image, res]);
-                      setImagePostData(imagePostData => [...imagePostData, res.pk]);
-
-
-                    }))
-                }} name="photos" id="photo" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    dispatch(uploadImage(e.target.files[0])).then((res) => {
+                      setImage((image) => [...image, res]);
+                      setImagePostData((imagePostData) => [
+                        ...imagePostData,
+                        res.pk,
+                      ]);
+                    });
+                  }}
+                  name="photos"
+                  id="photo"
+                />
                 {image.length <= 4 ? null : (
-                  <button onClick={(e) => deleteImage(e, image[4]['pk'])}>Remove</button>
+                  <button onClick={(e) => deleteImage(e, image[4]["pk"])}>
+                    Remove
+                  </button>
                 )}
               </div>
               {/* 6th Image Upload Container  */}
@@ -696,16 +989,25 @@ const EditProperty = () => {
                 ) : (
                   <img src={image[5].image.full_size} alt="property" />
                 )}
-                <input type="file" accept="image/*" onChange={(e) => {
-                  (dispatch(uploadImage(e.target.files[0]))
-                    .then((res) => {
-                      setImage(image => [...image, res]);
-                      setImagePostData(imagePostData => [...imagePostData, res.pk]);
-
-                    }))
-                }} name="photos" id="photo" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    dispatch(uploadImage(e.target.files[0])).then((res) => {
+                      setImage((image) => [...image, res]);
+                      setImagePostData((imagePostData) => [
+                        ...imagePostData,
+                        res.pk,
+                      ]);
+                    });
+                  }}
+                  name="photos"
+                  id="photo"
+                />
                 {image.length <= 5 ? null : (
-                  <button onClick={(e) => deleteImage(e, image[5]['pk'])}>Remove</button>
+                  <button onClick={(e) => deleteImage(e, image[5]["pk"])}>
+                    Remove
+                  </button>
                 )}
               </div>
             </div>
@@ -725,25 +1027,23 @@ const EditProperty = () => {
           </div> */}
           </div>
         </div>
-        {
-          spinner ?
-            <div className="spinner-container">
-              <CgSpinner className="spinner" />
-            </div>
-            :
-            <button
-              className="btn"
-              whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.01 }}
-              onClick={submitProperty}
-            >
-              Save Changes
-            </button>}
-
+        {spinner ? (
+          <div className="spinner-container">
+            <CgSpinner className="spinner" />
+          </div>
+        ) : (
+          <button
+            className="btn"
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.01 }}
+            onClick={submitProperty}
+          >
+            Save Changes
+          </button>
+        )}
       </form>
+    </div>
+  );
+};
 
-    </div >
-  )
-}
-
-export default EditProperty
+export default EditProperty;

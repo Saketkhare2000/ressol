@@ -4,21 +4,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { slideUp } from "../../Animation";
 import { WebContext } from "../../Context/WebContext";
 import { useDispatch, useSelector } from "react-redux";
-import { userAuth } from "../../actions/userActions";
 import "./style.css";
 import axios from "axios";
 
 const LogIn = () => {
   let navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const [password, setPassword] = useState("");
 
-  const [error, setError] = useState("");
-
-  const { userName, setUserName, phoneNumber, setPhoneNumber, setAlert } = useContext(WebContext);
-  console.log(phoneNumber)
+  const { phoneNumber, setPhoneNumber, setAlert, base_url } =
+    useContext(WebContext);
   const userDetails = {
     // username: userName,
     phone: phoneNumber,
@@ -48,11 +43,9 @@ const LogIn = () => {
     e.preventDefault();
     axios({
       method: "post",
-      url: "http://localhost:8000/api/otp/",
+      url: `${base_url}api/otp/`,
       data: userDetails,
-    }).then((res) => {
-      console.log(res.data);
-    });
+    }).then((res) => {});
     setAlert({
       show: true,
       message: "OTP sent to your mobile number",
@@ -65,9 +58,7 @@ const LogIn = () => {
         type: "",
       });
     }, 2000);
-    navigate("/otphandle")
-
-
+    navigate("/otphandle");
   };
 
   return !loggedIn ? (
