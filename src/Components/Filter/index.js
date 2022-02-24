@@ -17,7 +17,7 @@ import { WebContext } from "../../Context/WebContext";
 const Filter = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { base_url } = useContext(WebContext);
+  const { base_url, paramsData, setParamsData } = useContext(WebContext);
   // Common Filter States
   const [propertyFor, setPropertyFor] = React.useState(null);
   const [city, setCity] = React.useState(null);
@@ -200,9 +200,12 @@ const Filter = () => {
 
   // Final Filter Search Handle Function
   const handleSearch = () => {
-    dispatch(getPropertyList(data, base_url)).then(() => {
-      navigate(`/propertylist/results`);
-    });
+    setParamsData(data)
+    navigate(`/propertylist/results`);
+
+    // dispatch(getPropertyList(data, base_url)).then(() => {
+    //   navigate(`/propertylist/results`);
+    // });
   };
   return (
     <motion.div

@@ -12,6 +12,7 @@
   flex-direction: row;
   align-items: center;
   overflow-x: scroll;
+  margin: 14px 0;
 }
 .divider {
   margin-top: 10px;

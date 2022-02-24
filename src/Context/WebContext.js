@@ -25,6 +25,8 @@ const WebProvider = (props) => {
   const [editPropertyId, setEditPropertyId] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
+  const [paramsData, setParamsData] = useState();
+  const [listSlug, setListSlug] = useState("");
   const value = {
     loggedIn,
     setLoggedIn,
@@ -55,6 +57,9 @@ const WebProvider = (props) => {
     lastname,
     setLastname,
     base_url,
+    paramsData,
+    setParamsData,
+    listSlug, setListSlug
   };
 
   return (

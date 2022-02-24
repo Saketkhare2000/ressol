@@ -17,13 +17,16 @@ const Dashoard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { phoneNumber, base_url } = useContext(WebContext);
-
+  const currentDate = Date.now();
+  console.log(currentDate);
   useEffect(() => {
     dispatch(getUserData(phoneNumber, base_url));
   }, []);
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const userDetails = useSelector((state) => state.userData.userData);
-
+  const primetimestamp = new Date(userDetails.prime_status?.timestamp)
+  primetimestamp.setDate(primetimestamp.getDate() + userDetails.prime_status?.subscription_period);
+  const remainingDays = (Math.floor((primetimestamp - currentDate) / (1000 * 60 * 60 * 24)));
   const options = [
     { value: "#059862", label: "Default Green" },
     { value: "#f75590", label: "Pink" },
@@ -82,7 +85,7 @@ const Dashoard = () => {
             </p>
             {userDetails.prime_status && userDetails.prime_status.is_prime ? (
               <p className="validity">
-                Valid For : {userDetails.prime_status.subscription_period} Days{" "}
+                Valid For : {remainingDays} Days{" "}
               </p>
             ) : (
               <></>

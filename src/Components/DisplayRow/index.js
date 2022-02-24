@@ -12,18 +12,23 @@ import { WebContext } from "../../Context/WebContext";
 const DisplayRow = ({ type }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { base_url } = useContext(WebContext);
+  const { base_url, paramsData, setParamsData } = useContext(WebContext);
   const displayCityProperties = (title) => {
     const data = { city: title.toLowerCase(), expand: "image,posted_by.prime_status" };
-    dispatch(getPropertyList(data, base_url)).then(() => {
-      navigate(`/propertylist/${title}`);
-    });
+    setParamsData(data);
+    navigate(`/propertylist/${title}`)
+    // dispatch(getPropertyList(data, base_url)).then(() => {
+    //   navigate(`/propertylist/${title}`);
+    // });
   };
   const displayServiceProperties = (title) => {
     const data = { possession: title.toLowerCase(), expand: "image,posted_by.prime_status" };
-    dispatch(getPropertyList(data, base_url)).then(() => {
-      navigate(`/propertylist/${title}`);
-    });
+    setParamsData(data);
+    navigate(`/propertylist/${title}`);
+
+    // dispatch(getPropertyList(data, base_url)).then(() => {
+    //   navigate(`/propertylist/${title}`);
+    // });
   };
   return (
     //   Every row has a header followed by a divider line and then the cards content.

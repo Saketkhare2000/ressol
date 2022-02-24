@@ -50,10 +50,9 @@ const ViewResponse = () => {
           setTimeStamp(timeData);
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
-  console.log(primeDetails);
-  console.log(contactedByDetails);
+  console.log(timestamp)
   return (
     <div className="page">
       <div className="back" onClick={() => navigate("/dashboard")}>

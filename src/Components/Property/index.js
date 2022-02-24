@@ -16,7 +16,7 @@ import { FaCrown } from "react-icons/fa";
 
 const Property = () => {
   const id = useParams().slug;
-  const { setAlert, base_url } = useContext(WebContext);
+  const { setAlert, base_url, listSlug, setListSlug } = useContext(WebContext);
 
   const [propertyDetails, setPropertyDetails] = React.useState({});
   // const [propertyImagesData, setPropertyImagesData] = React.useState([]);
@@ -144,7 +144,9 @@ const Property = () => {
       navigate("/login");
     }
   };
-
+  const handleBack = () => {
+    navigate(`/propertylist/${listSlug}`);
+  };
   const addToWishlist = () => {
     if (loggedIn) {
       axios({
@@ -174,7 +176,7 @@ const Property = () => {
       variants={slideUp}
       className="page"
     >
-      <div className="back property-list-back" onClick={() => navigate("/")}>
+      <div className="back property-list-back" onClick={handleBack}>
         <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
         <h1 className="mobile-title">Back</h1>
         {/* <p>Go Back</p> */}

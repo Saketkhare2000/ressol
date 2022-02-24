@@ -1,7 +1,9 @@
 import { useSelector } from "react-redux";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { WebContext } from "../../Context/WebContext";
 import { FaCrown } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { getPropertyList } from "../../actions/userActions";
 
 import { Link, useParams } from "react-router-dom";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -14,15 +16,31 @@ import "./style.css";
 import { motion } from "framer-motion";
 const PropertyDeatiledCard = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const result = useParams().slug.toLowerCase();
   const propertyList = useSelector((state) => state.propertyList.propertyData);
-  const userDetails = useSelector((state) => state.userData.userData);
+  const [userId, setUserId] = useState([]);
   const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const { setAlert, base_url } = useContext(WebContext);
+  const { setAlert, base_url, phoneNumber, paramsData, setParamsData, listSlug, setListSlug } = useContext(WebContext);
   const [wishlistStatus, setWishlistStatus] = useState(false);
   const [contactStatus, setContactStatus] = useState(false);
+  const [wishlistDetails, setWishlistDetails] = useState([]);
+  // Get slug from the url
+  const { slug } = useParams();
+  setListSlug(slug);
+  useEffect(() => {
+    dispatch(getPropertyList(paramsData, base_url));
+    if (loggedIn) {
+      axios({
+        method: "get",
+        url: `${base_url}api/profile/${phoneNumber}/`,
+      }).then(res => {
+        setUserId(res.data.id);
+        setWishlistDetails(res.data.wishlist);
+      })
+    }
+  }, []);
 
-  console.log(userDetails.wishlist);
   function numDifferentiation(value) {
     var val = Math.abs(value);
     if (val >= 10000000) {
@@ -38,7 +56,7 @@ const PropertyDeatiledCard = () => {
         method: "post",
         url: `${base_url}api/wish`,
         data: {
-          profile: userDetails.id,
+          profile: userId,
           property: propertyid,
         },
       })
@@ -57,7 +75,7 @@ const PropertyDeatiledCard = () => {
         method: "post",
         url: `${base_url}api/contact`,
         data: {
-          buyer: userDetails.id,
+          buyer: userId,
           // owner: propertyDetails.posted_by.id,
           // property: propertyDetails.id,
         },
@@ -208,7 +226,7 @@ const PropertyDeatiledCard = () => {
                   if (loggedIn) {
                     return (
                       <>
-                        {wishlistStatus ? (
+                        {/* {wishlistStatus ? (
                           <button
                             className="btn btn-secondary"
                             onClick={() =>
@@ -226,7 +244,39 @@ const PropertyDeatiledCard = () => {
                           >
                             Add To Wishlist
                           </button>
-                        )}
+                        )} */}
+
+                        {wishlistDetails.filter(wishlist => wishlist == propertyList[property].id).map(wishlist => (
+                          wishlist ? (
+                            <button
+                              className="btn btn-secondary"
+                              onClick={() =>
+                                addToWishlist(propertyList[property].id)
+                              }
+                            >
+                              Remove From Wishlist
+                            </button>
+                          ) : (
+                            <button
+                              className="btn btn-secondary"
+                              onClick={() =>
+                                addToWishlist(propertyList[property].id)
+                              }
+                            >
+                              Remove From Wishlist
+                            </button>
+                          )
+                        ))
+                          // :
+                          //   <button
+                          //     className="btn btn-secondary"
+                          //     onClick={() =>
+                          //       addToWishlist(propertyList[property].id)
+                          //     }
+                          //   >
+                          //     Add To Wishlist
+                          //   </button>
+                        }
                         <button
                           className="btn btn-primary"
                           onClick={handleContact}

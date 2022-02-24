@@ -27,6 +27,7 @@ const Wishlist = () => {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   // const key = useSelector((state) => state.auth.key);
   const userDetails = useSelector((state) => state.userData.userData);
+  console.log(userDetails)
   const [wishlistDetails, setWishlistDetails] = useState(userDetails.wishlist);
   function numDifferentiation(value) {
     var val = Math.abs(value);
@@ -46,11 +47,11 @@ const Wishlist = () => {
         property: id,
       },
     }).then((res) => {
-      dispatch(getUserData(phoneNumber))
+      dispatch(getUserData(phoneNumber, base_url))
         .then((res) => {
           setWishlistDetails(res.wishlist);
         })
-        .catch((err) => {});
+        .catch((err) => { });
     });
   };
   return (
