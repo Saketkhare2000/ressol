@@ -59,7 +59,7 @@ const Filter = () => {
     corner: cornerPlot,
     gated: gatedCommunity,
     amenities: amenities,
-    expand: "image",
+    expand: "image,posted_by.prime_status",
   };
 
   ///////////////////////////////////////////////////////////////////////////////

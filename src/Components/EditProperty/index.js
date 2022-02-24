@@ -62,7 +62,7 @@ const EditProperty = () => {
           setImage(propertyImagesData);
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
 
   const dispatch = useDispatch();
@@ -848,7 +848,7 @@ const EditProperty = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    dispatch(uploadImage(e.target.files[0])).then((res) => {
+                    dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                       setImage((image) => [...image, res]);
                       setImagePostData((imagePostData) => [
                         ...imagePostData,
@@ -877,7 +877,7 @@ const EditProperty = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    dispatch(uploadImage(e.target.files[0])).then((res) => {
+                    dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                       setImage((image) => [...image, res]);
                       setImagePostData((imagePostData) => [
                         ...imagePostData,
@@ -906,7 +906,7 @@ const EditProperty = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    dispatch(uploadImage(e.target.files[0])).then((res) => {
+                    dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                       setImage((image) => [...image, res]);
                       setImagePostData((imagePostData) => [
                         ...imagePostData,
@@ -935,7 +935,7 @@ const EditProperty = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    dispatch(uploadImage(e.target.files[0])).then((res) => {
+                    dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                       setImage((image) => [...image, res]);
                       setImagePostData((imagePostData) => [
                         ...imagePostData,
@@ -964,7 +964,7 @@ const EditProperty = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    dispatch(uploadImage(e.target.files[0])).then((res) => {
+                    dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                       setImage((image) => [...image, res]);
                       setImagePostData((imagePostData) => [
                         ...imagePostData,
@@ -993,7 +993,7 @@ const EditProperty = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    dispatch(uploadImage(e.target.files[0])).then((res) => {
+                    dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                       setImage((image) => [...image, res]);
                       setImagePostData((imagePostData) => [
                         ...imagePostData,

@@ -68,7 +68,6 @@ export const deleteImage = (id, base_url) => async (dispatch) => {
 };
 
 export const uploadImage = (image, base_url) => async (dispatch) => {
-  const { base_url } = useContext(WebContext);
   const formData = new FormData();
   formData.append("image", image);
   formData.append("name", image.name);

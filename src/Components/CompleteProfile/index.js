@@ -152,7 +152,7 @@ const CompleteProfile = () => {
 
             <input
               onChange={(e) => {
-                dispatch(uploadImage(e.target.files[0])).then((res) => {
+                dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                   setImage(res);
                 });
               }}

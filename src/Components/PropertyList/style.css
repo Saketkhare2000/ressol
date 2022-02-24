@@ -72,23 +72,65 @@
   justify-content: center;
 }
 .property-detail-card .property-detail-card-details .property-name {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
-  color: var(--accent--gray);
-  margin: 4px 0;
+  /* font-weight: 500; */
+  margin: 4px 0px;
+}
+.property-detail-card .property-detail-card-details .property-type-for {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.property-detail-card
+  .property-detail-card-details
+  .property-type-for
+  .property-for {
+  margin: 0 4px;
 }
 .property-detail-card .property-detail-card-details .property-type {
   margin: 2px 0;
 }
+.property-detail-card
+  .property-detail-card-details
+  .property-posted-by
+  .property-prime {
+  font-size: 14px;
+  color: var(--brand--green);
+}
+.property-detail-card
+  .property-detail-card-details
+  .property-posted-by
+  .property-prime
+  svg {
+  font-size: 12px;
+  margin-right: 4px;
+}
+.property-detail-card .property-detail-card-details .property-posted-by {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 17px;
+  margin: 2px 0;
+}
+.property-detail-card
+  .property-detail-card-details
+  .property-posted-by
+  .property-user-type {
+  margin: 0 4px 0 0;
+}
 .property-detail-card .property-detail-card-details .property-price {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
+  margin-right: 8px;
   color: var(--text-dark);
 }
 .property-detail-card .property-detail-card-details .property-city {
   font-size: 14px;
-  font-weight: 400;
-  color: var(--text-dark);
+  margin: 2px 0;
+  font-weight: lighter;
+  color: var(--accent--gray);
   text-transform: capitalize;
 }
 .property-detail-btn-container {
@@ -106,6 +148,13 @@
   font-size: 16px;
   margin: 8px 0;
 }
+.property-price-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
 @media screen and (max-width: 768px) {
   .property-card {
     flex-direction: column;
@@ -120,11 +169,58 @@
   .property-card a {
     width: 100%;
   }
+  .property-detail-card .property-detail-card-details {
+    margin: 0;
+  }
+  .property-price-name {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .property-detail-card .property-detail-card-details .property-price {
+    font-size: 15px;
+    margin: 0;
+  }
+  .property-detail-card .property-detail-card-details .property-name {
+    margin: 0;
+  }
+  .property-detail-card
+    .property-detail-card-details
+    .property-posted-by
+    .property-user-type {
+    margin: 0;
+    font-size: 13px;
+  }
+  .property-detail-card
+    .property-detail-card-details
+    .property-posted-by
+    .property-prime {
+    font-size: 12px;
+  }
+  .property-detail-card
+    .property-detail-card-details
+    .property-posted-by
+    .property-prime
+    svg {
+    font-size: 8px;
+    margin-left: 4px;
+  }
+  .property-detail-card .property-detail-card-details .property-city {
+    font-size: 11px;
+    margin: 0;
+  }
+  .property-detail-card .property-detail-card-details .property-type-for {
+    font-size: 12px;
+    margin: 0px 0;
+  }
   .property-detail-btn-container {
     justify-content: space-between;
     flex-direction: row;
     width: 100%;
     background-color: transparent;
+  }
+  .property-detail-card .property-detail-card-details .property-posted-by {
+    font-size: 15px;
   }
   .property-detail-btn-container .btn {
     width: 49%;
@@ -139,12 +235,13 @@
     height: 160px;
   }
   .property-detail-card .property-detail-card-details .property-price {
-    font-size: 20px;
+    font-size: 18px;
   }
   .property-detail-card .property-detail-card-details .property-name {
     font-size: 18px;
+    font-weight: 400;
   }
   .property-detail-card .property-detail-card-details .property-city {
-    font-size: 16px;
+    font-size: 15px;
   }
 }

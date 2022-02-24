@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import React, { useContext, useState } from "react";
 import { WebContext } from "../../Context/WebContext";
+import { FaCrown } from "react-icons/fa";
 
 import { Link, useParams } from "react-router-dom";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -45,7 +46,7 @@ const PropertyDeatiledCard = () => {
           console.log("Clicked");
           setWishlistStatus(!wishlistStatus);
         })
-        .catch((err) => {});
+        .catch((err) => { });
     } else {
       navigate("/login");
     }
@@ -129,39 +130,63 @@ const PropertyDeatiledCard = () => {
                     )}
                   </div>
                   <div className="property-detail-card-details">
-                    <p className="property-price">
-                      ₹ {numDifferentiation(propertyList[property].price)}
-                    </p>
-                    <p className="property-name">
-                      {propertyList[property].property_name}
-                    </p>
+                    <div className="property-price-name">
+                      <p className="property-price">
+                        ₹ {numDifferentiation(propertyList[property].price)}
+                      </p>
+                      <p className="property-name">
+                        {propertyList[property].property_name}
+                      </p>
+                    </div>
+                    <div className="property-posted-by">
+                      {(() => {
+                        if (propertyList[property].posted_by.user_type === "Agent") {
+                          return <p className="property-user-type">Agent</p>;
+                        } else if (
+                          propertyList[property].posted_by.user_type === "Buyer/Owner"
+                        ) {
+                          return <p className="property-user-type">Individual</p>;
+                        } else {
+                          return <></>;
+                        }
+                      })()}
+                      {(() => {
+                        if (propertyList[property].posted_by.prime_status.is_prime) {
+                          return <p className="property-prime"><FaCrown />Prime Verified</p>;
+                        } else {
+                          return <></>;
+                        }
+                      })()}
+                    </div>
                     {/* <p className="property-type">
                       {propertyList[property].property_type}
                     </p> */}
-                    {(() => {
-                      if (propertyList[property].property_type === "FL") {
-                        return <p className="property-type">Flat</p>;
-                      } else if (
-                        propertyList[property].property_type === "VI"
-                      ) {
-                        return <p className="property-type">House</p>;
-                      } else if (
-                        propertyList[property].property_type === "PT"
-                      ) {
-                        return <p className="property-type">Plot</p>;
-                      } else {
-                        return <p className="property-type">Commercial</p>;
-                      }
-                    })()}
-                    {(() => {
-                      if (propertyList[property].for_status === "sale") {
-                        return <p className="property-type">For: Sale</p>;
-                      } else if (propertyList[property].for_status === "rent") {
-                        return <p className="property-type">For: Rent</p>;
-                      } else {
-                        return <></>;
-                      }
-                    })()}
+                    <div className="property-type-for">
+                      {(() => {
+                        if (propertyList[property].property_type === "FL") {
+                          return <p className="property-type">Flat</p>;
+                        } else if (
+                          propertyList[property].property_type === "VI"
+                        ) {
+                          return <p className="property-type">House</p>;
+                        } else if (
+                          propertyList[property].property_type === "PT"
+                        ) {
+                          return <p className="property-type">Plot</p>;
+                        } else {
+                          return <p className="property-type">Commercial</p>;
+                        }
+                      })()}
+                      {(() => {
+                        if (propertyList[property].for_status === "sale") {
+                          return <p className="property-for">for Sale</p>;
+                        } else if (propertyList[property].for_status === "rent") {
+                          return <p className="property-for">for Rent</p>;
+                        } else {
+                          return <></>;
+                        }
+                      })()}
+                    </div>
                     <p className="property-city">
                       {propertyList[property].location},{" "}
                       {propertyList[property].city}

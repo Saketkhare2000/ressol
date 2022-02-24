@@ -14,13 +14,13 @@ const DisplayRow = ({ type }) => {
   const navigate = useNavigate();
   const { base_url } = useContext(WebContext);
   const displayCityProperties = (title) => {
-    const data = { city: title.toLowerCase(), expand: "image" };
+    const data = { city: title.toLowerCase(), expand: "image,posted_by.prime_status" };
     dispatch(getPropertyList(data, base_url)).then(() => {
       navigate(`/propertylist/${title}`);
     });
   };
   const displayServiceProperties = (title) => {
-    const data = { possession: title.toLowerCase(), expand: "image" };
+    const data = { possession: title.toLowerCase(), expand: "image,posted_by.prime_status" };
     dispatch(getPropertyList(data, base_url)).then(() => {
       navigate(`/propertylist/${title}`);
     });

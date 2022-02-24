@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./style.css";
 import { CgSpinner } from "react-icons/cg";
 import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
@@ -51,8 +51,10 @@ const PostProperty = () => {
   const [cornerPlot, setCornerPlot] = useState(null);
   const [gatedCommunity, setGatedCommunity] = useState(null);
   const [amenities, setAmenities] = useState([]);
+  const [prime_property, setPrime_Property] = useState(false);
   const { setAlert, base_url } = useContext(WebContext);
   const userDetails = useSelector((state) => state.userData.userData);
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
 
   const date = new Date(availability);
   const dispatch = useDispatch();
@@ -70,13 +72,13 @@ const PostProperty = () => {
     possession: possession_status.toLowerCase(),
     state: state.toLowerCase(),
     pincode: pincode,
-    prime_property: true,
+    prime_property: prime_property,
     price: parseInt(price),
     property_size: parseInt(property_size),
     furnishing_status: furnishing_status,
     availability: availability,
-    bedrooms: parseInt(bedrooms),
-    bathrooms: parseInt(bathrooms),
+    bedrooms: bedrooms,
+    bathrooms: bathrooms,
     property_type: property_type,
     posted_by: userDetails.id,
     image: imagePostData,
@@ -84,7 +86,19 @@ const PostProperty = () => {
     gated: gatedCommunity,
     amenities: amenities,
   };
-
+  useEffect(() => {
+    if (loggedIn) {
+      if (userDetails.prime_status.is_prime) {
+        setPrime_Property(true);
+      }
+      else {
+        setPrime_Property(false);
+      }
+    }
+    else {
+      setPrime_Property(false);
+    }
+  }, [])
   const deleteImage = (e, id) => {
     e.preventDefault();
     axios
@@ -308,7 +322,7 @@ const PostProperty = () => {
               <h2 className="header-mobile">Locality</h2>
               <input
                 type="text"
-                onChange={(e) => setLocation(e.target.value)}
+                onChange={(e) => setLocation(e.target.value.toLowerCase())}
                 placeholder="Locality"
                 name="locality"
                 id="locality"
@@ -838,7 +852,7 @@ const PostProperty = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      dispatch(uploadImage(e.target.files[0])).then((res) => {
+                      dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                         setImage((image) => [...image, res]);
                         setImagePostData((imagePostData) => [
                           ...imagePostData,
@@ -867,7 +881,7 @@ const PostProperty = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      dispatch(uploadImage(e.target.files[0])).then((res) => {
+                      dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                         setImage((image) => [...image, res]);
                         setImagePostData((imagePostData) => [
                           ...imagePostData,
@@ -896,7 +910,7 @@ const PostProperty = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      dispatch(uploadImage(e.target.files[0])).then((res) => {
+                      dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                         setImage((image) => [...image, res]);
                         setImagePostData((imagePostData) => [
                           ...imagePostData,
@@ -925,7 +939,7 @@ const PostProperty = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      dispatch(uploadImage(e.target.files[0])).then((res) => {
+                      dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                         setImage((image) => [...image, res]);
                         setImagePostData((imagePostData) => [
                           ...imagePostData,
@@ -954,7 +968,7 @@ const PostProperty = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      dispatch(uploadImage(e.target.files[0])).then((res) => {
+                      dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                         setImage((image) => [...image, res]);
                         setImagePostData((imagePostData) => [
                           ...imagePostData,
@@ -984,7 +998,7 @@ const PostProperty = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      dispatch(uploadImage(e.target.files[0])).then((res) => {
+                      dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
                         setImage((image) => [...image, res]);
                         setImagePostData((imagePostData) => [
                           ...imagePostData,
