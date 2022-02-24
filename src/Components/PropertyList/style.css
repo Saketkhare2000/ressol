@@ -170,7 +170,7 @@
     width: 100%;
   }
   .property-detail-card .property-detail-card-details {
-    margin: 0;
+    margin: 2px;
   }
   .property-price-name {
     flex-direction: column;
