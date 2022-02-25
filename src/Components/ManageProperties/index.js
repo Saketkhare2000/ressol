@@ -13,11 +13,12 @@ import "./style.css";
 import Loader from "../Loader";
 import axios from "axios";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 const ManageProperties = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { setEditPropertyId, base_url, phoneNumber } = useContext(WebContext);
+  const { setEditPropertyId, base_url, phoneNumber, loggedIn } = useContext(WebContext);
   // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
   // const phoneNumber = Cookies.get("phonenumber");
   useEffect(() => {
@@ -44,7 +45,13 @@ const ManageProperties = () => {
     axios({
       method: "delete",
       url: `${base_url}api/property/${id}/`,
-    }).catch((err) => { });
+    })
+      .then(() => {
+        toast.success("Property deleted successfully");
+      })
+      .catch((err) => {
+        toast.error("Something went wrong");
+      });
   };
 
   return (

@@ -3,9 +3,10 @@ import { WebContext } from "../../Context/WebContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Cookies from 'js-cookie'
+import Cookies from "js-cookie";
 
 import "../../Components/OTPHandle/style.css";
+import toast from "react-hot-toast";
 const OTPHandle = () => {
   const dispatch = useDispatch();
   const { phoneNumber, setPhoneNumber, setAlert, base_url, loggedIn, setLoggedIn } =
@@ -27,40 +28,19 @@ const OTPHandle = () => {
       data: otpdetails,
     })
       .then((res) => {
+        toast.success("OTP Verified Successfully");
 
-        setAlert({
-          show: true,
-          message: "OTP Verification Successful",
-          type: "success",
-        });
-        setTimeout(() => {
-          setAlert({
-            show: false,
-            message: "",
-            type: "",
-          });
-        }, 4000);
         // setLoggedIn(true);
         dispatch({ type: "LOGGED_IN" });
-        Cookies.set('loggedIn', true)
-        Cookies.set('phonenumber', phoneNumber)
+        Cookies.set("loggedIn", true);
+        Cookies.set("phonenumber", phoneNumber);
 
         navigate("/dashboard");
         window.location.reload(false);
       })
       .catch((err) => {
-        setAlert({
-          show: true,
-          message: "Incorrect OTP. Retry Logging in",
-          type: "danger",
-        });
-        setTimeout(() => {
-          setAlert({
-            show: false,
-            message: "",
-            type: "",
-          });
-        }, 4000);
+        toast.error("Incorrect OTP. Retry Logging in");
+
         navigate("/login");
       });
   };

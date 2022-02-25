@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { uploadImage } from "../../actions/userActions";
-
+import { useForm } from "react-hook-form";
 import { slideUp } from "../../Animation";
 import axios from "axios";
 import Select from "react-select";
@@ -12,13 +12,13 @@ import cityData from "../../cities.json";
 import stateData from "../../state.json";
 import { WebContext } from "../../Context/WebContext";
 import SampleUserImg from "../../assets/images/sample-user-img.png";
+import toast from "react-hot-toast";
 
 const CompleteProfile = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [user_type, setUser_Type] = useState("");
   const [image, setImage] = useState("");
-  console.log(image);
   const {
     base_url,
     userName,
@@ -67,10 +67,13 @@ const CompleteProfile = () => {
     }
     return cookieValue;
   }
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
   const csrftoken = getCookie("csrftoken");
-  const completeProfile = async (e) => {
-    e.preventDefault();
-
+  const completeProfile = async (data) => {
     axios({
       method: "patch",
       url: `${base_url}api/profile_name/${userName}/`,
@@ -81,20 +84,8 @@ const CompleteProfile = () => {
       },
     })
       .then((res) => {
-        console.log(res);
-        setAlert({
-          show: true,
-          type: "success",
-          message: "Profile Created Successfully",
-        });
-        setTimeout(() => {
-          setAlert({
-            show: false,
-            type: "",
-            message: "",
-          });
-        }, 2000);
-        // navigate("/otphandle");
+        toast.success("Profile created successfully");
+
         axios({
           method: "post",
           url: `${base_url}api/otp/`,
@@ -103,18 +94,7 @@ const CompleteProfile = () => {
         navigate("/otphandle");
       })
       .catch((err) => {
-        setAlert({
-          show: true,
-          type: "danger",
-          message: err.message,
-        });
-        setTimeout(() => {
-          setAlert({
-            show: false,
-            type: "",
-            message: "",
-          });
-        }, 2000);
+        toast.error("Something went wrong");
       });
   };
 
@@ -142,7 +122,7 @@ const CompleteProfile = () => {
         className="signup-card"
       >
         <h2>Complete Your Profile</h2>
-        <form className="signup-form" action="">
+        <form className="signup-form" onSubmit={handleSubmit(completeProfile)}>
           <div className="user-image">
             {image === "" ? (
               <img src={SampleUserImg} alt="user" />
@@ -152,9 +132,11 @@ const CompleteProfile = () => {
 
             <input
               onChange={(e) => {
-                dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                  setImage(res);
-                });
+                dispatch(uploadImage(e.target.files[0], base_url)).then(
+                  (res) => {
+                    setImage(res);
+                  }
+                );
               }}
               type="file"
               name="user_image"
@@ -182,27 +164,29 @@ const CompleteProfile = () => {
                 />
                 <span>Agent</span>
               </div>
-              {/* <div className="select-option">
-                <input
-                  type="radio"
-                  name="usertype"
-                  onChange={(e) => setUser_Type(e.target.value)}
-                  value="Builder"
-                />
-                <span>Builder</span>
-              </div> */}
             </div>
           </div>
           <div className="form-category">
             <input
+              {...register("Password", {
+                required: "Enter your mobile number",
+                minLength: {
+                  value: 10,
+                  message: "Mobile number must be 10 digits",
+                },
+                maxLength: 10,
+              })}
               onChange={(e) => setPhoneNumber(e.target.value)}
               id="phonenumber"
               type="text"
               placeholder="Enter Mobile Number"
-              required
             />
           </div>
-
+          {errors.Password && (
+            <div className="error-message" style={{ color: "red" }}>
+              {errors.Password.message}
+            </div>
+          )}
           <div className="form-category">
             <Select
               className="select-input"
@@ -222,11 +206,7 @@ const CompleteProfile = () => {
               openMenuOnClick={false}
             />
           </div>
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.01 }}
-            onClick={(e) => completeProfile(e)}
-          >
+          <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.01 }}>
             Complete Profile
           </motion.button>
         </form>

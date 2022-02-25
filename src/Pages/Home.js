@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { slideUp } from "../Animation";
-import "../Styles/home.css"
+import "../Styles/home.css";
 import AdBanner from "../Components/AdBanner";
 // import ExploreCity from "../Components/ExploreCity";
 import DisplayRow from "../Components/DisplayRow";
@@ -11,15 +11,15 @@ import { FiSearch } from "react-icons/fi";
 
 const Home = () => {
   const navigate = useNavigate()
-  useEffect(()=>{
+  useEffect(() => {
     const reloadCount = sessionStorage.getItem('reloadCount');
-    if(reloadCount < 2) {
+    if (reloadCount < 2) {
       sessionStorage.setItem('reloadCount', String(reloadCount + 1));
       window.location.reload();
     } else {
       sessionStorage.removeItem('reloadCount');
     }
-  },[])
+  }, [])
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div
@@ -32,8 +32,8 @@ const Home = () => {
       >
         <div className="search-bar">
           <motion.div onClick={() => navigate("/filter")} className="input">
-            <FiSearch />
             Search for Properties
+            <FiSearch />
           </motion.div>
         </div>
         <DisplayRow />

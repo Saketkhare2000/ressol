@@ -14,13 +14,16 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import slugify from "slugify";
 import Cookies from "js-cookie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import toast from "react-hot-toast";
 const EditProperty = () => {
   const [propertyDetails, setPropertyDetails] = React.useState({});
   const navigate = useNavigate();
   // const { editPropertyId, setEditPropertyId, base_url } = useContext(WebContext);
   const { base_url } = useContext(WebContext);
 
-  const editPropertyId = parseInt(Cookies.get("editPropertyId"))
+  const editPropertyId = parseInt(Cookies.get("editPropertyId"));
   // console.log(parseInt(Cookies.get("editPropertyId")))
   // console.log(editPropertyId)
   // Useeffect
@@ -67,7 +70,7 @@ const EditProperty = () => {
           setImage(propertyImagesData);
         }
       })
-      .catch((err) => { });
+      .catch((err) => {});
   }, []);
 
   const dispatch = useDispatch();
@@ -102,7 +105,6 @@ const EditProperty = () => {
   const [gatedCommunity, setGatedCommunity] = useState(null);
   const [amenities, setAmenities] = useState(null);
   const { setAlert } = useContext(WebContext);
-
 
   const [image, setImage] = useState([]);
   const [imagePostData, setImagePostData] = useState([]);
@@ -220,40 +222,29 @@ const EditProperty = () => {
     })
       .then((res) => {
         setSpinner(false);
-        setAlert({
-          type: "success",
-          message: "Property Posted Successfully",
-          show: true,
-        });
-        setTimeout(() => {
-          setAlert({
-            type: "",
-            message: "",
-            show: false,
-          });
-        }, 2000);
+        toast.success("Property Updated Successfully");
+
         navigate("/dashboard");
       })
       .catch((err) => {
         setSpinner(false);
-        setAlert({
-          type: "danger",
-          message: err.message,
-          show: true,
+        const errMsg = Object.keys(
+          JSON.parse(err.response.request.response)
+        ).map((key) => {
+          return toast.error(`Fill the field with valid ${key}`);
         });
-        setTimeout(() => {
-          setAlert({
-            type: "",
-            message: "",
-            show: false,
-          });
-        }, 2000);
       });
   };
 
   return (
     <div className="edit-property-page page">
-      <h3 className="mobile-title">Edit Property</h3>
+      <div
+        className="back"
+        onClick={() => navigate("/dashboard/manage-properties")}
+      >
+        <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
+        <h2 className="mobile-title">Edit Property</h2>
+      </div>
       <form action="" className="post-property">
         <div className="form-section">
           <h2 className="section-title">Property Details</h2>
@@ -852,13 +843,15 @@ const EditProperty = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                      setImage((image) => [...image, res]);
-                      setImagePostData((imagePostData) => [
-                        ...imagePostData,
-                        res.pk,
-                      ]);
-                    });
+                    dispatch(uploadImage(e.target.files[0], base_url)).then(
+                      (res) => {
+                        setImage((image) => [...image, res]);
+                        setImagePostData((imagePostData) => [
+                          ...imagePostData,
+                          res.pk,
+                        ]);
+                      }
+                    );
                   }}
                   name="photos"
                   id="photo"
@@ -881,13 +874,15 @@ const EditProperty = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                      setImage((image) => [...image, res]);
-                      setImagePostData((imagePostData) => [
-                        ...imagePostData,
-                        res.pk,
-                      ]);
-                    });
+                    dispatch(uploadImage(e.target.files[0], base_url)).then(
+                      (res) => {
+                        setImage((image) => [...image, res]);
+                        setImagePostData((imagePostData) => [
+                          ...imagePostData,
+                          res.pk,
+                        ]);
+                      }
+                    );
                   }}
                   name="photos"
                   id="photo"
@@ -910,13 +905,15 @@ const EditProperty = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                      setImage((image) => [...image, res]);
-                      setImagePostData((imagePostData) => [
-                        ...imagePostData,
-                        res.pk,
-                      ]);
-                    });
+                    dispatch(uploadImage(e.target.files[0], base_url)).then(
+                      (res) => {
+                        setImage((image) => [...image, res]);
+                        setImagePostData((imagePostData) => [
+                          ...imagePostData,
+                          res.pk,
+                        ]);
+                      }
+                    );
                   }}
                   name="photos"
                   id="photo"
@@ -939,13 +936,15 @@ const EditProperty = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                      setImage((image) => [...image, res]);
-                      setImagePostData((imagePostData) => [
-                        ...imagePostData,
-                        res.pk,
-                      ]);
-                    });
+                    dispatch(uploadImage(e.target.files[0], base_url)).then(
+                      (res) => {
+                        setImage((image) => [...image, res]);
+                        setImagePostData((imagePostData) => [
+                          ...imagePostData,
+                          res.pk,
+                        ]);
+                      }
+                    );
                   }}
                   name="photos"
                   id="photo"
@@ -968,13 +967,15 @@ const EditProperty = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                      setImage((image) => [...image, res]);
-                      setImagePostData((imagePostData) => [
-                        ...imagePostData,
-                        res.pk,
-                      ]);
-                    });
+                    dispatch(uploadImage(e.target.files[0], base_url)).then(
+                      (res) => {
+                        setImage((image) => [...image, res]);
+                        setImagePostData((imagePostData) => [
+                          ...imagePostData,
+                          res.pk,
+                        ]);
+                      }
+                    );
                   }}
                   name="photos"
                   id="photo"
@@ -997,13 +998,15 @@ const EditProperty = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                      setImage((image) => [...image, res]);
-                      setImagePostData((imagePostData) => [
-                        ...imagePostData,
-                        res.pk,
-                      ]);
-                    });
+                    dispatch(uploadImage(e.target.files[0], base_url)).then(
+                      (res) => {
+                        setImage((image) => [...image, res]);
+                        setImagePostData((imagePostData) => [
+                          ...imagePostData,
+                          res.pk,
+                        ]);
+                      }
+                    );
                   }}
                   name="photos"
                   id="photo"

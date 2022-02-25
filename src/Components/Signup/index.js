@@ -7,8 +7,10 @@ import axios from "axios";
 import { CgSpinner } from "react-icons/cg";
 import { WebContext } from "../../Context/WebContext";
 import slugify from "slugify";
-
+import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
 const SignUp = () => {
+  const { handleSubmit } = useForm();
   const [spinner, setSpinner] = useState(false);
   //register state
   const [register, setRegister] = useState(false);
@@ -53,96 +55,12 @@ const SignUp = () => {
     password2: confirmPassword,
   };
   const navigate = useNavigate();
-  //validator functions
-  // const validateEmail = (email) => {
-  //   if (validator.isEmail(email)) {
-  //     setError("");
-  //   } else {
-  //     setError("Invalid Email");
-  //     setAlert({
-  //       show: true,
-  //       message: "Invalid Email",
-  //       type: "danger",
-  //     });
-  //     setTimeout(() => {
-  //       setAlert({
-  //         show: false,
-  //         message: "",
-  //         type: "",
-  //       });
-  //     }, 2000);
-  //   }
-  // };
-  // const validateMobile = (mobile) => {
-  //   if (mobile.length !== 10) {
-  //     setError("Invalid Mobile Number");
-  //     setAlert({
-  //       show: true,
-  //       message: "Enter a valid mobile number",
-  //       type: "danger",
-  //     });
-  //     setTimeout(() => {
-  //       setAlert({
-  //         show: false,
-  //         message: "",
-  //         type: "",
-  //       });
-  //     }, 2000);
-  //   } else {
-  //     setError("");
-  //   }
-  // };
-  // const validateName = (name) => {
-  //   if (name.length < 3) {
-  //     setAlert({
-  //       show: true,
-  //       message: "Enter a valid name",
-  //       type: "danger",
-  //     });
-  //     setTimeout(() => {
-  //       setAlert({
-  //         show: false,
-  //         message: "",
-  //         type: "",
-  //       });
-  //     }, 2000);
-  //     return true
-  //   } else {
-  //     setError("");
-  //     return false
-  //   }
-  // };
+
   const validatePassword = (password) => {
     if (password.length < 8) {
-      setAlert({
-        show: true,
-        message: "Password must be atleast 8 characters long",
-        type: "danger",
-      });
-      setTimeout(() => {
-        setAlert({
-          show: false,
-          message: "",
-          type: "",
-        });
-      }, 2000);
-      return true;
+      toast.error("Password must be atleast 8 characters");
     } else if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      setAlert({
-        show: true,
-        message: "Passwords do not match",
-        type: "danger",
-      });
-
-      setTimeout(() => {
-        setAlert({
-          show: false,
-          message: "",
-          type: "",
-        });
-      }, 2000);
-      return false;
+      toast.error("Password and confirm password must match");
     } else {
       setError("");
       return false;
@@ -156,9 +74,8 @@ const SignUp = () => {
   };
 
   //submit function
-  const handleSignUp = (e) => {
+  const handleSignUp = () => {
     setSpinner(true);
-    e.preventDefault();
     // console.log(validateForm() === true ? "true" : "false");
     validateForm();
     if (error === "") {
@@ -175,54 +92,20 @@ const SignUp = () => {
           setFirstname(firstName);
           setLastname(lastName);
           setRegisterKey(res.data.key);
-          setAlert({
-            show: true,
-            message: "User created successfully",
-            type: "success",
-          });
+          toast.success("User registered successfully");
 
           setRegister(true);
-          setTimeout(() => {
-            setAlert({
-              show: false,
-              message: "",
-              type: "",
-            });
-          }, 2000);
+
           setSpinner(false);
           navigate("/completeProfile");
         })
         .catch((err) => {
-          setAlert({
-            show: true,
-            message: err.message,
-            type: "danger",
-          });
+          toast.error("Something went wrong");
           setSpinner(false);
-          setTimeout(() => {
-            setAlert({
-              show: false,
-              message: "",
-              type: "",
-            });
-            // navigate("/login");
-          }, 2000);
         });
     } else {
-      setAlert({
-        show: true,
-        message: error,
-        type: "danger",
-      });
+      toast.error("Something went wrong");
       setSpinner(false);
-
-      setTimeout(() => {
-        setAlert({
-          show: false,
-          message: "",
-          type: "",
-        });
-      }, 2000);
     }
   };
   return !register ? (
@@ -236,7 +119,7 @@ const SignUp = () => {
           className="signup-card"
         >
           <h2>Create Account</h2>
-          <form className="signup-form" action="">
+          <form className="signup-form" onSubmit={handleSubmit(handleSignUp)}>
             <div className="form-category">
               <input
                 onChange={(e) => setFirstName(e.target.value)}
@@ -298,7 +181,6 @@ const SignUp = () => {
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 whileHover={{ scale: 1.01 }}
-                onClick={(e) => handleSignUp(e)}
               >
                 Create Profile
               </motion.button>

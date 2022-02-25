@@ -30,16 +30,14 @@ import OTPHandle from "./Components/OTPHandle";
 import TransactionHistory from "./Components/TransactionHistory";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { Toaster } from "react-hot-toast";
 // import { WebContext } from "../src/Context/WebContext";
 // import { useContext } from "react";
 
 function App() {
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
-
-  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
-  const loggedInCookie = Cookies.get('loggedIn') === 'true' ? true : false;
-  const [loggedIn, setLoggedIn] = useState(loggedInCookie);
-  console.log(loggedIn)
+  const loggedIn = Cookies.get("loggedIn") === "true" ? true : false;
+  console.log(loggedIn);
 
   // Latitude and Longitude
   const [latitude, setLatitude] = useState('');
@@ -48,7 +46,6 @@ function App() {
   // const API_Endpoint = `https://maps.googleapis.com/maps/api/geocode/json?`
   // const API_Key = "AIzaSyAsy3W9iw5U0jnI3T7B0sBeoiXD2GH6RIg"
   useEffect(() => {
-    setLoggedIn(loggedInCookie);
     navigator.geolocation.getCurrentPosition((position) => {
       console.log(position.coords);
       setLatitude(position.coords.latitude);
@@ -81,6 +78,7 @@ function App() {
       <BrowserRouter>
         <Nav />
         <Spacer />
+        <Toaster />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
