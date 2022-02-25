@@ -137,6 +137,7 @@
   width: 66%;
   padding: 8px 4px;
   outline: none;
+  cursor: pointer;
   border: none;
   background: transparent;
   border: 1px solid var(--card-border);

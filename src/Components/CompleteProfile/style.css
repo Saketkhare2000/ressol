@@ -63,6 +63,10 @@
   .form-category
   .select-options
   .select-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
   margin: 8px 18px 8px 0;
 }
 .signup-page
@@ -105,6 +109,25 @@ input[type="password"] {
   font-size: 16px;
   line-height: 19px;
   color: var(--text-dark);
+}
+.signup-page input[type="radio"] {
+  appearance: none;
+  height: 16px;
+  width: 16px !important;
+  border-radius: 2px !important;
+  cursor: pointer !important;
+  border: 1px solid var(--accent--gray) !important;
+  transition: all 200ms ease-in-out !important;
+  position: relative !important;
+  top: 0px !important;
+  font-size: 16px !important;
+  padding: 0 !important;
+}
+.signup-page input[type="radio"]:hover {
+  border: 1px solid var(--text-dark) !important;
+}
+.signup-page input[type="radio"]:checked {
+  border: 6px solid var(--brand--green) !important;
 }
 .signup-page .css-6j8wv5-Input {
   margin: 0;

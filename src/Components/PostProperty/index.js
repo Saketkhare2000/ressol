@@ -58,6 +58,7 @@ const PostProperty = () => {
 
   const { setAlert, base_url, loggedIn, phoneNumber } = useContext(WebContext);
 
+  console.log(imagePostData)
   useEffect(() => {
     dispatch(getUserData(phoneNumber, base_url));
   }, []);
@@ -88,7 +89,7 @@ const PostProperty = () => {
     bedrooms: bedrooms,
     bathrooms: bathrooms,
     property_type: property_type,
-    posted_by: 1,
+    posted_by: userDetails.id,
     image: imagePostData,
     corner: cornerPlot,
     gated: gatedCommunity,

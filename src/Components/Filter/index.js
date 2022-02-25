@@ -14,6 +14,7 @@ import amenitiesData from "../../amenities.json";
 
 import Select from "react-select";
 import { WebContext } from "../../Context/WebContext";
+import axios from "axios";
 const Filter = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Filter = () => {
   const [maxprice, setMaxPrice] = React.useState(null);
   const [property_type, setProperty_Type] = React.useState(null);
   const [propertyName, setPropertyName] = React.useState(null);
+  const [location, setLocation] = React.useState(null);
   // Specifications States
   const [bedrooms, setBedRooms] = React.useState(null);
   const [bathrooms, setBathrooms] = React.useState(null);
@@ -37,6 +39,7 @@ const Filter = () => {
   const [gatedCommunity, setGatedCommunity] = React.useState(null);
   const [floor, setFloor] = React.useState(null);
   const [amenities, setAmenities] = useState(null);
+  const [localityData, setLocalityData] = useState([]);
 
   /////////////////////////////////////////////////////////////////////////
 
@@ -44,6 +47,7 @@ const Filter = () => {
   const data = {
     for: propertyFor,
     city: city,
+    location: location,
     min: minprice,
     max: maxprice,
     property_name: propertyName,
@@ -140,6 +144,13 @@ const Filter = () => {
     });
     setBathrooms(bathroomValue);
   };
+  const handleChangeLocality = (e) => {
+    const localityValue = [];
+    e.map((location) => {
+      return localityValue.push(location.value);
+    });
+    setLocation(localityValue);
+  };
   const handleChangeFurnishing = (e) => {
     const furnishingValue = [];
     e.map((furnishing) => {
@@ -161,9 +172,24 @@ const Filter = () => {
     });
     setAmenities(amenitiesValue);
   };
+  const [localityOptions, setLocalityOptions] = React.useState();
+
   const handleChangeCity = (selectedOption) => {
     setCity(selectedOption.value.toLowerCase());
+    axios({
+      method: "get",
+      url: `${base_url}api/city/${selectedOption.value.toLowerCase()}/`,
+    })
+      .then((response) => {
+        console.log(response.data.sublocations)
+        response.data.sublocations.map(location => {
+          setLocalityData(localityData => [...localityData, { value: location, label: location }])
+        })
+      }
+      )
   };
+  console.log(localityOptions)
+  console.log(localityData)
   const handleChangeMinPrice = (selectedOption) => {
     setMinPrice(selectedOption.value);
   };
@@ -202,11 +228,8 @@ const Filter = () => {
   const handleSearch = () => {
     setParamsData(data)
     navigate(`/propertylist/results`);
-
-    // dispatch(getPropertyList(data, base_url)).then(() => {
-    //   navigate(`/propertylist/results`);
-    // });
   };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -100 }}
@@ -269,12 +292,20 @@ const Filter = () => {
           <div className="filter-group">
             <h3>Locality</h3>
             <div className="filter-item">
-              <input
+              {/* <input
                 type="text"
                 name="locality"
                 id="locality"
                 // onChange={(e) => setPropertyName(e.target.value)}
                 placeholder="Locality Name"
+              /> */}
+              <Select
+                onChange={(e) => handleChangeLocality(e)}
+                closeMenuOnSelect={false}
+                isMulti
+                options={localityOptions}
+                placeholder="Available Locality"
+                required
               />
             </div>
           </div>

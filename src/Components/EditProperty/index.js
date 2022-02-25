@@ -57,7 +57,11 @@ const EditProperty = () => {
         setAmenities(res.data.amenities);
         setFor_status(res.data.for_status);
         setPostedBy(res.data.posted_by.id);
-        setImagePostData(res.data.image);
+        console.log(res.data);
+        // setImagePostData(res.data.image);
+        res.data.image.map(image => {
+          setImagePostData((imagePostData) => [...imagePostData, image.pk]);
+        })
         return res.data;
       })
       .then((res) => {
@@ -70,9 +74,8 @@ const EditProperty = () => {
           setImage(propertyImagesData);
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
-
   const dispatch = useDispatch();
 
   const [loader, setLoader] = React.useState(true);
@@ -108,6 +111,7 @@ const EditProperty = () => {
 
   const [image, setImage] = useState([]);
   const [imagePostData, setImagePostData] = useState([]);
+  console.log(imagePostData);
 
   const property_type = propertyDetails.property_type;
 
@@ -130,8 +134,8 @@ const EditProperty = () => {
     property_size: parseInt(property_size),
     furnishing_status: furnishing_status,
     availability: availability,
-    bedrooms: parseInt(bedrooms),
-    bathrooms: parseInt(bathrooms),
+    bedrooms: (bedrooms),
+    bathrooms: (bathrooms),
     property_type: property_type,
     image: imagePostData,
     corner: cornerPlot,

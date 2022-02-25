@@ -48,6 +48,7 @@ const ManageProperties = () => {
     })
       .then(() => {
         toast.success("Property deleted successfully");
+        window.location.reload(false);
       })
       .catch((err) => {
         toast.error("Something went wrong");
