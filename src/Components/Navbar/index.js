@@ -11,12 +11,15 @@ import { subMenuAnimate } from "../../Animation";
 import { AiOutlineHome, AiOutlineUser, AiFillCaretDown } from "react-icons/ai";
 import { FaCrown } from 'react-icons/fa';
 import { useSelector } from "react-redux";
+import Cookies from 'js-cookie';
 const Navbar = () => {
   const { filter, setAlert } = useContext(WebContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  // const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+
   const [hover, setIsHover] = useState(false);
   const toggleMouseMenu = () => {
     setIsHover(!hover);

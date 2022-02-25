@@ -3,11 +3,11 @@ import { WebContext } from "../../Context/WebContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Cookies from 'js-cookie'
 
 import "../../Components/OTPHandle/style.css";
 const OTPHandle = () => {
   const dispatch = useDispatch();
-
   const { phoneNumber, setPhoneNumber, setAlert, base_url } =
     useContext(WebContext);
   const [otp, setOtp] = useState("");
@@ -27,6 +27,7 @@ const OTPHandle = () => {
       data: otpdetails,
     })
       .then((res) => {
+
         setAlert({
           show: true,
           message: "OTP Verification Successful",
@@ -41,6 +42,9 @@ const OTPHandle = () => {
         }, 4000);
         // setLoggedIn(true);
         dispatch({ type: "LOGGED_IN" });
+        Cookies.set('loggedIn', true)
+        Cookies.set('phonenumber', phoneNumber)
+
         navigate("/dashboard");
       })
       .catch((err) => {

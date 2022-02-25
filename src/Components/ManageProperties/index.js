@@ -12,12 +12,14 @@ import { MdOutlineModeEditOutline } from "react-icons/md";
 import "./style.css";
 import Loader from "../Loader";
 import axios from "axios";
-
+import Cookies from "js-cookie";
 const ManageProperties = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { setEditPropertyId, phoneNumber, base_url } = useContext(WebContext);
+  const { setEditPropertyId, base_url } = useContext(WebContext);
+  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  const phoneNumber = Cookies.get("phonenumber");
   useEffect(() => {
     // dispatch(getUserData(userName, key));
     dispatch(getUserData(phoneNumber, base_url));
@@ -35,13 +37,14 @@ const ManageProperties = () => {
   }
   const handleEdit = (id) => {
     setEditPropertyId(id);
+    Cookies.set("editPropertyId", id);
     navigate("/dashboard/manage-properties/edit-property/");
   };
   const handleDelete = (id) => {
     axios({
       method: "delete",
       url: `${base_url}api/property/${id}/`,
-    }).catch((err) => {});
+    }).catch((err) => { });
   };
 
   return (

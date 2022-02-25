@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { slideUp } from "../../Animation";
 import axios from "axios";
-
 import { CgSpinner } from "react-icons/cg";
 import { WebContext } from "../../Context/WebContext";
 import slugify from "slugify";

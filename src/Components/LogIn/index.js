@@ -6,11 +6,14 @@ import { WebContext } from "../../Context/WebContext";
 import { useDispatch, useSelector } from "react-redux";
 import "./style.css";
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 const LogIn = () => {
   let navigate = useNavigate();
 
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  // const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+
 
   const { phoneNumber, setPhoneNumber, setAlert, base_url } =
     useContext(WebContext);
@@ -45,7 +48,7 @@ const LogIn = () => {
       method: "post",
       url: `${base_url}api/otp/`,
       data: userDetails,
-    }).then((res) => {});
+    }).then((res) => { });
     setAlert({
       show: true,
       message: "OTP sent to your mobile number",

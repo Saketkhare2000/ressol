@@ -4,7 +4,7 @@ import { WebContext } from "../../Context/WebContext";
 import { FaCrown } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { getPropertyList } from "../../actions/userActions";
-
+import Cookies from "js-cookie";
 import { Link, useParams } from "react-router-dom";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -20,8 +20,11 @@ const PropertyDeatiledCard = () => {
   const result = useParams().slug.toLowerCase();
   const propertyList = useSelector((state) => state.propertyList.propertyData);
   const [userId, setUserId] = useState([]);
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const { setAlert, base_url, phoneNumber, paramsData, setParamsData, listSlug, setListSlug } = useContext(WebContext);
+  // const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  const phoneNumber = Cookies.get("phonenumber");
+  const { setAlert, base_url, paramsData, setParamsData, listSlug, setListSlug } = useContext(WebContext);
+  // const paramsDataCookie = Cookies.set("paramsData", { paramsData });
   const [wishlistStatus, setWishlistStatus] = useState(false);
   const [contactStatus, setContactStatus] = useState(false);
   const [wishlistDetails, setWishlistDetails] = useState([]);

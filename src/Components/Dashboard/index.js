@@ -12,17 +12,21 @@ import { BiBuildingHouse } from "react-icons/bi";
 import { GrContact } from "react-icons/gr";
 import Select from "react-select";
 import { FaCrown } from "react-icons/fa";
-
+import Cookies from "js-cookie";
 const Dashoard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { phoneNumber, base_url } = useContext(WebContext);
+  const { base_url, setAlert } = useContext(WebContext);
+  const phoneNumber = Cookies.get("phonenumber");
+  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  console.log(loggedIn)
   const currentDate = Date.now();
-  console.log(currentDate);
   useEffect(() => {
     dispatch(getUserData(phoneNumber, base_url));
   }, []);
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
+
+  // const loggedIn = useSelector((state) => state.auth.loggedIn);
+
   const userDetails = useSelector((state) => state.userData.userData);
   const primetimestamp = new Date(userDetails.prime_status?.timestamp)
   primetimestamp.setDate(primetimestamp.getDate() + userDetails.prime_status?.subscription_period);
@@ -40,6 +44,24 @@ const Dashoard = () => {
     e.preventDefault();
     dispatch({ type: "LOGGED_OUT" });
     dispatch({ type: "CLEAR_USER_DATA" });
+    Cookies.set('loggedIn', false)
+    Cookies.set('phonenumber', '')
+    navigate("/");
+    setAlert({
+      show: true,
+      type: "success",
+      message: "Logged Out Successfully",
+    });
+    setTimeout(() => {
+      setAlert({
+        show: false,
+        type: "success",
+        message: "",
+      });
+    }
+      , 4000);
+
+
   };
 
   const handleStateChange = (color) => {

@@ -7,16 +7,18 @@ import { WebContext } from "../../Context/WebContext";
 import axios from "axios";
 import "../../Components/ViewResponse/style.css";
 import { BsFillTelephoneFill } from "react-icons/bs";
-
+import Cookies from 'js-cookie';
 const ViewResponse = () => {
   const navigate = useNavigate();
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  // const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  const phoneNumber = Cookies.get("phonenumber");
   // const key = useSelector((state) => state.auth.key);
   const [primeDetails, setPrimeDetails] = React.useState();
   const [contactedByDetails, setContactedByDetails] = React.useState();
   const [timestamp, setTimeStamp] = React.useState();
   // const { userName } = useContext(WebContext);
-  const { phoneNumber, base_url } = useContext(WebContext);
+  const { base_url } = useContext(WebContext);
   useEffect(() => {
     axios({
       method: "get",

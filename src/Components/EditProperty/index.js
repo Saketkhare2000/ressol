@@ -13,11 +13,16 @@ import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import slugify from "slugify";
-
+import Cookies from "js-cookie";
 const EditProperty = () => {
   const [propertyDetails, setPropertyDetails] = React.useState({});
   const navigate = useNavigate();
+  // const { editPropertyId, setEditPropertyId, base_url } = useContext(WebContext);
   const { base_url } = useContext(WebContext);
+
+  const editPropertyId = parseInt(Cookies.get("editPropertyId"))
+  // console.log(parseInt(Cookies.get("editPropertyId")))
+  // console.log(editPropertyId)
   // Useeffect
   useEffect(() => {
     axios
@@ -98,7 +103,6 @@ const EditProperty = () => {
   const [amenities, setAmenities] = useState(null);
   const { setAlert } = useContext(WebContext);
 
-  const { editPropertyId, setEditPropertyId } = useContext(WebContext);
 
   const [image, setImage] = useState([]);
   const [imagePostData, setImagePostData] = useState([]);

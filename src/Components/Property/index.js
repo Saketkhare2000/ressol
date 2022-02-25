@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { WebContext } from "../../Context/WebContext";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SampleUserImg from "../../assets/images/sample-user-img.png";
 import { useParams } from "react-router-dom";
@@ -8,21 +7,33 @@ import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
 import { slideUp } from "../../Animation";
 import { Example } from "../Carousel/Example";
 import axios from "axios";
+import { getUserData } from "../../actions/userActions";
+
 import "./style.css";
+import { useDispatch, useSelector } from "react-redux";
+
 import Loader from "../Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FaCrown } from "react-icons/fa";
-
+import Cookies from "js-cookie";
 const Property = () => {
   const id = useParams().slug;
+  const dispatch = useDispatch();
   const { setAlert, base_url, listSlug, setListSlug } = useContext(WebContext);
 
   const [propertyDetails, setPropertyDetails] = React.useState({});
   // const [propertyImagesData, setPropertyImagesData] = React.useState([]);
   const [imageData, setImageData] = React.useState([]);
+
+  useEffect(() => {
+    dispatch(getUserData(phoneNumber, base_url));
+  }, []);
+
   const userDetails = useSelector((state) => state.userData.userData);
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  // const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  const phoneNumber = Cookies.get("phonenumber");
   const navigate = useNavigate();
   const [wishlistStatus, setWishlistStatus] = useState(false);
   const [contactStatus, setContactStatus] = useState(false);
@@ -62,7 +73,7 @@ const Property = () => {
       })
       .then(() => {
         axios
-          .get(`${base_url}api/profile/${userDetails.mobile}/`)
+          .get(`${base_url}api/profile/${phoneNumber}/`)
           .then((userRes) => {
             const wish = userRes.data.wishlist.filter((item) => {
               return item == id;

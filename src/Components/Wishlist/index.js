@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserData } from "../../actions/userActions";
 import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
-
+import Cookies from "js-cookie";
 import "./style.css";
 import axios from "axios";
 import { WebContext } from "../../Context/WebContext";
@@ -19,13 +19,15 @@ const Wishlist = () => {
   // const wishlistDetails = userDetails.wishlist
   /////////////
   // const { userName } = useContext(WebContext);
-  const { phoneNumber, base_url } = useContext(WebContext);
-
+  const { base_url } = useContext(WebContext);
+  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  const phoneNumber = Cookies.get("phonenumber");
+  console.log(loggedIn, phoneNumber);
   useEffect(() => {
     dispatch(getUserData(phoneNumber, base_url));
   }, []);
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
-  // const key = useSelector((state) => state.auth.key);
+  // const loggedIn = useSelector((state) => state.auth.loggedIn);
+
   const userDetails = useSelector((state) => state.userData.userData);
   console.log(userDetails)
   const [wishlistDetails, setWishlistDetails] = useState(userDetails.wishlist);

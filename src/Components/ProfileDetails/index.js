@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import "./style.css";
 import SampleUserImg from "../../assets/images/sample-user-img.png";
-
+import Cookies from "js-cookie";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { WebContext } from "../../Context/WebContext";
@@ -12,29 +12,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ProfileDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { userName } = useContext(WebContext);
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const key = useSelector((state) => state.auth.key);
+  const { base_url } = useContext(WebContext);
+  // const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  const phoneNumber = Cookies.get("phonenumber");
+  // const key = useSelector((state) => state.auth.key);
   const userDetails = useSelector((state) => state.userData.userData);
-  // User Detail States
-  // const [city, setCity] = useState("");
-  // const [state, setState] = useState("");
-  // const [mobile, setMobile] = useState("");
-  // // const [user_type, setUser_Type] = useState("");
-  // const [bio, setBio] = useState("");
-  // const [image, setImage] = useState("");
-  // const { userName, setAlert, registerKey } = useContext(WebContext);
-  // const editProfileDetails = {
-  //     user: userDetails.id,
-  //     bio: bio,
-  //     mobile: mobile,
-  //     city: city,
-  //     state: state,
-  //     image: image.pk,
-  // };
+
   //////////
   useEffect(() => {
-    dispatch(getUserData(userName, key));
+    dispatch(getUserData(phoneNumber, base_url));
   }, []);
   return (
     <div className="profile-details-page page">
