@@ -131,27 +131,25 @@ const Filter = () => {
   // Select & Multi Select Dropdown Handle Functions
 
   const handleChangeBedrooms = (e) => {
-    const bedValue = [];
+    let bedValue = "";
     e.map((bedroom) => {
-      return bedValue.push(bedroom.value);
+      bedValue = bedValue + ',' + bedroom.value;
     });
-    setBedRooms(bedValue);
+    setBedRooms(bedValue.slice(1));
   };
   const handleChangeBathrooms = (e) => {
-    const bathroomValue = [];
+    let bathroomValue = "";
     e.map((bathroom) => {
-      return bathroomValue.push(bathroom.value);
+      return bathroomValue + ',' + bathroom.value;
     });
-    setBathrooms(bathroomValue);
+    setBathrooms(bathroomValue.slice(1));
   };
   const handleChangeLocality = (e) => {
-    const localityValue = [];
+    let localityValue = "";
     e.map((location) => {
-      console.log(location.value)
-      return localityValue.push(location.value);
+      return localityValue.concat(',', location.value);
     });
-    console.log(localityValue)
-    setLocation(localityValue);
+    setLocation(localityValue.slice(1));
   };
   const handleChangeFurnishing = (e) => {
     const furnishingValue = [];
