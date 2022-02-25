@@ -11,6 +11,7 @@ import axios from "axios";
 import { WebContext } from "../../Context/WebContext";
 import Loader from "../Loader";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Wishlist = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Wishlist = () => {
   /////////////
   // const { userName } = useContext(WebContext);
   const { base_url } = useContext(WebContext);
-  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  const loggedIn = Cookies.get("loggedIn") === "true" ? true : false;
   const phoneNumber = Cookies.get("phonenumber");
   console.log(loggedIn, phoneNumber);
   useEffect(() => {
@@ -29,7 +30,7 @@ const Wishlist = () => {
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
 
   const userDetails = useSelector((state) => state.userData.userData);
-  console.log(userDetails)
+  console.log(userDetails);
   const [wishlistDetails, setWishlistDetails] = useState(userDetails.wishlist);
   function numDifferentiation(value) {
     var val = Math.abs(value);
@@ -53,7 +54,7 @@ const Wishlist = () => {
         .then((res) => {
           setWishlistDetails(res.wishlist);
         })
-        .catch((err) => { });
+        .catch((err) => {});
     });
   };
   return (
@@ -104,7 +105,7 @@ const Wishlist = () => {
           );
         })
       ) : (
-        <Loader />
+        <>{toast.error("No Response Found")}</>
       )}
     </div>
   );

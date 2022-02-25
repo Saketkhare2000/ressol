@@ -27,13 +27,14 @@ import ViewResponse from "./Components/ViewResponse";
 import OTPHandle from "./Components/OTPHandle";
 import TransactionHistory from "./Components/TransactionHistory";
 import Cookies from "js-cookie";
+import { Toaster } from "react-hot-toast";
 // import { WebContext } from "../src/Context/WebContext";
 // import { useContext } from "react";
 
 function App() {
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
-  console.log(loggedIn)
+  const loggedIn = Cookies.get("loggedIn") === "true" ? true : false;
+  console.log(loggedIn);
 
   // const { loggedIn } = useContext(WebContext);
 
@@ -42,6 +43,7 @@ function App() {
       <BrowserRouter>
         <Nav />
         <Spacer />
+        <Toaster />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />

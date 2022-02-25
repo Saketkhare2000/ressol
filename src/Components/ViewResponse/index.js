@@ -7,11 +7,12 @@ import { WebContext } from "../../Context/WebContext";
 import axios from "axios";
 import "../../Components/ViewResponse/style.css";
 import { BsFillTelephoneFill } from "react-icons/bs";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 const ViewResponse = () => {
   const navigate = useNavigate();
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  const loggedIn = Cookies.get("loggedIn") === "true" ? true : false;
   const phoneNumber = Cookies.get("phonenumber");
   // const key = useSelector((state) => state.auth.key);
   const [primeDetails, setPrimeDetails] = React.useState();
@@ -52,9 +53,9 @@ const ViewResponse = () => {
           setTimeStamp(timeData);
         }
       })
-      .catch((err) => { });
+      .catch((err) => {});
   }, []);
-  console.log(timestamp)
+  console.log(timestamp);
   return (
     <div className="page">
       <div className="back" onClick={() => navigate("/dashboard")}>
@@ -148,7 +149,7 @@ const ViewResponse = () => {
             );
           })
         ) : (
-          <></>
+          <>{toast.error("No Response Found")}</>
         )}
 
         {/* <div className="view-response-card">

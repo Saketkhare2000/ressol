@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { slideUp } from "../Animation";
-import "../Styles/home.css"
+import "../Styles/home.css";
 import AdBanner from "../Components/AdBanner";
 // import ExploreCity from "../Components/ExploreCity";
 import DisplayRow from "../Components/DisplayRow";
@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 
 const Home = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div
@@ -23,8 +23,8 @@ const Home = () => {
       >
         <div className="search-bar">
           <motion.div onClick={() => navigate("/filter")} className="input">
-            <FiSearch />
             Search for Properties
+            <FiSearch />
           </motion.div>
         </div>
         <DisplayRow />

@@ -13,7 +13,8 @@ import amenitiesData from "../../amenities.json";
 import slugify from "slugify";
 import { WebContext } from "../../Context/WebContext";
 import { uploadImage } from "../../actions/userActions";
-
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 // import data from "../../postDetails.json";
 const PostProperty = () => {
   const [spinner, setSpinner] = React.useState(false);
@@ -80,7 +81,7 @@ const PostProperty = () => {
     bedrooms: bedrooms,
     bathrooms: bathrooms,
     property_type: property_type,
-    posted_by: userDetails.id,
+    posted_by: 1,
     image: imagePostData,
     corner: cornerPlot,
     gated: gatedCommunity,
@@ -90,15 +91,13 @@ const PostProperty = () => {
     if (loggedIn) {
       if (userDetails.prime_status.is_prime) {
         setPrime_Property(true);
-      }
-      else {
+      } else {
         setPrime_Property(false);
       }
-    }
-    else {
+    } else {
       setPrime_Property(false);
     }
-  }, [])
+  }, []);
   const deleteImage = (e, id) => {
     e.preventDefault();
     axios
@@ -122,9 +121,12 @@ const PostProperty = () => {
   };
 
   // const key = useSelector((state) => state.auth.key);
-
-  const submitProperty = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const submitProperty = () => {
     setSpinner(true);
     axios(`${base_url}api/property/`, {
       method: "post",
@@ -136,34 +138,18 @@ const PostProperty = () => {
     })
       .then((res) => {
         setSpinner(false);
-        setAlert({
-          type: "success",
-          message: "Property Posted Successfully",
-          show: true,
-        });
-        setTimeout(() => {
-          setAlert({
-            type: "",
-            message: "",
-            show: false,
-          });
-        }, 2000);
+        toast.success("Property Posted Successfully");
+
         navigate("/dashboard");
       })
       .catch((err) => {
-        setSpinner(false);
-        setAlert({
-          type: "danger",
-          message: err.message,
-          show: true,
+        const errMsg = Object.keys(
+          JSON.parse(err.response.request.response)
+        ).map((key) => {
+          return toast.error(`Fill the field with valid ${key}`);
         });
-        setTimeout(() => {
-          setAlert({
-            type: "",
-            message: "",
-            show: false,
-          });
-        }, 2000);
+
+        setSpinner(false);
       });
   };
   const cityOptions = cityData.map((city) => {
@@ -228,7 +214,7 @@ const PostProperty = () => {
           <> */}
       <h3 className="mobile-title">Sell or Rent your Property</h3>
       <div className="post-form">
-        <form action="" className="post-property">
+        <form onSubmit={handleSubmit(submitProperty)} className="post-property">
           <div className="form-section">
             <h2 className="section-title">Property Details</h2>
             {/* Property For  */}
@@ -237,6 +223,7 @@ const PostProperty = () => {
               <div className="select-options">
                 <div className="select-option">
                   <input
+                    required
                     type="radio"
                     onChange={(e) => setFor_Status(e.target.value)}
                     value="sale"
@@ -247,6 +234,7 @@ const PostProperty = () => {
                 </div>
                 <div className="select-option">
                   <input
+                    required
                     type="radio"
                     onChange={(e) => setFor_Status(e.target.value)}
                     value="rent"
@@ -255,10 +243,6 @@ const PostProperty = () => {
                   />
                   <label htmlFor="rent">Rent</label>
                 </div>
-                {/* <div className="select-option">
-              <input type="radio" onChange={(e) => setFor_Status(e.target.value)} value="pg" name="for" id="rent" />
-              <label htmlFor="rent">PG/Hostel</label>
-            </div> */}
               </div>
             </div>
             {/* Property Type  */}
@@ -350,10 +334,6 @@ const PostProperty = () => {
                 id="address"
               />
             </div>
-
-
-
-
           </div>
           {/* ------------- Features Starts ----------------- */}
           {(() => {
@@ -852,13 +832,15 @@ const PostProperty = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                        setImage((image) => [...image, res]);
-                        setImagePostData((imagePostData) => [
-                          ...imagePostData,
-                          res.pk,
-                        ]);
-                      });
+                      dispatch(uploadImage(e.target.files[0], base_url)).then(
+                        (res) => {
+                          setImage((image) => [...image, res]);
+                          setImagePostData((imagePostData) => [
+                            ...imagePostData,
+                            res.pk,
+                          ]);
+                        }
+                      );
                     }}
                     name="photos"
                     id="photo"
@@ -881,13 +863,15 @@ const PostProperty = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                        setImage((image) => [...image, res]);
-                        setImagePostData((imagePostData) => [
-                          ...imagePostData,
-                          res.pk,
-                        ]);
-                      });
+                      dispatch(uploadImage(e.target.files[0], base_url)).then(
+                        (res) => {
+                          setImage((image) => [...image, res]);
+                          setImagePostData((imagePostData) => [
+                            ...imagePostData,
+                            res.pk,
+                          ]);
+                        }
+                      );
                     }}
                     name="photos"
                     id="photo"
@@ -910,13 +894,15 @@ const PostProperty = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                        setImage((image) => [...image, res]);
-                        setImagePostData((imagePostData) => [
-                          ...imagePostData,
-                          res.pk,
-                        ]);
-                      });
+                      dispatch(uploadImage(e.target.files[0], base_url)).then(
+                        (res) => {
+                          setImage((image) => [...image, res]);
+                          setImagePostData((imagePostData) => [
+                            ...imagePostData,
+                            res.pk,
+                          ]);
+                        }
+                      );
                     }}
                     name="photos"
                     id="photo"
@@ -939,13 +925,15 @@ const PostProperty = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                        setImage((image) => [...image, res]);
-                        setImagePostData((imagePostData) => [
-                          ...imagePostData,
-                          res.pk,
-                        ]);
-                      });
+                      dispatch(uploadImage(e.target.files[0], base_url)).then(
+                        (res) => {
+                          setImage((image) => [...image, res]);
+                          setImagePostData((imagePostData) => [
+                            ...imagePostData,
+                            res.pk,
+                          ]);
+                        }
+                      );
                     }}
                     name="photos"
                     id="photo"
@@ -968,13 +956,15 @@ const PostProperty = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                        setImage((image) => [...image, res]);
-                        setImagePostData((imagePostData) => [
-                          ...imagePostData,
-                          res.pk,
-                        ]);
-                      });
+                      dispatch(uploadImage(e.target.files[0], base_url)).then(
+                        (res) => {
+                          setImage((image) => [...image, res]);
+                          setImagePostData((imagePostData) => [
+                            ...imagePostData,
+                            res.pk,
+                          ]);
+                        }
+                      );
                     }}
                     name="photos"
                     id="photo"
@@ -998,13 +988,15 @@ const PostProperty = () => {
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
-                      dispatch(uploadImage(e.target.files[0], base_url)).then((res) => {
-                        setImage((image) => [...image, res]);
-                        setImagePostData((imagePostData) => [
-                          ...imagePostData,
-                          res.pk,
-                        ]);
-                      });
+                      dispatch(uploadImage(e.target.files[0], base_url)).then(
+                        (res) => {
+                          setImage((image) => [...image, res]);
+                          setImagePostData((imagePostData) => [
+                            ...imagePostData,
+                            res.pk,
+                          ]);
+                        }
+                      );
                     }}
                     name="photos"
                     id="photo"
@@ -1041,7 +1033,6 @@ const PostProperty = () => {
               className="btn"
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.01 }}
-              onClick={submitProperty}
             >
               Post Property
             </button>

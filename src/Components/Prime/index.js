@@ -6,6 +6,7 @@ import { WebContext } from "../../Context/WebContext";
 import { getUserData } from "../../actions/userActions";
 
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 // const server = "http://localhost:8000";
 
@@ -13,10 +14,13 @@ const Prime = () => {
   const navigate = useNavigate();
   const userDetails = useSelector((state) => state.userData.userData);
   // const userDetails = useSelector((state) => state.userData);
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const isPrime = useSelector(
+    (state) => state.userData.userData.prime_status.is_prime
+  );
+
   const dispatch = useDispatch();
   // const { userName } = useContext(WebContext);
-  const { firstname, lastname, phoneNumber, base_url, setAlert } = useContext(WebContext);
+  const { firstname, lastname, phoneNumber, base_url } = useContext(WebContext);
   useEffect(() => {
     // dispatch(getUserData(userName, key));
     dispatch(getUserData(phoneNumber));
@@ -39,37 +43,15 @@ const Prime = () => {
       })
         .then((res) => {
           console.log("Everything is OK!");
-          setAlert({
-            show: true,
-            message: "Congratulations! Payment Successful",
-            type: "success",
-          });
-          setTimeout(() => {
-            setAlert({
-              show: false,
-              message: "",
-              type: "",
-            });
-          }, 4000);
+          toast.success("Congratulations! Payment Successful");
 
           navigate("/dashboard");
         })
         .catch((err) => {
           console.log(err);
-          setAlert({
-            show: false,
-            message: "Transaction Failed",
-            type: "danger",
-          });
-          setTimeout(() => {
-            setAlert({
-              show: false,
-              message: "",
-              type: "",
-            });
-          }, 4000);
-          navigate("/dashboard");
+          toast.error("Payment Failed");
 
+          navigate("/dashboard");
         });
     } catch (error) {
       console.log(console.error());
@@ -137,7 +119,7 @@ const Prime = () => {
     rzp1.open();
   };
 
-  return (
+  return !isPrime ? (
     <div className="prime-page page">
       <h2> 9Roof Prime Membership</h2>
       <div className="prime-plans-container">
@@ -226,6 +208,17 @@ const Prime = () => {
           </div>
         </div>
       </div>
+    </div>
+  ) : (
+    <div className="page">
+      <h1 style={{ textAlign: "center" }}>Already Prime</h1>
+      <button
+        style={{ margin: "10px auto", display: "block" }}
+        className="btn btn-primary"
+        onClick={() => navigate("/dashboard")}
+      >
+        Go to Dashboard
+      </button>
     </div>
   );
 };

@@ -3,10 +3,8 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 const AboutUs = () => {
   const navigate = useNavigate();
-
   return (
     <div className="about-us-page page">
       <div className="about-us-header">
