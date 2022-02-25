@@ -21,10 +21,11 @@ const PropertyDeatiledCard = () => {
   const propertyList = useSelector((state) => state.propertyList.propertyData);
   const [userId, setUserId] = useState([]);
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
-  const phoneNumber = Cookies.get("phonenumber");
-  const { setAlert, base_url, paramsData, setParamsData, listSlug, setListSlug } = useContext(WebContext);
-  // const paramsDataCookie = Cookies.set("paramsData", { paramsData });
+  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  // const phoneNumber = Cookies.get("phonenumber");
+  const { setAlert, base_url, paramsData, setParamsData, listSlug, setListSlug, phoneNumber, loggedIn } = useContext(WebContext);
+  // const paramsDataCookie = Cookies.set("paramsData", JSON.stringify(paramsData));
+  // console.log(JSON.parse(paramsDataCookie));
   const [wishlistStatus, setWishlistStatus] = useState(false);
   const [contactStatus, setContactStatus] = useState(false);
   const [wishlistDetails, setWishlistDetails] = useState([]);

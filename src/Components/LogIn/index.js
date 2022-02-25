@@ -12,10 +12,10 @@ const LogIn = () => {
   let navigate = useNavigate();
 
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
 
 
-  const { phoneNumber, setPhoneNumber, setAlert, base_url } =
+  const { phoneNumber, setPhoneNumber, setAlert, base_url, loggedIn, setLoggedIn } =
     useContext(WebContext);
   const userDetails = {
     // username: userName,
@@ -107,9 +107,10 @@ const LogIn = () => {
         {/* <p className="reset">Reset password</p> */}
       </motion.div>
     </div>
-  ) : (
-    <>{navigate("/dashboard")}</>
-  );
+  )
+    : (
+      navigate("/dashboard")
+    );
 };
 
 export default LogIn;

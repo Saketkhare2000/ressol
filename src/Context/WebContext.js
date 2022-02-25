@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import Alert from "../Components/Alert";
-
+import Cookies from "js-cookie";
 export const WebContext = createContext();
 
 const WebProvider = (props) => {
@@ -11,13 +11,14 @@ const WebProvider = (props) => {
     type: "",
   });
   const [userName, setUserName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(Cookies.get('phonenumber'));
+  // const [phoneNumber, setPhoneNumber] = useState("");
   //access token state
   const [accessToken, setAccessToken] = useState("");
   //refresh token state
   const [refreshToken, setRefreshToken] = useState("");
   const [filter, setFilter] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(Cookies.get('loggedIn') === 'true' ? true : false);
   const [prime, setIsPrime] = useState(true);
   const [userData, setUserData] = useState();
   const [registerKey, setRegisterKey] = useState("");

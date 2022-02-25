@@ -8,11 +8,11 @@ import Cookies from 'js-cookie'
 import "../../Components/OTPHandle/style.css";
 const OTPHandle = () => {
   const dispatch = useDispatch();
-  const { phoneNumber, setPhoneNumber, setAlert, base_url } =
+  const { phoneNumber, setPhoneNumber, setAlert, base_url, loggedIn, setLoggedIn } =
     useContext(WebContext);
   const [otp, setOtp] = useState("");
   let navigate = useNavigate();
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  // const loggedIn = useSelector((state) => state.auth.loggedIn);
 
   const otpdetails = {
     phone: phoneNumber,

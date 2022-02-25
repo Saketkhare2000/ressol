@@ -20,7 +20,7 @@ import Cookies from "js-cookie";
 const Property = () => {
   const id = useParams().slug;
   const dispatch = useDispatch();
-  const { setAlert, base_url, listSlug, setListSlug } = useContext(WebContext);
+  const { setAlert, base_url, listSlug, setListSlug, loggedIn, phoneNumber } = useContext(WebContext);
 
   const [propertyDetails, setPropertyDetails] = React.useState({});
   // const [propertyImagesData, setPropertyImagesData] = React.useState([]);
@@ -32,8 +32,8 @@ const Property = () => {
 
   const userDetails = useSelector((state) => state.userData.userData);
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
-  const phoneNumber = Cookies.get("phonenumber");
+  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  // const phoneNumber = Cookies.get("phonenumber");
   const navigate = useNavigate();
   const [wishlistStatus, setWishlistStatus] = useState(false);
   const [contactStatus, setContactStatus] = useState(false);

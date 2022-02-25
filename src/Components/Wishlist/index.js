@@ -19,9 +19,9 @@ const Wishlist = () => {
   // const wishlistDetails = userDetails.wishlist
   /////////////
   // const { userName } = useContext(WebContext);
-  const { base_url } = useContext(WebContext);
-  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
-  const phoneNumber = Cookies.get("phonenumber");
+  const { base_url, loggedIn, phoneNumber } = useContext(WebContext);
+  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  // const phoneNumber = Cookies.get("phonenumber");
   console.log(loggedIn, phoneNumber);
   useEffect(() => {
     dispatch(getUserData(phoneNumber, base_url));

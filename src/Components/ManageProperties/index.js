@@ -17,9 +17,9 @@ const ManageProperties = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { setEditPropertyId, base_url } = useContext(WebContext);
-  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
-  const phoneNumber = Cookies.get("phonenumber");
+  const { setEditPropertyId, base_url, phoneNumber } = useContext(WebContext);
+  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  // const phoneNumber = Cookies.get("phonenumber");
   useEffect(() => {
     // dispatch(getUserData(userName, key));
     dispatch(getUserData(phoneNumber, base_url));

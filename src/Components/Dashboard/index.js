@@ -16,10 +16,10 @@ import Cookies from "js-cookie";
 const Dashoard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { base_url, setAlert } = useContext(WebContext);
-  const phoneNumber = Cookies.get("phonenumber");
-  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
-  console.log(loggedIn)
+  const { base_url, setAlert, loggedIn, setLoggedIn, phoneNumber, setPhoneNumber } = useContext(WebContext);
+  // setPhoneNumber(Cookies.get("phonenumber"));
+  // setLoggedIn(Cookies.get('loggedIn') === 'true' ? true : false)
+  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
   const currentDate = Date.now();
   useEffect(() => {
     dispatch(getUserData(phoneNumber, base_url));
@@ -46,6 +46,10 @@ const Dashoard = () => {
     dispatch({ type: "CLEAR_USER_DATA" });
     Cookies.set('loggedIn', false)
     Cookies.set('phonenumber', '')
+    setLoggedIn(Cookies.get('loggedIn') === 'true' ? true : false)
+    setPhoneNumber(Cookies.get('phonenumber'))
+    console.log(loggedIn)
+    // setPhoneNumber(Cookies.set('phonenumber', ''))
     navigate("/");
     setAlert({
       show: true,
@@ -191,9 +195,10 @@ const Dashoard = () => {
         </button>
       </div>
     </div>
-  ) : (
-    <>{navigate("/login")}</>
-  );
+  ) :
+    (
+      navigate("/login")
+    )
 };
 
 export default Dashoard;

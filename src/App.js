@@ -1,5 +1,6 @@
 //import global css
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
 import "../src/Styles/global.css";
 import Filter from "./Components/Filter";
 import Footer from "./Components/Footer";
@@ -7,6 +8,7 @@ import LogIn from "./Components/LogIn";
 import Dashboard from "./Components/Dashboard";
 import Nav from "./Components/Navbar";
 import WebProvider from "./Context/WebContext";
+import { WebContext } from "./Context/WebContext";
 import AboutUs from "./Components/AboutUs";
 import ContactUs from "./Components/ContactUs";
 import Home from "./Pages/Home";
@@ -32,10 +34,17 @@ import Cookies from "js-cookie";
 
 function App() {
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+
+  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  const loggedInCookie = Cookies.get('loggedIn') === 'true' ? true : false;
+  const [loggedIn, setLoggedIn] = useState(loggedInCookie);
   console.log(loggedIn)
+  useEffect(() => {
+    setLoggedIn(loggedInCookie);
+  }, [loggedInCookie]);
 
   // const { loggedIn } = useContext(WebContext);
+  // console.log(loggedIn)
 
   return (
     <WebProvider>

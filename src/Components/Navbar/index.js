@@ -18,8 +18,8 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
-
+  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+  const { loggedIn, setLoggedIn } = useContext(WebContext);
   const [hover, setIsHover] = useState(false);
   const toggleMouseMenu = () => {
     setIsHover(!hover);

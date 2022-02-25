@@ -36,6 +36,10 @@ const SignUp = () => {
     lastname,
     setLastname,
     base_url,
+    phoneNumber,
+    setPhoneNumber,
+    loggedIn,
+    setLoggedIn
   } = useContext(WebContext);
 
   const username =
@@ -167,33 +171,6 @@ const SignUp = () => {
         },
       })
         .then((res) => {
-          // Get cookie function
-          // const csrftoken = getCookie('csrftoken');
-          // Set the with credentials to true
-          //   axios.defaults.withCredentials = true;
-          //   // Add a header to set the csrf token in post requests
-          //   axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
-          //   // Set the user data in local storage
-          //   localStorage.setItem("user", JSON.stringify(res.data));
-          //   // Set the user data in the state
-          //   setUserName(res.data.first_name);
-          //   setRegisterKey(true);
-          //   setSpinner(false);
-          //   setRegister(true);
-          //   setTimeout(() => {
-          //     navigate("/");
-          //   }, 2000);
-          // })
-
-          // Get csrf token cookie
-          // let csrftoken = getCookie('csrftoken');
-          // console.log(csrftoken);
-          // Set csrf token in header
-          // axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
-          // axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-          // axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-          // axios.defaults.headers.common['Accept'] = 'application/json';
-
           setUserName(slugify(username, "_"));
           setFirstname(firstName);
           setLastname(lastName);
