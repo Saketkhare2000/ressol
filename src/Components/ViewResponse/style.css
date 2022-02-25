@@ -75,3 +75,6 @@
   justify-content: space-between;
   padding: 0 8px;
 }
+.property-title .property-locality {
+  text-transform: capitalize;
+}

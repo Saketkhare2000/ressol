@@ -36,7 +36,9 @@ const Property = () => {
   // const phoneNumber = Cookies.get("phonenumber");
   const navigate = useNavigate();
   const [wishlistStatus, setWishlistStatus] = useState(false);
-  const [contactStatus, setContactStatus] = useState(false);
+  const [contactStatus, setContactStatus] = useState();
+  // const [contactDetails, setContactDetails] = useState([]);
+
   const [loader, setLoader] = React.useState(true);
   const [availabilityDate, setAvailabilityDate] = React.useState("");
 
@@ -74,6 +76,14 @@ const Property = () => {
       .then(() => {
         axios
           .get(`${base_url}api/profile/${phoneNumber}/`)
+          .then((res) => {
+            if (res.data.contacted_to.find(data => data == propertyDetails.id) != propertyDetails.id) {
+              setContactStatus(false);
+            } else {
+              setContactStatus(true);
+            }
+            return res
+          })
           .then((userRes) => {
             const wish = userRes.data.wishlist.filter((item) => {
               return item == id;
