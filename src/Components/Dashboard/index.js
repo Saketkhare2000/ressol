@@ -23,7 +23,12 @@ const Dashoard = () => {
   const currentDate = Date.now();
   useEffect(() => {
     dispatch(getUserData(phoneNumber, base_url));
+    console.log(loggedIn)
+    console.log(Cookies)
   }, []);
+
+    console.log(loggedIn)
+    console.log(Cookies)
 
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
 
@@ -49,6 +54,7 @@ const Dashoard = () => {
     setLoggedIn(Cookies.get('loggedIn') === 'true' ? true : false)
     setPhoneNumber(Cookies.get('phonenumber'))
     console.log(loggedIn)
+    // console.log(Cookies)
     // setPhoneNumber(Cookies.set('phonenumber', ''))
     navigate("/");
     setAlert({
