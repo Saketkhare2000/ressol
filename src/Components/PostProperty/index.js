@@ -15,6 +15,8 @@ import { WebContext } from "../../Context/WebContext";
 import { uploadImage } from "../../actions/userActions";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { getUserData } from "../../actions/userActions";
+
 // import data from "../../postDetails.json";
 const PostProperty = () => {
   const [spinner, setSpinner] = React.useState(false);
@@ -53,9 +55,14 @@ const PostProperty = () => {
   const [gatedCommunity, setGatedCommunity] = useState(null);
   const [amenities, setAmenities] = useState([]);
   const [prime_property, setPrime_Property] = useState(false);
-  const { setAlert, base_url } = useContext(WebContext);
+
+  const { setAlert, base_url, loggedIn, phoneNumber } = useContext(WebContext);
+
+  useEffect(() => {
+    dispatch(getUserData(phoneNumber, base_url));
+  }, []);
+
   const userDetails = useSelector((state) => state.userData.userData);
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
 
   const date = new Date(availability);
   const dispatch = useDispatch();
