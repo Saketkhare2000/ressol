@@ -149,7 +149,7 @@ const ViewResponse = () => {
             );
           })
         ) : (
-          <>{toast.error("No Response Found")}</>
+          <>{null}</>
         )}
 
         {/* <div className="view-response-card">
