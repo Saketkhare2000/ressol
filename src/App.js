@@ -29,6 +29,7 @@ import ViewResponse from "./Components/ViewResponse";
 import OTPHandle from "./Components/OTPHandle";
 import TransactionHistory from "./Components/TransactionHistory";
 import Cookies from "js-cookie";
+import axios from "axios";
 // import { WebContext } from "../src/Context/WebContext";
 // import { useContext } from "react";
 
@@ -39,9 +40,38 @@ function App() {
   const loggedInCookie = Cookies.get('loggedIn') === 'true' ? true : false;
   const [loggedIn, setLoggedIn] = useState(loggedInCookie);
   console.log(loggedIn)
+
+  // Latitude and Longitude
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
+
+  // const API_Endpoint = `https://maps.googleapis.com/maps/api/geocode/json?`
+  // const API_Key = "AIzaSyAsy3W9iw5U0jnI3T7B0sBeoiXD2GH6RIg"
   useEffect(() => {
     setLoggedIn(loggedInCookie);
-  }, [loggedInCookie]);
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position.coords);
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+    });
+
+    // let finalAPIEndPoint = `${API_Endpoint}latlng=${latitude},${longitude}&key=${API_Key}`;
+    // axios.get(finalAPIEndPoint).then(res => {
+    //   console.log(res.data);
+    // }
+    // )
+  }, []);
+  console.log(latitude)
+  console.log(longitude)
+
+
+  // GeoLocation
+
+  // navigator.geolocation.getCurrentPosition((position) => {
+  //   console.log(position.coords);
+  //   setLatitude(position.coords.latitude);
+  //   setLongitude(position.coords.longitude);
+  // });
 
   // const { loggedIn } = useContext(WebContext);
   // console.log(loggedIn)
