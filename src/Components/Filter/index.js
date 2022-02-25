@@ -65,7 +65,7 @@ const Filter = () => {
     amenities: amenities,
     expand: "image,posted_by.prime_status",
   };
-
+  console.log(data)
   ///////////////////////////////////////////////////////////////////////////////
 
   //  Select & Multi Select Dropdown Values
@@ -147,8 +147,10 @@ const Filter = () => {
   const handleChangeLocality = (e) => {
     const localityValue = [];
     e.map((location) => {
+      console.log(location.value)
       return localityValue.push(location.value);
     });
+    console.log(localityValue)
     setLocation(localityValue);
   };
   const handleChangeFurnishing = (e) => {
@@ -172,7 +174,6 @@ const Filter = () => {
     });
     setAmenities(amenitiesValue);
   };
-  const [localityOptions, setLocalityOptions] = React.useState();
 
   const handleChangeCity = (selectedOption) => {
     setCity(selectedOption.value.toLowerCase());
@@ -183,13 +184,11 @@ const Filter = () => {
       .then((response) => {
         console.log(response.data.sublocations)
         response.data.sublocations.map(location => {
-          setLocalityData(localityData => [...localityData, { value: location, label: location }])
+          setLocalityData(localityData => [...localityData, { value: location, label: location.toUpperCase() }])
         })
       }
       )
   };
-  console.log(localityOptions)
-  console.log(localityData)
   const handleChangeMinPrice = (selectedOption) => {
     setMinPrice(selectedOption.value);
   };
@@ -303,7 +302,7 @@ const Filter = () => {
                 onChange={(e) => handleChangeLocality(e)}
                 closeMenuOnSelect={false}
                 isMulti
-                options={localityOptions}
+                options={localityData}
                 placeholder="Available Locality"
                 required
               />
