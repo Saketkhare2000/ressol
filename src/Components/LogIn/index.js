@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { slideUp } from "../../Animation";
 import { WebContext } from "../../Context/WebContext";
@@ -13,6 +13,16 @@ const LogIn = () => {
 
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
   // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
+
+  useEffect(()=>{
+    const reloadCount = sessionStorage.getItem('reloadCount');
+    if(reloadCount < 2) {
+      sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem('reloadCount');
+    }
+  },[])
 
 
   const { phoneNumber, setPhoneNumber, setAlert, base_url, loggedIn, setLoggedIn } =

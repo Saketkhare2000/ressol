@@ -40,6 +40,18 @@ const Wishlist = () => {
     }
     return val;
   }
+
+  useEffect(() => {
+    if (loggedIn) {
+      axios({
+        method: "get",
+        url: `${base_url}api/profile/${phoneNumber}/?expand=wishlist.image`,
+      }).then(res => {
+        setWishlistDetails(res.data.wishlist);
+      })
+    }
+  }, []);
+
   const removeWishlist = (id) => {
     axios({
       method: "post",

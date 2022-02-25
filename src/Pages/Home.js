@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
+import React, { useEffect } from "react";
 import { slideUp } from "../Animation";
 import "../Styles/home.css"
 import AdBanner from "../Components/AdBanner";
@@ -11,6 +11,15 @@ import { FiSearch } from "react-icons/fi";
 
 const Home = () => {
   const navigate = useNavigate()
+  useEffect(()=>{
+    const reloadCount = sessionStorage.getItem('reloadCount');
+    if(reloadCount < 2) {
+      sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem('reloadCount');
+    }
+  },[])
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div

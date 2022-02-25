@@ -29,9 +29,11 @@ const PropertyDeatiledCard = () => {
   const [wishlistStatus, setWishlistStatus] = useState(false);
   const [contactStatus, setContactStatus] = useState(false);
   const [wishlistDetails, setWishlistDetails] = useState([]);
+  const [contactDetails, setContactDetails] = useState([]);
   // Get slug from the url
   const { slug } = useParams();
   setListSlug(slug);
+
   useEffect(() => {
     dispatch(getPropertyList(paramsData, base_url));
     if (loggedIn) {
@@ -41,6 +43,7 @@ const PropertyDeatiledCard = () => {
       }).then(res => {
         setUserId(res.data.id);
         setWishlistDetails(res.data.wishlist);
+        setContactDetails(res.data.contacted_to);
       })
     }
   }, []);
@@ -54,6 +57,7 @@ const PropertyDeatiledCard = () => {
     }
     return val;
   }
+
   const addToWishlist = (propertyid) => {
     if (loggedIn) {
       axios({
@@ -73,15 +77,16 @@ const PropertyDeatiledCard = () => {
       navigate("/login");
     }
   };
-  const handleContact = () => {
+
+  const handleContact = (owner, property) => {
     if (loggedIn) {
       axios({
         method: "post",
         url: `${base_url}api/contact`,
         data: {
           buyer: userId,
-          // owner: propertyDetails.posted_by.id,
-          // property: propertyDetails.id,
+          owner: owner,
+          property: property,
         },
       })
         .then((res) => {
@@ -106,6 +111,7 @@ const PropertyDeatiledCard = () => {
       navigate("/login");
     }
   };
+
   const NavigateTo = (path) => {
     setAlert({
       show: true,
@@ -121,6 +127,7 @@ const PropertyDeatiledCard = () => {
     }, 3000);
     navigate(path);
   };
+
   return (
     <motion.div
       animate={{ opacity: 1 }}
@@ -137,6 +144,9 @@ const PropertyDeatiledCard = () => {
       </div>
       {propertyList ? (
         Object.keys(propertyList).map((property, index) => {
+
+          console.log(wishlistDetails.find(data => data == propertyList[property].id), propertyList[property].id)
+          console.log(wishlistDetails.find(data => data == propertyList[property].id) == propertyList[property].id)
           return (
             <div className="property-card">
               <Link to={`/property/${propertyList[property].id}`}>
@@ -173,7 +183,7 @@ const PropertyDeatiledCard = () => {
                         }
                       })()}
                       {(() => {
-                        if (propertyList[property].posted_by.prime_status.is_prime) {
+                        if (propertyList[property].posted_by.prime_status?.is_prime) {
                           return <p className="property-prime"><FaCrown />Prime Verified</p>;
                         } else {
                           return <></>;
@@ -250,42 +260,41 @@ const PropertyDeatiledCard = () => {
                           </button>
                         )} */}
 
-                        {wishlistDetails.filter(wishlist => wishlist == propertyList[property].id).map(wishlist => (
-                          wishlist ? (
+                        {
+                          wishlistDetails.find(data => data == propertyList[property].id) === propertyList[property].id ? (
                             <button
                               className="btn btn-secondary"
-                              onClick={() =>
+                              onClick={() => {
                                 addToWishlist(propertyList[property].id)
-                              }
+                                setWishlistDetails((oldList) => [...oldList.filter((data) => data != propertyList[property].id)])
+                              }}
                             >
                               Remove From Wishlist
                             </button>
                           ) : (
                             <button
                               className="btn btn-secondary"
-                              onClick={() =>
-                                addToWishlist(propertyList[property].id)
-                              }
+                              onClick={() => {
+                                addToWishlist(propertyList[property].id);
+                                setWishlistDetails((oldList) => [...oldList, propertyList[property].id]);
+                              }}
                             >
-                              Remove From Wishlist
+                              Add Wishlist
                             </button>
                           )
-                        ))
-                          // :
-                          //   <button
-                          //     className="btn btn-secondary"
-                          //     onClick={() =>
-                          //       addToWishlist(propertyList[property].id)
-                          //     }
-                          //   >
-                          //     Add To Wishlist
-                          //   </button>
                         }
+                        
                         <button
                           className="btn btn-primary"
-                          onClick={handleContact}
+                          onClick={() => {
+                            handleContact(propertyList[property].posted_by,propertyList[property].id);
+                            setContactDetails((oldList) => [...oldList, propertyList[property].id]);
+                        }}
                         >
-                          Contact Agent
+
+                          {contactDetails.find(data => data == propertyList[property].id) != propertyList[property].id ? (
+                            "Contact Agent") : ("Agent Contacted")
+                          }
                         </button>
                       </>
                     );

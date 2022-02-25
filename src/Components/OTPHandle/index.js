@@ -46,6 +46,7 @@ const OTPHandle = () => {
         Cookies.set('phonenumber', phoneNumber)
 
         navigate("/dashboard");
+        window.location.reload(false);
       })
       .catch((err) => {
         setAlert({
