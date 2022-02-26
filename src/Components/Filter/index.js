@@ -147,15 +147,10 @@ const Filter = () => {
   const handleChangeLocality = (e) => {
     let localityValue = "";
     e.map((location) => {
-<<<<<<< HEAD
       console.log(location.value)
       localityValue = localityValue + "," + location.value;
     });
     console.log(localityValue)
-=======
-      return localityValue.concat(',', location.value);
-    });
->>>>>>> cfdf46e96c4d15610f115edb455a2def6eccbb3a
     setLocation(localityValue.slice(1));
   };
   console.log(location)
