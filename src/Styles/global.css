@@ -15,18 +15,18 @@
   --card-border: #c7c7c7;
   /* --font-family: "Open Sans", sans-serif; */
   --font-family: "DM sans", sans-serif;
-  --mobile-title: 20px;
+  --mobile-title: 18px;
   --header--mobile: 18px;
 }
 @media screen and (min-width: 1024px) {
   :root {
-    --mobile-title: 22px;
+    --mobile-title: 20px;
     --header--mobile: 20px;
   }
 }
 @media screen and (min-width: 1200px) {
   :root {
-    --mobile-title: 22px;
+    --mobile-title: 20px;
     --header--mobile: 22px;
   }
 }

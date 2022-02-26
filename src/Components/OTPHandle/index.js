@@ -13,7 +13,6 @@ const OTPHandle = () => {
     useContext(WebContext);
   const [otp, setOtp] = useState("");
   let navigate = useNavigate();
-  // const loggedIn = useSelector((state) => state.auth.loggedIn);
 
   const otpdetails = {
     phone: phoneNumber,
@@ -29,13 +28,11 @@ const OTPHandle = () => {
     })
       .then((res) => {
         toast.success("OTP Verified Successfully");
-
-        // setLoggedIn(true);
         dispatch({ type: "LOGGED_IN" });
         Cookies.set("loggedIn", true);
         Cookies.set("phonenumber", phoneNumber);
 
-        navigate("/dashboard");
+        navigate("/login");
         window.location.reload(false);
       })
       .catch((err) => {

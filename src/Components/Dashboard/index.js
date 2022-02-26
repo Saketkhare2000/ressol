@@ -17,20 +17,12 @@ const Dashoard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { base_url, setAlert, loggedIn, setLoggedIn, phoneNumber, setPhoneNumber } = useContext(WebContext);
-  // setPhoneNumber(Cookies.get("phonenumber"));
-  // setLoggedIn(Cookies.get('loggedIn') === 'true' ? true : false)
-  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
   const currentDate = Date.now();
   useEffect(() => {
     dispatch(getUserData(phoneNumber, base_url));
-    console.log(loggedIn)
-    console.log(Cookies)
   }, []);
 
-  console.log(loggedIn)
-  console.log(Cookies)
 
-  // const loggedIn = useSelector((state) => state.auth.loggedIn);
 
   const userDetails = useSelector((state) => state.userData.userData);
   const primetimestamp = new Date(userDetails.prime_status?.timestamp)
@@ -53,9 +45,7 @@ const Dashoard = () => {
     Cookies.set('phonenumber', '')
     setLoggedIn(Cookies.get('loggedIn') === 'true' ? true : false)
     setPhoneNumber(Cookies.get('phonenumber'))
-    console.log(loggedIn)
-    // console.log(Cookies)
-    // setPhoneNumber(Cookies.set('phonenumber', ''))
+
     navigate("/");
     setAlert({
       show: true,

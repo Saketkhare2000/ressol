@@ -34,6 +34,7 @@ const PropertyDeatiledCard = () => {
   const { slug } = useParams();
   setListSlug(slug);
 
+
   useEffect(() => {
     dispatch(getPropertyList(paramsData, base_url));
     if (loggedIn) {

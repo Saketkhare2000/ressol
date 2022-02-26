@@ -55,10 +55,8 @@ const PostProperty = () => {
   const [gatedCommunity, setGatedCommunity] = useState(null);
   const [amenities, setAmenities] = useState([]);
   const [prime_property, setPrime_Property] = useState(false);
-
   const { setAlert, base_url, loggedIn, phoneNumber } = useContext(WebContext);
 
-  console.log(imagePostData)
   useEffect(() => {
     dispatch(getUserData(phoneNumber, base_url));
   }, []);
@@ -128,7 +126,6 @@ const PostProperty = () => {
       });
   };
 
-  // const key = useSelector((state) => state.auth.key);
   const {
     register,
     handleSubmit,
@@ -139,10 +136,6 @@ const PostProperty = () => {
     axios(`${base_url}api/property/`, {
       method: "post",
       data: data,
-      // headers: {
-      //   "Content-type": "application/json",
-      //   Authorization: `Token ${key}`,
-      // },
     })
       .then((res) => {
         setSpinner(false);
@@ -315,20 +308,9 @@ const PostProperty = () => {
               <input
                 type="text"
                 onChange={(e) => setLocation(e.target.value.toLowerCase())}
-                placeholder="Locality"
+                placeholder="Ex - Vijay Nagar"
                 name="locality"
                 id="locality"
-              />
-            </div>
-            {/* Pincode  */}
-            <div className="form-group">
-              <h2 className="header-mobile">Pincode</h2>
-              <input
-                type="text"
-                onChange={(e) => setPincode(e.target.value)}
-                placeholder="Enter Pincode"
-                name="pincode"
-                id="pincode"
               />
             </div>
             {/* Address */}
@@ -342,6 +324,18 @@ const PostProperty = () => {
                 id="address"
               />
             </div>
+            {/* Pincode  */}
+            <div className="form-group">
+              <h2 className="header-mobile">Pincode</h2>
+              <input
+                type="text"
+                onChange={(e) => setPincode(e.target.value)}
+                placeholder="Enter Pincode"
+                name="pincode"
+                id="pincode"
+              />
+            </div>
+
           </div>
           {/* ------------- Features Starts ----------------- */}
           {(() => {

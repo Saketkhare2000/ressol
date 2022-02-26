@@ -65,7 +65,6 @@ const Filter = () => {
     amenities: amenities,
     expand: "image,posted_by.prime_status",
   };
-  console.log(data)
   ///////////////////////////////////////////////////////////////////////////////
 
   //  Select & Multi Select Dropdown Values
@@ -149,10 +148,8 @@ const Filter = () => {
     e.map((location) => {
       return localityValue = `${localityValue},${location.value}`;
     });
-    console.log(localityValue)
     setLocation(localityValue.slice(1));
   };
-  console.log(location)
   const handleChangeFurnishing = (e) => {
     const furnishingValue = [];
     e.map((furnishing) => {
@@ -182,7 +179,6 @@ const Filter = () => {
       url: `${base_url}api/city/${selectedOption.value.toLowerCase()}/`,
     })
       .then((response) => {
-        console.log(response.data.sublocations)
         response.data.sublocations.map(location => {
           setLocalityData(localityData => [...localityData, { value: location, label: location.toUpperCase() }])
         })

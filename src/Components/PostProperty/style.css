@@ -192,15 +192,15 @@
   margin: 12px 0;
 }
 @media screen and (min-width: 576px) {
-  .css-b62m3t-container {
-    width: 45%;
+  .post-page .css-b62m3t-container {
+    width: 90% !important;
     margin: 12px 0;
   }
-  .post-property .form-group input[type="text"] {
-    width: 45%;
+  .post-page .post-property .form-group input[type="text"] {
+    width: 90% !important;
   }
-  .post-property .form-group input[type="date"] {
-    width: 45%;
+  .post-page .post-property .form-group input[type="date"] {
+    width: 90% !important;
   }
   .post-property button {
     margin: 0 auto;

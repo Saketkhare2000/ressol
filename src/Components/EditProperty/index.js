@@ -20,13 +20,10 @@ import toast from "react-hot-toast";
 const EditProperty = () => {
   const [propertyDetails, setPropertyDetails] = React.useState({});
   const navigate = useNavigate();
-  // const { editPropertyId, setEditPropertyId, base_url } = useContext(WebContext);
   const { base_url } = useContext(WebContext);
 
   const editPropertyId = parseInt(Cookies.get("editPropertyId"));
-  // console.log(parseInt(Cookies.get("editPropertyId")))
-  // console.log(editPropertyId)
-  // Useeffect
+
   useEffect(() => {
     axios
       .get(

@@ -5,7 +5,7 @@
 .row .card-row {
   margin-bottom: 8px;
   padding: 8px 0;
-  border-bottom: 1px solid var(--card-border);
+  /* border-bottom: 1px solid var(--card-border); */
 }
 .row .propertycard-row {
   display: flex;
@@ -24,7 +24,11 @@
 .mobile-title {
   font-size: var(--mobile-title);
   color: var(--text-dark);
-  font-weight: 500;
+  font-weight: 400;
+}
+.mobile-title span {
+  color: var(--brand--green);
+  text-transform: capitalize;
 }
 
 ::-webkit-scrollbar {
@@ -43,10 +47,13 @@
   margin-right: 12px;
   cursor: pointer;
 }
+.city-property .featured-card-row .card-details {
+  height: 272px;
+}
 @media screen and (min-width: 768px) {
   .displaycard {
-    min-width: 300px;
-    max-height: 180px;
+    width: 360px;
+    height: 180px !important;
   }
   .displaycard .displaycard-details {
     height: 180px;

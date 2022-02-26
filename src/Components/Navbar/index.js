@@ -10,15 +10,11 @@ import "./style.css";
 import { subMenuAnimate } from "../../Animation";
 import { AiOutlineHome, AiOutlineUser, AiFillCaretDown } from "react-icons/ai";
 import { FaCrown } from 'react-icons/fa';
-import { useSelector } from "react-redux";
-import Cookies from 'js-cookie';
 const Navbar = () => {
   const { filter, setAlert } = useContext(WebContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const loggedIn = useSelector((state) => state.auth.loggedIn);
-  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
   const { loggedIn, setLoggedIn } = useContext(WebContext);
   const [hover, setIsHover] = useState(false);
   const toggleMouseMenu = () => {
@@ -64,9 +60,6 @@ const Navbar = () => {
                           <Link to="/signup">
                             <div className="sub-menu-item">Sign up</div>
                           </Link>
-                          {/* <Link to="/prime">
-                            <div className="sub-menu-item">Prime</div>
-                          </Link> */}
                         </div>
                       ) : (
                         <div className="sub-menu-container">
@@ -88,7 +81,7 @@ const Navbar = () => {
                   </motion.div>
                 </motion.div>
 
-                <Link to="/post">
+                <Link to={loggedIn ? `post` : `login`}>
                   <li className="top-navLink post-property-btn btn btn-secondary">
                     Post Property
                   </li>
@@ -102,11 +95,7 @@ const Navbar = () => {
                 Prime
               </div>
             </div>
-            {/* <div className="search-bar">
-              <motion.div onClick={() => navigate("/filter")} className="input">
-                Search for Properties
-              </motion.div>
-            </div> */}
+
           </motion.nav>
 
           <motion.nav className="navbar-bottom">
@@ -120,7 +109,10 @@ const Navbar = () => {
                   Home
                 </motion.li>
               </Link>
-              <Link to="/post">
+              {/* <Link to="/post">
+                <Button title="Post Property" variant="secondary" />
+              </Link> */}
+              <Link to={loggedIn ? `post` : `login`}>
                 <Button title="Post Property" variant="secondary" />
               </Link>
               <Link to={loggedIn ? `dashboard` : `signup`}>

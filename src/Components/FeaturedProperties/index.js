@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import "../FeaturedProperties/style.css";
 import SamplePropertyImage from "../../assets/images/SamplePropertyImage.jpg";
 import { WebContext } from "../../Context/WebContext";
+import { FaCrown } from 'react-icons/fa';
 
-// import { Link } from 'react-router-dom'
-// import PropertyCard from '../PropertyCard'
 
 const FeaturedProperties = () => {
   const [featuredPropertyList, setFeaturedPropertyList] = React.useState([]);
@@ -17,7 +16,7 @@ const FeaturedProperties = () => {
       .then((res) => {
         setFeaturedPropertyList(res.data);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
   function numDifferentiation(value) {
     var val = Math.abs(value);
@@ -30,7 +29,7 @@ const FeaturedProperties = () => {
   }
   return (
     <div className="card-row">
-      <h2 className="mobile-title">Featured Properties</h2>
+      <h2 className="mobile-title">Featured Properties <span>( <FaCrown /> By Prime Agents)</span> </h2>
       <div className="featured-card-row">
         {featuredPropertyList.slice(0, 5).map((item, index) => (
           <Link
@@ -46,7 +45,7 @@ const FeaturedProperties = () => {
               )}
             </div>
             <p className="property-name">{item.property_name}</p>
-            <p className="property-prime">Prime Property</p>
+            <p className="property-prime"><FaCrown />Prime Verified</p>
             <p className="property-price">₹ {numDifferentiation(item.price)}</p>
             <p className="property-type">
               {(() => {

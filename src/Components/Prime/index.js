@@ -5,7 +5,6 @@ import axios from "axios";
 import { WebContext } from "../../Context/WebContext";
 import { getUserData } from "../../actions/userActions";
 import { FaCrown } from 'react-icons/fa';
-
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
@@ -214,7 +213,10 @@ const Prime = () => {
     </div>
   ) : (
     <div className="page">
-      <h1 style={{ textAlign: "center" }}>Already Prime</h1>
+      <FaCrown />
+      <h2>Thankyou</h2>
+      <p>You are already a Prime Member</p>
+      <p>You may visit again when your subscription expires</p>
       <button
         style={{ margin: "10px auto", display: "block" }}
         className="btn btn-primary"

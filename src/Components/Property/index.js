@@ -170,7 +170,8 @@ const Property = () => {
     }
   };
   const handleBack = () => {
-    navigate(`/propertylist/${listSlug}`);
+    // navigate(`/propertylist/${listSlug}`);
+    navigate(-1)
   };
   const addToWishlist = () => {
     if (loggedIn) {
@@ -246,11 +247,11 @@ const Property = () => {
             <div className="property-btn-container">
               {contactStatus ? (
                 <button className="btn btn-primary" onClick={handleContact}>
-                  Owner Contacted
+                  Contacted
                 </button>
               ) : (
                 <button className="btn btn-primary" onClick={handleContact}>
-                  Contact Owner
+                  Contact
                 </button>
               )}
 
@@ -524,11 +525,11 @@ const Property = () => {
             {
               contactStatus ? (
                 <button className="btn btn-primary" onClick={handleContact}>
-                  Owner Contacted
+                  Owner
                 </button>
               ) : (
                 <button className="btn btn-primary" onClick={handleContact}>
-                  Contact Owner
+                  Contact
                 </button>
               )
             }

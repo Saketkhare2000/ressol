@@ -11,9 +11,6 @@ import Cookies from "js-cookie";
 const LogIn = () => {
   let navigate = useNavigate();
 
-  // const loggedIn = useSelector((state) => state.auth.loggedIn);
-  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
-
   useEffect(() => {
     const reloadCount = sessionStorage.getItem('reloadCount');
     if (reloadCount < 2) {
@@ -25,8 +22,7 @@ const LogIn = () => {
   }, [])
 
 
-  const { phoneNumber, setPhoneNumber, setAlert, base_url, loggedIn, setLoggedIn } = useContext(WebContext);
-  // const loggedIn = Cookies.get("loggedIn") === "true" ? true : false;
+  const { phoneNumber, setPhoneNumber, base_url, loggedIn, setLoggedIn } = useContext(WebContext);
   const {
     register,
     handleSubmit,

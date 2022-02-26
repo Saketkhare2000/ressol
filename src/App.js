@@ -35,44 +35,7 @@ import { Toaster } from "react-hot-toast";
 // import { useContext } from "react";
 
 function App() {
-  // const loggedIn = useSelector((state) => state.auth.loggedIn);
   const loggedIn = Cookies.get("loggedIn") === "true" ? true : false;
-  console.log(loggedIn);
-
-  // Latitude and Longitude
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
-
-  // const API_Endpoint = `https://maps.googleapis.com/maps/api/geocode/json?`
-  // const API_Key = "AIzaSyAsy3W9iw5U0jnI3T7B0sBeoiXD2GH6RIg"
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position.coords);
-      setLatitude(position.coords.latitude);
-      setLongitude(position.coords.longitude);
-    });
-
-    // let finalAPIEndPoint = `${API_Endpoint}latlng=${latitude},${longitude}&key=${API_Key}`;
-    // axios.get(finalAPIEndPoint).then(res => {
-    //   console.log(res.data);
-    // }
-    // )
-  }, []);
-  console.log(latitude)
-  console.log(longitude)
-
-
-  // GeoLocation
-
-  // navigator.geolocation.getCurrentPosition((position) => {
-  //   console.log(position.coords);
-  //   setLatitude(position.coords.latitude);
-  //   setLongitude(position.coords.longitude);
-  // });
-
-  // const { loggedIn } = useContext(WebContext);
-  // console.log(loggedIn)
-
   return (
     <WebProvider>
       <BrowserRouter>
@@ -101,11 +64,11 @@ function App() {
           ) : (
             <Route path="/dashboard" element={<LogIn />} />
           )}
-          {/* {loggedIn ? (
+          {loggedIn ? (
             <Route path="/post" element={<Post />} />
           ) : (
             <Route path="/dashboard" element={<LogIn />} />
-          )} */}
+          )}
           <Route path="/post" element={<Post />} />
 
           {loggedIn ? (
