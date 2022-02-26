@@ -133,7 +133,7 @@ const Filter = () => {
   const handleChangeBedrooms = (e) => {
     let bedValue = [];
     e.map((bedroom) => {
-      return bedroomValue.push(bedroom.value);
+      return bedValue.push(bedroom.value);
     });
     setBedRooms(bedValue);
   };
