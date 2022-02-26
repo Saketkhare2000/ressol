@@ -19,14 +19,39 @@ const ManageProperties = () => {
   const dispatch = useDispatch();
 
   const { setEditPropertyId, base_url, phoneNumber, loggedIn } = useContext(WebContext);
-  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
-  // const phoneNumber = Cookies.get("phonenumber");
+
+  const [yourPropertyDetails, setYourPropertyDetails] = React.useState();
+  const [timestamp, setTimeStamp] = React.useState();
+
   useEffect(() => {
-    // dispatch(getUserData(userName, key));
     dispatch(getUserData(phoneNumber, base_url));
+    axios({
+      method: "get",
+      url: `${base_url}api/profile/${phoneNumber}/?expand=properties.image`,
+    }).then(res => {
+      setYourPropertyDetails(res.data.properties);
+      return res.data.properties;
+    })
+      .then(res => {
+        if (res.length > 0) {
+          const timeData = [];
+          res.map((item, index) => {
+            let time = new Date(item.timestamp);
+
+            return timeData.push(
+              time.toLocaleString("en-GB", {
+                day: "numeric", // numeric, 2-digit
+                month: "short", // long, short, narrow
+                year: "numeric", // numeric, 2-digit
+              })
+            );
+          });
+          setTimeStamp(timeData);
+        }
+      })
   }, []);
-  const userDetails = useSelector((state) => state.userData.userData);
-  const yourPropertyDetails = userDetails.properties;
+
+
   function numDifferentiation(value) {
     var val = Math.abs(value);
     if (val >= 10000000) {
@@ -118,6 +143,9 @@ const ManageProperties = () => {
                       );
                     }
                   })()}
+                  {timestamp ? (
+                    <p className="posted-on">Posted On: {timestamp[index]}</p>
+                  ) : (<></>)}
                   <p className="property-city">
                     {yourPropertyDetails[property].city}
                   </p>

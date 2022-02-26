@@ -43,9 +43,9 @@ const ViewResponse = () => {
             let time = new Date(item.timestamp);
 
             return timeData.push(
-              time.toLocaleString("en-US", {
-                weekday: "short", // long, short, narrow
+              time.toLocaleString("en-GB", {
                 day: "numeric", // numeric, 2-digit
+                month: "short", // long, short, narrow
                 year: "numeric", // numeric, 2-digit
               })
             );
@@ -53,9 +53,8 @@ const ViewResponse = () => {
           setTimeStamp(timeData);
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
-  console.log(timestamp);
   return (
     <div className="page">
       <div className="back" onClick={() => navigate("/dashboard")}>

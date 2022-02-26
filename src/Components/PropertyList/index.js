@@ -279,21 +279,21 @@ const PropertyDeatiledCard = () => {
                                 setWishlistDetails((oldList) => [...oldList, propertyList[property].id]);
                               }}
                             >
-                              Add Wishlist
+                              Add To Wishlist
                             </button>
                           )
                         }
-                        
+
                         <button
                           className="btn btn-primary"
                           onClick={() => {
-                            handleContact(propertyList[property].posted_by,propertyList[property].id);
+                            handleContact(propertyList[property].posted_by, propertyList[property].id);
                             setContactDetails((oldList) => [...oldList, propertyList[property].id]);
-                        }}
+                          }}
                         >
 
                           {contactDetails.find(data => data == propertyList[property].id) != propertyList[property].id ? (
-                            "Contact Agent") : ("Agent Contacted")
+                            "Contact") : (`Contacted`)
                           }
                         </button>
                       </>

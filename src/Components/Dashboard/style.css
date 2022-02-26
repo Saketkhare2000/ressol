@@ -18,6 +18,9 @@
   margin-right: 12px;
   color: var(--accent--gray);
 }
+.dashboard-page .disclosure-btn p svg {
+  margin-right: 20px;
+}
 .down-icon {
   font-size: 28px !important;
   color: var(--brand--green);
@@ -140,9 +143,20 @@
   justify-content: space-between;
   flex-direction: column;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+.disclosure-btn:hover {
+  background-color: var(--brand--green);
+  color: white;
+}
+.disclosure-btn:hover .btn-top p {
+  color: white;
+}
+.disclosure-btn:hover .btn-top p svg {
+  color: white;
 }
 .disclosure-btn .btn-top {
-  padding: 20px;
+  padding: 20px 10px;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -151,6 +165,10 @@
 .disclosure-btn .btn-top p {
   font-weight: 500;
   font-size: 18px;
+  transition: all 0.3s ease;
+}
+.disclosure-btn.btn-top p svg {
+  transition: all 0.3s ease;
 }
 .user-details .mobile-title {
   margin-left: 0 !important;
@@ -187,17 +205,18 @@ button {
 }
 @media screen and (min-width: 768px) {
   .dashboard-page {
-    flex-direction: row-reverse;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
   .dashboard-desktop {
     width: 40%;
     padding-top: 14px;
-    padding-left: 20px;
+    /* padding-left: 20px; */
+    margin-right: 50px;
   }
   .dashboard-menus {
-    width: 50%;
+    width: 40%;
   }
   .btn-container {
     display: none;

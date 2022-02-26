@@ -206,6 +206,9 @@
   .about-owner-container .owner-details {
     width: 100%;
   }
+  .each-property .property-details .property-details-child {
+    padding: 10px 0;
+  }
 }
 @media screen and (min-width: 768px) {
   .each-property .property-details {
@@ -218,7 +221,7 @@
     width: 50%;
   }
   .each-property .property-details .property-details-child {
-    padding-left: 20px;
+    padding: 10px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

@@ -27,8 +27,8 @@ const Dashoard = () => {
     console.log(Cookies)
   }, []);
 
-    console.log(loggedIn)
-    console.log(Cookies)
+  console.log(loggedIn)
+  console.log(Cookies)
 
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
 
@@ -131,7 +131,7 @@ const Dashoard = () => {
             onChange={handleStateChange}
             className="choose-color"
           />
-          <button className="btn" onClick={logout}>
+          <button className="btn btn-secondary" onClick={logout}>
             Log Out
           </button>
         </div>
@@ -147,7 +147,7 @@ const Dashoard = () => {
               <AiOutlineUser style={{ fontSize: "20px" }} />
               Profile Details
             </motion.p>
-            <IoCaretUpCircleSharp className={`down-icon`} />
+            {/* <IoCaretUpCircleSharp className={`down-icon`} /> */}
           </motion.div>
         </motion.div>
         <motion.div className="disclosure-btn" layout>
@@ -160,7 +160,7 @@ const Dashoard = () => {
               <BiBuildingHouse style={{ fontSize: "20px" }} />
               Manage Properties
             </motion.p>
-            <IoCaretUpCircleSharp className={`down-icon`} />
+            {/* <IoCaretUpCircleSharp className={`down-icon`} /> */}
           </motion.div>
         </motion.div>
         <motion.div className="disclosure-btn" layout>
@@ -173,7 +173,7 @@ const Dashoard = () => {
               <GrContact style={{ fontSize: "20px" }} />
               View Responses
             </motion.p>
-            <IoCaretUpCircleSharp className={`down-icon`} />
+            {/* <IoCaretUpCircleSharp className={`down-icon`} /> */}
           </motion.div>
         </motion.div>
         <motion.div className="disclosure-btn" layout>
@@ -186,7 +186,7 @@ const Dashoard = () => {
               <AiOutlineBook style={{ fontSize: "20px" }} />
               Wishlist
             </motion.p>
-            <IoCaretUpCircleSharp className={`down-icon`} />
+            {/* <IoCaretUpCircleSharp className={`down-icon`} /> */}
           </motion.div>
         </motion.div>
       </div>

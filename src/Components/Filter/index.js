@@ -145,14 +145,15 @@ const Filter = () => {
     setBathrooms(bathroomValue);
   };
   const handleChangeLocality = (e) => {
-    const localityValue = [];
+    let localityValue = "";
     e.map((location) => {
       console.log(location.value)
-      return localityValue.push(location.value);
+      localityValue = localityValue + "," + location.value;
     });
     console.log(localityValue)
-    setLocation(localityValue);
+    setLocation(localityValue.slice(1));
   };
+  console.log(location)
   const handleChangeFurnishing = (e) => {
     const furnishingValue = [];
     e.map((furnishing) => {

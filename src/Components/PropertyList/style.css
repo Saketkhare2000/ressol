@@ -134,6 +134,7 @@
   text-transform: capitalize;
 }
 .property-detail-btn-container {
+  width: 240px;
   display: flex;
   flex-direction: column;
   justify-content: center;

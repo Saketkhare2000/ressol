@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { WebContext } from "../../Context/WebContext";
 import { getUserData } from "../../actions/userActions";
+import { FaCrown } from 'react-icons/fa';
 
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
@@ -121,7 +122,9 @@ const Prime = () => {
 
   return !isPrime ? (
     <div className="prime-page page">
+      <FaCrown />
       <h2> 9Roof Prime Membership</h2>
+      <p className="prime-description">Perfect way for <strong>Agents</strong>  to increase their reach </p>
       <div className="prime-plans-container">
         {/* Basic Plan  */}
         <div className="prime-plan">
