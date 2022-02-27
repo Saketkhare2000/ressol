@@ -20,7 +20,7 @@ const Prime = () => {
 
   const dispatch = useDispatch();
   // const { userName } = useContext(WebContext);
-  const { firstname, lastname, phoneNumber, base_url } = useContext(WebContext);
+  const { firstname, lastname, phoneNumber, base_url, loggedIn } = useContext(WebContext);
   useEffect(() => {
     // dispatch(getUserData(userName, key));
     dispatch(getUserData(phoneNumber));
@@ -212,11 +212,11 @@ const Prime = () => {
       </div>
     </div>
   ) : (
-    <div className="page">
+    <div className="prime-page page">
       <FaCrown />
       <h2>Thankyou</h2>
-      <p>You are already a Prime Member</p>
-      <p>You may visit again when your subscription expires</p>
+      <p className="already-prime">You are already a Prime Member</p>
+      <p className="visit-again">You may visit again when your subscription expires</p>
       <button
         style={{ margin: "10px auto", display: "block" }}
         className="btn btn-primary"

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
   min-height: 70vh;
   height: auto;
@@ -17,6 +17,16 @@
   font-weight: 500;
   margin: 8px 0 0 0;
   padding: 4px 0;
+}
+.prime-page .already-prime {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 4px 0 0 0;
+  color: var(--brand--green);
+}
+.prime-page .visit-again {
+  font-size: 17px;
+  margin: 8px 0;
 }
 .prime-page .prime-description {
   font-size: 16px;

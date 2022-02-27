@@ -101,7 +101,12 @@ function App() {
             <Route path="/dashboard/view-responses" element={<LogIn />} />
           )}
           <Route path="filter" element={<Filter />} />
-          <Route path="/prime" element={<Prime />} />
+          {/* <Route path="/prime" element={<Prime />} /> */}
+          {loggedIn ? (
+            <Route path="/prime" element={<Prime />} />
+          ) : (
+            <Route path="/prime" element={<LogIn />} />
+          )}
           <Route
             path="/dashboard/manage-properties/edit-property/"
             element={<EditProperty />}
