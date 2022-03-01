@@ -4,7 +4,9 @@ import Cookies from "js-cookie";
 export const WebContext = createContext();
 
 const WebProvider = (props) => {
-  const base_url = "http://143.198.78.94:8000/";
+  // const base_url = "http://137.184.237.53:8000/";
+  // const base_url = "http://143.198.78.94:8000/";
+  const base_url = "https://reessol-backend-new-zbsfa.ondigitalocean.app/";
   const [alert, setAlert] = useState({
     show: false,
     message: "",
