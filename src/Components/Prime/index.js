@@ -12,19 +12,18 @@ import toast from "react-hot-toast";
 
 const Prime = () => {
   const navigate = useNavigate();
-  const userDetails = useSelector((state) => state.userData.userData);
-  // const userDetails = useSelector((state) => state.userData);
+
   const isPrime = useSelector(
     (state) => state.userData.userData.prime_status?.is_prime
   );
 
   const dispatch = useDispatch();
-  // const { userName } = useContext(WebContext);
   const { firstname, lastname, phoneNumber, base_url, loggedIn } = useContext(WebContext);
   useEffect(() => {
-    // dispatch(getUserData(userName, key));
-    dispatch(getUserData(phoneNumber));
+    dispatch(getUserData(phoneNumber, base_url));
   }, []);
+  const userDetails = useSelector((state) => state.userData.userData);
+  console.log(userDetails)
   const handlePaymentSuccess = async (response) => {
     try {
       let bodyData = new FormData();
