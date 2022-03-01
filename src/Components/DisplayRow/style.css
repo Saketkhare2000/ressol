@@ -48,7 +48,7 @@
   cursor: pointer;
 }
 .city-property .featured-card-row .card-details {
-  height: 272px;
+  height: 286px;
 }
 @media screen and (min-width: 768px) {
   .displaycard {
