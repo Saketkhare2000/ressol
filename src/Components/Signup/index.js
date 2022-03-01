@@ -155,7 +155,16 @@ const SignUp = () => {
                 placeholder="Password"
                 required
               />
-              <span>min 8 letters and 1 special character</span>
+              <span
+                style={{
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                  marginTop: "8px",
+                  opacity: 0.5,
+                }}
+              >
+                min 8 letters and 1 special character
+              </span>
             </div>
             <div className="form-category">
               <input
