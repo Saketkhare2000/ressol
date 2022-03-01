@@ -23,7 +23,6 @@ const Prime = () => {
     dispatch(getUserData(phoneNumber, base_url));
   }, []);
   const userDetails = useSelector((state) => state.userData.userData);
-  console.log(userDetails)
   const handlePaymentSuccess = async (response) => {
     try {
       let bodyData = new FormData();
