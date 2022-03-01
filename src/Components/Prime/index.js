@@ -15,7 +15,7 @@ const Prime = () => {
   const userDetails = useSelector((state) => state.userData.userData);
   // const userDetails = useSelector((state) => state.userData);
   const isPrime = useSelector(
-    (state) => state.userData.userData.prime_status.is_prime
+    (state) => state.userData.userData.prime_status?.is_prime
   );
 
   const dispatch = useDispatch();
