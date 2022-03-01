@@ -41,7 +41,7 @@ const SignUp = () => {
     phoneNumber,
     setPhoneNumber,
     loggedIn,
-    setLoggedIn
+    setLoggedIn,
   } = useContext(WebContext);
 
   const username =
@@ -155,6 +155,7 @@ const SignUp = () => {
                 placeholder="Password"
                 required
               />
+              <span>min 8 letters and 1 special character</span>
             </div>
             <div className="form-category">
               <input
