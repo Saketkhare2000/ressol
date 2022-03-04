@@ -242,6 +242,7 @@ const Filter = () => {
       <motion.div className="filter-body">
         <form action="">
           {/* Common Filters  */}
+          {/* Property For  */}
           <div className="filter-group">
             <h3>Property For</h3>
             <div className="filter-item">
@@ -271,69 +272,7 @@ const Filter = () => {
                 </div> */}
             </div>
           </div>
-          <div className="filter-group">
-            <h3>City</h3>
-            <div className="filter-item">
-              <Select
-                width="100px"
-                onChange={handleChangeCity}
-                options={cityOptions}
-                placeholder="City"
-                openMenuOnClick={true}
-                required
-              />
-            </div>
-          </div>
-          <div className="filter-group">
-            <h3>Locality</h3>
-            <div className="filter-item">
-              {/* <input
-                type="text"
-                name="locality"
-                id="locality"
-                // onChange={(e) => setPropertyName(e.target.value)}
-                placeholder="Locality Name"
-              /> */}
-              <Select
-                onChange={(e) => handleChangeLocality(e)}
-                closeMenuOnSelect={false}
-                isMulti
-                options={localityData}
-                placeholder="Available Locality"
-                required
-              />
-            </div>
-          </div>
-          <div className="filter-group">
-            <h3>Budget</h3>
-            <div className="filter-item">
-              <Select
-                onChange={handleChangeMinPrice}
-                placeholder="Min"
-                options={priceOptions}
-                required
-              />
-              <p>To</p>
-              <Select
-                onChange={handleChangeMaxPrice}
-                placeholder="Max"
-                options={priceOptions}
-                required
-              />
-            </div>
-          </div>
-          <div className="filter-group">
-            <h3>Property Name</h3>
-            <div className="filter-item">
-              <input
-                type="text"
-                name="name"
-                id="name"
-                onChange={(e) => setPropertyName(e.target.value)}
-                placeholder="Property/Project Name"
-              />
-            </div>
-          </div>
+          {/* Property Type  */}
           <div className="filter-group">
             <h3>Property Type</h3>
             <div className="filter-item">
@@ -379,6 +318,73 @@ const Filter = () => {
               </div>
             </div>
           </div>
+          {/* City  */}
+          <div className="filter-group">
+            <h3>City</h3>
+            <div className="filter-item">
+              <Select
+                width="100px"
+                onChange={handleChangeCity}
+                options={cityOptions}
+                placeholder="City"
+                openMenuOnClick={true}
+                required
+              />
+            </div>
+          </div>
+          <div className="filter-group">
+            <h3>Locality</h3>
+            <div className="filter-item">
+              {/* <input
+                type="text"
+                name="locality"
+                id="locality"
+                // onChange={(e) => setPropertyName(e.target.value)}
+                placeholder="Locality Name"
+              /> */}
+              <Select
+                onChange={(e) => handleChangeLocality(e)}
+                closeMenuOnSelect={false}
+                isMulti
+                options={localityData}
+                placeholder="Available Locality"
+                required
+              />
+            </div>
+          </div>
+          {/* Budget  */}
+          <div className="filter-group">
+            <h3>Budget</h3>
+            <div className="filter-item">
+              <Select
+                onChange={handleChangeMinPrice}
+                placeholder="Min"
+                options={priceOptions}
+                required
+              />
+              <p>To</p>
+              <Select
+                onChange={handleChangeMaxPrice}
+                placeholder="Max"
+                options={priceOptions}
+                required
+              />
+            </div>
+          </div>
+          {/* Property Name  */}
+          <div className="filter-group">
+            <h3>Property Name</h3>
+            <div className="filter-item">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                onChange={(e) => setPropertyName(e.target.value)}
+                placeholder="Property/Project Name"
+              />
+            </div>
+          </div>
+
 
           {/* ------------------------------------------------------------------------------- */}
 

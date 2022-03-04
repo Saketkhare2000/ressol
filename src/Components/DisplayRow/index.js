@@ -33,7 +33,6 @@ const DisplayRow = ({ type }) => {
       })
       .catch((err) => { });
   }, []);
-  console.log(cityProperties)
   function numDifferentiation(value) {
     var val = Math.abs(value);
     if (val >= 10000000) {
