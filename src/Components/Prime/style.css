@@ -27,11 +27,13 @@
 .prime-page .visit-again {
   font-size: 17px;
   margin: 8px 0;
+  text-align: center;
 }
 .prime-page .prime-description {
   font-size: 16px;
   color: var(--accent--gray);
   margin: 4px 0;
+  text-align: center;
 }
 .prime-page .prime-plans-container {
   display: flex;
