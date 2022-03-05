@@ -107,9 +107,14 @@
   margin: 8px 18px 8px 0;
 }
 button.filter-btn {
-  width: 100%;
+  position: fixed;
+  z-index: 9999;
+  bottom: 0%;
+  width: 95%;
+  height: 8vh;
   margin: 6px 0;
 }
+
 .css-b62m3t-container {
   width: 100%;
   margin: 12px 0;
@@ -137,6 +142,8 @@ button.filter-btn {
   button.filter-btn {
     width: 40%;
     margin: 6px auto;
+    position: static;
+    height: auto;
   }
 }
 /* 

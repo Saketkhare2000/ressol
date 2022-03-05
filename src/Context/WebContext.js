@@ -6,21 +6,24 @@ export const WebContext = createContext();
 const WebProvider = (props) => {
   // const base_url = "http://137.184.237.53:8000/";
   // const base_url = "http://143.198.78.94:8000/";
-  const base_url = "https://reessol-backend-new-zbsfa.ondigitalocean.app/";
+  // const base_url = "https://reessol-backend-new-zbsfa.ondigitalocean.app/";
+  const base_url = "http://localhost:8000/";
   const [alert, setAlert] = useState({
     show: false,
     message: "",
     type: "",
   });
   const [userName, setUserName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(Cookies.get('phonenumber'));
+  const [phoneNumber, setPhoneNumber] = useState(Cookies.get("phonenumber"));
   // const [phoneNumber, setPhoneNumber] = useState("");
   //access token state
   const [accessToken, setAccessToken] = useState("");
   //refresh token state
   const [refreshToken, setRefreshToken] = useState("");
   const [filter, setFilter] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(Cookies.get('loggedIn') === 'true' ? true : false);
+  const [loggedIn, setLoggedIn] = useState(
+    Cookies.get("loggedIn") === "true" ? true : false
+  );
   const [prime, setIsPrime] = useState(true);
   const [userData, setUserData] = useState();
   const [registerKey, setRegisterKey] = useState("");
@@ -62,7 +65,8 @@ const WebProvider = (props) => {
     base_url,
     paramsData,
     setParamsData,
-    listSlug, setListSlug
+    listSlug,
+    setListSlug,
   };
 
   return (

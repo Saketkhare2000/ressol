@@ -335,7 +335,6 @@ const PostProperty = () => {
                 id="pincode"
               />
             </div>
-
           </div>
           {/* ------------- Features Starts ----------------- */}
           {(() => {
@@ -355,7 +354,7 @@ const PostProperty = () => {
                           id="furnished"
                           value="furnished"
                         />
-                        <label htmlFor="furnishing_status">Furnished</label>
+                        <label htmlFor="furnished">Furnished</label>
                       </div>
                       <div className="select-option">
                         <input
@@ -365,9 +364,7 @@ const PostProperty = () => {
                           id="semifurnished"
                           value="semifurnished"
                         />
-                        <label htmlFor="furnishing_status">
-                          Semi-Furnished
-                        </label>
+                        <label htmlFor="semifurnished">Semi-Furnished</label>
                       </div>
                       <div className="select-option">
                         <input
@@ -377,7 +374,7 @@ const PostProperty = () => {
                           id="unfurnished"
                           value="unfurnished"
                         />
-                        <label htmlFor="furnishing_status">Unfurnished</label>
+                        <label htmlFor="unfurnished">Unfurnished</label>
                       </div>
                     </div>
                   </div>
@@ -404,7 +401,7 @@ const PostProperty = () => {
                           id="under-construction"
                           value="Under Construction"
                         />
-                        <label htmlFor="possession_status">
+                        <label htmlFor="under-construction">
                           Under Construction
                         </label>
                       </div>
@@ -416,7 +413,7 @@ const PostProperty = () => {
                           id="ready-to-move"
                           value="Ready To Move"
                         />
-                        <label htmlFor="possession_status">Ready To Move</label>
+                        <label htmlFor="ready-to-move">Ready To Move</label>
                       </div>
                     </div>
                   </div>
@@ -440,50 +437,50 @@ const PostProperty = () => {
                           type="radio"
                           onChange={(e) => setBedrooms(e.target.value)}
                           name="bedrooms"
-                          id="1"
+                          id="bed-1"
                           value="1"
                         />
-                        <label htmlFor="bedrooms">1</label>
+                        <label htmlFor="bed-1">1</label>
                       </div>
                       <div className="select-option">
                         <input
                           type="radio"
                           onChange={(e) => setBedrooms(e.target.value)}
                           name="bedrooms"
-                          id="2"
+                          id="bed-2"
                           value="2"
                         />
-                        <label htmlFor="bedrooms">2</label>
+                        <label htmlFor="bed-2">2</label>
                       </div>
                       <div className="select-option">
                         <input
                           type="radio"
                           onChange={(e) => setBedrooms(e.target.value)}
                           name="bedrooms"
-                          id="3"
+                          id="bed-3"
                           value="3"
                         />
-                        <label htmlFor="bedrooms">3</label>
+                        <label htmlFor="bed-3">3</label>
                       </div>
                       <div className="select-option">
                         <input
                           type="radio"
                           onChange={(e) => setBedrooms(e.target.value)}
                           name="bedrooms"
-                          id="4"
+                          id="bed-4"
                           value="4"
                         />
-                        <label htmlFor="bedrooms">4</label>
+                        <label htmlFor="bed-4">4</label>
                       </div>
                       <div className="select-option">
                         <input
                           type="radio"
                           onChange={(e) => setBedrooms(e.target.value)}
                           name="bedrooms"
-                          id="5"
+                          id="bed-5"
                           value="5+"
                         />
-                        <label htmlFor="sale">5+</label>
+                        <label htmlFor="bed-5">5+</label>
                       </div>
                     </div>
                   </div>
@@ -496,40 +493,40 @@ const PostProperty = () => {
                           type="radio"
                           onChange={(e) => setBathrooms(e.target.value)}
                           name="bathrooms"
-                          id="1"
+                          id="bath-1"
                           value="1"
                         />
-                        <label htmlFor="bathrooms">1</label>
+                        <label htmlFor="bath-1">1</label>
                       </div>
                       <div className="select-option">
                         <input
                           type="radio"
                           onChange={(e) => setBathrooms(e.target.value)}
                           name="bathrooms"
-                          id="2"
+                          id="bath-2"
                           value="2"
                         />
-                        <label htmlFor="bathrooms">2</label>
+                        <label htmlFor="bath-2">2</label>
                       </div>
                       <div className="select-option">
                         <input
                           type="radio"
                           onChange={(e) => setBathrooms(e.target.value)}
                           name="bathrooms"
-                          id="3"
+                          id="bath-3"
                           value="3"
                         />
-                        <label htmlFor="bathrooms">3</label>
+                        <label htmlFor="bath-3">3</label>
                       </div>
                       <div className="select-option">
                         <input
                           type="radio"
                           onChange={(e) => setBathrooms(e.target.value)}
                           name="bathrooms"
-                          id="4"
+                          id="bath-4"
                           value="4+"
                         />
-                        <label htmlFor="bathrooms">4+</label>
+                        <label htmlFor="bath-4">4+</label>
                       </div>
                     </div>
                   </div>
@@ -583,9 +580,9 @@ const PostProperty = () => {
                           onChange={(e) => setCornerPlot(e.target.value)}
                           value="True"
                           name="corner"
-                          id="true"
+                          id="corner-yes"
                         />
-                        <label htmlFor="true">Yes</label>
+                        <label htmlFor="corner-yes">Yes</label>
                       </div>
                       <div className="select-option">
                         <input
@@ -593,9 +590,9 @@ const PostProperty = () => {
                           onChange={(e) => setCornerPlot(e.target.value)}
                           value="False"
                           name="corner"
-                          id="false"
+                          id="corner-no"
                         />
-                        <label htmlFor="false">No</label>
+                        <label htmlFor="corner-no">No</label>
                       </div>
                     </div>
                   </div>
@@ -609,9 +606,9 @@ const PostProperty = () => {
                           onChange={(e) => setGatedCommunity(e.target.value)}
                           value="True"
                           name="gated"
-                          id="true"
+                          id="gated-yes"
                         />
-                        <label htmlFor="true">Yes</label>
+                        <label htmlFor="gated-yes">Yes</label>
                       </div>
                       <div className="select-option">
                         <input
@@ -619,9 +616,9 @@ const PostProperty = () => {
                           onChange={(e) => setGatedCommunity(e.target.value)}
                           value="False"
                           name="gated"
-                          id="false"
+                          id="gated-no"
                         />
-                        <label htmlFor="false">No</label>
+                        <label htmlFor="gated-no">No</label>
                       </div>
                     </div>
                   </div>
@@ -652,7 +649,7 @@ const PostProperty = () => {
                           id="under-construction"
                           value="Under Construction"
                         />
-                        <label htmlFor="possession_status">
+                        <label htmlFor="under-construction">
                           Under Construction
                         </label>
                       </div>
@@ -664,7 +661,7 @@ const PostProperty = () => {
                           id="ready-to-move"
                           value="Ready To Move"
                         />
-                        <label htmlFor="possession_status">Ready To Move</label>
+                        <label htmlFor="ready-to-move">Ready To Move</label>
                       </div>
                     </div>
                   </div>
@@ -680,7 +677,7 @@ const PostProperty = () => {
                           id="furnished"
                           value="furnished"
                         />
-                        <label htmlFor="furnishing_status">Furnished</label>
+                        <label htmlFor="furnished">Furnished</label>
                       </div>
                       <div className="select-option">
                         <input
@@ -690,9 +687,7 @@ const PostProperty = () => {
                           id="semifurnished"
                           value="semifurnished"
                         />
-                        <label htmlFor="furnishing_status">
-                          Semi-Furnished
-                        </label>
+                        <label htmlFor="semifurnished">Semi-Furnished</label>
                       </div>
                       <div className="select-option">
                         <input
@@ -702,7 +697,7 @@ const PostProperty = () => {
                           id="unfurnished"
                           value="unfurnished"
                         />
-                        <label htmlFor="furnishing_status">Unfurnished</label>
+                        <label htmlFor="unfurnished">Unfurnished</label>
                       </div>
                     </div>
                   </div>
@@ -715,40 +710,40 @@ const PostProperty = () => {
                           type="radio"
                           onChange={(e) => setBathrooms(e.target.value)}
                           name="bathrooms"
-                          id="1"
+                          id="wash-1"
                           value="1"
                         />
-                        <label htmlFor="bathrooms">1</label>
+                        <label htmlFor="wash-1">1</label>
                       </div>
                       <div className="select-option">
                         <input
                           type="radio"
                           onChange={(e) => setBathrooms(e.target.value)}
                           name="bathrooms"
-                          id="2"
+                          id="wash-2"
                           value="2"
                         />
-                        <label htmlFor="bathrooms">2</label>
+                        <label htmlFor="wash-2">2</label>
                       </div>
                       <div className="select-option">
                         <input
                           type="radio"
                           onChange={(e) => setBathrooms(e.target.value)}
                           name="bathrooms"
-                          id="3"
+                          id="wash-3"
                           value="3"
                         />
-                        <label htmlFor="bathrooms">3</label>
+                        <label htmlFor="wash-3">3</label>
                       </div>
                       <div className="select-option">
                         <input
                           type="radio"
                           onChange={(e) => setBathrooms(e.target.value)}
                           name="bathrooms"
-                          id="4"
+                          id="wash-4"
                           value="4+"
                         />
-                        <label htmlFor="bathrooms">4+</label>
+                        <label htmlFor="wash-4">4+</label>
                       </div>
                     </div>
                   </div>

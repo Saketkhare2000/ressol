@@ -144,9 +144,9 @@ const Filter = () => {
     setBathrooms(bathroomValue);
   };
   const handleChangeLocality = (e) => {
-    let localityValue = '';
+    let localityValue = "";
     e.map((location) => {
-      return localityValue = `${localityValue},${location.value}`;
+      return (localityValue = `${localityValue},${location.value}`);
     });
     setLocation(localityValue.slice(1));
   };
@@ -177,13 +177,14 @@ const Filter = () => {
     axios({
       method: "get",
       url: `${base_url}api/city/${selectedOption.value.toLowerCase()}/`,
-    })
-      .then((response) => {
-        response.data.sublocations.map(location => {
-          setLocalityData(localityData => [...localityData, { value: location, label: location.toUpperCase() }])
-        })
-      }
-      )
+    }).then((response) => {
+      response.data.sublocations.map((location) => {
+        setLocalityData((localityData) => [
+          ...localityData,
+          { value: location, label: location.toUpperCase() },
+        ]);
+      });
+    });
   };
   const handleChangeMinPrice = (selectedOption) => {
     setMinPrice(selectedOption.value);
@@ -221,7 +222,7 @@ const Filter = () => {
 
   // Final Filter Search Handle Function
   const handleSearch = () => {
-    setParamsData(data)
+    setParamsData(data);
     navigate(`/propertylist/results`);
   };
 
@@ -251,20 +252,20 @@ const Filter = () => {
                   onChange={(e) => setPropertyFor(e.target.value)}
                   type="radio"
                   name="for"
-                  id="for"
+                  id="buy"
                   value="sale"
                 />
-                <label htmlFor="Buy">Buy</label>
+                <label htmlFor="buy">Buy</label>
               </div>
               <div className="select-option">
                 <input
                   type="radio"
                   name="for"
-                  id="for"
+                  id="rent"
                   value="rent"
                   onChange={(e) => setPropertyFor(e.target.value)}
                 />
-                <label htmlFor="Rent">Rent</label>
+                <label htmlFor="rent">Rent</label>
               </div>
               {/* <div className="select-option">
                   <input onChange={(e) => setPropertyFor(e.target.value)} type="radio" name="for" id="for" value="pg" />
@@ -281,40 +282,40 @@ const Filter = () => {
                   type="radio"
                   onChange={(e) => setProperty_Type(e.target.value)}
                   name="property_type"
-                  id="property_type"
+                  id="flat"
                   value="FL"
                 />
-                <label htmlFor="property_type">Flat</label>
+                <label htmlFor="flat">Flat</label>
               </div>
               <div className="select-option">
                 <input
                   type="radio"
                   onChange={(e) => setProperty_Type(e.target.value)}
                   name="property_type"
-                  id="property_type"
+                  id="villa"
                   value="VI"
                 />
-                <label htmlFor="property_type">House/Villa</label>
+                <label htmlFor="villa">House/Villa</label>
               </div>
               <div className="select-option">
                 <input
                   type="radio"
                   onChange={(e) => setProperty_Type(e.target.value)}
                   name="property_type"
-                  id="property_type"
+                  id="plot"
                   value="PT"
                 />
-                <label htmlFor="property_type">Plot</label>
+                <label htmlFor="plot">Plot</label>
               </div>
               <div className="select-option">
                 <input
                   type="radio"
                   onChange={(e) => setProperty_Type(e.target.value)}
                   name="property_type"
-                  id="property_type"
+                  id="commericial"
                   value="CM"
                 />
-                <label htmlFor="property_type">Commercial</label>
+                <label htmlFor="commericial">Commercial</label>
               </div>
             </div>
           </div>
@@ -385,7 +386,6 @@ const Filter = () => {
             </div>
           </div>
 
-
           {/* ------------------------------------------------------------------------------- */}
 
           {/* Changeable Specifications Section  */}
@@ -445,7 +445,7 @@ const Filter = () => {
                           id="ready-to-move"
                           value="ready to move"
                         />
-                        <label htmlFor="possession_status">Ready To Move</label>
+                        <label htmlFor="ready-to-move">Ready To Move</label>
                       </div>
                       <div className="select-option">
                         <input
@@ -455,7 +455,7 @@ const Filter = () => {
                           id="under-construction"
                           value="under construction"
                         />
-                        <label htmlFor="possession_status">
+                        <label htmlFor="under-construction">
                           Under Construction
                         </label>
                       </div>
@@ -593,7 +593,7 @@ const Filter = () => {
                         name="gated_community"
                         id="gated_community"
                       />
-                      <label htmlFor="corner_plot">Gated Community</label>
+                      <label htmlFor="gated_community">Gated Community</label>
                     </div>
                   </div>
                   {/* Prime Property Checkbox  */}
@@ -657,7 +657,7 @@ const Filter = () => {
                           id="ready-to-move"
                           value="ready to move"
                         />
-                        <label htmlFor="possession_status">Ready To Move</label>
+                        <label htmlFor="ready-to-move">Ready To Move</label>
                       </div>
                       <div className="select-option">
                         <input
@@ -667,7 +667,7 @@ const Filter = () => {
                           id="under-construction"
                           value="under construction"
                         />
-                        <label htmlFor="possession_status">
+                        <label htmlFor="under-construction">
                           Under Construction
                         </label>
                       </div>
