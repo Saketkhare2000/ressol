@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { getPropertyList } from "../../actions/userActions";
 import citydata from "../../homecities.json";
 import servicetypedata from "../../typeofservice.json";
+import latestPropertyData from "../../latestProperty.json";
 import { WebContext } from "../../Context/WebContext";
 import Cookies from "js-cookie";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
@@ -91,6 +92,14 @@ const DisplayRow = ({ type }) => {
     setParamsData(data);
     navigate(`/propertylist/${title}`);
   };
+  const displayLatestProperties = (propertyType, typeTitle) => {
+    const data = {
+      type: propertyType,
+      expand: "image,posted_by.prime_status",
+    };
+    setParamsData(data);
+    navigate(`/propertylist/${typeTitle}`);
+  };
   return (
     <div className="row">
       <div className="card-row city-property">
@@ -121,9 +130,7 @@ const DisplayRow = ({ type }) => {
                   className="wishlist-btn"
                   onClick={(e) => {
                     handleWishlist(e, item.id);
-                    setWishlistDetails((oldList) => [
-                      ...oldList.filter((data) => data != item.id),
-                    ]);
+                    setWishlistDetails((oldList) => [...oldList, item.id]);
                   }}
                 >
                   <AiOutlineHeart style={{ fontSize: "20px" }} />
@@ -223,6 +230,29 @@ const DisplayRow = ({ type }) => {
                 key={index}
                 className="displaycard"
                 onClick={(e) => displayServiceProperties(item.imgTitle)}
+              >
+                <div key={index} className="displaycard-details">
+                  <img src={item.img} alt="" />
+                  <div className="overlay"></div>
+                  <p>{item.imgTitle}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      {/* Latest Projects  */}
+      <div className="card-row">
+        <h2 className="mobile-title">Latest Projects</h2>
+        <div className="propertycard-row">
+          {latestPropertyData.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className="displaycard"
+                onClick={(e) =>
+                  displayLatestProperties(item.query, item.imgTitle)
+                }
               >
                 <div key={index} className="displaycard-details">
                   <img src={item.img} alt="" />

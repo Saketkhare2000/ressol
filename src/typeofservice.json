@@ -1,10 +1,10 @@
 [
-    {
-      "img": "https://images.pexels.com/photos/4569340/pexels-photo-4569340.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      "imgTitle": "Ready To move"
-    },
-    {
-      "img": "https://wallpaperaccess.com/full/3434349.jpg",
-      "imgTitle": "Under Construction"
-    }
-  ]
+  {
+    "img": "https://images.pexels.com/photos/4569340/pexels-photo-4569340.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "imgTitle": "Ready To move"
+  },
+  {
+    "img": "https://wallpaperaccess.com/full/3434349.jpg",
+    "imgTitle": "Under Construction"
+  }
+]

@@ -258,11 +258,11 @@ const PostProperty = () => {
             </div>
             {/* Property Name  */}
             <div className="form-group">
-              <h2 className="header-mobile">Name of Property/Project</h2>
+              <h2 className="header-mobile">Township/Colony Name</h2>
               <input
                 type="text"
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Name of Property/Project"
+                placeholder="Township/Colony Name"
                 name="name"
                 id="name"
               />

@@ -4,7 +4,8 @@ export const getUserData = (phoneNumber, base_url) => async (dispatch) => {
   //Fetch axios request
   const userData = await axios({
     method: "get",
-    url: `${base_url}api/profile/${phoneNumber}/?expand=image,properties.image,wishlist.image,prime_status`,
+    // url: `${base_url}api/profile/${phoneNumber}/?expand=image,properties.image,wishlist.image,prime_status`,
+    url: `http://localhost:8000/api/profile/${phoneNumber}/?expand=image,properties.image,wishlist.image,prime_status`,
   });
   //set user data
   dispatch({
@@ -51,4 +52,3 @@ export const uploadImage = (image, base_url) => async (dispatch) => {
   });
   return res.data;
 };
-
