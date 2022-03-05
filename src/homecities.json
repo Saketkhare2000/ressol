@@ -1,18 +1,26 @@
 [
-    {
-      "img": "https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bmV3JTIwZGVsaGklMjBpbmRpYXxlbnwwfHwwfHw%3D&w=1000&q=80",
-      "imgTitle": "Delhi"
-    },
-    {
-      "img": "https://cdn.wallpapersafari.com/9/78/xVg5t4.jpg",
-      "imgTitle": "Mumbai"
-    },
-    {
-      "img": "https://media.istockphoto.com/photos/bangalore-skyline-india-picture-id186255464?b=1&k=20&m=186255464&s=170667a&w=0&h=o5vlTaX9BDzxi29IgbXzxOwDcvdzp2vKjFUE0nTlS9g=",
-      "imgTitle": "Bengaluru"
-    },
-    {
-      "img": "https://pix10.agoda.net/geo/city/16854/1_16854_02.jpg?s=1920x822",
-      "imgTitle": "Pune"
-    }
-  ]
+  {
+    "img": "https://image3.mouthshut.com/images/imagesp/925794734s.jpg",
+    "imgTitle": "Vijay Nagar"
+  },
+  {
+    "img": "https://indorehd.com/wp-content/uploads/2018/02/BHAWARKUAN-STUDENTS-IN-INDORE-FOOD-INDORE-HD.jpg",
+    "imgTitle": "Bhawarkuan"
+  },
+  {
+    "img": "https://cloudimage.homeonline.com/512x512/public/uploads/project/images/elevation/mobile/lightbox/302a36b6e5228d281c5f71f0f8616623.jpg",
+    "imgTitle": "Scheme 140"
+  },
+  {
+    "img": "https://is1-2.housingcdn.com/4f2250e8/ab3088a48e82b987b5795def574825a1/v0/large/man_developments_ocean_park-nipania-indore-man_developments.jpg",
+    "imgTitle": "Nepania"
+  },
+  {
+    "img": "https://images.hindustantimes.com/rf/image_size_800x600/HT/p2/2016/05/22/Pictures/super-cooridor_696a3f62-2019-11e6-a451-36c3a3fdf989.jpg",
+    "imgTitle": "Super Cooridor"
+  },
+  {
+    "img": "https://www.aai.aero/sites/default/files/Airport%20Images/3_1.jpg",
+    "imgTitle": "Airport Road"
+  }
+]

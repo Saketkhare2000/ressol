@@ -47,13 +47,13 @@ const Wishlist = () => {
       axios({
         method: "get",
         url: `${base_url}api/profile/${phoneNumber}/?expand=wishlist.image`,
-      }).then(res => {
+      }).then((res) => {
         setWishlistDetails(res.data.wishlist);
-      })
+      });
     }
   }, []);
 
-  const removeWishlist = (id) => {
+  const removeWishlist = (id, base_url) => {
     axios({
       method: "post",
       url: `${base_url}api/wish`,
@@ -66,7 +66,7 @@ const Wishlist = () => {
         .then((res) => {
           setWishlistDetails(res.wishlist);
         })
-        .catch((err) => { });
+        .catch((err) => {});
     });
   };
   return (

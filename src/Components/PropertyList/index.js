@@ -23,7 +23,16 @@ const PropertyDeatiledCard = () => {
   // const loggedIn = useSelector((state) => state.auth.loggedIn);
   // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
   // const phoneNumber = Cookies.get("phonenumber");
-  const { setAlert, base_url, paramsData, setParamsData, listSlug, setListSlug, phoneNumber, loggedIn } = useContext(WebContext);
+  const {
+    setAlert,
+    base_url,
+    paramsData,
+    setParamsData,
+    listSlug,
+    setListSlug,
+    phoneNumber,
+    loggedIn,
+  } = useContext(WebContext);
   // const paramsDataCookie = Cookies.set("paramsData", JSON.stringify(paramsData));
   // console.log(JSON.parse(paramsDataCookie));
   const [wishlistStatus, setWishlistStatus] = useState(false);
@@ -34,18 +43,17 @@ const PropertyDeatiledCard = () => {
   const { slug } = useParams();
   setListSlug(slug);
 
-
   useEffect(() => {
     dispatch(getPropertyList(paramsData, base_url));
     if (loggedIn) {
       axios({
         method: "get",
         url: `${base_url}api/profile/${phoneNumber}/`,
-      }).then(res => {
+      }).then((res) => {
         setUserId(res.data.id);
         setWishlistDetails(res.data.wishlist);
         setContactDetails(res.data.contacted_to);
-      })
+      });
     }
   }, []);
 
@@ -73,7 +81,7 @@ const PropertyDeatiledCard = () => {
           console.log("Clicked");
           setWishlistStatus(!wishlistStatus);
         })
-        .catch((err) => { });
+        .catch((err) => {});
     } else {
       navigate("/login");
     }
@@ -94,7 +102,7 @@ const PropertyDeatiledCard = () => {
           setContactStatus(!contactStatus);
           setAlert({
             show: true,
-            message: "Owner Contacted",
+            message: "Contact Request Sent",
             type: "success",
           });
           setTimeout(() => {
@@ -145,9 +153,14 @@ const PropertyDeatiledCard = () => {
       </div>
       {propertyList ? (
         Object.keys(propertyList).map((property, index) => {
-
-          console.log(wishlistDetails.find(data => data == propertyList[property].id), propertyList[property].id)
-          console.log(wishlistDetails.find(data => data == propertyList[property].id) == propertyList[property].id)
+          console.log(
+            wishlistDetails.find((data) => data == propertyList[property].id),
+            propertyList[property].id
+          );
+          console.log(
+            wishlistDetails.find((data) => data == propertyList[property].id) ==
+              propertyList[property].id
+          );
           return (
             <div className="property-card">
               <Link to={`/property/${propertyList[property].id}`}>
@@ -173,19 +186,32 @@ const PropertyDeatiledCard = () => {
                     </div>
                     <div className="property-posted-by">
                       {(() => {
-                        if (propertyList[property].posted_by.user_type === "Agent") {
+                        if (
+                          propertyList[property].posted_by.user_type === "Agent"
+                        ) {
                           return <p className="property-user-type">Agent</p>;
                         } else if (
-                          propertyList[property].posted_by.user_type === "Buyer/Owner"
+                          propertyList[property].posted_by.user_type ===
+                          "Buyer/Owner"
                         ) {
-                          return <p className="property-user-type">Individual</p>;
+                          return (
+                            <p className="property-user-type">Individual</p>
+                          );
                         } else {
                           return <></>;
                         }
                       })()}
                       {(() => {
-                        if (propertyList[property].posted_by.prime_status?.is_prime) {
-                          return <p className="property-prime"><FaCrown />Prime Verified</p>;
+                        if (
+                          propertyList[property].posted_by.prime_status
+                            ?.is_prime
+                        ) {
+                          return (
+                            <p className="property-prime">
+                              <FaCrown />
+                              Prime Verified
+                            </p>
+                          );
                         } else {
                           return <></>;
                         }
@@ -213,7 +239,9 @@ const PropertyDeatiledCard = () => {
                       {(() => {
                         if (propertyList[property].for_status === "sale") {
                           return <p className="property-for">for Sale</p>;
-                        } else if (propertyList[property].for_status === "rent") {
+                        } else if (
+                          propertyList[property].for_status === "rent"
+                        ) {
                           return <p className="property-for">for Rent</p>;
                         } else {
                           return <></>;
@@ -261,41 +289,55 @@ const PropertyDeatiledCard = () => {
                           </button>
                         )} */}
 
-                        {
-                          wishlistDetails.find(data => data == propertyList[property].id) === propertyList[property].id ? (
-                            <button
-                              className="btn btn-secondary"
-                              onClick={() => {
-                                addToWishlist(propertyList[property].id)
-                                setWishlistDetails((oldList) => [...oldList.filter((data) => data != propertyList[property].id)])
-                              }}
-                            >
-                              Remove From Wishlist
-                            </button>
-                          ) : (
-                            <button
-                              className="btn btn-secondary"
-                              onClick={() => {
-                                addToWishlist(propertyList[property].id);
-                                setWishlistDetails((oldList) => [...oldList, propertyList[property].id]);
-                              }}
-                            >
-                              Add To Wishlist
-                            </button>
-                          )
-                        }
+                        {wishlistDetails.find(
+                          (data) => data == propertyList[property].id
+                        ) === propertyList[property].id ? (
+                          <button
+                            className="btn btn-secondary"
+                            onClick={() => {
+                              addToWishlist(propertyList[property].id);
+                              setWishlistDetails((oldList) => [
+                                ...oldList.filter(
+                                  (data) => data != propertyList[property].id
+                                ),
+                              ]);
+                            }}
+                          >
+                            Remove From Wishlist
+                          </button>
+                        ) : (
+                          <button
+                            className="btn btn-secondary"
+                            onClick={() => {
+                              addToWishlist(propertyList[property].id);
+                              setWishlistDetails((oldList) => [
+                                ...oldList,
+                                propertyList[property].id,
+                              ]);
+                            }}
+                          >
+                            Add To Wishlist
+                          </button>
+                        )}
 
                         <button
                           className="btn btn-primary"
                           onClick={() => {
-                            handleContact(propertyList[property].posted_by, propertyList[property].id);
-                            setContactDetails((oldList) => [...oldList, propertyList[property].id]);
+                            handleContact(
+                              propertyList[property].posted_by,
+                              propertyList[property].id
+                            );
+                            setContactDetails((oldList) => [
+                              ...oldList,
+                              propertyList[property].id,
+                            ]);
                           }}
                         >
-
-                          {contactDetails.find(data => data == propertyList[property].id) != propertyList[property].id ? (
-                            "Contact") : (`Contacted`)
-                          }
+                          {contactDetails.find(
+                            (data) => data == propertyList[property].id
+                          ) != propertyList[property].id
+                            ? "Contact"
+                            : `Contacted`}
                         </button>
                       </>
                     );

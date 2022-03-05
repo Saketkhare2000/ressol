@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserData } from "../../actions/userActions";
 import { motion } from "framer-motion";
 import { IoCaretUpCircleSharp } from "react-icons/io5";
-import { AiOutlineUser, AiOutlineBook } from "react-icons/ai";
+import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
 import { BiBuildingHouse } from "react-icons/bi";
 import { GrContact } from "react-icons/gr";
 import Select from "react-select";
@@ -16,18 +16,27 @@ import Cookies from "js-cookie";
 const Dashoard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { base_url, setAlert, loggedIn, setLoggedIn, phoneNumber, setPhoneNumber } = useContext(WebContext);
+  const {
+    base_url,
+    setAlert,
+    loggedIn,
+    setLoggedIn,
+    phoneNumber,
+    setPhoneNumber,
+  } = useContext(WebContext);
   const currentDate = Date.now();
   useEffect(() => {
     dispatch(getUserData(phoneNumber, base_url));
   }, []);
 
-
-
   const userDetails = useSelector((state) => state.userData.userData);
-  const primetimestamp = new Date(userDetails.prime_status?.timestamp)
-  primetimestamp.setDate(primetimestamp.getDate() + userDetails.prime_status?.subscription_period);
-  const remainingDays = (Math.floor((primetimestamp - currentDate) / (1000 * 60 * 60 * 24)));
+  const primetimestamp = new Date(userDetails.prime_status?.timestamp);
+  primetimestamp.setDate(
+    primetimestamp.getDate() + userDetails.prime_status?.subscription_period
+  );
+  const remainingDays = Math.floor(
+    (primetimestamp - currentDate) / (1000 * 60 * 60 * 24)
+  );
   const options = [
     { value: "#059862", label: "Default Green" },
     { value: "#f75590", label: "Pink" },
@@ -41,10 +50,10 @@ const Dashoard = () => {
     e.preventDefault();
     dispatch({ type: "LOGGED_OUT" });
     dispatch({ type: "CLEAR_USER_DATA" });
-    Cookies.set('loggedIn', false)
-    Cookies.set('phonenumber', '')
-    setLoggedIn(Cookies.get('loggedIn') === 'true' ? true : false)
-    setPhoneNumber(Cookies.get('phonenumber'))
+    Cookies.set("loggedIn", false);
+    Cookies.set("phonenumber", "");
+    setLoggedIn(Cookies.get("loggedIn") === "true" ? true : false);
+    setPhoneNumber(Cookies.get("phonenumber"));
 
     navigate("/");
     setAlert({
@@ -58,10 +67,7 @@ const Dashoard = () => {
         type: "success",
         message: "",
       });
-    }
-      , 4000);
-
-
+    }, 4000);
   };
 
   const handleStateChange = (color) => {
@@ -106,9 +112,7 @@ const Dashoard = () => {
               )}
             </p>
             {userDetails.prime_status && userDetails.prime_status.is_prime ? (
-              <p className="validity">
-                Valid For : {remainingDays} Days{" "}
-              </p>
+              <p className="validity">Valid For : {remainingDays} Days </p>
             ) : (
               <></>
             )}
@@ -173,7 +177,7 @@ const Dashoard = () => {
             className="btn-top"
           >
             <motion.p layout>
-              <AiOutlineBook style={{ fontSize: "20px" }} />
+              <AiOutlineHeart style={{ fontSize: "20px" }} />
               Wishlist
             </motion.p>
             {/* <IoCaretUpCircleSharp className={`down-icon`} /> */}
@@ -191,10 +195,9 @@ const Dashoard = () => {
         </button>
       </div>
     </div>
-  ) :
-    (
-      navigate("/login")
-    )
+  ) : (
+    navigate("/login")
+  );
 };
 
 export default Dashoard;
