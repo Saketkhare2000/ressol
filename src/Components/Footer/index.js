@@ -45,8 +45,8 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="footer-content">
           <div className="logo">
-            <Link to="/">9Roof</Link>
-            <span> &copy; 2022 9Roof. All Rights Reserved.</span>
+            <Link to="/">Reessol</Link>
+            <span> &copy; 2022 Reessol. All Rights Reserved.</span>
           </div>
           <div className="details">
             <Link to="/about">About Us</Link>

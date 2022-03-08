@@ -1,0 +1,22 @@
+[
+  {
+    "img": "https://images.pexels.com/photos/129494/pexels-photo-129494.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "imgTitle": "Apartments",
+    "query": "FL"
+  },
+  {
+    "img": "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "imgTitle": "House",
+    "query": "VI"
+  },
+  {
+    "img": "https://images.unsplash.com/photo-1587745890135-20db8c79b027?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    "imgTitle": "Plots",
+    "query": "PT"
+  },
+  {
+    "img": "https://4.imimg.com/data4/LK/BR/ANDROID-2018868/product-500x500.jpeg",
+    "imgTitle": "Commercial",
+    "query": "CM"
+  }
+]

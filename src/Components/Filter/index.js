@@ -27,6 +27,7 @@ const Filter = () => {
   const [property_type, setProperty_Type] = React.useState(null);
   const [propertyName, setPropertyName] = React.useState(null);
   const [location, setLocation] = React.useState(null);
+  const [sublocation, setSubLocation] = React.useState(null);
   // Specifications States
   const [bedrooms, setBedRooms] = React.useState(null);
   const [bathrooms, setBathrooms] = React.useState(null);
@@ -40,6 +41,7 @@ const Filter = () => {
   const [floor, setFloor] = React.useState(null);
   const [amenities, setAmenities] = useState(null);
   const [localityData, setLocalityData] = useState([]);
+  // const [sublocalityData, setSubLocalityData] = useState([]);
 
   /////////////////////////////////////////////////////////////////////////
 
@@ -48,6 +50,7 @@ const Filter = () => {
     for: propertyFor,
     city: city,
     location: location,
+    sublocality: sublocation,
     min: minprice,
     max: maxprice,
     property_name: propertyName,
@@ -150,6 +153,13 @@ const Filter = () => {
     });
     setLocation(localityValue.slice(1));
   };
+  const handleChangeSubLocality = (e) => {
+    let sublocalityValue = "";
+    e.map((sublocation) => {
+      return (sublocalityValue = `${sublocalityValue},${sublocation.value}`);
+    });
+    setSubLocation(sublocalityValue.slice(1));
+  };
   const handleChangeFurnishing = (e) => {
     const furnishingValue = [];
     e.map((furnishing) => {
@@ -184,6 +194,13 @@ const Filter = () => {
           { value: location, label: location.toUpperCase() },
         ]);
       });
+      console.log(response)
+      // response.data.sublocations.map((sublocation) => {
+      //   setSubLocalityData((sublocalityData) => [
+      //     ...sublocalityData,
+      //     { value: sublocation, label: sublocation.toUpperCase() },
+      //   ]);
+      // });
     });
   };
   const handleChangeMinPrice = (selectedOption) => {
@@ -353,6 +370,19 @@ const Filter = () => {
               />
             </div>
           </div>
+          {/* <div className="filter-group">
+            <h3>Sub Locality</h3>
+            <div className="filter-item">
+              <Select
+                onChange={(e) => handleChangeSubLocality(e)}
+                closeMenuOnSelect={false}
+                isMulti
+                options={sublocalityData}
+                placeholder="Available Sub Locality"
+                required
+              />
+            </div>
+          </div> */}
           {/* Budget  */}
           <div className="filter-group">
             <h3>Budget</h3>

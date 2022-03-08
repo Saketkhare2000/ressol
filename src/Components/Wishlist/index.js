@@ -16,21 +16,12 @@ import toast from "react-hot-toast";
 const Wishlist = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const userDetails = useSelector((state) => state.userData.userData);
-  // const wishlistDetails = userDetails.wishlist
-  /////////////
-  // const { userName } = useContext(WebContext);
   const { base_url, loggedIn, phoneNumber } = useContext(WebContext);
-  // const loggedIn = Cookies.get('loggedIn') === 'true' ? true : false;
-  // const phoneNumber = Cookies.get("phonenumber");
-  console.log(loggedIn, phoneNumber);
   useEffect(() => {
     dispatch(getUserData(phoneNumber, base_url));
   }, []);
-  // const loggedIn = useSelector((state) => state.auth.loggedIn);
 
   const userDetails = useSelector((state) => state.userData.userData);
-  console.log(userDetails);
   const [wishlistDetails, setWishlistDetails] = useState(userDetails.wishlist);
   function numDifferentiation(value) {
     var val = Math.abs(value);
@@ -47,16 +38,16 @@ const Wishlist = () => {
       axios({
         method: "get",
         url: `${base_url}api/profile/${phoneNumber}/?expand=wishlist.image`,
-      }).then(res => {
+      }).then((res) => {
         setWishlistDetails(res.data.wishlist);
-      })
+      });
     }
   }, []);
 
-  const removeWishlist = (id) => {
+  const removeWishlist = (id, base_url) => {
     axios({
       method: "post",
-      url: `${base_url}api/wish`,
+      url: `http://localhost:8000/api/wish`,
       data: {
         profile: userDetails.id,
         property: id,
@@ -66,7 +57,7 @@ const Wishlist = () => {
         .then((res) => {
           setWishlistDetails(res.wishlist);
         })
-        .catch((err) => { });
+        .catch((err) => {});
     });
   };
   return (

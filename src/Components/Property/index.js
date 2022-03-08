@@ -17,10 +17,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FaCrown } from "react-icons/fa";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 const Property = () => {
   const id = useParams().slug;
   const dispatch = useDispatch();
-  const { setAlert, base_url, listSlug, setListSlug, loggedIn, phoneNumber } = useContext(WebContext);
+  const { setAlert, base_url, listSlug, setListSlug, loggedIn, phoneNumber } =
+    useContext(WebContext);
 
   const [propertyDetails, setPropertyDetails] = React.useState({});
   // const [propertyImagesData, setPropertyImagesData] = React.useState([]);
@@ -42,10 +44,11 @@ const Property = () => {
   const [loader, setLoader] = React.useState(true);
   const [availabilityDate, setAvailabilityDate] = React.useState("");
 
-
   useEffect(() => {
     axios
-      .get(`${base_url}api/property/${id}/?expand=posted_by.image,image,posted_by.prime_status`)
+      .get(
+        `${base_url}api/property/${id}/?expand=posted_by.image,image,posted_by.prime_status`
+      )
       .then((res) => {
         setLoader(true);
         setPropertyDetails(res.data);
@@ -77,7 +80,6 @@ const Property = () => {
         axios
           .get(`${base_url}api/profile/${phoneNumber}/`)
           .then((res) => {
-
             const contact = res.data.wishlist.filter((item) => {
               return item == id;
             });
@@ -86,7 +88,7 @@ const Property = () => {
             } else {
               setContactStatus(true);
             }
-            return res
+            return res;
           })
           .then((res) => {
             const wish = res.data.wishlist.filter((item) => {
@@ -101,7 +103,7 @@ const Property = () => {
       })
       .catch((err) => { });
   }, []);
-  console.log(propertyDetails)
+  console.log(propertyDetails);
   // if (loggedIn) {
   //   userDetails.wishlist.map(property => {
   //     if (property.id === propertyDetails.id) {W
@@ -138,32 +140,10 @@ const Property = () => {
       })
         .then((res) => {
           setContactStatus(!contactStatus);
-          setAlert({
-            show: true,
-            message: "Owner Contacted",
-            type: "success",
-          });
-          setTimeout(() => {
-            setAlert({
-              show: false,
-              message: "",
-              type: "",
-            });
-          }, 2000);
+          toast.success("Contact Request Sent");
         })
         .catch((err) => {
-          setAlert({
-            show: true,
-            message: "Buy Prime Membership to Contact",
-            type: "danger",
-          });
-          setTimeout(() => {
-            setAlert({
-              show: false,
-              message: "",
-              type: "",
-            });
-          }, 3000);
+          toast.error("Buy membership to contact");
         });
     } else {
       navigate("/login");
@@ -171,7 +151,7 @@ const Property = () => {
   };
   const handleBack = () => {
     // navigate(`/propertylist/${listSlug}`);
-    navigate(-1)
+    navigate(-1);
   };
   const addToWishlist = () => {
     if (loggedIn) {
@@ -288,6 +268,13 @@ const Property = () => {
                     {propertyDetails.location}
                   </h4>
                 </div>
+                {/* Sub Locality  */}
+                <div className="specification-container">
+                  <h4 className="specification-title">Sub Locality</h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.sublocality}
+                  </h4>
+                </div>
                 {/* City  */}
                 <div className="specification-container">
                   <h4 className="specification-title">City</h4>
@@ -359,9 +346,16 @@ const Property = () => {
 
                 {/* Location  */}
                 <div className="specification-container">
-                  <h4 className="specification-title">Location</h4>
+                  <h4 className="specification-title">Locality</h4>
                   <h4 className="specification-value">
                     {propertyDetails.location}
+                  </h4>
+                </div>
+                {/* Sub Location  */}
+                <div className="specification-container">
+                  <h4 className="specification-title">Sub Locality</h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.sublocality}
                   </h4>
                 </div>
                 {/* City  */}
@@ -499,40 +493,39 @@ const Property = () => {
               <div className="owner-user-type">
                 {(() => {
                   if (propertyDetails.posted_by.user_type === "Agent") {
-                    return <h4 >Agent </h4>
-                  }
-                  else if (propertyDetails.posted_by.user_type === "Buyer/Owner") {
-                    return <h4 >Individual </h4>
-
-                  }
-                  else {
-                    <></>
+                    return <h4>Agent </h4>;
+                  } else if (
+                    propertyDetails.posted_by.user_type === "Buyer/Owner"
+                  ) {
+                    return <h4>Individual </h4>;
+                  } else {
+                    <></>;
                   }
                 })()}
 
                 {propertyDetails.posted_by.prime_status.is_prime ? (
-                  <h4 className="prime-user"><FaCrown /> Prime Verified</h4>
+                  <h4 className="prime-user">
+                    <FaCrown /> Prime Verified
+                  </h4>
                 ) : (
                   <></>
                 )}
               </div>
 
               <p>
-                <span>Location :</span>  {propertyDetails.posted_by.city},{" "}
+                <span>From :</span> {propertyDetails.posted_by.city},{" "}
                 {propertyDetails.posted_by.state}
               </p>
             </div>
-            {
-              contactStatus ? (
-                <button className="btn btn-primary" onClick={handleContact}>
-                  Owner
-                </button>
-              ) : (
-                <button className="btn btn-primary" onClick={handleContact}>
-                  Contact
-                </button>
-              )
-            }
+            {contactStatus ? (
+              <button className="btn btn-primary" onClick={handleContact}>
+                Contacted
+              </button>
+            ) : (
+              <button className="btn btn-primary" onClick={handleContact}>
+                Contact
+              </button>
+            )}
           </div>
         </div>
       </div>

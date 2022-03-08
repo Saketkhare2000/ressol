@@ -9,7 +9,7 @@ import Filter from "../Filter";
 import "./style.css";
 import { subMenuAnimate } from "../../Animation";
 import { AiOutlineHome, AiOutlineUser, AiFillCaretDown } from "react-icons/ai";
-import { FaCrown } from 'react-icons/fa';
+import { FaCrown } from "react-icons/fa";
 const Navbar = () => {
   const { filter, setAlert } = useContext(WebContext);
   const navigate = useNavigate();
@@ -21,7 +21,6 @@ const Navbar = () => {
     setIsHover(!hover);
   };
 
-
   return (
     <motion.header>
       {filter ? (
@@ -31,11 +30,14 @@ const Navbar = () => {
           <motion.nav className="navbar">
             <div className="top-header">
               <motion.div className="logo">
-                <Link to="/">9Roof</Link>
+                <Link to="/">Reessol</Link>
               </motion.div>
               <motion.ul className="top-navLinks">
                 <Link to="/prime">
-                  <li className="top-navLink"><FaCrown />Prime</li>
+                  <li className="top-navLink">
+                    <FaCrown />
+                    Prime
+                  </li>
                 </Link>
                 <motion.div
                   onMouseEnter={toggleMouseMenu}
@@ -67,10 +69,12 @@ const Navbar = () => {
                             <div className="sub-menu-item">Dashboard</div>
                           </Link>
                           <Link to="/dashboard/manage-properties">
-                            <div className="sub-menu-item">Manage Properties</div>
+                            <div className="sub-menu-item">
+                              Manage Properties
+                            </div>
                           </Link>
                           <Link to="/dashboard/view-responses">
-                            <div className="sub-menu-item">View Responses</div>
+                            <div className="sub-menu-item">My Responses</div>
                           </Link>
                           <Link to="/dashboard/wishlist">
                             <div className="sub-menu-item">Wishlist</div>
@@ -87,15 +91,11 @@ const Navbar = () => {
                   </li>
                 </Link>
               </motion.ul>
-              <div
-                className="prime-btn"
-                onClick={() => navigate("/prime")}
-              >
+              <div className="prime-btn" onClick={() => navigate("/prime")}>
                 <FaCrown />
                 Prime
               </div>
             </div>
-
           </motion.nav>
 
           <motion.nav className="navbar-bottom">
