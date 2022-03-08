@@ -225,6 +225,7 @@
   }
   .property-detail-btn-container .btn {
     width: 49%;
+    font-size: 12px;
   }
 }
 @media screen and (min-width: 576px) {
@@ -244,5 +245,8 @@
   }
   .property-detail-card .property-detail-card-details .property-city {
     font-size: 15px;
+  }
+  .property-detail-btn-container .btn {
+    font-size: 16px;
   }
 }

@@ -165,7 +165,7 @@ const Dashoard = () => {
           >
             <motion.p layout>
               <GrContact style={{ fontSize: "20px" }} />
-              View Responses
+              My Responses
             </motion.p>
             {/* <IoCaretUpCircleSharp className={`down-icon`} /> */}
           </motion.div>

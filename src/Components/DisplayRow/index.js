@@ -3,7 +3,7 @@ import "./style.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getPropertyList } from "../../actions/userActions";
-import citydata from "../../homecities.json";
+import localitydata from "../../homecities.json";
 import servicetypedata from "../../typeofservice.json";
 import latestPropertyData from "../../latestProperty.json";
 import { WebContext } from "../../Context/WebContext";
@@ -43,7 +43,7 @@ const DisplayRow = ({ type }) => {
       .then((res) => {
         setCityProperties(res.data);
       })
-      .catch((err) => {});
+      .catch((err) => { });
     if (loggedIn) {
       axios({
         method: "get",
@@ -78,7 +78,7 @@ const DisplayRow = ({ type }) => {
           console.log("Clicked");
           setWishlistStatus(!wishlistStatus);
         })
-        .catch((err) => {});
+        .catch((err) => { });
     } else {
       navigate("/login");
     }
@@ -95,6 +95,7 @@ const DisplayRow = ({ type }) => {
   const displayLatestProperties = (propertyType, typeTitle) => {
     const data = {
       type: propertyType,
+      latest: true,
       expand: "image,posted_by.prime_status",
     };
     setParamsData(data);
@@ -202,7 +203,7 @@ const DisplayRow = ({ type }) => {
           }}
         >
           <div className="propertycard-row">
-            {citydata.map((item, index) => {
+            {localitydata.map((item, index) => {
               return (
                 <SwiperSlide
                   key={index}

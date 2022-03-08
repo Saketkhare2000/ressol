@@ -51,6 +51,9 @@
   height: 286px;
   position: relative;
 }
+.swiper-wrapper {
+  margin: 14px 0;
+}
 .card-details .wishlist-btn {
   width: 30px;
   background-color: white;

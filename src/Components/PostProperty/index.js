@@ -37,6 +37,7 @@ const PostProperty = () => {
   //bathrooms state
   const [bathrooms, setBathrooms] = React.useState("");
   const [location, setLocation] = React.useState(null);
+  const [sublocality, setSublocality] = React.useState(null);
   //address state
   const [address, setAddress] = React.useState(null);
   //pinCode state
@@ -73,6 +74,7 @@ const PostProperty = () => {
     property_name: name,
     description: description,
     location: location,
+    sublocality: sublocality,
     address: address,
     city: city.toLowerCase(),
     for_status: for_status,
@@ -311,6 +313,17 @@ const PostProperty = () => {
                 placeholder="Ex - Vijay Nagar"
                 name="locality"
                 id="locality"
+              />
+            </div>
+            {/* Sub Locality  */}
+            <div className="form-group">
+              <h2 className="header-mobile">Sub Locality</h2>
+              <input
+                type="text"
+                onChange={(e) => setSublocality(e.target.value.toLowerCase())}
+                placeholder="Enter Sublocality"
+                name="sublocality"
+                id="sublocality"
               />
             </div>
             {/* Address */}
