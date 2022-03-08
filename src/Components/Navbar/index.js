@@ -74,7 +74,7 @@ const Navbar = () => {
                             </div>
                           </Link>
                           <Link to="/dashboard/view-responses">
-                            <div className="sub-menu-item">View Responses</div>
+                            <div className="sub-menu-item">My Responses</div>
                           </Link>
                           <Link to="/dashboard/wishlist">
                             <div className="sub-menu-item">Wishlist</div>

@@ -253,7 +253,7 @@ const EditProperty = () => {
           <h2 className="section-title">Property Details</h2>
           {/* Property Name  */}
           <div className="form-group">
-            <h2 className="header-mobile">Name of Property/Project</h2>
+            <h2 className="header-mobile">Township/Colony Name</h2>
             <input
               type="text"
               onChange={(e) => setName(e.target.value)}

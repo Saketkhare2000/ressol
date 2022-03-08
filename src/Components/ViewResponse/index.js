@@ -59,7 +59,7 @@ const ViewResponse = () => {
     <div className="page">
       <div className="back" onClick={() => navigate("/dashboard")}>
         <FontAwesomeIcon className="back-icon" icon={faArrowLeft} />
-        <h2>View Responses</h2>
+        <h2>My Responses</h2>
       </div>
       <div className="view-response-container">
         {contactedByDetails ? (
