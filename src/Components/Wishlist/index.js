@@ -47,7 +47,7 @@ const Wishlist = () => {
   const removeWishlist = (id, base_url) => {
     axios({
       method: "post",
-      url: `http://localhost:8000/api/wish`,
+      url: `${base_url}api/wish`,
       data: {
         profile: userDetails.id,
         property: id,
@@ -57,7 +57,7 @@ const Wishlist = () => {
         .then((res) => {
           setWishlistDetails(res.wishlist);
         })
-        .catch((err) => {});
+        .catch((err) => { });
     });
   };
   return (
