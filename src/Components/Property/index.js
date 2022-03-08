@@ -101,7 +101,7 @@ const Property = () => {
             }
           });
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
   console.log(propertyDetails);
   // if (loggedIn) {
@@ -166,7 +166,7 @@ const Property = () => {
         .then((res) => {
           setWishlistStatus(!wishlistStatus);
         })
-        .catch((err) => {});
+        .catch((err) => { });
     } else {
       navigate("/login");
     }
@@ -268,6 +268,13 @@ const Property = () => {
                     {propertyDetails.location}
                   </h4>
                 </div>
+                {/* Sub Locality  */}
+                <div className="specification-container">
+                  <h4 className="specification-title">Sub Locality</h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.sublocality}
+                  </h4>
+                </div>
                 {/* City  */}
                 <div className="specification-container">
                   <h4 className="specification-title">City</h4>
@@ -339,9 +346,16 @@ const Property = () => {
 
                 {/* Location  */}
                 <div className="specification-container">
-                  <h4 className="specification-title">Location</h4>
+                  <h4 className="specification-title">Locality</h4>
                   <h4 className="specification-value">
                     {propertyDetails.location}
+                  </h4>
+                </div>
+                {/* Sub Location  */}
+                <div className="specification-container">
+                  <h4 className="specification-title">Sub Locality</h4>
+                  <h4 className="specification-value">
+                    {propertyDetails.sublocality}
                   </h4>
                 </div>
                 {/* City  */}
@@ -499,7 +513,7 @@ const Property = () => {
               </div>
 
               <p>
-                <span>Location :</span> {propertyDetails.posted_by.city},{" "}
+                <span>From :</span> {propertyDetails.posted_by.city},{" "}
                 {propertyDetails.posted_by.state}
               </p>
             </div>

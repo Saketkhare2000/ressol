@@ -35,6 +35,7 @@ const EditProperty = () => {
         setDescription(res.data.description);
         setName(res.data.property_name);
         setLocation(res.data.location);
+        setSubLocality(res.data.sublocality);
         setAddress(res.data.address);
         setPincode(res.data.pincode);
         setCity(res.data.city);
@@ -54,7 +55,6 @@ const EditProperty = () => {
         setAmenities(res.data.amenities);
         setFor_status(res.data.for_status);
         setPostedBy(res.data.posted_by.id);
-        console.log(res.data);
         // setImagePostData(res.data.image);
         res.data.image.map(image => {
           setImagePostData((imagePostData) => [...imagePostData, image.pk]);
@@ -84,6 +84,7 @@ const EditProperty = () => {
     propertyDetails.description
   );
   const [location, setLocation] = React.useState(null);
+  const [sublocality, setSubLocality] = React.useState(null);
   const [address, setAddress] = React.useState(null);
   const [pincode, setPincode] = React.useState(null);
   const [city, setCity] = React.useState("");
@@ -121,6 +122,7 @@ const EditProperty = () => {
     property_name: name,
     description: description,
     location: location,
+    sublocality: sublocality,
     address: address,
     city: city.toLowerCase(),
     possession: possession_status.toLowerCase(),
@@ -276,6 +278,18 @@ const EditProperty = () => {
         </div>
         <div className="form-section">
           <h2 className="section-title">Property Location</h2>
+          {/* Sub Locality  */}
+          <div className="form-group">
+            <h2 className="header-mobile">Sub Locality</h2>
+            <input
+              type="text"
+              onChange={(e) => setSubLocality(e.target.value)}
+              placeholder="Sub Locality"
+              name="sublocality"
+              id="sublocality"
+              defaultValue={propertyDetails.sublocality}
+            />
+          </div>
           {/* Locality  */}
           <div className="form-group">
             <h2 className="header-mobile">Locality</h2>
