@@ -103,20 +103,7 @@ const Property = () => {
       })
       .catch((err) => { });
   }, []);
-  console.log(propertyDetails);
-  // if (loggedIn) {
-  //   userDetails.wishlist.map(property => {
-  //     if (property.id === propertyDetails.id) {W
-  //       return setWishlistStatus(true)
-  //     }
-  //     else {
-  //       return setWishlistStatus(false)
-  //     }
-  //   })
-  // }
-  // else {
-  //   return setWishlistStatus(false)
-  // }
+
   function numDifferentiation(value) {
     var val = Math.abs(value);
     if (val >= 10000000) {

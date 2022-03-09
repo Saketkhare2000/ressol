@@ -257,7 +257,7 @@ const EditProperty = () => {
             <input
               type="text"
               onChange={(e) => setName(e.target.value)}
-              placeholder="Name of Property/Project"
+              placeholder="Township/Colony Name"
               name="name"
               id="name"
               defaultValue={propertyDetails.property_name}
