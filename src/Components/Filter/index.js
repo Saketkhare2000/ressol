@@ -404,14 +404,14 @@ const Filter = () => {
           </div>
           {/* Property Name  */}
           <div className="filter-group">
-            <h3>Property Name</h3>
+            <h3>Township/Colony Name</h3>
             <div className="filter-item">
               <input
                 type="text"
                 name="name"
                 id="name"
                 onChange={(e) => setPropertyName(e.target.value)}
-                placeholder="Property/Project Name"
+                placeholder="Township/Colony Name"
               />
             </div>
           </div>
